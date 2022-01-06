@@ -1,0 +1,77 @@
+*{
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #DA8952;
+}
+.left-area{
+    background-color: #cae4ba;
+    width: 50%;
+    padding: 5rem;
+    text-align: center;    
+}
+.left-area img{
+    margin: 0;
+    width: 600px;
+}
+.right-area{
+    background-color: #fbd06e;
+    width: 50%;
+    padding: 5rem;
+}
+.register-area{
+    margin: auto;
+    height: 400px;
+    overflow-y: auto;
+    width: 80%;
+    background-color: #fef2cb;
+    border-radius: 3%;
+    padding: 1rem ;
+}
+form{
+    width: 90%;
+    margin: auto;
+}
+.title p{
+    text-align: center;
+}
+.form-group div{
+    padding: 0.4rem;
+}
+input{
+    
+    border: 1px solid #DA8952;
+    background-color: #fef2cb;
+}
+.register-btn{
+    border: 1px solid #DA8952;
+    background-color: #DA8952;
+    color: #fff;
+    border-radius: 10%;
+}
+.submit{
+    display: flex;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #fef2cb; 
+    border-radius: 20px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #DA8952; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #fbd06e; 
+  }

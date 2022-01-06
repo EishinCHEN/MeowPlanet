@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "AdopterConfirm";
+}
+@section Styles{
+    <link href="~/css/senderConfirm.css" rel="stylesheet" />
+}
+<div id="app">
+    <div class="bgc">
+        <div class="container container-bgc">
+            <div class="row">
+                <div class="col-lg-3 col-xl-3">
+                    <!--會員專區選單列-->
+                    <div class="menu">
+                        <ul>
+                            <li>
+                                <a asp-controller="Membership" asp-action="Editor">資料修改</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                            <li>
+                                <a href="#">收藏居民</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                            <li>
+                                <a href="#">聊天訊息</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                            <li>
+                                <a href="#">行程管理</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                            <li>
+                                <a asp-controller="Membership" asp-action="Sender">我要送養</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-xl-9">
+                    <!--會員資料修改-->
+                    <div class="user-detail">
+                        <div class="user-info">
+                            <div class="area-title">★我要送養</div>
+                            <div class="center">
+                                <div class=" mainarea">
+                                    <div class="paragraph">
+                                        <div class="li-area">
+                                            <ul>
+                                                <li>我同意遵守與領養人約定的看貓時間。</li>
+                                                <li>喵星人送養成功後我會準時回報。</li>
+                                                <li>我不會要求領養人支付喵星人的費用。</li>
+                                                <li>我同意不在征服喵星人平台惡意散佈謠言。</li>
+                                            </ul>
+                                        </div>
+                                        <div class="center-btn">
+                                            <a type="button" asp-controller="Membership" asp-action="AddRole">我同意以上規約，開始送養喵星人！</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
