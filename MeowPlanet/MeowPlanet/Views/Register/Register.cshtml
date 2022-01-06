@@ -36,6 +36,14 @@
                                     <label for="Birthday">生日：</label>
                                     <input type="date" id="Birthday" min="1979-12-31" max="@String.Format("{0:yyyy-MM-dd}", DateTime.Now)" v-model:text="userDetail.Birthday">
                                 </div>
+                                <div class="tel-gruop">
+                                    <label for="Phone">電話：</label>
+                                    <input type="tel" name="Phone" id="Phone" v-model:text="userDetail.Phone" maxlength="12" placeholder="請使用0900-000-000格式">
+                                </div>
+                                <div class="email-griup">
+                                    <label for="Email">信箱：</label>
+                                    <input type="email" name="Email" id="Email" maxlength="50" v-model:text="userDetail.Email">
+                                </div>
                                 <div class="username-group">
                                     <label for="Account">帳號：</label>
                                     <input type="text" name="Account" id="Account" maxlength="30" v-model:text="userDetail.Account">
@@ -47,18 +55,11 @@
                                 </div>
                                 <div class="confirm-password-group">
                                     <label for="passwordConfirm">確認密碼：</label>
-                                    <input type="password" name="passwordConfirm-confirm" id="passwordConfirm" maxlength="20" onkeyup="checkPwd()"
-                                           v-model:text="userDetail.passwordConfirm">
                                     <span id="area"></span>
+                                    <input type="password" name="passwordConfirm-confirm" id="passwordConfirm" maxlength="20" onkeyup="checkPwd()" placeholder="請再次輸入密碼"
+                                           v-model:text="userDetail.passwordConfirm">
                                 </div>
-                                <div class="tel-gruop">
-                                    <label for="Phone">聯絡電話：</label>
-                                    <input type="tel" name="Phone" id="Phone" v-model:text="userDetail.Phone" maxlength="12" placeholder="請使用0900-000-000格式">
-                                </div>
-                                <div class="email-griup">
-                                    <label for="Email">電子信箱：</label>
-                                    <input type="email" name="Email" id="Email" maxlength="50" v-model:text="userDetail.Email">
-                                </div>
+
                             </div>
                             <div class="submit">
                                 <button type="button" class="register-btn" id="submit" v-on:click="createUser">註冊</button>

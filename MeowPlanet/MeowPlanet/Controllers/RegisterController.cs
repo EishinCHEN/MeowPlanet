@@ -77,7 +77,8 @@ namespace MeowPlanet.Controllers
                             EmailConfirm = "false",
                             Gender = GENDER,
                             Phone = PHONE,
-                            Birthday = BTD
+                            Birthday = BTD,
+                            PersonalPhoto = "/images/預設大頭貼.png"
                         };
                         _dbcontext.UserDatas.Add(userdata);
                         _dbcontext.SaveChanges();

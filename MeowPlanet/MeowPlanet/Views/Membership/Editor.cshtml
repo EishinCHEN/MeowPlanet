@@ -5,7 +5,6 @@
 @section Styles{
     <link href="~/css/memberEdit.css" rel="stylesheet" />
 }
-
 <div id="app">
     <div class="bgc">
         <div class="container container-bgc">
@@ -50,20 +49,21 @@
                                 </ul>
                             </div>
                             <div class="info-area form-area" v-if="isVisable===1">
+                                <form action="/Membership/uploadphoto" method="post" enctype="multipart/form-data">
+                                    <div class="user-photo">
+                                        <div class="edit-icon" onclick="uploadPhoto()">
+                                            <img :src="userInfo.Photo" alt="使用者大頭貼" id="userPhoto" />
+                                        </div>
+                                        <input type="file" name="file" value="save" accept="image/*"
+                                               class="photo-selector" id="selectedFile" v-on:change="readURI">
+                                        <button type="submit"><i class="bi bi-arrow-up-circle"></i></button>
+                                    </div>
+                                </form>
                                 <form>
                                     <div class="required-area">
                                         <div class="username">
                                             <label for="Account">帳號：</label>
                                             <input type="text" name="Account" id="Account" v-model:text="userInfo.Account" disabled>
-                                        </div>
-                                        <div class="user-photo">
-                                            <img :src="userInfo.Photo" v-if="hasPhoto" alt="使用者大頭貼" id="userPhoto" />
-                                            <img v-if="noPhoto" src="~/images/預設大頭貼.png" alt="預設者大頭貼" id="autoUserPhoto" />
-                                            <div class="edit-icon" onclick="uploadPhoto()">
-                                                <i class="bi bi-pencil"></i>
-                                            </div>
-                                            <input type="file" name="user-photo" value="save" accept="image/*"
-                                                   class="photo-selector" id="selectedFile" @*v-on:change="uploadFile()"*@>
                                         </div>
                                         <div class="name">
                                             <label for="RealName">姓名：</label>
@@ -199,8 +199,6 @@
             </div>
         </div>
     </div>
-    @*{{userInfo.Photo}}
-        <image :src="userInfo.Photo"></image>*@
 </div>
 
 @section Scripts{
@@ -231,8 +229,6 @@
             el: "#app",
             data: {
                 isVisable: 1,
-                hasPhoto: true,
-                noPhoto: false,
                 userInfo: {
                     "RealName": "@ViewData["RealName"]",
                     "Gender": "@ViewData["Gender"]",
@@ -263,21 +259,8 @@
                 showInfo(n) {
                     this.isVisable = n;
                 },
-                @*uploadFile() {
-                    $.ajax(
-                        {
-                        type: "POST",
-                        url: "@Url.Action("UploadPhoto", "Membership")/",
-                        data: this.userInfo,
-                        }).done(function (data, textStatus, jqXHR) {
-                            var result = data.code == 200 ? "更新成功" : "資料更新失敗";
-                            var yes = confirm(result+" 回到首頁");
-                            yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
-                         }).fail(function () {
-                             alert("連線失敗");
-                    });
-                },*@
                 readURI(event) {
+                    //處理圖片預覽
                     var vm = this;
                     if (event.target.files && event.target.files[0]) {
                         var reader = new FileReader();
@@ -299,7 +282,6 @@
                         },
                         data: this.userInfo,
                         }).done(function (data, textStatus, jqXHR) {
-                            //console.log("data" + JSON.stringify(data));
                             var result = data.code == 200 ? "更新成功!要回到首頁嗎?" : "資料更新失敗!要回到首頁嗎?";
                             var yes = confirm(result);
                             yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
@@ -329,7 +311,6 @@
                 adpEdit() {
                     //判斷年齡是否大於20
                     var age =@TempData["Age"];
-                    alert(age);
                     var agent = document.getElementById("Agents");
                     var relation = document.getElementById("RelationShip");
                     if (age) {
@@ -358,17 +339,7 @@
                              console.log("連線失敗");
                     });
                 }
-            },
-            //mounted() {
-            //    var replacements = {
-            //        "+": ".",
-            //        "=": "-",
-            //        "/": "_"
-            //    };
-            //    let photo = Base64Url.replace(this.userInfo.Photo, replacements);
-            //    console.log(photo);
-            //    //document.getElementById('image').setAttribute('src', `data:image/jpeg;base64,${this.userInfo.Photo}`)
-            //}
+            }
         });
     </script>
 }

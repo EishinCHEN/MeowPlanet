@@ -72,18 +72,39 @@ namespace MeowPlanet.Controllers
         }
 
         [HttpPost]
-        public async void UploadPhoto(IFormFile file)
+        public async Task<IActionResult> UploadPhoto(IFormFile file)
         {
+            var claims = HttpContext.User;
+            var ID = Convert.ToInt32(claims.Identity.Name);
+
             String root = _webHostEnvironment.ContentRootPath + @"\wwwroot\images\";
+
             if (file.Length > 0)
             {
                 string fileName = file.FileName;
                 using (var stream = System.IO.File.Create(root + fileName))
                 {
                     await file.CopyToAsync(stream);
-
+                    Console.WriteLine(stream);
+                }
+                //將圖片寫入資料庫
+                if (ModelState.IsValid)    //判斷資料庫是否連接成功
+                {
+                    try
+                    {
+                        var user = await _dbcontext.UserDatas.Where(s => s.UserId == ID).FirstOrDefaultAsync();
+                        var photoPath = "/images/" + fileName;
+                        user.PersonalPhoto = photoPath;
+                        _dbcontext.SaveChanges();
+                        Console.WriteLine("使用者大頭照更新成功");
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        Console.WriteLine("錯誤:" + ex);
+                    }
                 }
             }
+            return RedirectToAction("Editor");
         }
 
         [Route("/Membership/infoedit")]

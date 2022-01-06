@@ -10,7 +10,7 @@
 }
 .left-area img{
     margin: 0;
-    width: 600px;
+    width: 500px;
 }
 .right-area{
     background-color: #fbd06e;
@@ -41,11 +41,20 @@ input{
     border: 1px solid #DA8952;
     background-color: #fef2cb;
 }
+#Gender {
+    background-color: #fef2cb;
+    border: #DA8952 1px solid;
+    border-radius: 5px;
+}
+input {
+    border-radius: 5px;
+}
 .register-btn{
     border: 1px solid #DA8952;
     background-color: #DA8952;
+    padding: 3px 15px;
     color: #fff;
-    border-radius: 10%;
+    border-radius: 10px;
 }
 .submit{
     display: flex;
