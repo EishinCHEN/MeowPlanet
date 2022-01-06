@@ -1,6 +1,8 @@
 using MeowPlanet.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 
 namespace MeowPlanet
@@ -28,6 +32,17 @@ namespace MeowPlanet
             services.AddControllersWithViews();
             services.AddDbContext<MeowContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Meow")));
+            //設定cookie驗證
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(option =>
+                {
+                    option.LoginPath = new PathString("/Login/Login");              //若使用者未登入則導向至此頁面
+                    option.LogoutPath = "/logout/";
+                    option.AccessDeniedPath = new PathString("/Membership/Login");       //若使用者沒有權限則導向至此頁面
+                    option.ExpireTimeSpan = TimeSpan.FromMilliseconds(3);                //設定登入時限
+                }
+            );
+            services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));     //處理ViewData傳遞中文編碼問題
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +62,9 @@ namespace MeowPlanet
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCookiePolicy();           //會設定作用網域
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
