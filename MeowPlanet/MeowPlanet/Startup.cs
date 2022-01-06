@@ -1,3 +1,4 @@
+using MeowPlanet.Hubs;
 using MeowPlanet.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,7 @@ namespace MeowPlanet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSignalR();  //¤Þ¥ÎsignalR
             services.AddDbContext<MeowContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Meow")));
         }
@@ -55,6 +57,7 @@ namespace MeowPlanet
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>("/chatHub");  //signalr
             });
         }
     }
