@@ -112,8 +112,8 @@
                             data: this.userDetail,
                         }).done(function (data, textStatus, jqXHR) {
                             console.log("data" + JSON.stringify(data));
-                            var result = data.code == 200 ? "註冊成功" : "帳號重複";
-                            var yes = confirm(result + "請檢查信箱");
+                            var result = data.code == 200 ? "註冊成功!請至註冊信箱開啟驗證信件!" : "帳號已經有人註冊了!請換一個試試!";
+                            var yes = confirm(result);
                             yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Register/enrollUser");
                          }).fail(function () {
                              top.location.href = "/Register/enrollUser";

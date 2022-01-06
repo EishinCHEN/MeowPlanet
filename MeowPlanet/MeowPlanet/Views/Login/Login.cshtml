@@ -87,8 +87,8 @@
                         data: this.loginData,
                     }).done(function (data, textStatus, jqXHR) {
                         console.log("data" + JSON.stringify(data));
-                        var result = data.code == 200 ? "登入成功" : "帳號或密碼錯誤";
-                        var yes = confirm(result + "我要填寫領養資訊")
+                        var result = data.code == 200 ? "登入成功!我要填寫領養資訊" : "帳號或密碼錯誤!";
+                        var yes = confirm(result)
                         yes ? (top.location.href = "/Membership/Editor") : (top.location.href = "/Home/Index");
                     }).fail(function () {
                         console.log("連線失敗");
@@ -104,8 +104,8 @@
                         data: this.loginData,
                     }).done(function (data, textStatus, jqXHR) {
                         console.log("data" + JSON.stringify(data));
-                        var result = data.code == 200 ? "新密碼寄送成功" : "申請新密碼失敗";
-                        var yes = confirm(result + "請檢查電子郵件")
+                        var result = data.code == 200 ? "新密碼寄送成功!請檢查電子郵件!" : "申請新密碼失敗!";
+                        var yes = confirm(result)
                         yes ? (top.location.href = "/Login/Login") : (top.location.href = "/Home/Index");
                     }).fail(function () {
                         console.log("連線失敗");

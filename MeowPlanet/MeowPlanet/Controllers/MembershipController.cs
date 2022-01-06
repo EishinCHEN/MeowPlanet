@@ -56,8 +56,8 @@ namespace MeowPlanet.Controllers
             TempData["RelationShip"] = info.RelationShip;
             //計算年齡
             var org = Convert.ToString(info.Birthday);
-            var thisYear = DateTime.Now.Year;
-            var bth = DateTime.Parse(org).Year;
+            var thisYear = (int)DateTime.Now.Year;
+            var bth = (int)DateTime.Parse(org).Year;
             TempData["Age"] = thisYear - bth;
 
 

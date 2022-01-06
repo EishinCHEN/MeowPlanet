@@ -127,6 +127,7 @@
                                     <div class="salary">
                                         <label for="Salary">年薪：</label>
                                         <select name="Salary" id="Salary" v-model="adopterInfo.Salary">
+                                            <option value="300k">30萬以下</option>
                                             <option value="300k" id="300k">30~40萬</option>
                                             <option value="400k">40~50萬</option>
                                             <option value="500k">50~60萬</option>
@@ -152,6 +153,7 @@
                                     <div class="other-pets">
                                         <label for="OtherPets">同時飼養寵物：</label>
                                         <select name="OtherPets" id="OtherPets" v-model="adopterInfo.OtherPets">
+                                            <option value="no">沒有</option>
                                             <option value="cat">貓類</option>
                                             <option value="dog">狗類</option>
                                             <option value="mouse">鼠類</option>
@@ -164,6 +166,7 @@
                                     <div class="keeped-pets">
                                         <label for="KeepPets">曾經養過寵物</label>
                                         <select name="KeepPets" id="KeepPets" v-model="adopterInfo.KeepPets">
+                                            <option value="no">沒有</option>
                                             <option value="cat">貓類</option>
                                             <option value="dog">狗類</option>
                                             <option value="mouse">鼠類</option>
@@ -297,15 +300,14 @@
                         data: this.userInfo,
                         }).done(function (data, textStatus, jqXHR) {
                             //console.log("data" + JSON.stringify(data));
-                            var result = data.code == 200 ? "更新成功" : "資料更新失敗";
-                            var yes = confirm(result+" 回到首頁");
+                            var result = data.code == 200 ? "更新成功!要回到首頁嗎?" : "資料更新失敗!要回到首頁嗎?";
+                            var yes = confirm(result);
                             yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
                          }).fail(function () {
                              alert("連線失敗");
                     });
                 },
                 pwdChange() {
-                    alert("pwdChange");
                     $.ajax(
                         {
                         type: "POST",
@@ -317,8 +319,8 @@
                             data: this.pwd,
                         }).done(function (data, textStatus, jqXHR) {
                             //console.log("data" + JSON.stringify(data));
-                            var result = data.code == 200 ? "密碼更新成功" : "密碼更新失敗";
-                            var yes = confirm(result + "回到首頁?")
+                            var result = data.code == 200 ? "密碼更新成功!要回到首頁嗎?" : "密碼更新失敗!要回到首頁嗎?";
+                            var yes = confirm(result)
                             yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
                          }).fail(function () {
                              console.log("連線失敗");
@@ -326,13 +328,14 @@
                 },
                 adpEdit() {
                     //判斷年齡是否大於20
-                    var age=@TempData["Age"];
+                    var age =@TempData["Age"];
+                    alert(age);
                     var agent = document.getElementById("Agents");
                     var relation = document.getElementById("RelationShip");
                     if (age) {
                         if (age < 20) {
                             if (agent.value == "" || relation.value == "") {
-                                alert("未滿20歲需經法定代理人同意才能領養哦! 請填上法定代理來姓名及關係才能繼續下一步!");
+                                alert("未滿20歲需經法定代理人同意才能領養哦! 請填上法定代理人姓名及關係才能繼續下一步!");
                                 return;    //未填寫則跳離函式
                             }
                         }
@@ -348,8 +351,8 @@
                             data: this.adopterInfo,
                         }).done(function (data, textStatus, jqXHR) {
                             console.log("data" + JSON.stringify(data));
-                            var result = data.code == 200 ? "領養身分資訊更新成功" : "資料更新失敗";
-                            var yes = confirm(result + " 回到首頁");
+                            var result = data.code == 200 ? "領養身分資訊更新成功!要回到首頁嗎?" : "資料更新失敗!要回到首頁嗎?";
+                            var yes = confirm(result);
                             yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
                          }).fail(function () {
                              console.log("連線失敗");
