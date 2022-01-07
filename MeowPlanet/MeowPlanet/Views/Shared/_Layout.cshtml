@@ -20,6 +20,7 @@
 
     @* 引用jquery CDN *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css" />
     @await RenderSectionAsync("Styles", required: false)
 
 
@@ -53,8 +54,9 @@
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
+    
 
-
+    <script src="jquery.flipster.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @*<script src="jquery.flipster.min.js"></script>*@
