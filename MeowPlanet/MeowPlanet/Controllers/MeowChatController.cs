@@ -102,10 +102,10 @@ namespace MeowPlanet.Controllers
         }
 
         internal async Task<object> GetUserDataById(int userId)
-        {
+        {            
             return await _meowContext.UserDatas
                     .Where(u => u.UserId == userId)
-                    .Select(u => new { u.RealName ,u.PersonalPhoto ,u.Job, u.Salary, u.AcceptableAmount,
+                    .Select(u => new { u.RealName , PersonalPhoto = Url.Content(u.PersonalPhoto), u.Job, u.Salary, u.AcceptableAmount,
                              u.Merrage, u.OtherPets,u.KeepPets, u.Agents, u.RelationShip})
                     .FirstOrDefaultAsync();
         }
