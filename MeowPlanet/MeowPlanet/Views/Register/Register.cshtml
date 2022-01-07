@@ -3,6 +3,15 @@
     ViewData["Title"] = "成為宇航員";
 }
 @section Styles{
+    @*引用bootstrap*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    @*引用bootstrap icon*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    @*引用googlefont*@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="~/css/menberRegister.css" rel="stylesheet" />
 }
 
@@ -36,6 +45,14 @@
                                     <label for="Birthday">生日：</label>
                                     <input type="date" id="Birthday" min="1979-12-31" max="@String.Format("{0:yyyy-MM-dd}", DateTime.Now)" v-model:text="userDetail.Birthday">
                                 </div>
+                                <div class="tel-gruop">
+                                    <label for="Phone">電話：</label>
+                                    <input type="tel" name="Phone" id="Phone" v-model:text="userDetail.Phone" maxlength="12" placeholder="請使用0900-000-000格式">
+                                </div>
+                                <div class="email-griup">
+                                    <label for="Email">信箱：</label>
+                                    <input type="email" name="Email" id="Email" maxlength="50" v-model:text="userDetail.Email">
+                                </div>
                                 <div class="username-group">
                                     <label for="Account">帳號：</label>
                                     <input type="text" name="Account" id="Account" maxlength="30" v-model:text="userDetail.Account">
@@ -47,18 +64,11 @@
                                 </div>
                                 <div class="confirm-password-group">
                                     <label for="passwordConfirm">確認密碼：</label>
-                                    <input type="password" name="passwordConfirm-confirm" id="passwordConfirm" maxlength="20" onkeyup="checkPwd()"
-                                           v-model:text="userDetail.passwordConfirm">
                                     <span id="area"></span>
+                                    <input type="password" name="passwordConfirm-confirm" id="passwordConfirm" maxlength="20" onkeyup="checkPwd()" placeholder="請再次輸入密碼"
+                                           v-model:text="userDetail.passwordConfirm">
                                 </div>
-                                <div class="tel-gruop">
-                                    <label for="Phone">聯絡電話：</label>
-                                    <input type="tel" name="Phone" id="Phone" v-model:text="userDetail.Phone" maxlength="12" placeholder="請使用0900-000-000格式">
-                                </div>
-                                <div class="email-griup">
-                                    <label for="Email">電子信箱：</label>
-                                    <input type="email" name="Email" id="Email" maxlength="50" v-model:text="userDetail.Email">
-                                </div>
+
                             </div>
                             <div class="submit">
                                 <button type="button" class="register-btn" id="submit" v-on:click="createUser">註冊</button>
@@ -112,8 +122,8 @@
                             data: this.userDetail,
                         }).done(function (data, textStatus, jqXHR) {
                             console.log("data" + JSON.stringify(data));
-                            var result = data.code == 200 ? "註冊成功" : "帳號重複";
-                            var yes = confirm(result + "請檢查信箱");
+                            var result = data.code == 200 ? "註冊成功!請至註冊信箱開啟驗證信件!" : "帳號已經有人註冊了!請換一個試試!";
+                            var yes = confirm(result);
                             yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Register/enrollUser");
                          }).fail(function () {
                              top.location.href = "/Register/enrollUser";

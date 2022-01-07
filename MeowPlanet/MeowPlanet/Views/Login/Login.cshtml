@@ -3,6 +3,15 @@
     ViewData["Title"] = "登入喵星球";
 }
 @section styles{
+    @*引用bootstrap*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    @*引用bootstrap icon*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    @*引用googlefont*@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="~/css/memeberLogin.css" rel="stylesheet" />
 }
 
@@ -86,8 +95,8 @@
                         data: this.loginData,
                     }).done(function (data, textStatus, jqXHR) {
                         console.log("data" + JSON.stringify(data));
-                        var result = data.code == 200 ? "登入成功" : "帳號或密碼錯誤";
-                        var yes = confirm(result + "我要填寫領養資訊")
+                        var result = data.code == 200 ? "登入成功!我要填寫領養資訊" : "帳號或密碼錯誤!";
+                        var yes = confirm(result)
                         yes ? (top.location.href = "/Membership/Editor") : (top.location.href = "/Home/Index");
                     }).fail(function () {
                         console.log("連線失敗");
@@ -103,8 +112,8 @@
                         data: this.loginData,
                     }).done(function (data, textStatus, jqXHR) {
                         console.log("data" + JSON.stringify(data));
-                        var result = data.code == 200 ? "新密碼寄送成功" : "申請新密碼失敗";
-                        var yes = confirm(result + "請檢查電子郵件")
+                        var result = data.code == 200 ? "新密碼寄送成功!請檢查電子郵件!" : "申請新密碼失敗!";
+                        var yes = confirm(result)
                         yes ? (top.location.href = "/Login/Login") : (top.location.href = "/Home/Index");
                     }).fail(function () {
                         console.log("連線失敗");
