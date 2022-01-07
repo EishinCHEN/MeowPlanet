@@ -16,26 +16,43 @@
 }
 
 html,
-body.mybody {
+body {
     width: 100%;
-    height: 100%;
     background-color: #FEF2CB;
 }
 
+.bgc {
+    background-color: #FEF2CB;
+    height: 100%;
+}
 
+.wrapper{
+    z-index:1;
+}
 
 .container {
     width: 70%;
     height: 100%;
-/*    margin-top: 48px;*/
-    padding-top: 48px;
-    border-radius: 10px;
+    padding-top: 150px;
+    background-color: #FEF2CB;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.row {
+    margin-top: auto;
+    margin-bottom:auto;
     background-color: #fff;
+    border-radius: 10px;
+    /*padding-bottom:50px;*/
+}
+
+.pb-3 {
+    background-color: #FEF2CB;
 }
 
 
 /* 處理menu選單 */
-
 .bi {
     font-size: 20px;
 }
@@ -90,6 +107,11 @@ body.mybody {
 
 /* menu選單結束 */
 /* 主標題列(右邊) */
+.message-area{
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
 .message-area-title {
     width: 90%;
     font-weight: 500;
@@ -98,11 +120,12 @@ body.mybody {
     padding: 4px 0px 4px 10px;
     color: #DA8952;
     background-color: #FEF2CB;
+    z-index:-1;
 }
 
 .message-area-inside {
     width: 90%;
-    height: 70%;
+    height: 90%;
     border-radius: 10px;
     margin-left: 16px;
     margin-top: 16px;
@@ -115,7 +138,7 @@ body.mybody {
     border-radius: 50%;
     border: none;
     width: 40px;
-    height: 40px;
+    /*height: 40px;*/
     overflow: hidden;
 }
 

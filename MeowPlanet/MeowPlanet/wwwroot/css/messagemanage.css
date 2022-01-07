@@ -16,14 +16,19 @@
 }
 
 html,
-body.mybody {
+body {
     width: 100%;
-    height: 100%;
     background-color: #FEF2CB;
 }
 
+.bgc {
+    background-color: #FEF2CB;
+    height: 100%;
+}
 
-/* Materil Design引用結束 */
+.wrapper {
+    z-index: 1;
+}
 
 
 /* 設定背景區塊 */
@@ -31,12 +36,24 @@ body.mybody {
 .container {
     width: 70%;
     height: 100%;
-/*    margin-top: 48px;*/
-    padding-top: 48px;
     border-radius: 10px;
-    background-color: #fff;
     justify-content: center;
     align-items: center;
+    padding-top: 150px;
+    background-color: #FEF2CB;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.row {
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    /*padding-bottom:50px;*/
+}
+
+.pb-3 {
+    background-color: #FEF2CB;
 }
 
 
