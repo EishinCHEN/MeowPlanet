@@ -29,7 +29,6 @@ namespace MeowPlanet.Controllers
         {
             var claims = HttpContext.User;
             var ID = Convert.ToInt32(claims.Identity.Name);
-            var ROLE = claims.Claims.Where(x => x.Type == ClaimTypes.Role).FirstOrDefault().Value;
 
             var info = await (from a in _dbcontext.UserDatas
                               where a.UserId == ID
@@ -60,17 +59,13 @@ namespace MeowPlanet.Controllers
             var bth = (int)DateTime.Parse(org).Year;
             TempData["Age"] = thisYear - bth;
 
-
-            if (ROLE == "2")   //送養者前端頁面顯示貓咪管理
-            {
-                return RedirectToAction("");
-            }
-            else
-            {
-                return View();
-            }
+            var ROLE = claims.Claims.Where(x => x.Type == ClaimTypes.Role).FirstOrDefault().Value;
+            TempData["Role"] = ROLE;
+            
+            return View();
         }
-
+        
+        //接收大頭照並寫入資料庫
         [HttpPost]
         public async Task<IActionResult> UploadPhoto(IFormFile file)
         {
@@ -328,7 +323,9 @@ namespace MeowPlanet.Controllers
         {
             return View();
         }
-        public async Task<MemberManagement.Message> AddRole()
+
+        //新增送養人角色
+        public async Task<IActionResult> AddRole()
         {
             var claims = HttpContext.User;
             var ID = Convert.ToInt32(claims.Identity.Name);
@@ -368,7 +365,7 @@ namespace MeowPlanet.Controllers
                     Time = DateTime.Now
                 };
             }
-            return msg;
+            return RedirectToAction("AddCat","CatManagement");
         }
     }
 }
