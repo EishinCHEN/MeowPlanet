@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "我要送養";
+    ViewData["Title"] = "新增喵星人";
 }
 @section Styles{
     @*引用bootstrap*@
@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="~/css/menbership/sender.css" rel="stylesheet" />
+    <link href="~/css/catManagement/addCat.css" rel="stylesheet" />
 }
 <div id="app">
     <div class="bgc">
@@ -39,7 +39,7 @@
                                 <i class="bi bi-caret-right-fill "></i>
                             </li>
                             <li>
-                                <a asp-controller="Membership" asp-action="Adopter">我要送養</a>
+                                <a asp-controller="Membership" asp-action="Adopter">管理居民</a>
                                 <i class="bi bi-caret-right-fill "></i>
                             </li>
                         </ul>
@@ -49,26 +49,20 @@
                     <!--會員資料修改-->
                     <div class="user-detail">
                         <div class="user-info">
-                            <div class="area-title">★我要送養</div>
+                            <div class="area-title">★管理居民</div>
                             <div class="center">
                                 <div class=" mainarea">
+                                    <div class="img-area">
+                                        <img src="~/images/橘色/圓形飛船貓-橘色.PNG" />
+                                    </div>
                                     <div class="paragraph">
                                         <p>
-                                            星際宇航員你好！
+                                            目前還沒有要管理的喵星人！
                                         </p>
-                                        <p>
-                                            在你開始準備送養之前，<br />
-                                            請先協助填寫相關資訊，<br />
-                                            我們會為你開通送養人身份，<br />
-                                            就可以讓更多人一起征服喵星人！
-                                        </p>
-                                    </div>
-                                    <div class="img-area">
-                                        <img src="~/images/橘色/貓太空人-橘色.PNG" />
                                     </div>
                                 </div>
                                 <div class="center-btn">
-                                    <a asp-controller="Membership" asp-action="SenderConfirm">沒問題</a>
+                                    <a asp-controller="CatManagement" asp-action="UploadCat">新增喵星人</a>
                                 </div>
                             </div>
                         </div>

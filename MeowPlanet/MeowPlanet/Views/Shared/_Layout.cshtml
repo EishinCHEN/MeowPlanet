@@ -8,10 +8,8 @@
     <link href="~/css/site.css" rel="stylesheet" />
     @* 引用Vue CDN *@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-
-    @* 引用jquery CDN *@
+    @* 引用jQuery CDN *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="~/css/site.css" />
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
@@ -37,17 +35,12 @@
         <div class="logo2">
             @*導覽列結束*@
             <div></div>
-
-            
         </div>
-        
     </header>
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
     
-
-    <script src="jquery.flipster.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

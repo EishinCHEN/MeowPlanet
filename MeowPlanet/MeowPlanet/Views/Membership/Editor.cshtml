@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="~/css/memberEdit.css" rel="stylesheet" />
+    <link href="~/css/menbership/infoEdit.css" rel="stylesheet" />
 }
 <div id="app">
     <div class="bgc">
@@ -38,8 +38,12 @@
                                 <a href="#">行程管理</a>
                                 <i class="bi bi-caret-right-fill "></i>
                             </li>
-                            <li>
+                            <li v-if="isCatSender === 1">
                                 <a asp-controller="Membership" asp-action="Sender">我要送養</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                            <li v-if="isCatSender === 2">
+                                <a asp-controller="CatManagement" asp-action="AddCat">管理居民</a>
                                 <i class="bi bi-caret-right-fill "></i>
                             </li>
                         </ul>
@@ -238,6 +242,7 @@
             el: "#app",
             data: {
                 isVisable: 1,
+                isCatSender: 1,
                 userInfo: {
                     "RealName": "@ViewData["RealName"]",
                     "Gender": "@ViewData["Gender"]",
@@ -245,7 +250,8 @@
                     "Account": "@ViewData["Account"]",
                     "Email": "@ViewData["Email"]",
                     "Phone": "@ViewData["Phone"]",
-                    "Photo": "@ViewData["Photo"]"
+                    "Photo": "@ViewData["Photo"]",
+                    "Role":"@TempData["Role"]"
                 },
                 adopterInfo: {
                     "Account": "@ViewData["Account"]",
@@ -263,6 +269,9 @@
                     "OrgPwd": "",
                     "NewPwd": ""
                 }
+            },
+            mounted() {
+                (this.userInfo.Role == "CatSender") ? (this.isCatSender = 2) : (this.isCatSender = 1);
             },
             methods: {
                 showInfo(n) {

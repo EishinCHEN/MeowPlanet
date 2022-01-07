@@ -1,0 +1,185 @@
+﻿* {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #DA8952;
+}
+
+.bgc {
+    background-color: #cae4ba;
+    padding: 3rem;
+}
+
+.container {
+    width: 70%;
+    margin: auto; /* 背景色置中*/
+    background-color: #fff;
+    padding: 3rem;
+    border-radius: 3%;
+}
+/* 處理menu選單 */
+.menu {
+    margin-top: 3rem;
+}
+
+    .menu ul {
+        padding: 0; /* 刪除ul預設padding */
+    }
+
+li {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+    li a {
+        color: #65615E;
+        display: inline-block;
+        list-style-type: none;
+        text-decoration: underline;
+        padding: 1rem;
+        margin: 0; /* 刪除p預設margin */
+    }
+
+.menu-icon {
+    text-decoration: none;
+    color: #65615E;
+}
+
+    li:hover, li a:hover, .menu-icon:hover {
+        color: #DA8952;
+    }
+/* menu選單結束 */
+/* 會員資料修改導覽列 */
+.info-nav {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+    .info-nav ul {
+        display: flex;
+        padding: 0;
+        margin: 0;
+    }
+
+    .info-nav li {
+        background-color: #FEF2CB;
+        padding: 0 1rem;
+        margin: 0;
+        cursor: pointer;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .info-nav a {
+        padding: 3px;
+        margin: 0;
+        text-decoration: none;
+        color: #DA8952;
+    }
+/* 會員資料修改導覽列結束 */
+.area-title {
+    color: #DA8952;
+    background-color: #cae4ba;
+    display: inline-block;
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+    padding: 4px 0px 4px 10px;
+    font-weight: 500;
+}
+/* 使用者詳細資料表單 */
+.cat-info {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    color: #da8952;
+}
+
+.center {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+/*相片位置*/
+.pic-area {
+    width: 30%;
+}
+.info-area{
+    width: 69%;
+    padding-left: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.pic-area form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.pic-area input{
+    display: none;
+}
+.big img{
+    width: 150px;
+}
+.small img {
+    width: 50px;
+}
+/*相片位置結束*/
+/*表單內容*/
+.group{
+   margin:2px;
+}
+.info-area input, .info-area select, textarea {
+    border-radius: 5px;
+    border: 1px solid #DA8952;
+    background-color: #fff;
+}
+.center-btn{
+    margin: auto;
+}
+button{
+    border-radius: 10px;
+    background-color: #da8952;
+    margin-top: 5px;
+    padding: 3px 7px;
+    color: #fff;
+}
+/*表單內容結束*/
+/*處理滑桿*/
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #e5efe1;
+    border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #CAE4BA;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #E5EFE1;
+}
+
+/*處理滑桿結束*/
+/* 使用者詳細資料表單結束 */
+@media (max-width: 800px) {
+    .container {
+        width: 90%;
+    }
+
+    .menu {
+        display: none; /*手機&平板不顯示menu選單 */
+    }
+}
