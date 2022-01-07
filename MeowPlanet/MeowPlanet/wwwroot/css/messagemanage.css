@@ -1,0 +1,329 @@
+* {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #65615E;
+    /* border: solid 1px black; */
+}
+
+
+/* 引用Materil Design */
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot);
+    /* For IE6-8 */
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    background-color: #FEF2CB;
+}
+
+
+/* Materil Design引用結束 */
+
+
+/* 設定背景區塊 */
+
+.container {
+    width: 70%;
+    height: 100%;
+    margin-top: 48px;
+    padding-top: 48px;
+    border-radius: 10px;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* 處理menu選單 */
+
+.bi {
+    font-size: 20px;
+}
+
+.menu {
+    margin-top: 48px;
+}
+
+.menu ul,
+.info-box ul {
+    padding: 0;
+    /* 刪除ul預設padding */
+}
+
+.menu-list,
+.notice-info li {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-weight: 500;
+    margin: 0;
+}
+
+.menu-list a {
+    color: #65615E;
+    display: inline-block;
+    list-style-type: none;
+    text-decoration: underline;
+    padding: 16px;
+    margin: 0;
+    /* 刪除p預設margin */
+}
+
+.menu-list:hover,
+.menu-list a:hover,
+.menu-list a:active {
+    color: #DA8952;
+}
+
+.catchlist {
+    color: #DA8952;
+}
+
+.menu-list p {
+    color: #DA8952;
+    display: inline-block;
+    list-style-type: none;
+    text-decoration: underline;
+    padding: 16px;
+    margin: 0;
+}
+
+
+/* menu選單結束 */
+
+
+/* 主標題列(右邊) */
+
+.message-area {
+    position: relative;
+}
+
+.message-area-title {
+    width: 90%;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 16px;
+    padding: 4px 0px 4px 10px;
+    color: #DA8952;
+    background-color: #FEF2CB;
+}
+
+.message-area-inside {
+    width: 90%;
+    height: 60vh;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 32px;
+    padding: 10px 0px 10px 10px;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.message-area-inside::-webkit-scrollbar {
+    width: 16px;
+}
+
+.message-area-inside::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.message-area-inside::-webkit-scrollbar-thumb {
+    background-color: #FBD06E;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.message-groups {
+    width: 90%;
+    height: 100px;
+    border-radius: 10px;
+    border: solid 4px #FEF2CB;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.message-groups:hover {
+    background-color: #FEF2CB;
+}
+
+.recipient-pic {
+    border-radius: 50%;
+    border: none;
+    width: 80px;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.pic {
+    width: 100%;
+}
+
+.recipient-area {
+    width: 50%;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #DA8952;
+}
+
+.recipient-area,
+.recipient-pic,
+.notice-info,
+.details {
+    display: inline-block;
+}
+
+.recipient-text {
+    height: 20px;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+.notice-info {
+    margin-right: 30px;
+    margin-top: 10px;
+}
+
+.icon-time,
+.icon-unread {
+    margin: 5px;
+}
+
+.icon-time {
+    color: #B1A99B;
+    font-size: 8px;
+    max-width: 70%;
+}
+
+.icon-unread {
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    background-color: #FBD06E;
+    color: white;
+}
+
+.details {
+    margin-right: 15px;
+    padding: 5px;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #DA8952;
+    color: white;
+    border: none;
+    width: 45px;
+}
+
+.info-box {
+    border-radius: 10px;
+    width: fit-content;
+    padding: 14px;
+    font-size: 14px;
+    position: absolute;
+    background-color: #DA8952;
+    right: 140px;
+    top: 45px;
+    z-index: 100;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+#close {
+    background-color: transparent;
+    color: #DA8952;
+    border: none;
+    margin-top: -8px;
+    margin-right: 0px;
+}
+
+.info-box-inside {
+    position: relative;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    padding-bottom: 5px;
+}
+
+.info-box-close {
+    position: absolute;
+    right: 0;
+}
+
+.info-box-name {
+    color: white;
+    display: inline-block;
+    margin-top: -5px;
+}
+
+.close {
+    margin-top: -10px;
+    margin-right: 0px;
+}
+
+.fa-times {
+    color: white;
+}
+
+
+.info-box li {
+    list-style-type: none;
+    margin-top: 5px;
+    color: white;
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        width: 100%;
+        height: 100%;
+        background-color: #FEF2CB;
+        margin-top: 0;
+        padding: 0;
+    }
+    .message-groups {
+        width: 100%;
+    }
+    .message-area-title {
+        font-size: 14px;
+    }
+    .message-area-inside {
+        margin-top: 0;
+        margin-bottom: 4px;
+        padding: 10px;
+        height: 80vh;
+    }
+    .info-box {
+        right: 100px;
+        top: 95px;
+    }
+    .notice-info {
+        margin-right: 0;
+        margin-top: 10px;
+    }
+    .recipient-pic {
+        margin-left: 0px;
+    }
+    .details {
+        padding: 5px;
+        margin-right: 0;
+    }
+}

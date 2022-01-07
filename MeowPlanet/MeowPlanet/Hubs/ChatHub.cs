@@ -17,5 +17,7 @@ namespace MeowPlanet.Hubs
 
         static List<UserData> ConnectedUsers = new List<UserData>();
         static List<ChatList> CurrentMessage = new List<ChatList>();
+
+        
     }
 }
