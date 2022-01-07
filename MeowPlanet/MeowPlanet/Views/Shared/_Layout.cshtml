@@ -10,10 +10,8 @@
 
     @* 引用Vue CDN *@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-
-    @* 引用jquery CDN *@
+    @* 引用jQuery CDN *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="~/css/site.css" />
     @await RenderSectionAsync("Styles", required: false)
 
 
@@ -48,8 +46,6 @@
         @RenderBody()
     </main>
     
-
-    <script src="jquery.flipster.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @*<script src="jquery.flipster.min.js"></script>*@

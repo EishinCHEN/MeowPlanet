@@ -62,7 +62,8 @@ namespace MeowPlanet.Controllers
             {
                 var role = await (from r in _dbcontext.RoleManagements
                                   where r.UserId == user.UserId
-                                  select r.RoleId).FirstOrDefaultAsync();
+                                  orderby r.RoleManagementId
+                                  select r.RoleId).LastOrDefaultAsync();
 
                 var claims = new List<Claim>();
                 switch (role)
@@ -81,8 +82,8 @@ namespace MeowPlanet.Controllers
                         {
                             new Claim(ClaimTypes.Name, Convert.ToString(user.UserId)),
                             new Claim(ClaimTypes.GivenName, user.Account),
+                            new Claim(ClaimTypes.Role, "CatSender"),
                             new Claim(ClaimTypes.Role, "Adopter"),
-                            new Claim(ClaimTypes.Role, "Sender"),
                             new Claim("FullName", user.RealName),
                         };
                         break;
