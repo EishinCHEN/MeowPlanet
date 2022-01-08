@@ -18,5 +18,11 @@ namespace MeowPlanet.Controllers
         {
             return View();
         }
+
+        //顯示管理貓咪的畫面
+        public IActionResult ManageCat()
+        {
+            return View();
+        }
     }
 }

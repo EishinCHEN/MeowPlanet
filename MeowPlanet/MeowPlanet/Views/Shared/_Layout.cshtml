@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - 征服喵星人</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    @*<link rel="stylesheet" href="~/css/site.css" />*@
-
-
+    @*<link href="~/css/site.css" rel="stylesheet" /> 先註解導覽列css*@
     @* 引用Vue CDN *@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     @* 引用jQuery CDN *@
@@ -17,10 +15,11 @@
 
 
 </head>
-<body class="mybody">
-    <header>
-        @*導覽列*@
-        <div class="wrapper">
+<body>
+    <!--<header>-->@*先註解導覽列*@
+
+        @*導覽列*@ 
+        <!--<div class="wrapper">
             <div><a href="#" class="menu">相處之旅</a></div>
             <div><a href="#" class="menu">命運旅行</a></div>
             <div class="catlogo">
@@ -36,13 +35,14 @@
             </div>
             <div id="login"><a asp-controller="Login" asp-action="Login">登入星球</a></div>
         </div>
-        <div class="logo2">
+        <div class="logo2">-->
             @*導覽列結束*@
-            <div></div>
+            <!--<div></div>
         </div>
-    </header>
+    </header>-->
 
-    <main role="main" class="pb-3">
+    @*刪掉原本內建bootstrap的class <main role="main" class="pb-3">*@
+    <main>
         @RenderBody()
     </main>
     
