@@ -50,85 +50,88 @@
                     <div class="cat-info">
                         <div class="area-title">★管理居民</div>
                         <div class="center">
-                            <!--新增喵喵照片-->
-                            <div class="pic-area">
-                                <form>
-                                    <div class="big">
-                                        <img src="~/images/收藏過期（有底色).png" v-on:click="uploadPhoto" />
-                                        <input type="file" id="photo1" v-on:change="readURI">
+                            <form method="post" enctype="multipart/form-data" asp-controller="CatManagement" asp-action="UploadConfirm">
+                                <!--新增喵喵照片-->
+                                <div class="pic-area">
+                                    <div class="big" >
+                                        <img :src="catFoto.Photo1" v-on:click="selectPhoto(1)"/>
+                                        <input type="file" name="files" id="photo1" v-on:change="readURI(1)">
                                     </div>
                                     <hr />
                                     <div class="small">
-                                        <img src="~/images/收藏過期（有底色).png" />
-                                        <input type="file" id="photo2">
-                                        <img src="~/images/收藏過期（有底色).png" />
-                                        <input type="file" id="photo3">
-                                        <img src="~/images/收藏過期（有底色).png" />
-                                        <input type="file" id="photo4">
+                                        <div class="s-1" >
+                                            <img :src="catFoto.Photo2" v-on:click="selectPhoto(2)"/>
+                                            <input type="file" name="files" id="photo2" v-on:change="readURI(2)">
+                                        </div>
+                                        <div class="s-1" >
+                                            <img :src="catFoto.Photo3" v-on:click="selectPhoto(3)"/>
+                                            <input type="file" name="files" id="photo3" v-on:change="readURI(3)">
+                                        </div>
+                                        <div class="s-1" >
+                                            <img :src="catFoto.Photo4" v-on:click="selectPhoto(4)"/>
+                                            <input type="file" name="files" id="photo4" v-on:change="readURI(4)">
+                                        </div>
                                     </div>
-                                    <div class="center-btn group">
-                                        <button>確定新增</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <!--新增喵喵資訊-->
-                            <div class="info-area">
-                                <form>
+                                </div>
+                                <!--新增喵喵資訊-->
+                                <div class="info-area">
+
                                     <div class="group">
                                         <label for="Name">名稱:</label>
-                                        <input type="text" name="Name" v-model:text="catInfo.Name" placeholder="喵星人名稱 ">
+                                        <input type="text" name="Name" placeholder="喵星人的名字 ">
                                     </div>
                                     <div class="group">
                                         <label for="Vaccine"> 疫苗:</label>
-                                        <select name="Vaccine" v-model="catInfo.Vaccine">
-                                            <option value="yes">已施打</option>
-                                            <option value="no">未施打</option>
-                                            <option value="unknown">未知</option>
+                                        <select name="Vaccine">
+                                            <option value="已施打">已施打</option>
+                                            <option value="未施打">未施打</option>
+                                            <option value="未知">未知</option>
                                         </select>
                                         <label for="Ligation"> 結紮:</label>
-                                        <select name="Ligation" v-model="catInfo.Ligation">
-                                            <option value="yes">已結紮</option>
-                                            <option value="no">未結紮</option>
-                                            <option value="unknown">未知</option>
+                                        <select name="Ligation">
+                                            <option value="已結紮">已結紮</option>
+                                            <option value="未結紮">未結紮</option>
+                                            <option value="未知">未知</option>
                                         </select>
                                         <label for="Chip">晶片:</label>
-                                        <select name="Chip" v-model="catInfo.Chip">
-                                            <option value="yes">有</option>
-                                            <option value="no">沒有</option>
-                                            <option value="unknown">未知</option>
+                                        <select name="Chip">
+                                            <option value="有">有</option>
+                                            <option value="沒有">沒有</option>
+                                            <option value="未知">未知</option>
                                         </select>
                                     </div>
                                     <div class="group">
                                         <label for="City">可預約看貓縣市:</label>
-                                        <input type="text" name="City" v-model:text="catInfo.City" id="City" size="3" />
+                                        <input type="text" name="City" id="City" size="3"  placeholder="台北市"/>
                                         <label for="Country">區域:</label>
-                                        <input type="text" name="Country" v-model:text="catInfo.Country" id="Country" size="3" />
+                                        <input type="text" name="Country" id="Country" size="3" placeholder="大安區"/>
                                     </div>
                                     <div class="group">
                                         <label for="CatGender">性別:</label>
-                                        <select name="CatGender" v-model="catInfo.CatGender">
+                                        <select name="CatGender">
                                             <option value="1">公</option>
                                             <option value="2">母</option>
                                         </select>
                                         <label for="Age">年齡:</label>
-                                        <select name="Age" v-model="catInfo.Age">
-                                            <option value="0-3m">0-3月</option>
-                                            <option value="3-5m">3-5月</option>
-                                            <option value="5-7m">5-7月</option>
-                                            <option value="7-12m">7-12月</option>
-                                            <option value="1-3y">1-3歲</option>
-                                            <option value="3-8y">3-8歲</option>
-                                            <option value="over8y">8歲以上</option>
+                                        <select name="Age">
+                                            <option value="0-3月">0-3月</option>
+                                            <option value="3-5月">3-5月</option>
+                                            <option value="5-7月">5-7月</option>
+                                            <option value="7-12月">7-12月</option>
+                                            <option value="1-3歲">1-3歲</option>
+                                            <option value="3-8歲">3-8歲</option>
+                                            <option value="8歲以上">8歲以上</option>
                                         </select>
                                         <label for="CatColor">毛色:</label>
-                                        <select name="CatColor" v-model="catInfo.CatColor">
-                                            <option value="orange_tabby">橘貓</option>
-                                            <option value="tabby">虎斑</option>
-                                            <option value="calico">玳瑁</option>
-                                            <option value="blue">藍貓</option>
-                                            <option value="tuxedo">黑白貓</option>
-                                            <option value="black">黑貓</option>
-                                            <option value="white">白貓</option>
+                                        <select name="CatColor">
+                                            <option value="橘貓">橘貓</option>
+                                            <option value="三花貓">三花貓</option>
+                                            <option value="虎斑">虎斑</option>
+                                            <option value="玳瑁">玳瑁</option>
+                                            <option value="藍貓">藍貓</option>
+                                            <option value="黑白貓">黑白貓</option>
+                                            <option value="黑貓">黑貓</option>
+                                            <option value="白貓">白貓</option>
                                         </select>
                                     </div>
                                     <div class="group">
@@ -140,14 +143,14 @@
                                             <label for="Remark">其他備註:</label>
                                         </div>
                                         <div>
-                                            <textarea v-model="catInfo.Remark" placeholder="在這邊輸入備註，最多100字 " maxlength="100 " rows="3" cols="40"></textarea>
+                                            <textarea placeholder="在這邊輸入備註，最多100字 " maxlength="100 " rows="3" cols="40"></textarea>
                                         </div>
                                     </div>
                                     <div class="center-btn group">
-                                        <button v-on:click="infoUpload">確定新增</button>
+                                        <button type="submit">確定新增</button>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -158,44 +161,59 @@
 
 @section Scripts{
     <script>
-        function uploadPhoto() {
-            let uploder = document.getElementById("photo1");
-            uploder.click();
-        }
         var app = new Vue({
             el: "#app",
             data: {
                 catFoto: {
-                    "Photo1": "~/images/收藏過期（有底色).png"
-                },
-                catInfo: {
-                    "Name": "",
-                    "Vaccine": "",
-                    "Ligation": "",
-                    "Country": "",
-                    "City": "",
-                    "CatGender": "",
-                    "Age": "",
-                    "CatColor": "",
-                    "Chip": "",
-                    "Remark": ""
+                    "Photo1": "@TempData["Photo1"]",
+                    "Photo2": "@TempData["Photo1"]",
+                    "Photo3": "@TempData["Photo1"]",
+                    "Photo4": "@TempData["Photo1"]"
                 }
             },
             methods: {
-                readURI(event) {
+                selectPhoto(n) {
+                    let uploder = null;
+                    switch (n) {
+                        case 1:
+                            uploder = document.getElementById("photo1");
+                            break;
+                        case 2:
+                            uploder = document.getElementById("photo2");
+                            break;
+                        case 3:
+                            uploder = document.getElementById("photo3");
+                            break;
+                        default:
+                            uploder = document.getElementById("photo4");
+                            break;
+                    }
+                    uploder.click();
+                },
+                readURI(n) {
                     //處理圖片預覽
                     if (event.target.files && event.target.files[0]) {
                         var reader = new FileReader();
                         reader.onload = (e) => {
-                            console.log(e.target.result);
-                            this.catFoto.Photo1 = e.target.result;
+                            switch (n) {
+                                case 1:
+                                    this.catFoto.Photo1 = e.target.result;
+                                    break;
+                                case 2:
+                                    this.catFoto.Photo2 = e.target.result;
+                                    break;
+                                case 3:
+                                    this.catFoto.Photo3 = e.target.result;
+                                    break;
+                                case 4:
+                                    this.catFoto.Photo4 = e.target.result;
+                                    break;
+
+                            }
+
                         }
                         reader.readAsDataURL(event.target.files[0]);
                     }
-                },
-                uploadPhoto() {
-                    let uploder = document.getElementById("photo1");
-                    uploder.click();
                 },
                 infoUpload() {
                     $.ajax(
