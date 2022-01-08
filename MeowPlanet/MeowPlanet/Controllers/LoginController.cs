@@ -70,6 +70,7 @@ namespace MeowPlanet.Controllers
                     case 1:
                         claims = new List<Claim>
                         {
+                            new Claim(ClaimTypes.NameIdentifier, Convert.ToString(user.UserId)), //SignalR的userId預設默認為ClaimTypes.NameIdentifier
                             new Claim(ClaimTypes.Name, Convert.ToString(user.UserId)),
                             new Claim(ClaimTypes.GivenName, user.Account),
                             new Claim(ClaimTypes.Role, "Adopter"),
@@ -79,6 +80,7 @@ namespace MeowPlanet.Controllers
                     case 2:
                         claims = new List<Claim>
                         {
+                            new Claim(ClaimTypes.NameIdentifier, Convert.ToString(user.UserId)), //SignalR的userId預設默認為ClaimTypes.NameIdentifier
                             new Claim(ClaimTypes.Name, Convert.ToString(user.UserId)),
                             new Claim(ClaimTypes.GivenName, user.Account),
                             new Claim(ClaimTypes.Role, "Adopter"),
