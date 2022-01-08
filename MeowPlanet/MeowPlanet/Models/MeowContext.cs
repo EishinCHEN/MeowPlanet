@@ -47,13 +47,8 @@ namespace MeowPlanet.Models
                 entity.ToTable("Cat");
 
                 entity.Property(e => e.CatId)
-                    .ValueGeneratedNever()
                     .HasColumnName("Cat_ID")
                     .HasComment("待領養貓編號");
-
-                entity.Property(e => e.Address)
-                    .HasMaxLength(256)
-                    .HasComment("詳細地址");
 
                 entity.Property(e => e.Adopt)
                     .HasMaxLength(6)
