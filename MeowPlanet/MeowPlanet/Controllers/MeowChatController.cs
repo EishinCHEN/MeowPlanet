@@ -16,11 +16,14 @@ namespace MeowPlanet.Controllers
         {
             _meowContext = meowContext;
         }
+
+        [Authorize]
         public IActionResult MessageManage()
         {
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> MessageContent(int other)
         {
             var loginId = Convert.ToInt32(HttpContext.User.Identity.Name);
@@ -31,6 +34,7 @@ namespace MeowPlanet.Controllers
             return View(returndata);
         }
 
+        [Authorize]
         public IActionResult ChatBox()
         {
             return View();
@@ -64,7 +68,6 @@ namespace MeowPlanet.Controllers
 
         //拿到與每一個聊天的人的最後一筆資料(做成聊天列表)
         [HttpGet]
-        [Authorize]
         public async Task<IEnumerable<MessageManageViewModel>> GetLastMessage(int sender, int receiver)
         {
             //先找出Sender跟Receiver中有自己的資料
@@ -101,7 +104,8 @@ namespace MeowPlanet.Controllers
             return returnList;
         }
 
-        internal async Task<object> GetUserDataById(int userId)
+        //用UserId取出相對Userdata需要的欄位資料
+        internal async Task<object> GetUserDataById(int userId)  
         {            
             return await _meowContext.UserDatas
                     .Where(u => u.UserId == userId)

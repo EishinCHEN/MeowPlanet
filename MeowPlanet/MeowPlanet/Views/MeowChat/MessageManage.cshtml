@@ -60,7 +60,6 @@
                     <div class="message-groups" v-for="(item,index) in chatList" :key="index">
                         <div class="recipient-pic">
                             <img class="recipient-pic-inside" v-bind:src="item.otherUser.personalPhoto" />
-                            @*<img src="~/images/cat-konfu2.jpg" />*@
                         </div>
                         <diV class="recipient-area" v-on:click="toMessageContent(item.otherUserId)">
                             <h4 id="recipient-name">{{item.otherUser.realName}}</h4>
@@ -86,7 +85,7 @@
                             </li>
                             <li>職業:{{infoUser.otherUser.job}}</li>
                             <li>年薪:{{infoUser.otherUser.salary}}</li>
-                            <li>每月願意負擔:{{infoUser.otherUser.acceptableAmout}}</li>
+                            <li>每月願意負擔:{{infoUser.otherUser.acceptableAmount}}</li>
                             <li>同時飼養寵物:{{infoUser.otherUser.otherPets}}</li>
                             <li>曾經養過寵物:{{infoUser.otherUser.keepPets}}</li>
                             <li>未滿20法定代理人:{{infoUser.otherUser.agents}}</li>
