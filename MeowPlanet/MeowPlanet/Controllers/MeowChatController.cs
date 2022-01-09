@@ -57,6 +57,8 @@ namespace MeowPlanet.Controllers
                         || (u.Sender == receiver && u.Receiver == sender))
                 .ToListAsync();
 
+            //把所有歷史訊息的sendtime換成台北時間
+            senderlist.ForEach(t => t.SendTime = TimeZoneInfo.ConvertTimeFromUtc(t.SendTime, TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time")));
 
             if (senderlist == null || senderlist.Count() == 0)
             {
@@ -90,6 +92,10 @@ namespace MeowPlanet.Controllers
                     .Where(u => (u.Sender == other) || (u.Receiver == other))
                     .OrderByDescending(n => n.SendTime)
                     .FirstOrDefault();
+                
+                //把sendtime換成台北時間
+                returnData.LastMessage.SendTime = TimeZoneInfo.ConvertTimeFromUtc(returnData.LastMessage.SendTime, TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time"));
+
                 //取出Sender是對方同時訊息尚未讀取的數量
                 returnData.UnRead = historyMessageList
                     .Where(u => u.Sender == other && u.IsRead == false)

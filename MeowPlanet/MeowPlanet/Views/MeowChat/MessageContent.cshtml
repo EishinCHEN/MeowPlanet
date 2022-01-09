@@ -43,7 +43,7 @@
         filters: {
             formatDate: function (value) {
                 if (value) {
-                    return moment(String(value)).locale("zh-tw").format('dddd hh:mm');
+                    return moment(String(value)).locale("zh-tw").format('dddd HH:mm');
                 }
             }
         },
@@ -66,7 +66,7 @@
                         sendTime: new Date()
                         //time: this.translateDateTime(new Date()),
                     };
-                    this.connection.invoke("SendMessageToUser", this.receiver, this.inputMessage).catch(function(error) { return console.log(error)});                    
+                    this.connection.invoke("SendMessageToUser", myMessage.receiver, myMessage.message, myMessage.sendTime, myMessage.sender).catch(function(error) { return console.log(error)});
                     this.chatList.push(myMessage);
                     this.inputMessage = '';
                     this.scrollBoxToBottom();
@@ -145,12 +145,12 @@
                 .then(()=> console.log("SignalR已連結"))
                 .catch(error=> console.log(error));
 
-            this.connection.on("ReceiveMessage", function (receiver, sender, message, sendTime) {
+            this.connection.on("ReceiveMessage", function (receiver, sender, sendtime, message) {
                 let newMessage = {
                     receiver: receiver,
                     sender: sender,
                     message: message,
-                    sendTime: sendTime
+                    sendTime: sendtime
                 };
                 $vue.chatList.push(newMessage);
                 $vue.scrollBoxToBottom();
