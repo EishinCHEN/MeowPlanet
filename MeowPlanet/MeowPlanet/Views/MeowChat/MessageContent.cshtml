@@ -26,6 +26,7 @@
 @section Scripts{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
             integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script>
     const chatboxApp = new Vue({
         el: '#chatApp',
@@ -36,6 +37,7 @@
             inputMessage: '',
             sendMessageList: [],
             chatList: @(Json.Serialize(Model.ChatContentList)),
+            connection:'',
         },
         //自定義時間格式
         filters: {
@@ -58,11 +60,14 @@
             sendMyMessage: function () {
                 if (this.inputMessage.trim() != '') {
                     let myMessage = {
-                        text: this.inputMessage,
-                        time:new Date()
+                        receiver: this.receiver,
+                        sender: this.sender,
+                        message: this.inputMessage,
+                        sendTime: new Date()
                         //time: this.translateDateTime(new Date()),
                     };
-                    this.sendMessageList.push(myMessage);
+                    this.connection.invoke("SendMessageToUser", this.receiver, this.inputMessage).catch(function(error) { return console.log(error)});                    
+                    this.chatList.push(myMessage);
                     this.inputMessage = '';
                     this.scrollBoxToBottom();
                 } else {
@@ -84,6 +89,7 @@
                             return "sender";
                         case "time":
                             return "sender-time";
+
                         case "text":
                             return "sender-text";
                     }
@@ -115,6 +121,7 @@
                 });
         },*@
         mounted() {
+            let $vue = this;
             //點擊資訊視窗和按鈕以外的任何地方就隱藏視窗
             $("body").click(function (e) {
                 var infobox = $(".info-box");
@@ -129,6 +136,25 @@
                 }
             });
             this.scrollBoxToBottom();
+    
+
+            //SignalR 連接建立
+            this.connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+            this.connection
+                .start()
+                .then(()=> console.log("SignalR已連結"))
+                .catch(error=> console.log(error));
+
+            this.connection.on("ReceiveMessage", function (receiver, sender, message, sendTime) {
+                let newMessage = {
+                    receiver: receiver,
+                    sender: sender,
+                    message: message,
+                    sendTime: sendTime
+                };
+                $vue.chatList.push(newMessage);
+                $vue.scrollBoxToBottom();
+            });            
         },
         updated() {
             //滾輪預設在最新訊息(最底)
@@ -216,21 +242,15 @@
                             </ul>
                         </div>
 
-                    </div>
-                    <div class="input-area ">
-                        <input class="text-input" v-model="inputMessage" type="text" placeholder="請輸入訊息" v-on:keydown.enter="sendMyMessage()">
-                        <button type="button" id="photo"><i class="input-botton bi bi-image "></i></button>
-                        <button type="button" id="send"><i class="input-botton bi bi-chat-text" v-on:click="sendMyMessage()"></i></button>
-                    </div>
-                </div>
             </div>
-
+            <div class="input-area ">
+                <input class="text-input" v-model="inputMessage" type="text" placeholder="請輸入訊息" v-on:keydown.enter="sendMyMessage()">
+                <button type="button" id="photo"><i class="input-botton bi bi-image "></i></button>
+                <button type="button" id="send"><i class="input-botton bi bi-chat-text" v-on:click="sendMyMessage()"></i></button>
+            </div>
         </div>
-
     </div>
 </div>
-
-
 
 
 
