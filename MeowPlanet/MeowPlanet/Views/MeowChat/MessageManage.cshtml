@@ -22,82 +22,84 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 }
 
-<div class="bgc">
-    <div class="container" id="chatlistpage">
-        <div class="row">
-            <div class="col-lg-3 col-md-2 col-sm-0 col-xs-0 hidden-sm hidden-xs ">
-                <!--選單列-->
-                <div class="menu">
-                    <ul>
-                        <li class="menu-list ">
-                            <a href="# ">資料修改</a>
-                            <i class="bi bi-caret-right-fill "></i>
-                        </li>
-                        <li class="menu-list ">
-                            <a href="# ">收藏居民</a>
-                            <i class="bi bi-caret-right-fill "></i>
-                        </li>
-                        <li class="menu-list ">
-                            <p href="# " class="catchlist">聊天訊息</p>
-                            <i class="bi bi-caret-right-fill catchlist "></i>
-                        </li>
-                        <li class="menu-list ">
-                            <a href="# ">行程管理</a>
-                            <i class="bi bi-caret-right-fill "></i>
-                        </li>
-                        <li class="menu-list ">
-                            <a href="# ">我要送養</a>
-                            <i class="bi bi-caret-right-fill "></i>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!--右邊區塊-->
-            <div class="message-area col-lg-9 col-md-10 col-sm-12 col-xs-12" v-if="loadSuccess">
-                <!--聊天訊息列表-->
-                <div class="message-area-title">★聊天訊息</div>
-                <diV class="message-area-inside">
 
-                    <div class="message-groups" v-for="(item,index) in chatList" :key="index">
-                        <div class="recipient-pic">
-                            <img class="recipient-pic-inside" v-bind:src="item.otherUser.personalPhoto" />
-                        </div>
-                        <diV class="recipient-area" v-on:click="toMessageContent(item.otherUserId)">
-                            <h4 id="recipient-name">{{item.otherUser.realName}}</h4>
-                            <p class="recipient-text">{{item.otherUser.realName}} 說: {{item.lastMessage.message}}</p>
-                        </diV>
-                        <ul class="notice-info">
-                            <li class="notice-info-item">
-                                <span class="icon-time">{{item.lastMessage.sendTime | formatDate}}</span>
-                            </li>
-                            <li class="notice-info-item" v-if="item.unRead != 0">
-                                <span class="icon-unread">{{item.unRead}}</span>
-                            </li>
-                        </ul>
-                        <button type="button" class="details" v-on:click="toggleBox(item)">info</button>
-                    </div>
-                    <div class="info-box" v-if="showInfoBox">
-                        <ul>
-                            <li class="info-box-inside">
-                                <div class="info-box-name">{{infoUser.otherUser.realName}}</div>
-                                <button class="info-box-close" type="button" id="close" v-on:click="closeBox()">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </li>
-                            <li>職業:{{infoUser.otherUser.job}}</li>
-                            <li>年薪:{{infoUser.otherUser.salary}}</li>
-                            <li>每月願意負擔:{{infoUser.otherUser.acceptableAmount}}</li>
-                            <li>同時飼養寵物:{{infoUser.otherUser.otherPets}}</li>
-                            <li>曾經養過寵物:{{infoUser.otherUser.keepPets}}</li>
-                            <li>未滿20法定代理人:{{infoUser.otherUser.agents}}</li>
-                            <li>{{infoUser.otherUser.merrage}}</li>
-                        </ul>
-                    </div>
-                </diV>
-            </div>
+<div class="container" id="chatlistpage">
+    <div class="col-lg-3 col-md-2 col-sm-0 col-xs-0 hidden-sm hidden-xs ">
+        <!--選單列-->
+        <div class="menu">
+            <ul>
+                <li class="menu-list ">
+                    <a href="# ">資料修改</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list ">
+                    <a href="# ">收藏居民</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list ">
+                    <p href="# " class="catchlist">聊天訊息</p>
+                    <i class="bi bi-caret-right-fill catchlist "></i>
+                </li>
+                <li class="menu-list ">
+                    <a href="# ">行程管理</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list" v-if="userRole === 1">
+                    <a asp-controller="Membership" asp-action="Sender">我要送養</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list" v-if="userRole === 2">
+                    <a asp-controller="CatManagement" asp-action="AddCat">管理居民</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+            </ul>
         </div>
     </div>
+    <!--右邊區塊-->
+    <div class="message-area col-lg-9 col-md-10 col-sm-12 col-xs-12" v-if="loadSuccess">
+        <!--聊天訊息列表-->
+        <div class="message-area-title">★聊天訊息</div>
+        <diV class="message-area-inside">
+
+            <div class="message-groups" v-for="(item,index) in chatList" :key="index">
+                <div class="recipient-pic">
+                    <img class="recipient-pic-inside" v-bind:src="item.otherUser.personalPhoto" />
+                </div>
+                <diV class="recipient-area" v-on:click="toMessageContent(item.otherUserId)">
+                    <h4 id="recipient-name">{{item.otherUser.realName}}</h4>
+                    <p class="recipient-text">{{item.otherUser.realName}} 說: {{item.lastMessage.message}}</p>
+                </diV>
+                <ul class="notice-info">
+                    <li class="notice-info-item">
+                        <span class="icon-time">{{item.lastMessage.sendTime | formatDate}}</span>
+                    </li>
+                    <li class="notice-info-item" v-if="item.unRead != 0">
+                        <span class="icon-unread">{{item.unRead}}</span>
+                    </li>
+                </ul>
+                <button type="button" class="details" v-on:click="toggleBox(item)">info</button>
+            </div>
+            <div class="info-box" v-if="showInfoBox">
+                <ul>
+                    <li class="info-box-inside">
+                        <div class="info-box-name">{{infoUser.otherUser.realName}}</div>
+                        <button class="info-box-close" type="button" id="close" v-on:click="closeBox()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </li>
+                    <li>職業:{{infoUser.otherUser.job}}</li>
+                    <li>年薪:{{infoUser.otherUser.salary}}</li>
+                    <li>每月願意負擔:{{infoUser.otherUser.acceptableAmount}}</li>
+                    <li>同時飼養寵物:{{infoUser.otherUser.otherPets}}</li>
+                    <li>曾經養過寵物:{{infoUser.otherUser.keepPets}}</li>
+                    <li>未滿20法定代理人:{{infoUser.otherUser.agents}}</li>
+                    <li>{{infoUser.otherUser.merrage}}</li>
+                </ul>
+            </div>
+        </diV>
+    </div>
 </div>
+
 
 
 
@@ -119,6 +121,7 @@
             showInfoBox: false,
             infoUser: "",
             chatList: "",
+            userRole: "",
         },
         //自定義時間格式
         filters: {
@@ -152,6 +155,15 @@
                 //傳入後端資料
                 $.ajax({
                     type: "get",
+                    url: "@Url.Action("GetUserRole", "MeowChat")/",
+                }).done(function (response) {
+                    $vue.userRole = response;
+                }).fail(function (error) {
+                    console.log(error);
+                });
+
+                $.ajax({
+                    type: "get",
                     data: { sender: "@User.Identity.Name" },
                     url: "@Url.Action("GetLastMessage", "MeowChat")/",
                 }).done(function (response) {
@@ -160,8 +172,20 @@
                 }).fail(function (error) {
                     console.log(error);
                 });
+
+
         },
         mounted() {
+            //foreach(function (item, i) {
+            //    var item = this.userRole[i];
+            //    if (i == "2") {
+            //        this.isCatSender = 2
+            //    } else
+            //    {
+            //        this.isCatSender = 1
+            //    };
+            //})
+
             //點擊資訊視窗和按鈕以外的任何地方就隱藏視窗
             let $vue = this;
             $("body").click(function (e) {
@@ -176,6 +200,9 @@
                     $vue.showInfoBox = false;
                 }
             });
+
+
+
         }
     }
     );
