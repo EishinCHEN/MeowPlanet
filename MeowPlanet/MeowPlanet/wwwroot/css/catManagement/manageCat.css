@@ -183,10 +183,11 @@ body {
     }
 
 .meow-group {
-    width: 30%;
+    width: 45%;
     margin-left: 13px;
     margin-top: 30px;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     border-radius: 10px;
     border: solid 3px #E5EFE1;
@@ -240,6 +241,15 @@ body {
         color: white;
     }
 
+.btn-sendcat {
+    margin: 6px;
+    border-radius: 5px;
+    padding: 1px;
+    font-weight: 400;
+    border: solid 3px #DA8952;
+    background-color: white;
+    color: #DA8952;
+}
 @media screen and (max-width: 800px) {
     .container {
         width: 100%;

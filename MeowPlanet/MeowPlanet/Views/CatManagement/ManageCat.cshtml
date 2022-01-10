@@ -69,11 +69,12 @@
                     <div class="group-inner">
                         <div class="meow-pic">
                             <img class="meow-pic-inside" :src="item.image" />
-                            <button class="btn-do" v-on:click="sendCat(item.catId, item.name)">喵星人  已送養</button>
+                            
                         </div>
                         <div class="group-do">
                             <button class="btn-do" v-on:click="editCat(item.catId)">修改</button>
                             <button class="btn-do" v-on:click="deleteCat(item.catId, item.name)">刪除</button>
+                            <button class="btn-sendcat" v-on:click="sendCat(item.catId, item.name)">完成送養</button>
                         </div>
                     </div>
                     <div class="group-bottom">刊登日期:{{(item.publishedDay).substr(0, 10)}}</div>
