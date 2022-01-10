@@ -9,6 +9,7 @@ namespace MeowPlanet.Models
     {
         public int OtherUserId { get; set; }
         public object OtherUser { get; set; }
+        public int UserRole { get; set; }
         public IEnumerable<ChatList> ChatContentList { get; set; }
     }
 }

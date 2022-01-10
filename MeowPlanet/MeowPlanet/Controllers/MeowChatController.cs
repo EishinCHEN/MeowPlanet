@@ -18,18 +18,39 @@ namespace MeowPlanet.Controllers
         }
 
         [Authorize]
-        public IActionResult MessageManage()
+        public async Task<IActionResult> MessageManage()
+        {
+            var loginId = Convert.ToInt32(HttpContext.User.Identity.Name);
+            //判斷登入者是否有任何歷史訊息
+            var messagecount = await _meowContext.ChatLists
+                .Where(u => (u.Sender == loginId || u.Receiver == loginId)).CountAsync();
+            if (messagecount == 0)
+            {
+                Console.WriteLine("沒有訊息");
+                return View("MessageNone");
+            }
+            else
+            {
+                Console.WriteLine("有訊息");
+                return View("MessageManage");
+            }
+
+        }
+
+        [Authorize]
+        public IActionResult MessageNone()
         {
             return View();
         }
 
         [Authorize]
-        public async Task<IActionResult> MessageContent(int other)
+        public async Task<IActionResult> MessageContent(int other, int sender)
         {
             var loginId = Convert.ToInt32(HttpContext.User.Identity.Name);
             var returndata = new MessageContentViewModel();
             returndata.OtherUserId = other;
             returndata.OtherUser = await GetUserDataById(other);
+            returndata.UserRole = await GetUserRole();  //得到sender的role
             returndata.ChatContentList = await GetMessageSenderList(loginId, other);
             return View(returndata);
         }
@@ -53,7 +74,7 @@ namespace MeowPlanet.Controllers
         public async Task<IEnumerable<ChatList>> GetMessageSenderList(int sender, int receiver)
         {
             var senderlist = await _meowContext.ChatLists
-                .Where(u =>(u.Sender == sender && u.Receiver == receiver)
+                .Where(u => (u.Sender == sender && u.Receiver == receiver)
                         || (u.Sender == receiver && u.Receiver == sender))
                 .ToListAsync();
 
@@ -87,12 +108,13 @@ namespace MeowPlanet.Controllers
                 var returnData = new MessageManageViewModel();
                 returnData.OtherUserId = other;
                 returnData.OtherUser = await GetUserDataById(other);
+
                 //取出與每一位聊天對象的最後一則訊息
                 returnData.LastMessage = historyMessageList
                     .Where(u => (u.Sender == other) || (u.Receiver == other))
                     .OrderByDescending(n => n.SendTime)
                     .FirstOrDefault();
-                
+
                 //把sendtime換成台北時間
                 returnData.LastMessage.SendTime = TimeZoneInfo.ConvertTimeFromUtc(returnData.LastMessage.SendTime, TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time"));
 
@@ -111,13 +133,23 @@ namespace MeowPlanet.Controllers
         }
 
         //用UserId取出相對Userdata需要的欄位資料
-        internal async Task<object> GetUserDataById(int userId)  
-        {            
+        internal async Task<object> GetUserDataById(int userId)
+        {
             return await _meowContext.UserDatas
                     .Where(u => u.UserId == userId)
-                    .Select(u => new { u.RealName , PersonalPhoto = Url.Content(u.PersonalPhoto), u.Job, u.Salary, u.AcceptableAmount,
-                             u.Merrage, u.OtherPets,u.KeepPets, u.Agents, u.RelationShip})
+                    .Select(u => new { u.RealName, PersonalPhoto = Url.Content(u.PersonalPhoto), u.Job, u.Salary, u.AcceptableAmount,
+                        u.Merrage, u.OtherPets, u.KeepPets, u.Agents, u.RelationShip })
                     .FirstOrDefaultAsync();
+        }
+
+        //取出登入者的身分
+        [HttpGet]
+        public async Task<int> GetUserRole()
+        {
+            var loginId = Convert.ToInt32(HttpContext.User.Identity.Name);
+            var userrole = await _meowContext.RoleManagements.Where(u => u.UserId == loginId).Select(u => u.RoleId).ToListAsync();
+            var result = userrole.Contains(2) ? 2 : 1;
+            return result;
         }
     }
 }
