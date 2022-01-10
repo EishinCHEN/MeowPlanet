@@ -76,7 +76,7 @@
                             <button type="button" class="btn-do" v-on:click="deleteCat(item.catId)">刪除</button>
                         </div>
                     </div>
-                    <div class="group-bottom">{{item.publishDate}}</div>
+                    <div class="group-bottom">刊登日期:{{(item.publishedDay).substr(0, 10)}}</div>
                 </div>
             </div>
         </form>
