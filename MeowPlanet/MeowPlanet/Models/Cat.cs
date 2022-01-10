@@ -22,6 +22,9 @@ namespace MeowPlanet.Models
         public string Age { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
+        public string Image2 { get; set; }
+        public string Image3 { get; set; }
+        public string Image4 { get; set; }
         public int? CatGender { get; set; }
         public string Vaccine { get; set; }
         public string Chip { get; set; }

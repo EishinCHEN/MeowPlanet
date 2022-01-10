@@ -11,6 +11,7 @@ namespace MeowPlanet.ViewModels
         public int CatId { get; set; }
         public int UserId { get; set; }
         public List<string> Image { get; set; }
+        
         public string PhotoPath { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }

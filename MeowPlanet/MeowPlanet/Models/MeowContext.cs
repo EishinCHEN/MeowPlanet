@@ -82,6 +82,9 @@ namespace MeowPlanet.Models
                 entity.Property(e => e.Image)
                     .IsRequired()
                     .HasComment("照片");
+                entity.Property(e => e.Image2);
+                entity.Property(e => e.Image3);
+                entity.Property(e => e.Image4);
 
                 entity.Property(e => e.IsDeleted);
                 entity.Property(e => e.PublishedDay);

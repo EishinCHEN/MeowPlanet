@@ -70,10 +70,10 @@
                     <div class="group-top">{{item.name}}</div>
                     <div class="group-inner">
                         <div class="meow-pic">
-                            <img class="meow-pic-inside" :src="item.image" />
+                            <img class="meow-pic-inside" :src="item.image[0]" />
                         </div>
                         <div class="group-do">
-                            <button type="button" class="btn-do" v-on:click="editCat(item.catId)">修改</button>
+                            <button type="button" class="btn-do" @*v-on:click="editCat(item.catId)"*@>修改</button>
                             <button type="button" class="btn-do" v-on:click="editCat(item.catId)">刪除</button>
                         </div>
                     </div>
@@ -129,7 +129,8 @@
 
                 },
                 deleteCat(catId) {
-                    axios.delete("@Url.Action("DeleteCat", "CatManagement")/")
+                    console.log(catId)
+                    axios.get("/CatManagement/DeleteCat/{catId}")
                         .then((response) => console.log(response))
                         .catch((error) => console.log(error))
                 }

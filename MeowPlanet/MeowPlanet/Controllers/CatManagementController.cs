@@ -96,9 +96,9 @@ namespace MeowPlanet.Controllers
                 }
                 else
                 {
-                    String root = _env.ContentRootPath + @"\wwwroot\images\catManagement";
+                    String root = _env.ContentRootPath + @"\wwwroot\images\catImages";
 
-                    model.Image = new List<String>();
+                    //model.Image = new List<String>();
                     var sum = files.Sum(f => f.Length);
                     if (files == null || sum == 0)
                     {
@@ -119,17 +119,20 @@ namespace MeowPlanet.Controllers
                             {
                                 await file.CopyToAsync(stream);
                                 var path = root + fileName;
-                                model.Image.Add(fileName);
+                                model.Image.Add(path);
                             }
                         }
                         //List<String> to string
-                        var result = String.Join(", ", model.Image.ToArray());
+                        //var result = String.Join(", ", model.Image.ToArray());
                         try
                         {
                             var cat = new Cat
                             {
                                 UserId = ID,
-                                Image = result,
+                                Image = model.Image[0],
+                                Image2 = model.Image[1],
+                                Image3 = model.Image[2],
+                                Image4 = model.Image[3],
                                 Name = model.Name,
                                 Country = model.Country,
                                 City = model.City,
@@ -169,7 +172,7 @@ namespace MeowPlanet.Controllers
             }
             return View("ManageCat");
         }
-    
+
         //public async Task<IActionResult> EditCat()
         //{
         //    ClaimsPrincipal claims = HttpContext.User;
@@ -181,45 +184,46 @@ namespace MeowPlanet.Controllers
         //    return View();
         //}
 
-        //[HttpDelete]
-        //public async Task<MemberManagement.Message> DeleteCat( int catId)
-        //{
-        //    ClaimsPrincipal claims = HttpContext.User;
-        //    int userId = Convert.ToInt32(claims.Identity.Name);
-        //    var cat = await(from a in _dbcontext.Cats
-        //                    where a.UserId == userId && a.CatId == catId
-        //                    select a).FirstOrDefaultAsync();
-        //    MemberManagement.Message msg = null;
+        [HttpGet]
+        [Route("/CatManagement/DeleteCat/catId")]
+        public async Task<MemberManagement.Message> DeleteCat([FromRoute(Name = "catId")] int catId)
+        {
+            ClaimsPrincipal claims = HttpContext.User;
+            int userId = Convert.ToInt32(claims.Identity.Name);
+            var cat = await (from a in _dbcontext.Cats
+                             where a.UserId == userId && a.CatId == catId
+                             select a).FirstOrDefaultAsync();
+            MemberManagement.Message msg = null;
 
-        //    if (cat != null)
-        //    {
-        //        try
-        //        {
-        //            cat.IsDeleted = 1;
+            if (cat != null)
+            {
+                try
+                {
+                    cat.IsDeleted = 1;
 
-        //            _dbcontext.SaveChanges();
-        //            Console.WriteLine($"喵星人:{cat.Name}刪除成功");
+                    _dbcontext.SaveChanges();
+                    Console.WriteLine($"喵星人:{cat.Name}刪除成功");
 
-        //            msg = new MemberManagement.Message()
-        //            {
-        //                Code = 200,
-        //                Msg = $"喵星人:{cat.Name}刪除成功",
-        //                Time = DateTime.Now
-        //            };
+                    msg = new MemberManagement.Message()
+                    {
+                        Code = 200,
+                        Msg = $"喵星人:{cat.Name}刪除成功",
+                        Time = DateTime.Now
+                    };
 
-        //        }
-        //        catch (DbUpdateException ex)
-        //        {
-        //            Console.WriteLine($"喵星人:{cat.Name}刪除失敗!" + ex);
-        //            msg = new MemberManagement.Message()
-        //            {
-        //                Code = 400,
-        //                Msg = $"喵星人:{cat.Name}刪除失敗",
-        //                Time = DateTime.Now
-        //            };
-        //        }
-        //    }
-        //    return msg;
-        //}
+                }
+                catch (DbUpdateException ex)
+                {
+                    Console.WriteLine($"喵星人:{cat.Name}刪除失敗!" + ex);
+                    msg = new MemberManagement.Message()
+                    {
+                        Code = 400,
+                        Msg = $"喵星人:{cat.Name}刪除失敗",
+                        Time = DateTime.Now
+                    };
+                }
+            }
+            return msg;
+        }
     }
 }

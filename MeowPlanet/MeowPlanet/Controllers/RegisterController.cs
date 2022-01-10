@@ -112,7 +112,7 @@ namespace MeowPlanet.Controllers
             //return RedirectToAction("Index","Home");    //註冊成功後預設導回首頁
         }
 
-        //TODO設定使用者角色
+        //設定使用者角色
         public async Task<MemberManagement.Message> AddRole(string AC)
         {
             var user = await _dbcontext.UserDatas.Where(s => s.Account == AC).SingleOrDefaultAsync();
