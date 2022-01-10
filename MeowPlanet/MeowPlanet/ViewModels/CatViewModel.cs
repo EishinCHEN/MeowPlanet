@@ -22,6 +22,7 @@ namespace MeowPlanet.ViewModels
         public string Ligation { get; set; }
         public string Vaccine  { get; set; }
         public string Chip { get; set; }
+        public string Sick { get; set; }
         public string Remark { get; set; }
         public DateTime? Date { get; set; }
     }

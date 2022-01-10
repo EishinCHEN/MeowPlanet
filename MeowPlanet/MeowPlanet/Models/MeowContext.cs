@@ -67,6 +67,8 @@ namespace MeowPlanet.Models
 
                 entity.Property(e => e.CatGender).HasComment("性別");
 
+                entity.Property(e => e.Sick);
+
                 entity.Property(e => e.Chip).HasComment("晶片");
 
                 entity.Property(e => e.City)

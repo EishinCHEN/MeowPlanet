@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "管理喵星人";
+    ViewData["Title"] = "編輯喵星人資訊";
 }
 @section Styles{
     @*引用bootstrap*@
@@ -55,10 +55,13 @@
         <!--管理喵喵區塊-->
         <div class="meow-manage-title">★管理居民</div>
         <div class="start-date">
-            <p>刊登日期: 2022-01-02</p>
+            <p>刊登日期: @ViewData["PublishedDay"]</p>
         </div>
         <!--喵喵資料-->
-        <form class="form-group" method="post" enctype="multipart/form-data" asp-controller="CatManagement" asp-action="UploadConfirm">
+        <form class="form-group" method="post" enctype="multipart/form-data" asp-controller="CatManagement" asp-action="EditConfirm">
+            <div style="display:none;">
+                <input type="text" name="CatId" v-model:text="catInfo.CatId" />
+            </div>
             <!--新增喵喵照片-->
             <div class="pic-area">
                 <div class="big">
@@ -144,18 +147,18 @@
                     </div>
                     <div class="group">
                         <label for="Sick ">喵星人疾病史: </label>
-                        <input type="text" name="Sick" class="sick" placeholder="請詳述(無則填寫無)">
+                        <input type="text" name="Sick" class="sick" v-model:text="catInfo.Sick" placeholder="請詳述(無則填寫無)">
                     </div>
                     <div class="group">
                         <div>
                             <label for="Remark">其他備註:</label>
                         </div>
                         <div>
-                            <textarea v-model="catInfo.Remark" placeholder="在這邊輸入備註，最多100字 " maxlength="100 " rows="3" cols="40"></textarea>
+                            <textarea v-model="catInfo.Remark" name="Remark" placeholder="在這邊輸入備註，最多100字 " maxlength="100 " rows="3" cols="40"></textarea>
                         </div>
                     </div>
                     <div class="center-btn group">
-                        <button type="submit">確定新增</button>
+                        <button type="submit">修改</button>
                     </div>
                 </div>
             </div>
@@ -170,26 +173,27 @@
             el: "#app",
             data: {
                 catFoto: {
-                    "Photo1": "",
-                    "Photo2": "",
-                    "Photo3": "",
-                    "Photo4": "",
+                    "Photo1": "@ViewData["Image"]",
+                    "Photo2": "@ViewData["Image2"]",
+                    "Photo3": "@ViewData["Image3"]",
+                    "Photo4": "@ViewData["Image4"]",
                 },
                 catInfo: {
-                    "Name": "",
-                    "Vaccine": "",
-                    "Ligation": "",
-                    "Chip": "",
-                    "City": "",
-                    "Country": "",
-                    "CatGender": "",
-                    "Age": "",
-                    "CatColor": "",
-                    "Sick": "",
-                    "Remark":""
+                    "CatId":"@ViewData["CatId"]",
+                    "Name": "@ViewData["Name"]",
+                    "Vaccine": "@ViewData["Vaccine"]",
+                    "Ligation": "@ViewData["Ligation"]",
+                    "Chip": "@ViewData["Chip"]",
+                    "City": "@ViewData["City"]",
+                    "Country": "@ViewData["Country"]",
+                    "CatGender": "@ViewData["CatGender"]",
+                    "Age": "@ViewData["Age"]",
+                    "CatColor": "@ViewData["CatColor"]",
+                    "Sick": "@ViewData["Sick"]",
+                    "Remark":"@ViewData["Remark"]"
                 }
             },
-            method: {
+            methods: {
                 selectPhoto(n) {
                     let uploder = null;
                     switch (n) {

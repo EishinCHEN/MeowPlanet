@@ -28,6 +28,7 @@ namespace MeowPlanet.Models
         public int? CatGender { get; set; }
         public string Vaccine { get; set; }
         public string Chip { get; set; }
+        public string Sick { get; set; }
         public string Remark { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
