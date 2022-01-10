@@ -1,0 +1,123 @@
+﻿@{
+    ViewData["Title"] = "喵星日常";
+}
+<style>
+    * {
+        font-family: 'Noto Sans TC',Sans-serif;
+        color: #65615E;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .bgc1 {
+        background-color: #FEF2CB;
+        padding: 3rem;
+    }
+
+    .containe1 {
+        background-color: #fff;
+        padding: 3rem;
+        border-radius: 3%;
+        margin: auto;
+        max-width: 62.25%;
+    }
+
+    .containe2 {
+        margin: auto;
+    }
+    .speech-bubble {
+        position: relative;
+        background: #da8952;
+        border-radius: .4em;
+        max-width: auto;
+    }
+
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 24px solid transparent;
+            border-right-color: #da8952;
+            border-left: 0;
+            border-bottom: 0;
+            margin-top: -12px;
+            margin-left: -24px;
+        }
+    .b1 {
+        float: right;
+        border-radius: 5px;
+        height: 25px;
+        border: 2px #DA8952 solid;
+        background-color: #fff;
+        color: #DA8952;
+    }
+
+    .b2 {
+        float: left;
+        border-radius: 5px;
+        height: 25px;
+        border: 2px #DA8952 solid;
+        background-color: #fff;
+        color: #DA8952;
+    }
+
+    .myimg1 {
+        float: left;
+        max-width: 100px;
+    }
+
+    .myimg2 {
+        float: left;
+        max-width: 5%;
+        max-height: 25px;
+        margin-top: 15px;
+    }
+
+    .fb-comments {
+        margin: auto;
+    }
+
+    .h1 {
+        font-size: 20px;
+        margin: auto;
+        font-style: normal;
+        font-family: 'Material lcons';
+        font-weight: 500;
+        margin: 0;
+        color: #fff;
+    }
+    h10 {
+        margin: 0;
+        color: #fff;
+    }
+</style>
+<body>
+    <div class="bgc1">
+        <div class="containe1">
+            <div class="row">
+                <div class="col-2">
+                    <img class="myimg1" src="~/images/橘色/圓形飛船貓-橘色.png">
+                </div>
+                <div class="col-8">
+                    <div class="containe2">
+                        <hgroup class="speech-bubble">
+                            <h3 class="h1">本週:第四週!!</h3>
+                            <h10>你知道嗎?食物中的某些成分會成為導致貓咪過敏!!你知道嗎?食物中的某些成分會成為導致貓咪過敏!!你知道嗎?食物中的某些成分會成為導致貓咪過敏!!你知道嗎?食物中的某些成分會成為導致貓咪過敏!!</h10>
+</hgroup>
+                    </div>
+                </div>
+            </div>
+            <input type="button" value="第一週" class="b1" onclick="location.href='https://localhost:44395/CatDaily/CatDaily1'">
+            <input type="button" value="第三週" class="b2" onclick="location.href='https://localhost:44395/CatDaily/CatDaily3'">
+            <div class="fb-comments" data-href="https://localhost:44395/" data-width="100%" data-numposts="1"></div>
+        </div>
+    </div>
+</body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v12.0&appId=1089843521772872&autoLogAppEvents=1" nonce="RmY4hXTY"></script>
