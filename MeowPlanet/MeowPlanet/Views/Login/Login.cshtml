@@ -35,14 +35,14 @@
                                 </div>
                                 <div class="password-input">
                                     <label for="Password">密碼</label>
-                                    <input type="password" name="Password" id="Password" v-model:text="loginData.Password">
+                                    <input type="password" name="Password" id="Password" v-model:text="loginData.Password"  v-on:keyup.enter="enterToLogin()">
                                 </div>
                                 <div class="forget-password">
                                     <a href="#" style="color: #da8952;text-decoration: none;" v-on:click="forgetPassword">忘記密碼？</a>
                                 </div>
                             </div>
                             <div class="submit">
-                                <button type="button" class="login-btn" v-on:click="login">登入</button>
+                                <button type="button" class="login-btn" v-on:click="login" id="loginBtn">登入</button>
                             </div>
                         </form>
                         <div class="oAuth">
@@ -86,6 +86,10 @@
                 }
             },
             methods: {
+                enterToLogin() {
+                    var loginBtn = document.getElementById("loginBtn");
+                    loginBtn.click();
+                },
                 login() {
                     $.ajax({
                         type: "POST",

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "管理喵星人";
 }
 @section Styles{
@@ -20,31 +19,30 @@
 }
 
 <!-- 導覽列 -->
-<div class=" container  ">
+<div class=" container " id="app">
     <div class="col-lg-3 col-md-2 col-sm-0 col-xs-0 hidden-sm hidden-xs ">
         <!--選單列-->
         <div class="menu  ">
             <ul>
                 <li class="menu-list ">
-                    <a href="# ">資料修改</a><i class="bi bi-caret-right-fill "></i>
+                    <a asp-controller="Membership" asp-action="Editor">資料修改</a>
+                    <i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">
-                    <a href="# ">收藏居民</a><i class="bi bi-caret-right-fill "></i>
+                    <a href="# ">收藏居民</a>
+                    <i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">
-                    <a href="# ">聊天訊息</a><i class="bi bi-caret-right-fill "></i>
+                    <a href="# ">聊天訊息</a>
+                    <i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">
-                    <a href="# ">行程管理</a><i class="bi bi-caret-right-fill "></i>
-                </li>
-                <li class="menu-list ">
-                    <a href="# ">我要送養</a><i class="bi bi-caret-right-fill "></i>
-                </li>
-                <li class="menu-list ">
-                    <p></p>
+                    <a href="# ">行程管理</a>
+                    <i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list">
-                    <a href="#" style="color:#DA8952">管理居民</a><i class="bi bi-caret-right-fill manage-meow"></i>
+                    <a asp-controller="CatManagement" asp-action="ManageCat" style="color:#DA8952">管理居民</a>
+                    <i class="bi bi-caret-right-fill manage-meow"></i>
                 </li>
             </ul>
             <div class="bg-pic">
@@ -62,12 +60,45 @@
                 <div class="meow-manage-status">
                     <button type="button" class="btn-status">刊登中</button>
                     <button type="button" class="btn-status">已送養</button>
+                    <button type="button" class="btn-status">已刪除</button>
                 </div>
-                <button type="button" class="btn-addmeow">＋新增喵星人</button>
+                <button asp-controller="CatManagement" asp-action="UploadCat" class="btn-addmeow">＋新增喵星人</button>
             </div>
             <div class="meow-manage-inside">
+
+                <div class="meow-group" v-for="item in cats">
+                    <div class="group-top">{{item.name}}</div>
+                    <div class="group-inner">
+                        <div class="meow-pic">
+                            <img class="meow-pic-inside" :src="item.image" />
+                        </div>
+                        <div class="group-do">
+                            <button type="button" class="btn-do" v-on:click="editCat(item.catId)">修改</button>
+                            <button type="button" class="btn-do" v-on:click="editCat(item.catId)">刪除</button>
+                        </div>
+                    </div>
+                    <div class="group-bottom">{{item.publishDate}}</div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        Vue.component('meow-aroup', {
+            data: function () {
+                return {
+                    data: {
+
+                    }
+                }
+            },
+            template: `
                 <div class="meow-group">
-                    <div class="group-top">喵星人</div>
+                    < div class= "group-top" > 喵星人</div>
                     <div class="group-inner">
                         <div class="meow-pic">
                             <img class="meow-pic-inside" src="~/images/綠色/貓星球-綠色.PNG" />
@@ -78,112 +109,31 @@
                         </div>
                     </div>
                     <div class="group-bottom">上架日期</div>
-                </div>
-                <div class="meow-group">
-                    <div class="group-top">喵星人</div>
-                    <div class="group-inner">
-                        <div class="meow-pic">
-                            <img class="meow-pic-inside" src="~/images/綠色/貓星球-綠色.PNG" />
-                        </div>
-                        <div class="group-do">
-                            <button class="btn-do">修改</button>
-                            <button class="btn-do">刪除</button>
-                        </div>
-                    </div>
-                    <div class="group-bottom">上架日期</div>
-                </div>
-                <div class="meow-group">
-                    <div class="group-top">喵星人</div>
-                    <div class="group-inner">
-                        <div class="meow-pic">
-                            <img class="meow-pic-inside" src="~/images/綠色/貓星球-綠色.PNG" />
-                        </div>
-                        <div class="group-do">
-                            <button class="btn-do">修改</button>
-                            <button class="btn-do">刪除</button>
-                        </div>
-                    </div>
-                    <div class="group-bottom">上架日期</div>
-                </div>
-                <div class="meow-group">
-                    <div class="group-top">喵星人</div>
-                    <div class="group-inner">
-                        <div class="meow-pic">
-                            <img class="meow-pic-inside" src="~/images/綠色/貓星球-綠色.PNG" />
-                        </div>
-                        <div class="group-do">
-                            <button class="btn-do">修改</button>
-                            <button class="btn-do">刪除</button>
-                        </div>
-                    </div>
-                    <div class="group-bottom">上架日期</div>
-                </div>
-                <div class="meow-group">
-                    <div class="group-top">喵星人</div>
-                    <div class="group-inner">
-                        <div class="meow-pic">
-                            <img class="meow-pic-inside" src="~/images/綠色/貓星球-綠色.PNG" />
-                        </div>
-                        <div class="group-do">
-                            <button class="btn-do">修改</button>
-                            <button class="btn-do">刪除</button>
-                        </div>
-                    </div>
-                    <div class="group-bottom">上架日期</div>
-                </div>
-                <div class="meow-group">
-                    <div class="group-top">喵星人</div>
-                    <div class="group-inner">
-                        <div class="meow-pic">
-                            <img class="meow-pic-inside" src="~/images/綠色/貓星球-綠色.PNG" />
-                        </div>
-                        <div class="group-do">
-                            <button class="btn-do">修改</button>
-                            <button class="btn-do">刪除</button>
-                        </div>
-                    </div>
-                    <div class="group-bottom">上架日期</div>
-                </div>
-                <div class="meow-group">
-                    <div class="group-top">喵星人</div>
-                    <div class="group-inner">
-                        <div class="meow-pic">
-                            <img class="meow-pic-inside" src="~/images/綠色/貓星球-綠色.PNG" />
-                        </div>
-                        <div class="group-do">
-                            <button class="btn-do">修改</button>
-                            <button class="btn-do">刪除</button>
-                        </div>
-                    </div>
-                    <div class="group-bottom">上架日期</div>
-                </div>
-                <div class="meow-group">
-                    <div class="group-top">喵星人</div>
-                    <div class="group-inner">
-                        <div class="meow-pic">
-                            <img class="meow-pic-inside" src="~/images/綠色/貓星球-綠色.PNG" />
-                        </div>
-                        <div class="group-do">
-                            <button class="btn-do">修改</button>
-                            <button class="btn-do">刪除</button>
-                        </div>
-                    </div>
-                    <div class="group-bottom">上架日期</div>
-                </div>
-                <div class="meow-group">
-                    <div class="group-top">喵星人</div>
-                    <div class="group-inner">
-                        <div class="meow-pic">
-                            <img class="meow-pic-inside" src="~/images/綠色/貓星球-綠色.PNG" />
-                        </div>
-                        <div class="group-do">
-                            <button class="btn-do">修改</button>
-                            <button class="btn-do">刪除</button>
-                        </div>
-                    </div>
-                    <div class="group-bottom">上架日期</div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+                </div >`
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {
+                cats: []
+            },
+            mounted() {
+                var vm = this;
+                axios.get("@Url.Action("GetCatInfo", "CatManagement")/")
+                    .then((r) => {
+                        console.log(r);
+                        vm.cats = r.data;
+                    })
+            },
+            methods: {
+                editCat(catId) {
+
+                },
+                deleteCat(catId) {
+                    axios.delete("@Url.Action("DeleteCat", "CatManagement")/")
+                        .then((response) => console.log(response))
+                        .catch((error) => console.log(error))
+                }
+            }
+        });
+    </script>
+}

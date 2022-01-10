@@ -39,7 +39,7 @@
                                 <i class="bi bi-caret-right-fill "></i>
                             </li>
                             <li>
-                                <a asp-controller="Membership" asp-action="Adopter">管理居民</a>
+                                <a asp-controller="CatManagement" asp-action="ManageCat">管理居民</a>
                                 <i class="bi bi-caret-right-fill "></i>
                             </li>
                         </ul>
@@ -214,25 +214,6 @@
                         }
                         reader.readAsDataURL(event.target.files[0]);
                     }
-                },
-                infoUpload() {
-                    $.ajax(
-                        {
-                        type: "POST",
-                        url: "@Url.Action("uploadconfirm", "CatManagement")/",
-                        beforeSend: function (xhr)
-                        {
-                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                            },
-                            data: this.catInfo,
-                        }).done(function (data, textStatus, jqXHR) {
-                            var result = data.code == 200 ? "更新成功!要回到首頁嗎?" : "資料更新失敗!要回到首頁嗎?";
-                            var yes = confirm(result);
-                            yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
-                         }).fail(function () {
-                            alert("連線失敗");
-                         }
-                         );
                 }
             }
         });

@@ -1,5 +1,6 @@
 ﻿using MeowPlanet.Models;
 using MeowPlanet.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace MeowPlanet.Controllers
 {
+    [Authorize(Roles = "CatSender")]
     public class CatManagementController : Controller
     {
         private readonly Models.MeowContext _dbcontext;
@@ -21,15 +23,9 @@ namespace MeowPlanet.Controllers
             this._dbcontext = dbcontext;
             this._env = env;
         }
-        //顯示沒有貓咪的畫面
-        public async Task<IActionResult> AddCat()
+        //顯示沒有貓咪的畫面(新增角色後的畫面)
+        public IActionResult AddCat()
         {
-            ClaimsPrincipal claims = HttpContext.User;
-            int userId = Convert.ToInt32(claims.Identity.Name);
-            var info = await(from a in _dbcontext.Cats
-                             where a.UserId == userId
-                             select a).FirstOrDefaultAsync();
-            var ROLE = claims.Claims.Where(x => x.Type == ClaimTypes.Role).FirstOrDefault().Value;
             return View();
         }
         //顯示上傳貓咪的畫面
@@ -39,14 +35,45 @@ namespace MeowPlanet.Controllers
             return View();
         }
 
+        
         //顯示管理貓咪的畫面
-        public IActionResult ManageCat()
+
+        public async Task<IActionResult> ManageCat()
         {
-            return View();
+            ClaimsPrincipal claims = HttpContext.User;
+            int userId = Convert.ToInt32(claims.Identity.Name);
+            var cat = await(from a in _dbcontext.Cats
+                            where a.UserId == userId
+                            select a).ToListAsync();
+            if (cat == null)
+            {
+                return View("AddCat");
+            }
+            else
+            {
+                return View();
+            }
         }
+        
+        //取得貓咪資訊
+        [HttpGet]
+        public List<Cat> GetCatInfo()
+        {
+            ClaimsPrincipal claims = HttpContext.User;
+            int userId = Convert.ToInt32(claims.Identity.Name);
+            var cat = (from a in _dbcontext.Cats
+                            where a.UserId == userId
+                            select a).ToList();
+
+            List<Cat> cats = cat; 
+
+
+            return cats;
+        }
+
         //上傳貓咪資訊
         [HttpPost]
-        public async Task<MemberManagement.Message> UploadConfirm(IFormFileCollection files, CatViewModel model)
+        public async Task<IActionResult> UploadConfirm(IFormFileCollection files, CatViewModel model)
         {
             var claims = HttpContext.User;
             var ID = Convert.ToInt32(claims.Identity.Name);
@@ -81,6 +108,7 @@ namespace MeowPlanet.Controllers
                             Msg = $"請上傳圖片",
                             Time = DateTime.Now
                         };
+                        return View("UploadCat");
                     }
                     else
                     {
@@ -111,7 +139,8 @@ namespace MeowPlanet.Controllers
                                 Ligation = model.Ligation,
                                 Vaccine = model.Vaccine,
                                 Chip = model.Chip,
-                                Remark = model.Remark
+                                Remark = model.Remark,
+                                PublishedDay = DateTime.Now
                             };
                             _dbcontext.Cats.Add(cat);
                             _dbcontext.SaveChanges();
@@ -138,7 +167,59 @@ namespace MeowPlanet.Controllers
                     
                 } 
             }
-            return msg;
+            return View("ManageCat");
         }
+    
+        //public async Task<IActionResult> EditCat()
+        //{
+        //    ClaimsPrincipal claims = HttpContext.User;
+        //    int userId = Convert.ToInt32(claims.Identity.Name);
+        //    var cat = await(from a in _dbcontext.Cats
+        //                    where a.UserId == userId
+        //                    select a).FirstOrDefaultAsync();
+
+        //    return View();
+        //}
+
+        //[HttpDelete]
+        //public async Task<MemberManagement.Message> DeleteCat( int catId)
+        //{
+        //    ClaimsPrincipal claims = HttpContext.User;
+        //    int userId = Convert.ToInt32(claims.Identity.Name);
+        //    var cat = await(from a in _dbcontext.Cats
+        //                    where a.UserId == userId && a.CatId == catId
+        //                    select a).FirstOrDefaultAsync();
+        //    MemberManagement.Message msg = null;
+
+        //    if (cat != null)
+        //    {
+        //        try
+        //        {
+        //            cat.IsDeleted = 1;
+
+        //            _dbcontext.SaveChanges();
+        //            Console.WriteLine($"喵星人:{cat.Name}刪除成功");
+
+        //            msg = new MemberManagement.Message()
+        //            {
+        //                Code = 200,
+        //                Msg = $"喵星人:{cat.Name}刪除成功",
+        //                Time = DateTime.Now
+        //            };
+
+        //        }
+        //        catch (DbUpdateException ex)
+        //        {
+        //            Console.WriteLine($"喵星人:{cat.Name}刪除失敗!" + ex);
+        //            msg = new MemberManagement.Message()
+        //            {
+        //                Code = 400,
+        //                Msg = $"喵星人:{cat.Name}刪除失敗",
+        //                Time = DateTime.Now
+        //            };
+        //        }
+        //    }
+        //    return msg;
+        //}
     }
 }

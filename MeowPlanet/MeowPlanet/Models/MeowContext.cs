@@ -83,6 +83,9 @@ namespace MeowPlanet.Models
                     .IsRequired()
                     .HasComment("照片");
 
+                entity.Property(e => e.IsDeleted);
+                entity.Property(e => e.PublishedDay);
+
                 entity.Property(e => e.Ligation).HasComment("結紮");
 
                 entity.Property(e => e.Name)
