@@ -60,7 +60,6 @@
                 <div class="meow-manage-status">
                     <button type="button" class="btn-status">刊登中</button>
                     <button type="button" class="btn-status">已送養</button>
-                    <button type="button" class="btn-status">已刪除</button>
                 </div>
                 <button asp-controller="CatManagement" asp-action="UploadCat" class="btn-addmeow">＋新增喵星人</button>
             </div>
@@ -70,10 +69,11 @@
                     <div class="group-inner">
                         <div class="meow-pic">
                             <img class="meow-pic-inside" :src="item.image" />
+                            <button class="btn-do" v-on:click="sendCat(item.catId, item.name)">喵星人  已送養</button>
                         </div>
                         <div class="group-do">
-                            <button type="button" class="btn-do" v-on:click="editCat(item.catId)">修改</button>
-                            <button type="button" class="btn-do" v-on:click="deleteCat(item.catId)">刪除</button>
+                            <button class="btn-do" v-on:click="editCat(item.catId)">修改</button>
+                            <button class="btn-do" v-on:click="deleteCat(item.catId, item.name)">刪除</button>
                         </div>
                     </div>
                     <div class="group-bottom">刊登日期:{{(item.publishedDay).substr(0, 10)}}</div>
@@ -133,11 +133,31 @@
                         })
                         .catch((error) => console.log(error))
                 },
-                deleteCat(catId) {
-                    console.log(catId)
-                    axios.get("/CatManagement/DeleteCat/"+catId)
-                        .then((response) => console.log(response))
-                        .catch((error) => console.log(error))
+                sendCat(catId, catName) {
+                    var result = confirm("確定要將" + catName + "回報為已送養嗎?");
+                    if (result) {
+                        axios.get("/CatManagement/SendCat/" + catId)
+                            .then((response) => {
+                                console.log(response);
+                                alert("回報" + catName + "送養成功!");
+                            })
+                            .catch((error) => console.log(error))
+                        top.location.href = "/CatManagement/ManageCat"
+                    } else {
+                        alert("已取消回報" + catName + "送養狀態!");
+                    }
+                },
+                deleteCat(catId, catName) {
+                    var result = confirm("確定要刪除" + catName + "嗎?");
+                    if (result) {
+                        axios.get("/CatManagement/DeleteCat/" + catId)
+                            .then((response) => {
+                                console.log(response);
+                                alert("刪除喵星人成功! ByeBye "+catName);
+                            })
+                            .catch((error) => console.log(error))
+                        top.location.href = "/CatManagement/ManageCat"
+                    } 
                 }
             }
         });
