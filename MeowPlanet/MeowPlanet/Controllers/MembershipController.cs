@@ -365,7 +365,7 @@ namespace MeowPlanet.Controllers
                     Time = DateTime.Now
                 };
             }
-            return RedirectToAction("AddCat","CatManagement");
+            return RedirectToAction("ManageCat", "CatManagement");
         }
     }
 }

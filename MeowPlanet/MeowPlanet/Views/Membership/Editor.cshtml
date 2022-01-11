@@ -43,7 +43,7 @@
                                 <i class="bi bi-caret-right-fill "></i>
                             </li>
                             <li v-if="isCatSender === 2">
-                                <a asp-controller="CatManagement" asp-action="AddCat">管理居民</a>
+                                <a asp-controller="CatManagement" asp-action="ManageCat">管理居民</a>
                                 <i class="bi bi-caret-right-fill "></i>
                             </li>
                         </ul>
@@ -64,7 +64,7 @@
                             <div class="info-area form-area" v-if="isVisable===1">
                                 <form action="/Membership/uploadphoto" method="post" enctype="multipart/form-data">
                                     <div class="user-photo">
-                                        <div class="edit-icon" onclick="uploadPhoto()">
+                                        <div class="edit-icon" v-on:click="uploadPhoto()">
                                             <img :src="userInfo.Photo" alt="使用者大頭貼" id="userPhoto" />
                                         </div>
                                         <input type="file" name="file" value="save" accept="image/*"
@@ -122,7 +122,7 @@
                                     </div>
                                     <div class="Cfm-pwd">
                                         <label for="CfmPwd">新密碼:</label>
-                                        <input type="password" name="CfmPwd" id="CfmPwd" onkeyup="checkPwd()">
+                                        <input type="password" name="CfmPwd" id="CfmPwd" v-on:keyup="checkPwd()">
                                         <span id="area"></span>
                                     </div>
                                     <div class="button-area" style="display: block;">
@@ -140,53 +140,53 @@
                                     <div class="salary">
                                         <label for="Salary">年薪：</label>
                                         <select name="Salary" id="Salary" v-model="adopterInfo.Salary">
-                                            <option value="300k">30萬以下</option>
-                                            <option value="300k" id="300k">30~40萬</option>
-                                            <option value="400k">40~50萬</option>
-                                            <option value="500k">50~60萬</option>
-                                            <option value="600k">60~70萬</option>
-                                            <option value="700k">70~80萬</option>
-                                            <option value="800k">80萬以上</option>
+                                            <option value="30萬以下">30萬以下</option>
+                                            <option value="30~40萬" id="300k">30~40萬</option>
+                                            <option value="40~50萬">40~50萬</option>
+                                            <option value="50~60萬">50~60萬</option>
+                                            <option value="60~70萬">60~70萬</option>
+                                            <option value="70~80萬">70~80萬</option>
+                                            <option value="80萬以上">80萬以上</option>
                                         </select>
                                     </div>
                                     <div class="accatable-range">
                                         <label for="AcceptableAmount">每月願意負擔金額：</label>
                                         <select name="AcceptableAmount" id="AcceptableAmount" v-model="adopterInfo.AcceptableAmount">
-                                            <option value="5k">5千~1萬</option>
-                                            <option value="10k">1萬~2萬</option>
-                                            <option value="20k-up">2萬以上</option>
+                                            <option value="5千~1萬">5千~1萬</option>
+                                            <option value="1萬~2萬">1萬~2萬</option>
+                                            <option value="2萬以上">2萬以上</option>
                                         </select>
                                     </div>
                                     <div class="merrage">
                                         <input type="radio" id="single" name="Merrage" value="single" v-model="adopterInfo.Merrage">
-                                        <label for="single">單身</label>
+                                        <label for="單身">單身</label>
                                         <input type="radio" id="married" name="Merrage" value="married" v-model="adopterInfo.Merrage">
-                                        <label for="married">已婚</label>
+                                        <label for="已婚">已婚</label>
                                     </div>
                                     <div class="other-pets">
                                         <label for="OtherPets">同時飼養寵物：</label>
                                         <select name="OtherPets" id="OtherPets" v-model="adopterInfo.OtherPets">
-                                            <option value="no">沒有</option>
-                                            <option value="cat">貓類</option>
-                                            <option value="dog">狗類</option>
-                                            <option value="mouse">鼠類</option>
-                                            <option value="fish">魚類</option>
-                                            <option value="bird">鳥類</option>
-                                            <option value="inset">爬蟲類</option>
-                                            <option value="other">其他</option>
+                                            <option value="沒有">沒有</option>
+                                            <option value="貓類">貓類</option>
+                                            <option value="狗類">狗類</option>
+                                            <option value="鼠類">鼠類</option>
+                                            <option value="魚類">魚類</option>
+                                            <option value="鳥類">鳥類</option>
+                                            <option value="爬蟲類">爬蟲類</option>
+                                            <option value="其他">其他</option>
                                         </select>
                                     </div>
                                     <div class="keeped-pets">
                                         <label for="KeepPets">曾經養過寵物</label>
                                         <select name="KeepPets" id="KeepPets" v-model="adopterInfo.KeepPets">
-                                            <option value="no">沒有</option>
-                                            <option value="cat">貓類</option>
-                                            <option value="dog">狗類</option>
-                                            <option value="mouse">鼠類</option>
-                                            <option value="fish">魚類</option>
-                                            <option value="bird">鳥類</option>
-                                            <option value="inset">爬蟲類</option>
-                                            <option value="other">其他</option>
+                                            <option value="沒有">沒有</option>
+                                            <option value="貓類">貓類</option>
+                                            <option value="狗類">狗類</option>
+                                            <option value="鼠類">鼠類</option>
+                                            <option value="魚類">魚類</option>
+                                            <option value="鳥類">鳥類</option>
+                                            <option value="爬蟲類">爬蟲類</option>
+                                            <option value="其他">其他</option>
                                         </select>
                                     </div>
                                     <div class="parents">
@@ -196,9 +196,9 @@
                                     <div class="relationship">
                                         <label for="RelationShip">關係：</label>
                                         <select name="RelationShip" id="RelationShip" v-model="adopterInfo.RelationShip">
-                                            <option value="parents">父母</option>
-                                            <option value="grand-parents">祖父母</option>
-                                            <option value="other">其他</option>
+                                            <option value="父母">父母</option>
+                                            <option value="祖父母">祖父母</option>
+                                            <option value="其他">其他</option>
                                         </select>
                                     </div>
                                     <div class="button-area" style="display: block;">
@@ -219,25 +219,6 @@
             integrity='sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=='
             crossorigin='anonymous'></script>
     <script>
-        //判斷密碼是否一致
-        function checkPwd() {
-            var pw1 = document.getElementById("NewPwd").value;
-            var pw2 = document.getElementById("CfmPwd").value;
-            if (pw1 == pw2) {
-                document.getElementById("area").innerHTML = "密碼相同";
-                document.getElementById("submit").disabled = false;
-            }
-            else {
-                document.getElementById("area").innerHTML = "密碼不一致";
-                document.getElementById("submit").disabled = true;
-            }
-        }
-        //處理相片上傳按鈕樣式
-        function uploadPhoto() {
-            let uploder = document.getElementById("selectedFile");
-            uploder.click();
-        }
-
         var app = new Vue({
             el: "#app",
             data: {
@@ -277,6 +258,18 @@
                 showInfo(n) {
                     this.isVisable = n;
                 },
+                checkPwd() {   //判斷密碼是否一致
+                    var pw1 = document.getElementById("NewPwd").value;
+                    var pw2 = document.getElementById("CfmPwd").value;
+                    if (pw1 == pw2) {
+                        document.getElementById("area").innerHTML = "密碼相同";
+                        document.getElementById("submit").disabled = false;
+                    }
+                    else {
+                        document.getElementById("area").innerHTML = "密碼不一致";
+                        document.getElementById("submit").disabled = true;
+                    }
+                },
                 readURI(event) {
                     //處理圖片預覽
                     var vm = this;
@@ -288,6 +281,10 @@
                         }
                         reader.readAsDataURL(event.target.files[0]);
                     }
+                },
+                uploadPhoto() {  //處理相片上傳按鈕樣式
+                    let uploder = document.getElementById("selectedFile");
+                    uploder.click();
                 },
                 infoEdit() {
                     $.ajax(
