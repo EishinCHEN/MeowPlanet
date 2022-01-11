@@ -3,7 +3,7 @@
 <body>
     <div id="customers" class="web">
         @*<p>@total</p>*@
-        等待導覽列 
+        等待導覽列 {{pagecount}}
         <div class="top">
             <div class="topleft">
                 <img src="/images/pageCatPlanetInhabitants/貓太空人.png" class="baseline" />
@@ -99,10 +99,10 @@
                             loremsfdsfsgffdg
                             fdgfggfd
                             fdggfdgffd
-                            <div>
-                                <!--<span v-for="n in 10">2</span>-->  @*//暫時的想法  渲染n in 參數  參數=陣列.account/3*@
-                                <!--{{pagecount}}-->
-                            </div>
+                            @*<div>
+                                <span v-for="n in pagecount">2</span>  
+                                
+                            </div>*@
                         </div>
                         <br>
                         <div class="go-group">
@@ -265,7 +265,7 @@
                                 //console.log("7");
                                 //useVue.pagecount = qryResult.length;
                                 //console.log(useVue.pagecount);
-
+                                useVue.pagecount = qryResult.length;
                                 useVue.pagerandom = qryResult.sort(function () {
                                     return (0.5 - Math.random());  //將取出陣列隨機排列
                                 });

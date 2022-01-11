@@ -69,6 +69,8 @@ namespace MeowPlanet.Controllers
             //--------------------------老方法--------------------------------------
             List<Models.Cat> datacat777 = query.ToList<Models.Cat>();
             // return datacat777.GetRange(0, 3); 資料庫建好前搜尋範圍不能超過當前現存筆數
+            Console.WriteLine(datacat777.Count);
+            //datacat777.Add("CatColor","orange");
             return datacat777;
         }
     }
