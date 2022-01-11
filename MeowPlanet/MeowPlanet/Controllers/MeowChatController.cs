@@ -52,10 +52,30 @@ namespace MeowPlanet.Controllers
             returndata.OtherUser = await GetUserDataById(other);
             returndata.UserRole = await GetUserRole();  //得到sender的role
             returndata.ChatContentList = await GetMessageSenderList(loginId, other);
+            //消除Context有關更動的紀錄，以免不必要存取已修改過的台北時間
+            DetachAllContextChanges();
+
+            var unread = await _meowContext.ChatLists
+                .Where(u => (u.Sender == other) && (u.Receiver ==loginId) && (u.IsRead == false))
+                //.GroupBy(u => new {u.Sender})
+                .ToListAsync();
+
+            if (unread != null)
+            {
+                //var result = unread.GroupBy(x => new { x.Sender });
+                unread.ForEach(x => x.IsRead = true);
+                var savecounts = _meowContext.SaveChanges();
+                Console.WriteLine($"資料庫已讀成功，共{savecounts}筆");
+            }
+            else
+            {
+                Console.WriteLine("資料庫沒有訊息未讀");
+                return View(returndata);         
+            }
             return View(returndata);
         }
 
-        [Authorize]
+        
         public IActionResult ChatBox()
         {
             return View();
@@ -138,10 +158,12 @@ namespace MeowPlanet.Controllers
             return await _meowContext.UserDatas
                     .Where(u => u.UserId == userId)
                     .Select(u => new { u.RealName, PersonalPhoto = Url.Content(u.PersonalPhoto), u.Job, u.Salary, u.AcceptableAmount,
-                        u.Merrage, u.OtherPets, u.KeepPets, u.Agents, u.RelationShip })
+                        u.Merrage, u.OtherPets, u.KeepPets, u.Agents, u.RelationShip,
+                        Over20 = ((DateTime.Now.Subtract(u.Birthday).Days/365 ) > 20 ?"是":"否") })
                     .FirstOrDefaultAsync();
         }
 
+        
         //取出登入者的身分
         [HttpGet]
         public async Task<int> GetUserRole()
@@ -151,5 +173,19 @@ namespace MeowPlanet.Controllers
             var result = userrole.Contains(2) ? 2 : 1;
             return result;
         }
+
+        private void DetachAllContextChanges()
+        {
+            _meowContext.ChangeTracker.DetectChanges();
+            //Console.WriteLine("Context追蹤變更取消前:");
+            //Console.WriteLine(_meowContext.ChangeTracker.DebugView.ShortView);
+            //Context追蹤取消
+            _meowContext.ChangeTracker.Entries().ToList().ForEach(x => x.State = EntityState.Detached);
+
+            _meowContext.ChangeTracker.DetectChanges();
+            //Console.WriteLine("Context追蹤變更取消後:");
+            //Console.WriteLine(_meowContext.ChangeTracker.DebugView.ShortView);
+        }
+
     }
 }

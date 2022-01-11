@@ -92,8 +92,8 @@
                     <li>每月願意負擔:{{infoUser.otherUser.acceptableAmount}}</li>
                     <li>同時飼養寵物:{{infoUser.otherUser.otherPets}}</li>
                     <li>曾經養過寵物:{{infoUser.otherUser.keepPets}}</li>
-                    <li>未滿20法定代理人:{{infoUser.otherUser.agents}}</li>
-                    <li>{{infoUser.otherUser.merrage}}</li>
+                    <li>是否年滿20歲:{{infoUser.otherUser.over20}}</li>
+                    <li>婚姻狀態:{{infoUser.otherUser.merrage}}</li>
                 </ul>
             </div>
         </diV>
@@ -129,11 +129,13 @@
                 if (value) {
                     return moment(String(value)).locale("zh-tw").format('dddd HH:mm');
                 }
-            }
+            },
+
         },
         methods: {
 
             toMessageContent: function (otherUserId) {
+                console.log(otherUserId);
                 location.href = '@(Url.Action("MessageContent", "MeowChat"))' + '?other=' + otherUserId;
             },
             // 點擊按鈕時顯示或隱藏聊天視窗
@@ -176,15 +178,6 @@
 
         },
         mounted() {
-            //foreach(function (item, i) {
-            //    var item = this.userRole[i];
-            //    if (i == "2") {
-            //        this.isCatSender = 2
-            //    } else
-            //    {
-            //        this.isCatSender = 1
-            //    };
-            //})
 
             //點擊資訊視窗和按鈕以外的任何地方就隱藏視窗
             let $vue = this;

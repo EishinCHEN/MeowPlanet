@@ -15,12 +15,21 @@ namespace MeowPlanet.Hubs
             _meowContext = meowContext;
         }
 
-        static List<UserData> ConnectedUsers = new List<UserData>();
+        static List<int> ConnectedUsers = new List<int>();
         static List<ChatList> CurrentMessage = new List<ChatList>();
 
         public override Task OnConnectedAsync()
         {
+            ConnectedUsers.Add(Convert.ToInt32(Context.UserIdentifier));
+            Console.WriteLine($"User ID:{Context.UserIdentifier} 已上線");
             return base.OnConnectedAsync();
+        }
+
+        public override Task OnDisconnectedAsync(Exception exception)
+        {
+            ConnectedUsers.Remove(Convert.ToInt32(Context.UserIdentifier));
+            Console.WriteLine($"User ID:{Context.UserIdentifier} 不在不在去買菜");
+            return base.OnDisconnectedAsync(exception);
         }
 
         /// <summary>
@@ -37,9 +46,9 @@ namespace MeowPlanet.Hubs
             newmessagelist.Sender = sender;
             newmessagelist.SendTime = sendtime;
             newmessagelist.Message = message;
-            newmessagelist.IsRead = false;
+            newmessagelist.IsRead = ConnectedUsers.Contains(receiver) ? true : false;
             _meowContext.ChatLists.Add(newmessagelist); //將訊息寫入資料庫
-            await _meowContext.SaveChangesAsync();
+            await _meowContext.SaveChangesAsync();            
         }
     }
 }
