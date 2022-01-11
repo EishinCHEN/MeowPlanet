@@ -431,9 +431,9 @@
                             </div>
 
                             <div class="name-group">
-                                <label>刊登日期</label>
+                                <label>刊登日期</label>@*//此選項暫時無意義*@
                                 <select v-model="FilterData.PublishedDay" class="catgender">
-                                    <option value="0">皆可</option>
+                                    <option value="">皆可</option>
                                     <option value="1">1個月內</option>
                                     <option value="1">3個月內</option>
                                     <option value="1">半年內</option>
@@ -444,7 +444,7 @@
                         <br>
                         <div class="go-group">
                             <button v-on:click="show777" class="gobox">再想一下</button>
-                            <button v-on:click="show888" class="gobox">飛行前往!</button>
+                            <button v-on:click="flygo" class="gobox">飛行前往!</button>
                         </div>
                     </div>
                 </div>
@@ -666,7 +666,7 @@
                         }
                     );
                 },
-                show888() {
+                flygo() {
                     console.log(this.FilterData)
                     console.log(useVue.RealName)
                     alert("456");
