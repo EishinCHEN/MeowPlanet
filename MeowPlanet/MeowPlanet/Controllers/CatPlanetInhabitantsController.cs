@@ -26,15 +26,12 @@ namespace MeowPlanet.Controllers
         //  public List<Models.Cat> catjson([FromBody]Models.Cat Delivery)//師改的
         public List<Models.Cat> Catjson(IFormCollection Delivery4)
         {
-            Console.WriteLine("Account:" + Delivery4["RealName"]);
+            Console.WriteLine("Account:" + Delivery4["CatColor"]);
             var query = _dbContext.Cats.AsQueryable();
-            var c = Delivery4["RealName"].ToString();
-            //JArray jArray = JArray.Parse(a);
-            //Console.WriteLine(jArray.ToString());
 
-            if (!string.IsNullOrEmpty(Delivery4["RealName"]))
+            if (!string.IsNullOrEmpty(Delivery4["CatColor"]))
             {
-                query = query.Where(x => x.CatColor == Delivery4["RealName"].ToString());
+                query = query.Where(x => x.CatColor == Delivery4["CatColor"].ToString());
             }
 
             //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
