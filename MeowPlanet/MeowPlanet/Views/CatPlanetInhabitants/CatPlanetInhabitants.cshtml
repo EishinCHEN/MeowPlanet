@@ -262,10 +262,7 @@
                             success: function (qryResult, status, xhr) {
 
                                 console.log(qryResult);
-                                //console.log("7");
-                                //useVue.pagecount = qryResult.length;
-                                //console.log(useVue.pagecount);
-                                useVue.pagecount = qryResult.length;
+                                useVue.pagecount = Math.ceil((qryResult.length) / 3);//抓取資料筆數除3當頁數
                                 useVue.pagerandom = qryResult.sort(function () {
                                     return (0.5 - Math.random());  //將取出陣列隨機排列
                                 });
