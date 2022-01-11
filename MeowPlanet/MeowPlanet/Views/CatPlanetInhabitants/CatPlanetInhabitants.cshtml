@@ -460,16 +460,12 @@
             <img src="/images/pageCatPlanetInhabitants/飛船貓貓-綠色.png" class="medium-right-img" />
         </div>
         <div class="down">
-
             <div v-if="open==0" class="aligntop">
                 <div class="fakef">
                     <div v-for="cus in page0" class="fakef">
-
                         <div class="whiteblock">
-
                             <div class="listblock1">
                                 <img v-bind:src="''+cus.image" class="listblockcatimg" />
-
                                 <div class="listblock2">
                                     <div class="listblock2txt">
                                         姓名 : {{cus.name}}
@@ -492,12 +488,9 @@
             <div v-if="open==1" class="aligntop">
                 <div class="fakef">
                     <div v-for="cus in page1" class="fakef">
-
                         <div class="whiteblock">
-
                             <div class="listblock1">
                                 <img v-bind:src="''+cus.image" class="listblockcatimg" />
-
                                 <div class="listblock2">
                                     <div class="listblock2txt">
                                         姓名 : {{cus.name}}
@@ -520,9 +513,7 @@
             <div v-if="open==2" class="aligntop">
                 <div class="fakef">
                     <div v-for="cus in page2" class="fakef">
-
                         <div class="whiteblock">
-
                             <div class="listblock1">
                                 <img v-bind:src="''+cus.image" class="listblockcatimg" />
 
@@ -551,16 +542,7 @@
                 <button v-on:click="uppage" class="previouspage" onclick="window.location.href='#jump'"><</button>
                 <button v-on:click="downpage" class="nextpage" onclick="window.location.href='#jump'">></button>
             </div>
-
-            @*<div style="height: 5vw; background-color:#FBD06E ;">
-                </div>*@
         </div>
-        @*<div class="turnpage">
-                <button v-on:click="uppage" class="previouspage"><</button>
-                <button v-on:click="downpage" class="nextpage">></button>
-            </div>
-            <div style="height: 1vw; background-color:#FBD06E ;">
-            </div>*@
     </div>
 </body>
 <script>
@@ -574,9 +556,8 @@
                 page3: [],
                 page4: [],
                 open: 0,
-                //---------貓貓數據
+                //---------篩選數據
                 FilterData: {
-                   // "RealName": "orange",//測試用
                     "CatColor": "",
                     "Ligation": "",
                     "Age": "",
@@ -587,27 +568,6 @@
                     "Isdeleted": "2",
                     "PublishedDay": "",
                 },
-
-                catidTD : '',
-                adoptTD : '',
-                adopterTD : '-1',
-                userIdTD : '',
-                colorTD : '',
-                ligationTD : '-1',
-                ageTD : '-1',
-                nameTD : '',
-                imageTD: '1',
-                imageTD2: '1',
-                imageTD3: '1',
-                imageTD4: '1',
-                genderTD : '',
-                vaccineTD : '',
-                chipTD : '',
-                remarkTD : '',
-                countryTD : '',
-                cityTD: '',
-                deleteTD:'',
-                dateTD: ''
             },
             methods: {
                 resetfilter() {
