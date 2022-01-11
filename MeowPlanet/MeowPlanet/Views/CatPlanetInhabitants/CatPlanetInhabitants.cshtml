@@ -550,6 +550,7 @@
         {
             el: '#customers',
             data: {
+                pagerandom:[],
                 page0: [],
                 page1: [],
                 page2: [],
@@ -585,7 +586,7 @@
                 flygo() {
                     console.log(this.FilterData)
                     console.log(useVue.RealName)
-                    alert("456");
+                    /*alert("456");*/
                     $.ajax(
                         {
                             type: 'POST',
@@ -595,14 +596,15 @@
                             },
                             data: this.FilterData,
                             success: function (qryResult, status, xhr) {
-                                alert(qryResult[0]);
-                                console.log(qryResult[0]);
+                               /* alert(qryResult[0]);*/
                                 console.log(qryResult);
-                                useVue.page0 = qryResult
-
-                                useVue.page1 = qryResult.slice(0, 3);
-                                useVue.page2 = qryResult.slice(3, 6);
-                                useVue.page3 = qryResult.slice(6, 9);
+                                useVue.pagerandom = qryResult.sort(function () {
+                                    return (0.5 - Math.random());
+                                });
+                                useVue.page0 = useVue.pagerandom;
+                                useVue.page1 = useVue.pagerandom.slice(0, 3);
+                                useVue.page2 = useVue.pagerandom.slice(3, 6);
+                                useVue.page3 = useVue.pagerandom.slice(6, 9);
                             }
                         }
                     );
