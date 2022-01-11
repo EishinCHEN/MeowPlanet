@@ -1,8 +1,6 @@
 ﻿<link href="~/css/CatPlanetInhabitants/CatPlanetInhabitants.css" rel="stylesheet" />
-@*@{ var total = { { pagecount } }; }*@
 <body>
     <div id="customers" class="web">
-        @*<p>@total</p>*@
         等待導覽列 {{pagecount}}
         <div class="top">
             <div class="topleft">
@@ -96,13 +94,6 @@
                                     <option value="1">1年內</option>
                                 </select>
                             </div>
-                            loremsfdsfsgffdg
-                            fdgfggfd
-                            fdggfdgffd
-                            @*<div>
-                                <span v-for="n in pagecount">2</span>  
-                                
-                            </div>*@
                         </div>
                         <br>
                         <div class="go-group">
@@ -128,7 +119,6 @@
                     <div v-for="cus in page0" class="fakef">
                         <div class="whiteblock">
                             <div class="listblock1">
-                                @*//原本下面是這樣寫"''+cus.image"，為甚麼突然就可以了*@
                                 <img v-bind:src="cus.image" class="listblockcatimg" />
                                 <div class="listblock2">
                                     <div class="listblock2txt">
@@ -222,7 +212,7 @@
                 page3: [],
                 page4: [],
                 open: 0,
-                //---------篩選數據
+
                 FilterData: {
                     "CatColor": "",
                     "Ligation": "",
@@ -249,8 +239,8 @@
                 goforcat() { /*等待連接到其他頁面*/ },
 
                 flygo() {
-                    console.log(this.FilterData)
-                    console.log(useVue.RealName)
+                    //console.log(this.FilterData)
+                    //console.log(useVue.RealName)
                     $.ajax(
                         {
                             type: 'POST',
@@ -260,9 +250,9 @@
                             },
                             data: this.FilterData,
                             success: function (qryResult, status, xhr) {
+                                /*console.log(qryResult);*/
+                                useVue.pagecount = Math.ceil((qryResult.length) / 3);//抓取資料筆數除3當總頁數
 
-                                console.log(qryResult);
-                                useVue.pagecount = Math.ceil((qryResult.length) / 3);//抓取資料筆數除3當頁數
                                 useVue.pagerandom = qryResult.sort(function () {
                                     return (0.5 - Math.random());  //將取出陣列隨機排列
                                 });
