@@ -1,8 +1,9 @@
 ﻿<link href="~/css/CatPlanetInhabitants/CatPlanetInhabitants.css" rel="stylesheet" />
-
+@*@{ var total = { { pagecount } }; }*@
 <body>
     <div id="customers" class="web">
-        等待導覽列
+        @*<p>@total</p>*@
+        等待導覽列 
         <div class="top">
             <div class="topleft">
                 <img src="/images/pageCatPlanetInhabitants/貓太空人.png" class="baseline" />
@@ -94,6 +95,13 @@
                                     <option value="1">半年內</option>
                                     <option value="1">1年內</option>
                                 </select>
+                            </div>
+                            loremsfdsfsgffdg
+                            fdgfggfd
+                            fdggfdgffd
+                            <div>
+                                <!--<span v-for="n in 10">2</span>-->  @*//暫時的想法  渲染n in 參數  參數=陣列.account/3*@
+                                <!--{{pagecount}}-->
                             </div>
                         </div>
                         <br>
@@ -206,6 +214,7 @@
         {
             el: '#customers',
             data: {
+                pagecount:"",
                 pagerandom:[],
                 page0: [],
                 page1: [],
@@ -253,6 +262,10 @@
                             success: function (qryResult, status, xhr) {
 
                                 console.log(qryResult);
+                                //console.log("7");
+                                //useVue.pagecount = qryResult.length;
+                                //console.log(useVue.pagecount);
+
                                 useVue.pagerandom = qryResult.sort(function () {
                                     return (0.5 - Math.random());  //將取出陣列隨機排列
                                 });
@@ -260,6 +273,7 @@
                                 useVue.page1 = useVue.pagerandom.slice(0, 3);
                                 useVue.page2 = useVue.pagerandom.slice(3, 6);
                                 useVue.page3 = useVue.pagerandom.slice(6, 9);
+
                             }
                         }
                     );
