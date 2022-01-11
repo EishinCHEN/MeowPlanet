@@ -49,15 +49,15 @@ namespace MeowPlanet.Controllers
                 query = query.Where(x => x.Vaccine == Delivery4["Vaccine"].ToString());
             }
 
-            //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
-            //{
-            //    query = query.Where(x => x.City == Delivery4["RealName"].ToString());
-            //}
+            if (!string.IsNullOrEmpty(Delivery4["City"]))
+            {
+                query = query.Where(x => x.City == Delivery4["City"].ToString());
+            }
 
-            //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
-            //{
-            //    query = query.Where(x => x.Country == Delivery4["RealName"].ToString());
-            //}
+            if (!string.IsNullOrEmpty(Delivery4["Country"]))
+            {
+                query = query.Where(x => x.Country == Delivery4["Country"].ToString());
+            }
 
             //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
             //{
