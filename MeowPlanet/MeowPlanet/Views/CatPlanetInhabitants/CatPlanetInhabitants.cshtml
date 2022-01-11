@@ -361,7 +361,7 @@
                     <div class="boxrange">
                         <div class="boxgroup">
                             <div class="name-group">
-                                <label for="CatGender">毛色(主要)</label>
+                                <label>毛色(主要)</label>
                                 <select v-model="FilterData.CatColor" class="catgender">
                                     <option value="">皆可</option>
                                     <option value="orange">橘色</option>
@@ -371,26 +371,30 @@
 
 
                             <div class="name-group">
-                                <label for="CatGender">是否結紮</label>
+                                <label>是否結紮</label>
                                 <select v-model="FilterData.Ligation" class="catgender">
-                                    <option value="-1">皆可</option>
+                                    <option value="">皆可</option>
                                     <option value="已結紮">已結紮</option>
                                     <option value="未結紮">未結紮</option>
                                 </select>
                             </div>
 
                             <div class="name-group">
-                                <label for="CatGender">年齡(大約)</label>
+                                <label>年齡(大約)</label>
                                 <select v-model="FilterData.Age" class="catgender">
                                     <option value="-1">皆可</option>
-                                    <option value="3">3歲</option>
-                                    <option value="5">5歲</option>
-                                    <option value="7">7歲</option>
+                                    <option value="0-3月">0-3月</option>
+                                    <option value="3-5月">3-5月</option>
+                                    <option value="5-7月">5-7月</option>
+                                    <option value="7-12月">7-12月</option>
+                                    <option value="1-3歲">1-3歲</option>
+                                    <option value="3-8歲">3-8歲</option>
+                                    <option value="8歲以上">8歲以上</option>
                                 </select>
                             </div>
 
                             <div class="name-group">
-                                <label for="CatGender">預防疫苗</label>
+                                <label>預防疫苗</label>
                                 <select v-model="FilterData.Vaccine" class="catgender">
                                     <option value="-1">皆可</option>
                                     <option value="1">已注射</option>
@@ -399,7 +403,7 @@
                             </div>
 
                             <div class="name-group">
-                                <label for="CatGender">送養人居住地區(看貓地區)</label>
+                                <label>送養人居住地區(看貓地區)</label>
                                 <select v-model="FilterData.City" class="catgender">
                                     <option value="">直轄縣市</option>
                                     <option value="台北市">台北</option>
@@ -414,7 +418,7 @@
                             </div>
 
                             <div class="name-group">
-                                <label for="CatGender">選擇性別</label>
+                                <label>選擇性別</label>
                                 <select v-model="FilterData.CatGender" class="catgender">
                                     <option value="">皆可</option>
                                     <option value="male">男</option>
@@ -423,7 +427,7 @@
                             </div>
 
                             <div class="name-group">
-                                <label for="CatGender">刊登日期</label>
+                                <label>刊登日期</label>
                                 <select v-model="FilterData.PublishedDay" class="catgender">
                                     <option value="-1">皆可</option>
                                     <option value="1">1個月內</option>
@@ -624,7 +628,7 @@
                         "Image2": useVue.imageTD2,
                         "Image3": useVue.imageTD3,
                         "Image4": useVue.imageTD4,
-                        "CatGender": useVue.genderTD,
+                        "CatGenderr": useVue.genderTD,
                         "Vaccine": useVue.vaccineTD,
                         "Chip": useVue.chipTD,
                         "Remark": useVue.remarkTD,

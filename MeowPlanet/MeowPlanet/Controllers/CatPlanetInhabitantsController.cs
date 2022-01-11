@@ -34,14 +34,14 @@ namespace MeowPlanet.Controllers
                 query = query.Where(x => x.CatColor == Delivery4["CatColor"].ToString());
             }
 
-            if (Delivery4["Ligation"].ToString() !="-1")
+            if (!string.IsNullOrEmpty(Delivery4["Ligation"]))
             {
                 query = query.Where(x => x.Ligation == Delivery4["Ligation"].ToString());
             }
 
-            //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
+            //if (Delivery4["Age"].ToString() != "-1")
             //{
-            //    query = query.Where(x => x.Age == Delivery4["RealName"]);
+            //    query = query.Where(x => x.Age == Delivery4["Age"]);
             //}
 
             //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
