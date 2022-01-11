@@ -101,7 +101,7 @@ namespace MeowPlanet.Controllers
                             using (var stream = System.IO.File.Create(root + fileName))
                             {
                                 await file.CopyToAsync(stream);
-                                model.Image.Add("/images/" + fileName);
+                                model.Image.Add("~/images/" + fileName);
                             }
                         }
                         //List<String> to string
@@ -164,7 +164,7 @@ namespace MeowPlanet.Controllers
             ClaimsPrincipal claims = HttpContext.User;
             int userId = Convert.ToInt32(claims.Identity.Name);
             var cat = (from a in _dbcontext.Cats
-                            where a.UserId == userId && a.IsDeleted == 1
+                            where a.UserId == userId && a.IsDeleted == 1 && a.Adopt ==null
                             select a).ToList();
 
             List<Cat> cats = cat; 
@@ -172,7 +172,23 @@ namespace MeowPlanet.Controllers
 
             return cats;
         }
-        
+
+        //取得個人貓咪資訊
+        [HttpGet]
+        public List<Cat> GetSendOutCatInfo()
+        {
+            ClaimsPrincipal claims = HttpContext.User;
+            int userId = Convert.ToInt32(claims.Identity.Name);
+            var cat = (from a in _dbcontext.Cats
+                       where a.UserId == userId && a.Adopt == "已送養"
+                       select a).ToList();
+
+            List<Cat> cats = cat;
+
+
+            return cats;
+        }
+
         //編輯貓咪畫面
         [HttpGet("{catId}")]
         [Route("/CatManagement/EditCat/{catId}")]
