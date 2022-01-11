@@ -183,7 +183,7 @@ body {
     }
 
 .meow-group {
-    width: 45%;
+    width: 30%;
     margin-left: 13px;
     margin-top: 30px;
     display: flex;
@@ -219,6 +219,16 @@ body {
     padding: 5px;
 }
 
+.published {
+    background-color: #CAE4BA;
+}
+
+    .published:hover {
+        border: solid 3px #CAE4BA;
+        background-color: #fff;
+        color: #65615E;
+    }
+
 .group-do {
     width: 35%;
     display: flex;
@@ -227,9 +237,9 @@ body {
 }
 
 .btn-do {
-    margin: 7px;
+    margin: 5px;
     border-radius: 5px;
-    padding: 5px;
+    padding: 3px;
     font-weight: 400;
     border: solid 3px #DA8952;
     background-color: white;
@@ -246,10 +256,14 @@ body {
     border-radius: 5px;
     padding: 1px;
     font-weight: 400;
-    border: solid 3px #DA8952;
-    background-color: white;
-    color: #DA8952;
+    border: solid 3px #CAE4BA;
+    background-color: #CAE4BA;
+    color: #fff;
 }
+    .btn-sendcat:hover {
+        background-color: #E5EFE1;
+        color: #65615E;
+    }
 @media screen and (max-width: 800px) {
     .container {
         width: 100%;
