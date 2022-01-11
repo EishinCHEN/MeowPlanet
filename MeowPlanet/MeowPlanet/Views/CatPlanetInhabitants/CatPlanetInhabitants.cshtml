@@ -382,7 +382,7 @@
                             <div class="name-group">
                                 <label>年齡(大約)</label>
                                 <select v-model="FilterData.Age" class="catgender">
-                                    <option value="-1">皆可</option>
+                                    <option value="">皆可</option>
                                     <option value="0-3月">0-3月</option>
                                     <option value="3-5月">3-5月</option>
                                     <option value="5-7月">5-7月</option>
@@ -396,9 +396,10 @@
                             <div class="name-group">
                                 <label>預防疫苗</label>
                                 <select v-model="FilterData.Vaccine" class="catgender">
-                                    <option value="-1">皆可</option>
-                                    <option value="1">已注射</option>
-                                    <option value="0">未注射</option>
+                                    <option value="">皆可</option>
+                                    <option value="已施打">已施打</option>
+                                    <option value="未施打">未施打</option>
+                                    <option value="未知">未知</option>
                                 </select>
                             </div>
 
@@ -406,8 +407,9 @@
                                 <label>送養人居住地區(看貓地區)</label>
                                 <select v-model="FilterData.City" class="catgender">
                                     <option value="">直轄縣市</option>
-                                    <option value="台北市">台北</option>
-                                    <option value="宜蘭縣">宜蘭</option>
+                                    <option value="台北市">台北市</option>
+                                    <option value="新北市">新北市</option>
+                                    <option value="基隆市">基隆市</option>
                                 </select>
                                 <select v-model="FilterData.Country" class="catgender1">
                                     <option value="">區</option>

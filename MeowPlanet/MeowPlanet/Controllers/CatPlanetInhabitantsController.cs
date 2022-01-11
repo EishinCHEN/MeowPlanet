@@ -39,29 +39,29 @@ namespace MeowPlanet.Controllers
                 query = query.Where(x => x.Ligation == Delivery4["Ligation"].ToString());
             }
 
-            //if (Delivery4["Age"].ToString() != "-1")
+            if (!string.IsNullOrEmpty(Delivery4["Age"]))
+            {
+                query = query.Where(x => x.Age == Delivery4["Age"].ToString());
+            }
+
+            if (!string.IsNullOrEmpty(Delivery4["Vaccine"]))
+            {
+                query = query.Where(x => x.Vaccine == Delivery4["Vaccine"].ToString());
+            }
+
+            //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
             //{
-            //    query = query.Where(x => x.Age == Delivery4["Age"]);
+            //    query = query.Where(x => x.City == Delivery4["RealName"].ToString());
             //}
 
             //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
             //{
-            //    query = query.Where(x => x.Vaccine == Delivery4["RealName"]);
+            //    query = query.Where(x => x.Country == Delivery4["RealName"].ToString());
             //}
 
             //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
             //{
-            //    query = query.Where(x => x.City == Delivery4["RealName"]);
-            //}
-
-            //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
-            //{
-            //    query = query.Where(x => x.Country == Delivery4["RealName"]);
-            //}
-
-            //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
-            //{
-            //    query = query.Where(x => x.CatGender == Delivery4["RealName"]);
+            //    query = query.Where(x => x.CatGender == Delivery4["RealName"].ToString());
             //}
 
             //---------------------------老方法------------------------------------
