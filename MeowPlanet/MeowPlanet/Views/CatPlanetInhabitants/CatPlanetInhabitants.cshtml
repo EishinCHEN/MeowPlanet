@@ -443,7 +443,7 @@
                         </div>
                         <br>
                         <div class="go-group">
-                            <button v-on:click="show777" class="gobox">再想一下</button>
+                            <button v-on:click="resetfilter" class="gobox">再想一下</button>
                             <button v-on:click="flygo" class="gobox">飛行前往!</button>
                         </div>
                     </div>
@@ -611,6 +611,16 @@
                 dateTD: ''
             },
             methods: {
+                resetfilter() {
+                    this.FilterData["CatColor"] = "";
+                    this.FilterData["Ligation"] = "";
+                    this.FilterData["Age"] = "";
+                    this.FilterData["CatGender"] = "";
+                    this.FilterData["Vaccine"] = "";
+                    this.FilterData["Country"] = "";
+                    this.FilterData["City"] = "";
+                    /*this.FilterData["PublishedDay"] = "";*/
+                },
                 goforcat() { /*等待連接到其他頁面*/},
 
                 wait() {/*好像沒有用*/
