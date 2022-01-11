@@ -59,10 +59,10 @@ namespace MeowPlanet.Controllers
                 query = query.Where(x => x.Country == Delivery4["Country"].ToString());
             }
 
-            //if (!string.IsNullOrEmpty(Delivery4["CatGender"]))
-            //{
-            //    query = query.Where(x => x.CatGender.ToString() == Delivery4["CatGender"].ToString());
-            //}
+            if (!string.IsNullOrEmpty(Delivery4["CatGender"]))
+            {
+                query = query.Where(x => x.CatGender.ToString() == Delivery4["CatGender"].ToString());
+            }
 
             //---------------------------老方法------------------------------------
 
