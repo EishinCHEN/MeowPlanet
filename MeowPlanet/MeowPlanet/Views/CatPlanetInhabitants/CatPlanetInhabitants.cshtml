@@ -599,7 +599,7 @@
                                /* alert(qryResult[0]);*/
                                 console.log(qryResult);
                                 useVue.pagerandom = qryResult.sort(function () {
-                                    return (0.5 - Math.random());
+                                    return (0.5 - Math.random());  //將取出陣列隨機排列
                                 });
                                 useVue.page0 = useVue.pagerandom;
                                 useVue.page1 = useVue.pagerandom.slice(0, 3);
