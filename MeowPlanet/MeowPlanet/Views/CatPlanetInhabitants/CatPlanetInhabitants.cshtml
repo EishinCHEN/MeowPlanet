@@ -433,7 +433,7 @@
                             <div class="name-group">
                                 <label>刊登日期</label>
                                 <select v-model="FilterData.PublishedDay" class="catgender">
-                                    <option value="-1">皆可</option>
+                                    <option value="0">皆可</option>
                                     <option value="1">1個月內</option>
                                     <option value="1">3個月內</option>
                                     <option value="1">半年內</option>
@@ -443,8 +443,8 @@
                         </div>
                         <br>
                         <div class="go-group">
-                            <button v-on:click="show888" class="gobox">再想一下</button>
-                            <button v-on:click="show777" class="gobox">飛行前往!</button>
+                            <button v-on:click="show777" class="gobox">再想一下</button>
+                            <button v-on:click="show888" class="gobox">飛行前往!</button>
                         </div>
                     </div>
                 </div>
