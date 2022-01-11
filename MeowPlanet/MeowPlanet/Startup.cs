@@ -72,8 +72,9 @@ namespace MeowPlanet
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+                   // pattern: "{controller=Login}/{action=Login}/{id?}");
+                    pattern: "{controller=CatPlanetInhabitants}/{action=CatPlanetInhabitants}/{id?}");
+        });
         }
     }
 }

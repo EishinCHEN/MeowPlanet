@@ -1,0 +1,729 @@
+﻿<style>
+    select {
+        color: #65615E;
+        background-color: #FEF2CB;
+        font-size: medium;
+        text-align: center;
+        border-color: #DA8952;
+        border-radius: 5px;
+        /* appearance:none;
+                                                -moz-appearance:none; */
+        -webkit-appearance: none;
+        background: url("/imanc/三角選3.png") no-repeat scroll right center transparent;
+        padding-right: 20px;
+    }
+
+    body {
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .web {
+        position: absolute;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: white;
+    }
+
+    .top {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .topright {
+        background-color: #FBD06E;
+    }
+
+    .topleft {
+        background-color: #CAE4BA;
+        width: 100%
+    }
+
+    .down {
+        left: 0px;
+        width: 100%;
+        background-color: white;
+    }
+
+
+
+    .firstbox {
+        background-color: #FEF2CB;
+        padding: 10px;
+        width: 80%;
+        position: relative;
+        left: 10vw;
+        top: 10vw;
+        border-radius: 10px;
+        font-size: large;
+        color: #DA8952;
+    }
+
+    .boxrange {
+        position: relative;
+        width: 90%;
+        left: 5vw;
+    }
+
+    .name-group {
+        display: inline-block;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 10px;
+        margin: 5px;
+    }
+
+    .catgender {
+        width: 70vw;
+        max-width: 235px;
+    }
+
+    .catgender1 {
+        width: 70vw;
+        max-width: 235px;
+        margin-top: 10px;
+    }
+
+    .go-group {
+        background-color: #FEF2CB;
+        text-align: center;
+        position: relative;
+        left: -2vw;
+    }
+
+    .gobox {
+        width: 30vw;
+        height: 40px;
+        color: #DA8952;
+        background-color: #FEF2CB;
+        border-color: #DA8952;
+        border-radius: 5px;
+        border-style: solid;
+        font-size: large;
+        position: relative;
+        margin: 10px;
+    }
+
+    .listblock1 {
+        background-color: #FEF2CB;
+        position: relative;
+        top: 0px;
+        width: 250px;
+        height: 380px;
+        border-radius: 2vw;
+    }
+
+    .listblockcatimg {
+        position: relative;
+        top: 20px;
+        left: 20px;
+        width: 210px;
+        height: 210px;
+        border-radius: 20px;
+    }
+
+    .listblock2 {
+        background-color: #CAE4BA;
+        position: relative;
+        left: 0px;
+        top: 40px;
+        width: 100%;
+        height: 130px;
+        border-radius: 2vw;
+    }
+
+    .listblock2txt {
+        position: relative;
+        left: 0vw;
+        top: 0px;
+        /*width: 90%;*/
+        font-size: 1vw;
+        padding-left: 1.5vw;
+        padding-top: 0.3vw;
+    }
+
+    .aligntop {
+        position: relative;
+        left: 10vw;
+        top: 2vw;
+        width: 80%;
+    }
+
+    .top-right-downline {
+        height: 20vw;
+        background-color: #FBD06E;
+        display: flex;
+        justify-content: center;
+    }
+
+    .top-right-img {
+        height: 0vw;
+        width: 0vw;
+    }
+
+    .whiteblock {
+        background-color: white;
+        width: 250px;
+        height: 400px;
+    }
+
+    .fakef {
+        /* display: inline-block;*/
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .baseline {
+        width: 220px;
+    }
+
+    .goforcat {
+        color: #DA8952;
+        background-color: #FEF2CB;
+        border-color: #FEF2CB;
+        border-radius: 5px;
+        border-style: none;
+        font-size: medium;
+    }
+
+    .turnpage {
+        background-color: white;
+        width: 100%;
+        height: 4vw;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nextpage {
+        border-style: none;
+        background-color: white;
+        font-size: x-large;
+        color: #DA8952;
+    }
+
+    .previouspage {
+        border-style: none;
+        background-color: white;
+        font-size: x-large;
+        color: #DA8952;
+    }
+
+    .medium {
+        height: 40px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .medium1 {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .medium1-index-img {
+        position: relative;
+        left: 4vw;
+        font-size: large;
+        color: #DA8952;
+    }
+
+    .medium1-left-img {
+        position: relative;
+        top: 0vw;
+        left: 4vw;
+        width: 60px;
+        height: 50px;
+    }
+
+    .medium-right-img {
+        position: absolute;
+        right: 0px;
+        width: 13vw;
+        height: 13vw;
+    }
+
+    @@media screen and (min-width: 800px) {
+        .fakef {
+            /* display: inline-block;*/
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .top {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .topright {
+            background-color: #FBD06E;
+            position: relative;
+            left: 0px;
+            width: 50%;
+        }
+
+        .topleft {
+            background-color: #CAE4BA;
+            position: relative;
+            left: 0px;
+            width: 50%;
+        }
+
+        .firstbox {
+            background-color: #FEF2CB;
+            padding: 1vw;
+            width: 80%;
+            position: relative;
+            left: 5vw;
+            top: 3vw;
+            border-radius: 10px;
+            font-size: large;
+            color: #DA8952;
+        }
+
+        .boxrange {
+            position: relative;
+            width: 95%;
+            left: 1vw;
+        }
+
+        .boxgroup {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .name-group {
+            display: inline-block;
+            position: relative;
+            left: 0px;
+            justify-content: space-between;
+            margin-right: 10px;
+            margin: 5px;
+        }
+
+        .catgender {
+            width: 30vw;
+            max-width: 100px;
+        }
+
+        .catgender1 {
+            width: 60vw;
+            max-width: 87px;
+            margin-top: 5px;
+        }
+
+        .gobox {
+            width: 10vw;
+            height: 40px;
+            color: #DA8952;
+            background-color: #FEF2CB;
+            border-color: #DA8952;
+            border-radius: 5px;
+            border-style: solid;
+            font-size: large;
+            position: relative;
+            margin: 10px;
+        }
+
+        .go-group {
+            background-color: #FEF2CB;
+            text-align: center;
+            position: relative;
+            left: 1vw;
+        }
+
+        .top-right-downline {
+            height: 7vw;
+        }
+    }
+</style>
+<body>
+    <div id="customers" class="web">
+        123
+        <div v-on:load="show777"></div>
+        <div class="top">
+            <div class="topleft">
+                <img src="/imanc/貓太空人.png" class="baseline" />
+            </div>
+            <div class="topright">
+                <div class="firstbox">
+                    <div class="boxrange">
+                        <div class="boxgroup">
+                            <div class="name-group">
+                                <label for="CatGender">毛色(主要)</label>
+                                <select v-model="FilterData.CatColor" class="catgender">
+                                    <option value="">皆可</option>
+                                    <option value="orange">橘色</option>
+                                    <option value="white">白色</option>
+                                </select>
+                            </div>
+
+
+                            <div class="name-group">
+                                <label for="CatGender">是否結紮</label>
+                                <select v-model="ligationTD" class="catgender">
+                                    <option value="-1">皆可</option>
+                                    <option value="1">已結紮</option>
+                                    <option value="0">未結紮</option>
+                                </select>
+                            </div>
+
+                            <div class="name-group">
+                                <label for="CatGender">年齡(大約)</label>
+                                <select v-model="ageTD" class="catgender">
+                                    <option value="-1">皆可</option>
+                                    <option value="3">3歲</option>
+                                    <option value="5">5歲</option>
+                                    <option value="7">7歲</option>
+                                </select>
+                            </div>
+
+                            <div class="name-group">
+                                <label for="CatGender">預防疫苗</label>
+                                <select v-model="vaccineTD" class="catgender">
+                                    <option value="-1">皆可</option>
+                                    <option value="1">已注射</option>
+                                    <option value="0">未注射</option>
+                                </select>
+                            </div>
+
+                            <div class="name-group">
+                                <label for="CatGender">送養人居住地區(看貓地區)</label>
+                                <select v-model="cityTD" class="catgender">
+                                    <option value="">直轄縣市</option>
+                                    <option value="台北市">台北</option>
+                                    <option value="宜蘭縣">宜蘭</option>
+                                </select>
+                                <select v-model="countryTD" class="catgender1">
+                                    <option value="">區</option>
+                                    <option value="北投區">北投區</option>
+                                    <option value="大安區">大安區</option>
+                                    <option value="信義區">信義區</option>
+                                </select>
+                            </div>
+
+                            <div class="name-group">
+                                <label for="CatGender">選擇性別</label>
+                                <select v-model="genderTD" class="catgender">
+                                    <option value="">皆可</option>
+                                    <option value="male">男</option>
+                                    <option value="female">女</option>
+                                </select>
+                            </div>
+
+                            <div class="name-group">
+                                <label for="CatGender">刊登日期</label>
+                                <select v-model="vaccineTD" class="catgender">
+                                    <option value="-1">皆可</option>
+                                    <option value="1">1個月內</option>
+                                    <option value="1">3個月內</option>
+                                    <option value="1">半年內</option>
+                                    <option value="1">1年內</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="go-group">
+                            <button v-on:click="show888" class="gobox">再想一下</button>
+                            <button v-on:click="show777" class="gobox">飛行前往!</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-right-downline">
+                    <img src="/imanc/貓星球.png" class="top-right-img" />
+                </div>
+            </div>
+        </div>
+        <div class="medium">
+            <div class="medium1">
+                <img src="/imanc/糖果星球-橘色.png" class="medium1-left-img" id="jump" />
+                <div class="medium1-index-img">符合條件的居民：</div>
+            </div>
+            <img src="/imanc/飛船貓貓-綠色.png" class="medium-right-img" />
+        </div>
+        <div class="down">
+
+            <div v-if="open==0" class="aligntop">
+                <div class="fakef">
+                    <div v-for="cus in page0" class="fakef">
+
+                        <div class="whiteblock">
+
+                            <div class="listblock1">
+                                <img v-bind:src="''+cus.image" class="listblockcatimg" />
+
+                                <div class="listblock2">
+                                    <div class="listblock2txt">
+                                        姓名 : {{cus.name}}
+                                        <br />
+                                        年紀 : {{cus.age}}
+                                        <br />
+                                        結紮狀態 : {{cus.ligation}}
+                                        <br />
+                                        位置 : {{cus.city}}{{cus.country}}
+                                        <br />
+                                        <img src="/imanc/底線4px.png" class="baseline" />
+                                        <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="open==1" class="aligntop">
+                <div class="fakef">
+                    <div v-for="cus in page1" class="fakef">
+
+                        <div class="whiteblock">
+
+                            <div class="listblock1">
+                                <img v-bind:src="''+cus.image" class="listblockcatimg" />
+
+                                <div class="listblock2">
+                                    <div class="listblock2txt">
+                                        姓名 : {{cus.name}}
+                                        <br />
+                                        年紀 : {{cus.age}}
+                                        <br />
+                                        結紮狀態 : {{cus.ligation}}
+                                        <br />
+                                        位置 : {{cus.city}}{{cus.country}}
+                                        <br />
+                                        <img src="/imanc/底線4px.png" class="baseline" />
+                                        <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="open==2" class="aligntop">
+                <div class="fakef">
+                    <div v-for="cus in page2" class="fakef">
+
+                        <div class="whiteblock">
+
+                            <div class="listblock1">
+                                <img v-bind:src="''+cus.image" class="listblockcatimg" />
+
+                                <div class="listblock2">
+                                    <div class="listblock2txt">
+                                        姓名 : {{cus.name}}
+                                        <br />
+                                        年紀 : {{cus.age}}
+                                        <br />
+                                        結紮狀態 : {{cus.ligation}}
+                                        <br />
+                                        位置 : {{cus.city}}{{cus.country}}
+                                        <br />
+                                        <img src="/imanc/底線4px.png" class="baseline" />
+                                        <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 2vw; background-color:white;">
+            </div>
+            <div class="turnpage">
+                <button v-on:click="uppage" class="previouspage" onclick="window.location.href='#jump'"><</button>
+                <button v-on:click="downpage" class="nextpage" onclick="window.location.href='#jump'">></button>
+            </div>
+
+            @*<div style="height: 5vw; background-color:#FBD06E ;">
+                </div>*@
+        </div>
+        @*<div class="turnpage">
+                <button v-on:click="uppage" class="previouspage"><</button>
+                <button v-on:click="downpage" class="nextpage">></button>
+            </div>
+            <div style="height: 1vw; background-color:#FBD06E ;">
+            </div>*@
+    </div>
+</body>
+<script>
+    var useVue = new Vue(
+        {
+            el: '#customers',
+            data: {
+                page0: [],
+                page1: [],
+                page2: [],
+                page3: [],
+                page4: [],
+                open: 0,
+                //---------貓貓數據
+                FilterData: {
+                    "RealName": "orange",//測試用
+                    "CatColor": "",
+                    "Ligation": "",
+                    "Age": "",
+                    "CatGender": "",
+                    "Vaccine": "",
+                    "Country": "",
+                    "City": "",
+                    "Isdeleted": "",
+                    "PublishedDay": "",
+                },
+
+                catidTD : '',
+                adoptTD : '',
+                adopterTD : '-1',
+                userIdTD : '',
+                colorTD : '',
+                ligationTD : '-1',
+                ageTD : '-1',
+                nameTD : '',
+                imageTD: '1',
+                imageTD2: '1',
+                imageTD3: '1',
+                imageTD4: '1',
+                genderTD : '',
+                vaccineTD : '',
+                chipTD : '',
+                remarkTD : '',
+                countryTD : '',
+                cityTD: '',
+                deleteTD:'',
+                dateTD: ''
+            },
+            methods: {
+                goforcat() { /*等待連接到其他頁面*/},
+
+                wait() {/*好像沒有用*/
+
+                },
+                show777() {
+                    alert("123");
+                    useVue.cat =
+                    {
+                        "CatId": useVue.catidTD,
+                        "Adopt": useVue.adoptTD,
+                        "Adopter": useVue.adopterTD,
+                        "UserId": useVue.userIdTD,
+                        "CatColor": useVue.colorTD,
+                        "Ligation": useVue.ligationTD,
+                        "Age": useVue.ageTD,
+                        "Name": useVue.nameTD,
+                        "Image": useVue.imageTD,
+                        "Image2": useVue.imageTD2,
+                        "Image3": useVue.imageTD3,
+                        "Image4": useVue.imageTD4,
+                        "CatGender": useVue.genderTD,
+                        "Vaccine": useVue.vaccineTD,
+                        "Chip": useVue.chipTD,
+                        "Remark": useVue.remarkTD,
+                        "Country": useVue.countryTD,
+                        "City": useVue.cityTD,
+                        "Isdeleted":useVue.deleteTD,
+                        "PublishedDay": useVue.dateTD,
+                    }
+                     console.log(useVue.cat);
+                    let jsonString = JSON.stringify(useVue.cat);
+                    console.log(jsonString);
+
+                    $.ajax(
+                        {
+                            type: 'PUT',
+                            url: "@Url.Action("Filter", "CatPlanetInhabitants")/",
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader("Content-Type", "application/json");
+                            },
+                            data: jsonString,
+                            success: function (qryResult, status, xhr) {
+                                alert(qryResult[0]);
+                                console.log(qryResult[0]);
+                                console.log(qryResult);
+                                useVue.page0 = qryResult
+
+                                useVue.page1 = qryResult.slice(0, 3);
+                                useVue.page2 = qryResult.slice(3, 6);
+                                useVue.page3 = qryResult.slice(6, 9);
+                            }
+                        }
+                    );
+                },
+                show888() {
+                    console.log(this.FilterData)
+                    console.log(useVue.RealName)
+                    alert("456");
+                    //useVue.cat =
+                    //{
+                    //    "catcolor": useVue.colorTD,
+                    //}
+                    // console.log(useVue.cat);
+                    //let jsonString = JSON.stringify(useVue.cat);
+                    //console.log(jsonString);
+                    //------------------------------------------------------------
+                    @*$.ajax({
+                        type: "POST",
+                        url: "@Url.Action("enrollUser", "Register")/",
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        },
+                            data: this.userDetail,
+                        }).done(function (data, textStatus, jqXHR) {
+                            console.log("data" + JSON.stringify(data));
+                            var result = data.code == 200 ? "註冊成功!請至註冊信箱開啟驗證信件!" : "帳號已經有人註冊了!請換一個試試!";
+                            var yes = confirm(result);
+                            yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Register/enrollUser");
+                         }).fail(function () {
+                             top.location.href = "/Register/enrollUser";
+                             console.log("註冊失敗");
+                         });*@
+                    //-----------------------------------------------------------
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: "@Url.Action("Filter", "CatPlanetInhabitants")/",
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            },
+                            data: this.FilterData,
+                            success: function (qryResult, status, xhr) {
+                                alert(qryResult[0]);
+                                console.log(qryResult[0]);
+                                console.log(qryResult);
+                                useVue.page0 = qryResult
+
+                                useVue.page1 = qryResult.slice(0, 3);
+                                useVue.page2 = qryResult.slice(3, 6);
+                                useVue.page3 = qryResult.slice(6, 9);
+                            }
+                        }
+                    );
+                },
+
+                downpage() {
+                    useVue.open++
+                },
+                uppage() {
+                    useVue.open--
+                }
+            },
+            //mounted() {
+            //    this.$nextTick(() => {
+            //        this.show777();
+            //    });
+            //},
+        },
+
+    );
+    console.log(useVue.open);
+    //useVue.show777()
+</script>
