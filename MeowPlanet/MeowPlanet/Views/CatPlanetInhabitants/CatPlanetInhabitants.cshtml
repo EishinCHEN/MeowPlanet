@@ -351,7 +351,6 @@
 <body>
     <div id="customers" class="web">
         123
-        <div v-on:load="show777"></div>
         <div class="top">
             <div class="topleft">
                 <img src="/images/pageCatPlanetInhabitants/貓太空人.png" class="baseline" />
@@ -626,56 +625,7 @@
                 wait() {/*好像沒有用*/
 
                 },
-                show777() {
-                    alert("123");
-                    useVue.cat =
-                    {
-                        "CatId": useVue.catidTD,
-                        "Adopt": useVue.adoptTD,
-                        "Adopter": useVue.adopterTD,
-                        "UserId": useVue.userIdTD,
-                        "CatColor": useVue.colorTD,
-                        "Ligation": useVue.ligationTD,
-                        "Age": useVue.ageTD,
-                        "Name": useVue.nameTD,
-                        "Image": useVue.imageTD,
-                        "Image2": useVue.imageTD2,
-                        "Image3": useVue.imageTD3,
-                        "Image4": useVue.imageTD4,
-                        "CatGenderr": useVue.genderTD,
-                        "Vaccine": useVue.vaccineTD,
-                        "Chip": useVue.chipTD,
-                        "Remark": useVue.remarkTD,
-                        "Country": useVue.countryTD,
-                        "City": useVue.cityTD,
-                        "Isdeleted":useVue.deleteTD,
-                        "PublishedDay": useVue.dateTD,
-                    }
-                     console.log(useVue.cat);
-                    let jsonString = JSON.stringify(useVue.cat);
-                    console.log(jsonString);
-
-                    $.ajax(
-                        {
-                            type: 'PUT',
-                            url: "@Url.Action("Filter", "CatPlanetInhabitants")/",
-                            beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Content-Type", "application/json");
-                            },
-                            data: jsonString,
-                            success: function (qryResult, status, xhr) {
-                                alert(qryResult[0]);
-                                console.log(qryResult[0]);
-                                console.log(qryResult);
-                                useVue.page0 = qryResult
-
-                                useVue.page1 = qryResult.slice(0, 3);
-                                useVue.page2 = qryResult.slice(3, 6);
-                                useVue.page3 = qryResult.slice(6, 9);
-                            }
-                        }
-                    );
-                },
+                
                 flygo() {
                     console.log(this.FilterData)
                     console.log(useVue.RealName)
