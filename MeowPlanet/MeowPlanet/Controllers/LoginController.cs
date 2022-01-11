@@ -48,7 +48,7 @@ namespace MeowPlanet.Controllers
 
             if (user == null)
             {
-                ViewBag.LoginError = "帳號或密碼錯誤";
+                ViewBag.LoginError = "帳號或密碼錯誤2";
                 Console.WriteLine("帳號或密碼錯誤");
                 msg = new MemberManagement.Message()
                 {
