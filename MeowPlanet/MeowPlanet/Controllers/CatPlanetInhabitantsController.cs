@@ -34,10 +34,10 @@ namespace MeowPlanet.Controllers
                 query = query.Where(x => x.CatColor == Delivery4["CatColor"].ToString());
             }
 
-            //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
-            //{
-            //    query = query.Where(x => x.Ligation == Delivery4["RealName"]);
-            //}
+            if (Delivery4["Ligation"].ToString() !="-1")
+            {
+                query = query.Where(x => x.Ligation == Delivery4["Ligation"].ToString());
+            }
 
             //if (!string.IsNullOrEmpty(Delivery4["RealName"]))
             //{
@@ -65,7 +65,7 @@ namespace MeowPlanet.Controllers
             //}
 
             //---------------------------老方法------------------------------------
-           
+
             //--------------------------老方法--------------------------------------
             List<Models.Cat> datacat777 = query.ToList<Models.Cat>();
             // return datacat777.GetRange(0, 3); 資料庫建好前搜尋範圍不能超過當前現存筆數
