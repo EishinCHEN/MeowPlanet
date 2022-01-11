@@ -350,7 +350,7 @@
 </style>
 <body>
     <div id="customers" class="web">
-        123
+        等待導覽列
         <div class="top">
             <div class="topleft">
                 <img src="/images/pageCatPlanetInhabitants/貓太空人.png" class="baseline" />
@@ -448,7 +448,6 @@
                     </div>
                 </div>
                 <div class="top-right-downline">
-                    @*<img src="/images/pageCatPlanetInhabitants/貓星球.png" class="top-right-img" />*@
                 </div>
             </div>
         </div>
@@ -581,12 +580,11 @@
                     this.FilterData["City"] = "";
                     /*this.FilterData["PublishedDay"] = "";*/
                 },
-                goforcat() { /*等待連接到其他頁面*/},
-                
+                goforcat() { /*等待連接到其他頁面*/ },
+
                 flygo() {
                     console.log(this.FilterData)
                     console.log(useVue.RealName)
-                    /*alert("456");*/
                     $.ajax(
                         {
                             type: 'POST',
@@ -596,7 +594,7 @@
                             },
                             data: this.FilterData,
                             success: function (qryResult, status, xhr) {
-                               /* alert(qryResult[0]);*/
+
                                 console.log(qryResult);
                                 useVue.pagerandom = qryResult.sort(function () {
                                     return (0.5 - Math.random());  //將取出陣列隨機排列
@@ -609,7 +607,6 @@
                         }
                     );
                 },
-
                 downpage() {
                     useVue.open++
                 },
@@ -618,8 +615,6 @@
                 }
             },
         },
-
     );
-    /*console.log(useVue.open);*/
     useVue.flygo()
 </script>
