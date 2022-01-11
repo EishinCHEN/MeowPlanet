@@ -1,4 +1,5 @@
-﻿<style>
+﻿<link href="~/css/menbership/register.css" rel="stylesheet" />
+<style>
     select {
         color: #65615E;
         background-color: #FEF2CB;
@@ -466,7 +467,8 @@
                     <div v-for="cus in page0" class="fakef">
                         <div class="whiteblock">
                             <div class="listblock1">
-                                <img v-bind:src="''+cus.image" class="listblockcatimg" />
+                                @*//原本下面是這樣寫"''+cus.image"，為甚麼突然就可以了*@
+                                <img v-bind:src="cus.image" class="listblockcatimg" />
                                 <div class="listblock2">
                                     <div class="listblock2txt">
                                         姓名 : {{cus.name}}
