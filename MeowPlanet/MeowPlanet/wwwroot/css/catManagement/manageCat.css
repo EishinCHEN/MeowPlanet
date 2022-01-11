@@ -187,6 +187,7 @@ body {
     margin-left: 13px;
     margin-top: 30px;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     border-radius: 10px;
     border: solid 3px #E5EFE1;
@@ -218,6 +219,16 @@ body {
     padding: 5px;
 }
 
+.published {
+    background-color: #CAE4BA;
+}
+
+    .published:hover {
+        border: solid 3px #CAE4BA;
+        background-color: #fff;
+        color: #65615E;
+    }
+
 .group-do {
     width: 35%;
     display: flex;
@@ -226,9 +237,9 @@ body {
 }
 
 .btn-do {
-    margin: 7px;
+    margin: 5px;
     border-radius: 5px;
-    padding: 5px;
+    padding: 3px;
     font-weight: 400;
     border: solid 3px #DA8952;
     background-color: white;
@@ -240,6 +251,19 @@ body {
         color: white;
     }
 
+.btn-sendcat {
+    margin: 6px;
+    border-radius: 5px;
+    padding: 1px;
+    font-weight: 400;
+    border: solid 3px #CAE4BA;
+    background-color: #CAE4BA;
+    color: #fff;
+}
+    .btn-sendcat:hover {
+        background-color: #E5EFE1;
+        color: #65615E;
+    }
 @media screen and (max-width: 800px) {
     .container {
         width: 100%;

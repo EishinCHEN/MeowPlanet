@@ -53,7 +53,7 @@
     <!--右邊區塊-->
     <div id="meow-manage-area" class="col-lg-9 col-md-10 col-sm-12 col-xs-12 ">
         <!--管理喵喵區塊-->
-        <div class="meow-manage-title">★管理居民</div>
+        <div class="meow-manage-title">★編輯喵星人資訊</div>
         <div class="start-date">
             <p>刊登日期: @ViewData["PublishedDay"]</p>
         </div>
@@ -66,21 +66,21 @@
             <div class="pic-area">
                 <div class="big">
                     <img :src="catFoto.Photo1" v-on:click="selectPhoto(1)" />
-                    <input type="file" name="files" id="photo1" v-on:change="readURI(1)">
+                    <input type="file" name="files" id="photo1" v-on:change="readURI(1)" style="width:150px;height:150px;">
                 </div>
                 <hr />
                 <div class="small">
                     <div class="s-1">
                         <img :src="catFoto.Photo2" v-on:click="selectPhoto(2)" />
-                        <input type="file" name="files" id="photo2" v-on:change="readURI(2)">
+                        <input type="file" name="files" id="photo2" v-on:change="readURI(2)" style="width:50px;">
                     </div>
                     <div class="s-1">
                         <img :src="catFoto.Photo3" v-on:click="selectPhoto(3)" />
-                        <input type="file" name="files" id="photo3" v-on:change="readURI(3)">
+                        <input type="file" name="files" id="photo3" v-on:change="readURI(3)" style="width:50px;">
                     </div>
                     <div class="s-1">
                         <img :src="catFoto.Photo4" v-on:click="selectPhoto(4)" />
-                        <input type="file" name="files" id="photo4" v-on:change="readURI(4)">
+                        <input type="file" name="files" id="photo4" v-on:change="readURI(4)" style="width:50px;">
                     </div>
                 </div>
             </div>

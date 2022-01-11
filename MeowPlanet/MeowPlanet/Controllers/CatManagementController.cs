@@ -42,7 +42,7 @@ namespace MeowPlanet.Controllers
             ClaimsPrincipal claims = HttpContext.User;
             int userId = Convert.ToInt32(claims.Identity.Name);
             var cat = await(from a in _dbcontext.Cats
-                            where a.UserId == userId
+                            where a.UserId == userId  && a.IsDeleted == 1
                             select a).ToListAsync();
             if (cat == null)
             {
@@ -101,7 +101,7 @@ namespace MeowPlanet.Controllers
                             using (var stream = System.IO.File.Create(root + fileName))
                             {
                                 await file.CopyToAsync(stream);
-                                model.Image.Add("/images/" + fileName);
+                                model.Image.Add("~/images/" + fileName);
                             }
                         }
                         //List<String> to string
@@ -126,7 +126,8 @@ namespace MeowPlanet.Controllers
                                 Chip = model.Chip,
                                 Sick = model.Sick,
                                 Remark = model.Remark,
-                                PublishedDay = DateTime.Now
+                                PublishedDay = DateTime.Now,
+                                IsDeleted = 1
                             };
                             _dbcontext.Cats.Add(cat);
                             _dbcontext.SaveChanges();
@@ -163,7 +164,7 @@ namespace MeowPlanet.Controllers
             ClaimsPrincipal claims = HttpContext.User;
             int userId = Convert.ToInt32(claims.Identity.Name);
             var cat = (from a in _dbcontext.Cats
-                            where a.UserId == userId
+                            where a.UserId == userId && a.IsDeleted == 1 && a.Adopt ==null
                             select a).ToList();
 
             List<Cat> cats = cat; 
@@ -171,7 +172,23 @@ namespace MeowPlanet.Controllers
 
             return cats;
         }
-        
+
+        //取得個人貓咪資訊
+        [HttpGet]
+        public List<Cat> GetSendOutCatInfo()
+        {
+            ClaimsPrincipal claims = HttpContext.User;
+            int userId = Convert.ToInt32(claims.Identity.Name);
+            var cat = (from a in _dbcontext.Cats
+                       where a.UserId == userId && a.Adopt == "已送養"
+                       select a).ToList();
+
+            List<Cat> cats = cat;
+
+
+            return cats;
+        }
+
         //編輯貓咪畫面
         [HttpGet("{catId}")]
         [Route("/CatManagement/EditCat/{catId}")]
@@ -324,7 +341,7 @@ namespace MeowPlanet.Controllers
             {
                 try
                 {
-                    cat.IsDeleted = 1;
+                    cat.IsDeleted = 2;
 
                     _dbcontext.SaveChanges();
                     Console.WriteLine($"喵星人:{cat.Name}刪除成功");
@@ -351,6 +368,58 @@ namespace MeowPlanet.Controllers
             else
             {
                 Console.WriteLine($"刪除失敗!請提供喵星人資訊");
+                msg = new MemberManagement.Message()
+                {
+                    Code = 400,
+                    Msg = $"刪除失敗!請提供喵星人資訊",
+                    Time = DateTime.Now
+                };
+            }
+            return msg;
+        }
+
+        [HttpGet("{catId}")]
+        [Route("/CatManagement/SendCat/{catId}")]
+        public async Task<MemberManagement.Message> SendCat([FromRoute(Name = "catId")] int catId)
+        {
+            ClaimsPrincipal claims = HttpContext.User;
+            int userId = Convert.ToInt32(claims.Identity.Name);
+            var cat = await (from a in _dbcontext.Cats
+                             where a.UserId == userId && a.CatId == catId
+                             select a).FirstOrDefaultAsync();
+            MemberManagement.Message msg = null;
+
+            if (cat != null)
+            {
+                try
+                {
+                    cat.Adopt = "已送養";
+
+                    _dbcontext.SaveChanges();
+                    Console.WriteLine($"喵星人:{cat.Name}回報送養成功");
+
+                    msg = new MemberManagement.Message()
+                    {
+                        Code = 200,
+                        Msg = $"喵星人:{cat.Name}回報送養成功",
+                        Time = DateTime.Now
+                    };
+
+                }
+                catch (DbUpdateException ex)
+                {
+                    Console.WriteLine($"喵星人:{cat.Name}回報送養失敗" + ex);
+                    msg = new MemberManagement.Message()
+                    {
+                        Code = 400,
+                        Msg = $"喵星人:{cat.Name}回報送養失敗" + ex,
+                        Time = DateTime.Now
+                    };
+                }
+            }
+            else
+            {
+                Console.WriteLine($"回報送養失敗!請提供喵星人資訊");
                 msg = new MemberManagement.Message()
                 {
                     Code = 400,

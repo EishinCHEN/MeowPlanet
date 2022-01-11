@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -33,6 +34,7 @@ namespace MeowPlanet.Models
         public string Country { get; set; }
         public string City { get; set; }
         public int? IsDeleted { get; set; }
+        
         public DateTime? PublishedDay { get; set; }
 
         public virtual UserData User { get; set; }

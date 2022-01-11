@@ -58,9 +58,8 @@
             <!--喵喵資料-->
             <div class="meow-manage-top">
                 <div class="meow-manage-status">
-                    <button type="button" class="btn-status">刊登中</button>
-                    <button type="button" class="btn-status">已送養</button>
-                    <button type="button" class="btn-status">已刪除</button>
+                    <button type="button" class="btn-status published" v-on:click="publishing">刊登中</button>
+                    <button type="button" class="btn-status sendout" v-on:click="sended">已送養</button>
                 </div>
                 <button asp-controller="CatManagement" asp-action="UploadCat" class="btn-addmeow">＋新增喵星人</button>
             </div>
@@ -72,11 +71,12 @@
                             <img class="meow-pic-inside" :src="item.image" />
                         </div>
                         <div class="group-do">
-                            <button type="button" class="btn-do" v-on:click="editCat(item.catId)">修改</button>
-                            <button type="button" class="btn-do" v-on:click="deleteCat(item.catId)">刪除</button>
+                            <button class="btn-do button" v-on:click="editCat(item.catId)">修改</button>
+                            <button class="btn-do button" v-on:click="deleteCat(item.catId, item.name)">刪除</button>
                         </div>
                     </div>
-                    <div class="group-bottom">{{item.publishDate}}</div>
+                    <button class="btn-sendcat button" v-on:click="sendCat(item.catId, item.name)">完成送養</button>
+                    <div class="group-bottom">刊登日期:{{(item.publishedDay).substr(0, 10)}}</div>
                 </div>
             </div>
         </form>
@@ -86,29 +86,6 @@
 @section Scripts{
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        Vue.component('meow-aroup', {
-            data: function () {
-                return {
-                    data: {
-
-                    }
-                }
-            },
-            template: `
-                <div class="meow-group">
-                    < div class= "group-top" > 喵星人</div>
-                    <div class="group-inner">
-                        <div class="meow-pic">
-                            <img class="meow-pic-inside" src="~/images/綠色/貓星球-綠色.PNG" />
-                        </div>
-                        <div class="group-do">
-                            <button type="button" class="btn-do">修改</button>
-                            <button type="button" class="btn-do">刪除</button>
-                        </div>
-                    </div>
-                    <div class="group-bottom">上架日期</div>
-                </div >`
-        })
         var app = new Vue({
             el: "#app",
             data: {
@@ -123,6 +100,30 @@
                     })
             },
             methods: {
+                publishing() {
+                    var vm = this;
+                    axios.get("@Url.Action("GetPersonalCatInfo", "CatManagement")/")
+                        .then((r) => {
+                            console.log(r);
+                            vm.cats = r.data;
+                            var btnEdit = document.querySelectorAll(".button");
+                            for (var i = 0; i < btnEdit.length; i++) {
+                                btnEdit[i].removeAttribute("disabled")
+                            }
+                        })
+                },
+                sended() {
+                    var vm = this;
+                    axios.get("@Url.Action("GetSendOutCatInfo", "CatManagement")/")
+                        .then((r) => {
+                            console.log(r);
+                            vm.cats = r.data;
+                            var btnEdit = document.querySelectorAll(".button");
+                            for(var i = 0; i < btnEdit.length; i++){
+                                btnEdit[i].setAttribute("disabled", "")
+                            }
+                        })
+                },
                 editCat(catId) {
                     console.log(catId)
                     axios.get("/CatManagement/EditCat/" + catId)
@@ -133,11 +134,31 @@
                         })
                         .catch((error) => console.log(error))
                 },
-                deleteCat(catId) {
-                    console.log(catId)
-                    axios.get("/CatManagement/DeleteCat/"+catId)
-                        .then((response) => console.log(response))
-                        .catch((error) => console.log(error))
+                sendCat(catId, catName) {
+                    var result = confirm("確定要將" + catName + "回報為已送養嗎?");
+                    if (result) {
+                        axios.get("/CatManagement/SendCat/" + catId)
+                            .then((response) => {
+                                console.log(response);
+                                alert("回報" + catName + "送養成功!");
+                            })
+                            .catch((error) => console.log(error))
+                        top.location.href = "/CatManagement/ManageCat"
+                    } else {
+                        alert("已取消回報" + catName + "送養狀態!");
+                    }
+                },
+                deleteCat(catId, catName) {
+                    var result = confirm("確定要刪除" + catName + "嗎?");
+                    if (result) {
+                        axios.get("/CatManagement/DeleteCat/" + catId)
+                            .then((response) => {
+                                console.log(response);
+                                alert("刪除喵星人成功! ByeBye "+catName);
+                            })
+                            .catch((error) => console.log(error))
+                        top.location.href = "/CatManagement/ManageCat"
+                    }
                 }
             }
         });

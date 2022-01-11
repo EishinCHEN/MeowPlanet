@@ -48,28 +48,28 @@
                 <div class="col-lg-9 col-xl-9">
                     <!--會員資料修改-->
                     <div class="cat-info">
-                        <div class="area-title">★管理居民</div>
+                        <div class="area-title">★新增喵星人</div>
                         <div class="center">
                             <form method="post" enctype="multipart/form-data" asp-controller="CatManagement" asp-action="UploadConfirm">
                                 <!--新增喵喵照片-->
                                 <div class="pic-area">
-                                    <div class="big" >
-                                        <img :src="catFoto.Photo1" v-on:click="selectPhoto(1)"/>
-                                        <input type="file" name="files" id="photo1" v-on:change="readURI(1)">
+                                    <div class="big" id="foto1" v-on:click="selectPhoto(1)">
+                                        <img :src="catFoto.Photo1" />
+                                        <input type="file" name="files" id="photo1" v-on:change="readURI(1)" style="width:150px;">
                                     </div>
                                     <hr />
                                     <div class="small">
-                                        <div class="s-1" >
-                                            <img :src="catFoto.Photo2" v-on:click="selectPhoto(2)"/>
-                                            <input type="file" name="files" id="photo2" v-on:change="readURI(2)">
+                                        <div class="s-1" id="foto2" v-on:click="selectPhoto(2)">
+                                            <img :src="catFoto.Photo2"/>
+                                            <input type="file" name="files" id="photo2" v-on:change="readURI(2)" style="width:50px;">
                                         </div>
-                                        <div class="s-1" >
-                                            <img :src="catFoto.Photo3" v-on:click="selectPhoto(3)"/>
-                                            <input type="file" name="files" id="photo3" v-on:change="readURI(3)">
+                                        <div class="s-1" id="foto3" v-on:click="selectPhoto(3)">
+                                            <img :src="catFoto.Photo3" />
+                                            <input type="file" name="files" id="photo3" v-on:change="readURI(3)" style="width:50px;">
                                         </div>
-                                        <div class="s-1" >
-                                            <img :src="catFoto.Photo4" v-on:click="selectPhoto(4)"/>
-                                            <input type="file" name="files" id="photo4" v-on:change="readURI(4)">
+                                        <div class="s-1" id="foto3" v-on:click="selectPhoto(4)">
+                                            <img :src="catFoto.Photo4" />
+                                            <input type="file" name="files" id="photo4" v-on:change="readURI(4)" style="width:50px;">
                                         </div>
                                     </div>
                                 </div>
@@ -210,7 +210,6 @@
                                     break;
 
                             }
-
                         }
                         reader.readAsDataURL(event.target.files[0]);
                     }
