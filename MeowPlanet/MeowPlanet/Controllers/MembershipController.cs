@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace MeowPlanet.Controllers
 {
+    [Authorize]
     public class MembershipController : Controller
     {
         private Models.MeowContext _dbcontext;
@@ -23,8 +24,7 @@ namespace MeowPlanet.Controllers
             this._webHostEnvironment = _hostEnvironment;
         }
 
-
-        [Authorize]          //限定已登入的使用者才能瀏覽
+        //限定已登入的使用者才能瀏覽
         public async Task<IActionResult> Editor()
         {
             var claims = HttpContext.User;

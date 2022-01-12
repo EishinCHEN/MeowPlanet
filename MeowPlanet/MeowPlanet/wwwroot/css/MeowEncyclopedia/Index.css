@@ -1,0 +1,84 @@
+﻿html {
+    background-color: #FEF2CB;
+}
+.encyclopedia-main-area {
+    color: #FEF2CB;
+    position: relative;
+    background-color: #FEF2CB;
+}
+.encyclopedia-outer-area {
+    width: 65%;
+    margin: auto;
+    padding: 1rem;
+}
+
+.encyclopedia-title-area {
+    background-color: #DA8952;
+    border-radius: 5px;
+    color: #fff;
+}
+    .encyclopedia-title-area p{
+        padding: 5px;
+    }
+
+    .encyclopedia-path-area {
+        width: 80%;
+        margin: auto;
+        padding: 1rem 0 0 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .encyclopedia-path-area div {
+        width: 70px;
+        padding: 5px;
+        display: inline-block;
+        border: 2px solid #DA8952;
+        background-color: #DA8952;
+        border-radius: 5px 5px 0 0;
+    } 
+
+.encyclopedia-path-area p {
+    padding: 0px;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+}
+
+.encyclopedia-artical-area {
+    border: 3px solid #DA8952;
+    background-color: #fff;
+    border-radius: 10px;
+    color: #65615E;
+    ;
+}
+
+.encyclopedia-cat {
+    padding: 1rem;
+    width: 80%;
+    margin: auto;
+}
+    .encyclopedia-cat h3{
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .encyclopedia-cat p {
+        display: inline-block;
+        padding: 7px;
+    }
+
+.encyclopedia-right-img img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 150px;
+}
+
+.encyclopedia-left-img img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 150px;
+}
