@@ -71,6 +71,7 @@ namespace MeowPlanet.Controllers
                     case 1:
                         claims = new List<Claim>
                         {
+                            new Claim(ClaimTypes.NameIdentifier, Convert.ToString(user.UserId)), //SignalR的userId預設默認為ClaimTypes.NameIdentifier
                             new Claim(ClaimTypes.Name, Convert.ToString(user.UserId)),
                             new Claim(ClaimTypes.GivenName, user.Account),
                             new Claim(ClaimTypes.Role, "Adopter"),
@@ -80,6 +81,7 @@ namespace MeowPlanet.Controllers
                     case 2:
                         claims = new List<Claim>
                         {
+                            new Claim(ClaimTypes.NameIdentifier, Convert.ToString(user.UserId)), //SignalR的userId預設默認為ClaimTypes.NameIdentifier
                             new Claim(ClaimTypes.Name, Convert.ToString(user.UserId)),
                             new Claim(ClaimTypes.GivenName, user.Account),
                             new Claim(ClaimTypes.Role, "CatSender"),
@@ -97,8 +99,9 @@ namespace MeowPlanet.Controllers
                     new AuthenticationProperties
                     {
                         IsPersistent = true,
-                        ExpiresUtc = DateTime.UtcNow.AddMinutes(20)    //設定登入時限為20分鐘
-                    });
+                        //ExpiresUtc = DateTime.UtcNow.AddMinutes(20)    //設定登入時限為20分鐘
+                        ExpiresUtc = DateTime.UtcNow.AddDays(1)
+                    }) ;
 
                 Console.WriteLine("會員登入成功");
                 ViewBag.Message = "會員登入成功";

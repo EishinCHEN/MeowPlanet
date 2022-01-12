@@ -11,40 +11,18 @@
     @* 引用jQuery CDN *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @await RenderSectionAsync("Styles", required: false)
+
+
+
 </head>
-<body>
-    <!--<header>-->@*先註解導覽列*@
-
-        @*導覽列*@ 
-        <!--<div class="wrapper">
-            <div><a href="#" class="menu">相處之旅</a></div>
-            <div><a href="#" class="menu">命運旅行</a></div>
-            <div class="catlogo">
-                <img src="~/images/白色/LOGO.PNG" />
-            </div>
-            <div><a href="#" class="menu">喵星日常</a></div>
-            <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">喵星居民<i class="fas fa-caret-down"></i></button>
-                <div id="myDropdown" class="dropdown-content">
-                    <a href="#" style="border-bottom: none;">征服居民</a>
-                    <a asp-controller="Membership" asp-action="Sender" style="border-top:none;">我要送養</a>
-                </div>
-            </div>
-            <div id="login"><a asp-controller="Login" asp-action="Login">登入星球</a></div>
-        </div>
-        <div class="logo2">-->
-            @*導覽列結束*@
-            <!--<div></div>
-        </div>
-    </header>-->
-
-    @*刪掉原本內建bootstrap的class <main role="main" class="pb-3">*@
+<body class="mybody">
     <main>
         @RenderBody()
     </main>
     
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @*<script src="jquery.flipster.min.js"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

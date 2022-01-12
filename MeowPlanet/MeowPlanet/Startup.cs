@@ -1,3 +1,4 @@
+using MeowPlanet.Hubs;
 using MeowPlanet.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -30,6 +31,7 @@ namespace MeowPlanet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSignalR();  //引用signalR
             services.AddDbContext<MeowContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Meow")));
             //設定cookie驗證
@@ -73,6 +75,7 @@ namespace MeowPlanet
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>("/chatHub");  //signalr
             });
         }
     }

@@ -1,15 +1,12 @@
-:root{
-    --bg:linear-gradient(to right,#c2f0c2  0%, #c2f0c2 50%,#ffd480 0%, #ffd480 50%);
-    --ph:#c2f0c2;
-    --lh:#ffd480;
+:root {
+    --bg: linear-gradient(to right,#CAE4BA 0%, #CAE4BA 50%,#FBD06E 0%, #FBD06E 50%);
+    --ph: #c2f0c2;
+    --lh: #ffd480;
 }
 
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
     font-family:'Noto Sans Tc',sans-serif;
     color: #65615E;
 }
@@ -22,26 +19,25 @@
     /* For IE6-8 */
     src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
 }
-html{
-    background: var(--bg);
-}
-
 
 
 /* 導覽列 */
-.wrapper{
+.wrapper {
     width: 100%;
     background: var(--bg);
     display: grid;
-    grid-template-columns:  1fr 1fr 650px 1fr 1fr 1fr ;
-    grid-auto-rows:130px ;
+    grid-template-columns: 1fr 1fr 650px 1fr 1fr 1fr;
+    grid-auto-rows: 130px;
     position: fixed;
+    background: var(--bg);
+    box-sizing: border-box;
+    outline: none;
+    border: none;
 }
 
 .wrapper a{
     position: relative;
     top: 40%;
-    
     left: 18%;
     
   
