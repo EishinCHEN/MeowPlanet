@@ -11,18 +11,15 @@
     @* 引用jQuery CDN *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @await RenderSectionAsync("Styles", required: false)
-
-
-
 </head>
-<body class="mybody">
+<body>
+    @*刪掉原本內建bootstrap的class <main role="main" class="pb-3">*@
     <main>
         @RenderBody()
     </main>
     
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @*<script src="jquery.flipster.min.js"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
