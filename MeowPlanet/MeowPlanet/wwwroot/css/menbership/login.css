@@ -5,7 +5,7 @@
 .left-area{
     background-color: #cae4ba;
     width: 50%;
-    padding: 5rem;
+    padding: 1rem 5rem;
     text-align: center;    
 }
 .left-area img{
@@ -15,14 +15,14 @@
 .right-area{
     background-color: #fbd06e;
     width: 50%;
-    padding: 5rem;
+    padding: 1rem 5rem;
 }
 .login-area{
     margin: auto;
     width: 80%;
     background-color: #fef2cb;
     border-radius: 3%;
-    padding: 3rem 3rem 2rem 3rem ;
+    padding: 3rem 3rem 1rem 3rem ;
 }
 form{
     color: #da8952;
@@ -84,13 +84,6 @@ input{
 .btn-area div {
     width: 8rem;
 }
-.google{
-    background-color: #fff;
-    border-radius: 10px;
-}
-.google button{
-    background-color: #fff;
-}
 .facebook{
     background-color: rgb(46, 76, 161);
     border-radius: 10px;
@@ -105,7 +98,7 @@ input{
 .rigistar-area{
     display: flex;
     justify-content: center;
-    margin: 2rem;
+    margin: 1rem;
     color: #fff;
 }
 .rigistar-area .register{
@@ -121,3 +114,26 @@ input{
     width: 2.5rem;
     height: 1.5rem;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #fef2cb;
+    border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #DA8952;
+    border-radius: 10px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #fbd06e;
+    }

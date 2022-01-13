@@ -8,7 +8,7 @@ namespace MeowPlanet.Controllers
 {
     public class MeowEncyclopediaController : Controller
     {
-        public IActionResult Index()
+        public IActionResult MeowBook()
         {
             return View();
         }

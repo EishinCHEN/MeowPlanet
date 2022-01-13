@@ -13,7 +13,9 @@
     font-family: 'Noto Sans Tc',sans-serif;
     color: #65615E;
 }
-
+.displaynone{
+    display: none;
+}
 @font-face {
     font-family: 'Material Icons';
     font-style: normal;

@@ -1,31 +1,32 @@
 ﻿<link href="~/css/menu.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 <!-- 電腦版 -->
-<div id="computer">
-    <nav>
-        <div class="logo">
-            <a asp-controller="Home" asp-action="Index"><img src="~/images/白色/LOGO.PNG" alt=""></a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="">相處之旅</a></li>
-            <li><a asp-controller="Cattest" asp-action="Test">命運旅行</a></li>
-        </ul>
-        <ul class="nav-link">
-            <li><a href="">喵星日常</a></li>
-            <li>
-                <a href="#" class="desktop-link">喵星居民</a>
-                <input type="checkbox" id="show-features">
-                <label for="show-features">喵星居民</label>
-                <ul>
-                    <li><a href="#" style="color: #da8952;">征服居民</a></li>
-                    <li><a asp-controller="Membership" asp-action="Sender" style="color: #da8952;">我要送養</a></li>
-                </ul>
-            </li>
-            <li class="login"><a asp-controller="Login" asp-action="Login">登入星球</a></li>
-        </ul>
+    <div id="computer">
+        <nav>
+            <div class="logo">
+                <a asp-controller="Home" asp-action="Index"><img src="~/images/白色/LOGO.PNG" alt=""></a>
+            </div>
+            <ul class="nav-links">
+                <li><a asp-controller="MeowEncyclopedia" asp-action="MeowBook">相處之旅</a></li>
+                <li><a asp-controller="Cattest" asp-action="Test">命運旅行</a></li>
+            </ul>
+            <ul class="nav-link">
+                <li><a href="">喵星日常</a></li>
+                <li>
+                    <a href="#" class="desktop-link">喵星居民</a>
+                    <input type="checkbox" id="show-features">
+                    <label for="show-features">喵星居民</label>
+                    <ul>
+                        <li><a href="#" style="color: #da8952;">征服居民</a></li>
+                        <li><a asp-controller="Membership" asp-action="Sender" style="color: #da8952;">我要送養</a></li>
+                    </ul>
+                </li>
+                <li class="login"><a asp-controller="Login" asp-action="Login" id="menber_area_notLogined">登入星球</a></li>
+                <li class="login"><a asp-controller="Membership" asp-action="Editor" id="menber_area_logined" class="displaynone">@User.Identity.Name</a></li>
+            </ul>
 
-    </nav>
-</div>
+        </nav>
+    </div>
 
 
 <!--手機板-->
@@ -33,10 +34,10 @@
     <nav class="nav">
         <div class="logo21">
             <a asp-controller="Home" asp-action="Index"> <img src="~/images/白色/LOGO.PNG" alt=""></a>
-</div>
+        </div>
         <ul class="links">
-            <li><a href="">相處之旅</a></li>
-            <li><a href="">命運旅行</a></li>
+            <li><a asp-controller="MeowEncyclopedia" asp-action="MeowBook">相處之旅</a></li>
+            <li><a asp-controller="Cattest" asp-action="Test">命運旅行</a></li>
             <li><a href="">喵星日常</a></li>
             <li>
                 <a href="#" class="desktop-links">喵星居民</a>
@@ -58,3 +59,18 @@
 </div>
 
 <script src="~/js/app.js"></script>
+@section Script{
+    <script>
+        var user = @ViewBag.User;
+            var btnNotLogined = document.getElementById('menber_area_notLogined');
+            var btnLogined = document.getElementById('menber_area_notLogined');
+            if (user == null) {
+                btnNotLogined.classList.remove("displaynone");
+                btnLogined.classList.add("displaynone");
+            } else {
+                btnNotLogined.classList.add("displaynone");
+                btnLogined.classList.remove("displaynone");
+            }
+    
+    </script>
+}

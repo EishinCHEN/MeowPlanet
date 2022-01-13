@@ -12,11 +12,11 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @await RenderSectionAsync("Styles", required: false)
 </head>
-<body>
+<body class="mybody">
     @*刪掉原本內建bootstrap的class <main role="main" class="pb-3">*@
-    <main>
+    <div>
         @RenderBody()
-    </main>
+    </div>
     
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

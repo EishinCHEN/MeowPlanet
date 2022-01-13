@@ -20,26 +20,26 @@
 
     <link href="~/css/meowChat/messagenone.css" rel="stylesheet" />
 }
-
+<partial name="_menu" />
 <div class=" container  ">
     <div class="col-lg-3 col-md-2 col-sm-0 col-xs-0 hidden-sm hidden-xs ">
         <!--選單列-->
         <div class="menu">
             <ul>
                 <li class="menu-list ">
-                    <a href="# ">資料修改</a><i class="bi bi-caret-right-fill "></i>
+                    <a asp-controller="Membership" asp-action="Editor">資料修改</a><i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">
                     <a href="# ">收藏居民</a><i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">
-                    <p href="# " class="chatlist">聊天訊息</p><i class="bi bi-caret-right-fill chatlist"></i>
+                    <p asp-controller="MeowChat" asp-action="MessageManage" class="chatlist">聊天訊息</p><i class="bi bi-caret-right-fill chatlist"></i>
                 </li>
                 <li class="menu-list ">
                     <a href="# ">行程管理</a><i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">
-                    <a href="# ">我要送養</a><i class="bi bi-caret-right-fill "></i>
+                    <a asp-controller="CatManagement" asp-action="ManageCat">我要送養</a><i class="bi bi-caret-right-fill "></i>
                 </li>
             </ul>
         </div>

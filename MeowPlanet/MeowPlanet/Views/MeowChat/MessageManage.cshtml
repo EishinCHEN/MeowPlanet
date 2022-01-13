@@ -21,15 +21,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 }
-
-
+<partial name="_menu" />
 <div class="container" id="chatlistpage">
     <div class="col-lg-3 col-md-2 col-sm-0 col-xs-0 hidden-sm hidden-xs ">
         <!--選單列-->
         <div class="menu">
             <ul>
                 <li class="menu-list ">
-                    <a href="# ">資料修改</a>
+                    <a asp-controller="Membership" asp-action="Editor">資料修改</a>
                     <i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">
@@ -37,7 +36,7 @@
                     <i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">
-                    <p href="# " class="catchlist">聊天訊息</p>
+                    <p asp-controller="MeowChat" asp-action="MessageManage" class="catchlist">聊天訊息</p>
                     <i class="bi bi-caret-right-fill catchlist "></i>
                 </li>
                 <li class="menu-list ">
@@ -49,7 +48,7 @@
                     <i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list" v-if="userRole === 2">
-                    <a asp-controller="CatManagement" asp-action="AddCat">管理居民</a>
+                    <a asp-controller="CatManagement" asp-action="ManageCat">管理居民</a>
                     <i class="bi bi-caret-right-fill "></i>
                 </li>
             </ul>

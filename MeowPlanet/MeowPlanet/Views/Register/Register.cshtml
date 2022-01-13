@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="~/css/menbership/register.css" rel="stylesheet" />
 }
-
+<partial name="_menu" />
 <div id="app">
     <main>
         <div class="container-fluid">
@@ -40,8 +40,6 @@
                                         <option value="male">男性</option>
                                         <option value="female">女性</option>
                                     </select>
-                                </div>
-                                <div class="birthday-gruop">
                                     <label for="Birthday">生日：</label>
                                     <input type="date" id="Birthday" min="1979-12-31" max="@String.Format("{0:yyyy-MM-dd}", DateTime.Now)" v-model:text="userDetail.Birthday">
                                 </div>
@@ -68,12 +66,12 @@
                                     <input type="password" name="passwordConfirm-confirm" id="passwordConfirm" maxlength="20" v-on:keyup="checkPwd" placeholder="請再次輸入密碼"
                                            v-model:text="userDetail.passwordConfirm">
                                 </div>
-
-                            </div>
-                            <div class="submit">
-                                <button type="button" class="register-btn" id="submit" v-on:click="createUser">註冊</button>
                             </div>
                         </form>
+
+                    </div>
+                    <div class="submit">
+                        <button type="button" class="register-btn" id="submit" v-on:click="createUser">註冊喵星會員</button>
                     </div>
                 </div>
             </div>

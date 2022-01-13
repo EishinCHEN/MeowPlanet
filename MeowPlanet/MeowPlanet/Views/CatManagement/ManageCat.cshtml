@@ -17,7 +17,7 @@
     <link href="~/css/catManagement/manageCat.css" rel="stylesheet" />
 
 }
-
+<partial name="_menu" />
 <!-- 導覽列 -->
 <div class=" container " id="app">
     <div class="col-lg-3 col-md-2 col-sm-0 col-xs-0 hidden-sm hidden-xs ">
@@ -33,7 +33,7 @@
                     <i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">
-                    <a href="# ">聊天訊息</a>
+                    <a asp-controller="MeowChat" asp-action="MessageManage">聊天訊息</a>
                     <i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">

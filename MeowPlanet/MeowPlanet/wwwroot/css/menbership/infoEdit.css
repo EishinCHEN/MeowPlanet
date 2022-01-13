@@ -13,6 +13,9 @@
     font-family: 'Noto Sans TC', sans-serif;
     color: #DA8952;
 }
+html {
+    background-color: #FEF2CB;
+}
 .bgc{
     background-color: #FEF2CB;
     padding: 3rem;
@@ -21,7 +24,7 @@
     width: 70%;
     margin: auto;       /* 背景色置中*/
     background-color: #fff;
-    padding: 3rem;
+    padding: 1rem 3rem;
     border-radius: 3%;
 }
 /* 處理menu選單 */
@@ -31,7 +34,7 @@
 .menu ul{
     padding: 0;    /* 刪除ul預設padding */
 }
-li{
+.menu li{
     display: flex;
     align-items: center;
     text-align: center;
@@ -61,11 +64,12 @@ li:hover, li a:hover, .menu-icon:hover{
     padding: 0;
     margin: 0;
 }
-.info-nav ul{
-    display: flex;
-    padding: 0;
-    margin: 0;
-}
+    .info-nav ul {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
 .info-nav li{
     background-color: #FEF2CB;
     padding: 0 1rem;

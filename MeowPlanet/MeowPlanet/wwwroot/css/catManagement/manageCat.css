@@ -26,7 +26,8 @@ body {
 .container {
     width: 70%;
     height: 100%;
-    margin-top: 48px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding-top: 48px;
     border-radius: 10px;
     background-color: #fff;

@@ -5,17 +5,17 @@
 .left-area{
     background-color: #cae4ba;
     width: 50%;
-    padding: 5rem;
+    padding: 1rem 5rem 1rem 3rem;
     text-align: center;    
 }
 .left-area img{
     margin: 0;
     width: 500px;
 }
-.right-area{
+.right-area {
     background-color: #fbd06e;
     width: 50%;
-    padding: 5rem;
+    padding: 1rem 5rem 1rem 3rem;
 }
 .register-area{
     margin: auto;
@@ -23,8 +23,8 @@
     overflow-y: auto;
     width: 80%;
     background-color: #fef2cb;
-    border-radius: 3%;
-    padding: 1rem ;
+    border-radius: 5%;
+    padding: 0.6rem 1rem 0 1rem ;
 }
 form{
     width: 90%;
@@ -59,7 +59,9 @@ input {
 .submit{
     display: flex;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 1rem;
+    margin: 0.5rem;
+    padding: 0.3rem;
 }
 
 /* width */
