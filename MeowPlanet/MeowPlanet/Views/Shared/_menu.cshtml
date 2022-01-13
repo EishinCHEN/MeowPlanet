@@ -21,8 +21,7 @@
                         <li><a asp-controller="Membership" asp-action="Sender" style="color: #da8952;">我要送養</a></li>
                     </ul>
                 </li>
-                <li class="login"><a asp-controller="Login" asp-action="Login" id="menber_area_notLogined">登入星球</a></li>
-                <li class="login"><a asp-controller="Membership" asp-action="Editor" id="menber_area_logined" class="displaynone">@User.Identity.Name</a></li>
+                <li class="login"><a asp-controller="Login" asp-action="Login" >登入星球</a></li>
             </ul>
 
         </nav>
@@ -58,19 +57,3 @@
     </nav>
 </div>
 
-<script src="~/js/app.js"></script>
-@section Script{
-    <script>
-        var user = @ViewBag.User;
-            var btnNotLogined = document.getElementById('menber_area_notLogined');
-            var btnLogined = document.getElementById('menber_area_notLogined');
-            if (user == null) {
-                btnNotLogined.classList.remove("displaynone");
-                btnLogined.classList.add("displaynone");
-            } else {
-                btnNotLogined.classList.add("displaynone");
-                btnLogined.classList.remove("displaynone");
-            }
-    
-    </script>
-}

@@ -5,6 +5,7 @@
 .left-area{
     background-color: #cae4ba;
     width: 50%;
+    height: 1080px;
     padding: 1rem 5rem;
     text-align: center;    
 }
@@ -12,9 +13,10 @@
     margin: 0;
     width: 500px;
 }
-.right-area{
+.right-area {
     background-color: #fbd06e;
     width: 50%;
+    height: 1080px;
     padding: 1rem 5rem;
 }
 .login-area{

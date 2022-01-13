@@ -2,6 +2,9 @@
   font-family: 'Noto Sans TC', sans-serif;
   color: #DA8952;
 }
+html {
+    background-color: #cae4ba;
+}
 .bgc {
     background-color: #cae4ba;
     padding: 3rem;

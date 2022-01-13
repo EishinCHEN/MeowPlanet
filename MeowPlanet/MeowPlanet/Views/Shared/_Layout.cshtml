@@ -10,16 +10,36 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     @* 引用jQuery CDN *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <style>
+        .displaynone {
+            display: none;
+        }
+    </style>
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body class="mybody">
+    @{
+        if (User.Identity.Name == null)
+        {
+            <partial name="_menu" />
+        }
+        else
+        {
+            <partial name="_menuLogined" />
+        }
+
+    }
+
+
+
     @*刪掉原本內建bootstrap的class <main role="main" class="pb-3">*@
     <div>
         @RenderBody()
     </div>
-    
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
