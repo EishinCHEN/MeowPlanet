@@ -41,17 +41,20 @@ namespace MeowPlanet.Hubs
         /// <param name="receiver">SignalR的userId預設默認為ClaimTypes.NameIdentifier</param>
         /// <param name="message">發送的文字訊息</param>
         /// <returns></returns>
-        public async Task SendMessageToUser(int receiver, string message, DateTime sendtime, int sender)
+        public async Task SendMessageToUser(int receiver, string message, string sendtime, int sender)
         {
-            await Clients.User(receiver.ToString()).SendAsync("ReceiveMessage", receiver, sender, sendtime, message);
             var newmessagelist = new ChatList();
             newmessagelist.Receiver = receiver;
             newmessagelist.Sender = sender;
-            newmessagelist.SendTime = sendtime;
+            newmessagelist.SendTime = DateTime.Parse(sendtime);
             newmessagelist.Message = message;
             newmessagelist.IsRead = ConnectedUsers.Contains(receiver) ? true : false;
             _meowContext.ChatLists.Add(newmessagelist); //將訊息寫入資料庫
-            await _meowContext.SaveChangesAsync();            
+            if (await _meowContext.SaveChangesAsync() > 0)
+            {
+                await Clients.User(receiver.ToString()).SendAsync("ReceiveMessage", receiver, sender, sendtime, message);
+                await Clients.User(sender.ToString()).SendAsync("ReceiveMessage", receiver, sender, sendtime, message);
+            }
         }
     }
 }

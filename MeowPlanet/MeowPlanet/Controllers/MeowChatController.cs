@@ -113,7 +113,7 @@ namespace MeowPlanet.Controllers
                 .ToListAsync();
 
             //把所有歷史訊息的sendtime換成台北時間
-            senderlist.ForEach(t => t.SendTime = TimeZoneInfo.ConvertTimeFromUtc(t.SendTime, TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time")));
+            //senderlist.ForEach(t => t.SendTime = TimeZoneInfo.ConvertTimeFromUtc(t.SendTime, TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time")));
 
             if (senderlist == null || senderlist.Count() == 0)
             {
@@ -150,7 +150,7 @@ namespace MeowPlanet.Controllers
                     .FirstOrDefault();
 
                 //把sendtime換成台北時間
-                returnData.LastMessage.SendTime = TimeZoneInfo.ConvertTimeFromUtc(returnData.LastMessage.SendTime, TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time"));
+                //returnData.LastMessage.SendTime = TimeZoneInfo.ConvertTimeFromUtc(returnData.LastMessage.SendTime, TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time"));
 
                 //取出Sender是對方同時訊息尚未讀取的數量
                 returnData.UnRead = historyMessageList
@@ -193,11 +193,12 @@ namespace MeowPlanet.Controllers
         {
             var result = false;
             var link = await UploadImageToImgur(newImage.ImageToUpload);
-            newImage.Image = link;
+            newImage.Image = link;            
             _meowContext.ChatLists.Add(newImage);
             if(await _meowContext.SaveChangesAsync() > 0)
             {
                 await _hubContext.Clients.User(newImage.Receiver.ToString()).SendAsync("ReceiveImage", newImage.Receiver, newImage.Sender, newImage.SendTime, newImage.Image);
+                await _hubContext.Clients.User(newImage.Sender.ToString()).SendAsync("ReceiveImage", newImage.Receiver, newImage.Sender, newImage.SendTime, newImage.Image);
                 result = true;
             }
             return result;
