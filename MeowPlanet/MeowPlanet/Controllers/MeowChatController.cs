@@ -1,20 +1,26 @@
 ﻿using MeowPlanet.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MeowPlanet.Hubs;
+using Microsoft.AspNetCore.Http;
+using Imgur.API;
 
 namespace MeowPlanet.Controllers
 {
     public class MeowChatController : Controller
     {
         private MeowContext _meowContext { get; }
-        public MeowChatController(MeowContext meowContext)
+        private IHubContext<ChatHub> _hubContext { get; }
+        public MeowChatController(MeowContext meowContext, IHubContext<ChatHub> hubContext)
         {
             _meowContext = meowContext;
+            _hubContext = hubContext;
         }
 
         [Authorize]
@@ -174,6 +180,12 @@ namespace MeowPlanet.Controllers
             return result;
         }
 
+        [HttpPost]
+        public async Task SendImage([FromForm]ChatList newMessage, IFormFile ImageToUpload)
+        {
+            Console.WriteLine(newMessage.ToString());
+        }
+
         private void DetachAllContextChanges()
         {
             _meowContext.ChangeTracker.DetectChanges();
@@ -184,8 +196,8 @@ namespace MeowPlanet.Controllers
 
             _meowContext.ChangeTracker.DetectChanges();
             //Console.WriteLine("Context追蹤變更取消後:");
-            //Console.WriteLine(_meowContext.ChangeTracker.DebugView.ShortView);
-        }
+            //Console.WriteLine(_meowContext.ChangeTracker.DebugView.ShortView);            
+        }    
 
     }
 }
