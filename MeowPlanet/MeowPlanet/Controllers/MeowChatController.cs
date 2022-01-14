@@ -10,6 +10,12 @@ using System.Threading.Tasks;
 using MeowPlanet.Hubs;
 using Microsoft.AspNetCore.Http;
 using Imgur.API;
+using Imgur.API.Authentication;
+using System.Net.Http;
+using Imgur.API.Endpoints;
+using Imgur.API.Models;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace MeowPlanet.Controllers
 {
@@ -17,10 +23,12 @@ namespace MeowPlanet.Controllers
     {
         private MeowContext _meowContext { get; }
         private IHubContext<ChatHub> _hubContext { get; }
-        public MeowChatController(MeowContext meowContext, IHubContext<ChatHub> hubContext)
+        private IHttpClientFactory _httpClient { get; }
+        public MeowChatController(MeowContext meowContext, IHubContext<ChatHub> hubContext, IHttpClientFactory httpClient)
         {
             _meowContext = meowContext;
             _hubContext = hubContext;
+            _httpClient = httpClient;
         }
 
         [Authorize]
@@ -181,9 +189,18 @@ namespace MeowPlanet.Controllers
         }
 
         [HttpPost]
-        public async Task SendImage([FromForm]ChatList newMessage, IFormFile ImageToUpload)
+        public async Task<bool> SendImage(ChatList newImage)
         {
-            Console.WriteLine(newMessage.ToString());
+            var result = false;
+            var link = await UploadImageToImgur(newImage.ImageToUpload);
+            newImage.Image = link;
+            _meowContext.ChatLists.Add(newImage);
+            if(await _meowContext.SaveChangesAsync() > 0)
+            {
+                await _hubContext.Clients.User(newImage.Receiver.ToString()).SendAsync("ReceiveImage", newImage.Receiver, newImage.Sender, newImage.SendTime, newImage.Image);
+                result = true;
+            }
+            return result;
         }
 
         private void DetachAllContextChanges()
@@ -198,6 +215,31 @@ namespace MeowPlanet.Controllers
             //Console.WriteLine("Context追蹤變更取消後:");
             //Console.WriteLine(_meowContext.ChangeTracker.DebugView.ShortView);            
         }    
+
+        private async Task<string> UploadImageToImgur(string DataUrl)
+        {
+            var apiClient = new ApiClient("82b2c70fb52995a", "36cf42cb8bed7b1b884585b642e24190441b1261");
+            var httpClient = _httpClient.CreateClient();
+            var oAuth2EndPoint = new OAuth2Endpoint(apiClient, httpClient);
+
+            var token = new OAuth2Token
+            {
+                AccessToken = "cc4ebfcfa1b708bcbf00d6098bfae02fe1d320ba",
+                RefreshToken = "af91b03b36c2746e654e1519d61075c187d39a7d",
+                AccountId = 158997113,
+                AccountUsername = "LaiWenRu",
+                ExpiresIn = 315360000,
+                TokenType = "bearer"
+            };
+
+            apiClient.SetOAuth2Token(token);
+            
+            var imageEndPoint = new ImageEndpoint(apiClient, httpClient);
+            var imageBase64 = Regex.Match(DataUrl, @"data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
+            var imageStream = (new MemoryStream(Convert.FromBase64String(imageBase64)));
+            var imageUpload = await imageEndPoint.UploadImageAsync(imageStream);
+            return imageUpload.Link;
+        }
 
     }
 }

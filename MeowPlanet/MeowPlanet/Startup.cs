@@ -31,6 +31,7 @@ namespace MeowPlanet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpClient();
             services.AddSignalR();  //¤Þ¥ÎsignalR
             services.AddDbContext<MeowContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Meow")));

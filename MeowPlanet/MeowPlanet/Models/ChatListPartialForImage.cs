@@ -6,6 +6,6 @@ namespace MeowPlanet.Models
     public partial class ChatList
     {
         [NotMapped]
-        public dynamic ImageToUpload { get; set; }
+        public string ImageToUpload { get; set; }
     }
 }

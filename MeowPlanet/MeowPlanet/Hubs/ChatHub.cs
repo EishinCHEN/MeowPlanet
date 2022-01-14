@@ -1,10 +1,12 @@
 ﻿using MeowPlanet.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Imgur.API;
+using Imgur.API.Endpoints;
 
 namespace MeowPlanet.Hubs
 {
@@ -50,18 +52,6 @@ namespace MeowPlanet.Hubs
             newmessagelist.IsRead = ConnectedUsers.Contains(receiver) ? true : false;
             _meowContext.ChatLists.Add(newmessagelist); //將訊息寫入資料庫
             await _meowContext.SaveChangesAsync();            
-        }
-
-        public async Task SendImageToUser(int receiver, Byte[] image, DateTime sendtime, int sender)
-        {
-            Console.WriteLine(image.ToString());
-            var imageToImgur = new { Img = image };
-        }
-
-        public class ImageData
-        {
-            public byte[] ImageBinary { get; set; }
-            public string ImageHeaders { get; set; }
         }
     }
 }
