@@ -1,6 +1,7 @@
 ﻿* {
     font-family: 'Noto Sans TC', sans-serif;
     color: #DA8952;
+    font-size: 14px;
 }
 
 .bgc {
@@ -9,11 +10,12 @@
 }
 
 .container {
-    width: 70%;
+    width: 75%;
     margin: auto; /* 背景色置中*/
     background-color: #fff;
     padding: 3rem;
-    border-radius: 3%;
+    padding-top: 48px;
+    border-radius: 10px;
 }
 /* 處理menu選單 */
 .menu {
@@ -99,6 +101,7 @@ li {
 
 .center {
     padding-top: 10px;
+    padding-left: 40px;
 }
 form {
     display: flex;

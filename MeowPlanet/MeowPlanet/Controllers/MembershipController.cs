@@ -317,7 +317,18 @@ namespace MeowPlanet.Controllers
 
         public IActionResult Sender()
         {
-            return View();
+            var claims = HttpContext.User;
+            var ID = Convert.ToInt32(claims.Identity.Name);
+            var role = claims.IsInRole("CatSender");
+            
+            if (role == false)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("", "");
+            }
         }
         public IActionResult SenderConfirm()
         {

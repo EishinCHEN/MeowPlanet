@@ -2,6 +2,7 @@
     font-family: 'Noto Sans TC', sans-serif;
     color: #65615E;
     /* border: solid 1px black; */
+    font-size: 14px;
 }
 
 
@@ -26,7 +27,7 @@ body {
 .container {
     width: 70%;
     height: 100%;
-    margin-top: 20px;
+    margin-top: 48px;
     margin-bottom: 20px;
     padding-top: 48px;
     border-radius: 10px;

@@ -1,4 +1,7 @@
-﻿html {
+﻿* {
+    font-size: 14px;
+}
+html {
     background-color: #FEF2CB;
 }
 .encyclopedia-main-area {

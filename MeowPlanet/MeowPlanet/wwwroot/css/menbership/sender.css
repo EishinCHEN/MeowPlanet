@@ -1,20 +1,21 @@
-*{
-  font-family: 'Noto Sans TC', sans-serif;
-  color: #DA8952;
+* {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #DA8952;
+    font-size: 14px;
 }
 html {
-    background-color: #cae4ba;
+    background-color: #E5EFE1;
 }
 .bgc {
-    background-color: #cae4ba;
+    background-color: #E5EFE1;
     padding: 3rem;
 }
 .container{
-    width: 70%;
+    width: 75%;
     margin: auto;       /* 背景色置中*/
     background-color: #fff;
     padding: 3rem;
-    border-radius: 3%;
+    border-radius: 10px;
 }
 /* 處理menu選單 */
 .menu{

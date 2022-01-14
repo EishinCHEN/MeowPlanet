@@ -9,9 +9,10 @@
       url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
       url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
   }
-  *{
+* {
     font-family: 'Noto Sans TC', sans-serif;
     color: #DA8952;
+    font-size: 14px;
 }
 html {
     background-color: #FEF2CB;
@@ -21,11 +22,11 @@ html {
     padding: 3rem;
 }
 .container{
-    width: 70%;
+    width: 75%;
     margin: auto;       /* 背景色置中*/
     background-color: #fff;
     padding: 1rem 3rem;
-    border-radius: 3%;
+    border-radius: 10px;
 }
 /* 處理menu選單 */
 .menu{
@@ -170,7 +171,7 @@ input[disabled]{
 .password{
     width: 220px;
 }
-.email{
+.email {
     width: 355px;
 }
 .required-area div{
