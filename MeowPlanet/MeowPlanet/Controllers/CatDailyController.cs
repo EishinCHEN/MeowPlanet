@@ -8,19 +8,27 @@ namespace MeowPlanet.Controllers
 {
     public class CatDailyController : Controller
     {
-        public IActionResult CatDaily1()
+        public IActionResult CatDailyFirst()
         {
             return View();
         }
-        public IActionResult CatDaily2()
+        public IActionResult CatDailySecond()
         {
             return View();
         }
-        public IActionResult CatDaily3()
+        public IActionResult CatDailyThird()
         {
             return View();
         }
-        public IActionResult CatDaily4()
+        public IActionResult CatDailyForth()
+        {
+            return View();
+        }
+        public IActionResult CatDailyFifth()
+        {
+            return View();
+        }
+        public IActionResult CatDailySixth()
         {
             return View();
         }
