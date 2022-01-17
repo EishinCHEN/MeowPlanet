@@ -110,6 +110,7 @@ namespace MeowPlanet.Controllers
             var senderlist = await _meowContext.ChatLists
                 .Where(u => (u.Sender == sender && u.Receiver == receiver)
                         || (u.Sender == receiver && u.Receiver == sender))
+                .OrderBy(u => u.SendTime)
                 .ToListAsync();
 
             //把所有歷史訊息的sendtime換成台北時間
@@ -193,7 +194,8 @@ namespace MeowPlanet.Controllers
         {
             var result = false;
             var link = await UploadImageToImgur(newImage.ImageToUpload);
-            newImage.Image = link;            
+            newImage.Image = link;
+            newImage.IsRead = false;
             _meowContext.ChatLists.Add(newImage);
             if(await _meowContext.SaveChangesAsync() > 0)
             {

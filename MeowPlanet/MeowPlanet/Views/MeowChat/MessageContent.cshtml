@@ -66,10 +66,8 @@
                         sender: this.sender,
                         message: this.inputMessage,
                         sendTime: moment().format("YYYY-MM-DD HH:mm:ss.SSS")
-                        //time: this.translateDateTime(new Date()),
                     };
                     this.connection.invoke("SendMessageToUser", myMessage.receiver, myMessage.message, myMessage.sendTime, myMessage.sender).catch(function(error) { return console.log(error)});
-                    //this.chatList.push(myMessage);
                     this.inputMessage = '';
                     this.scrollBoxToBottom();
                 } else {
@@ -181,25 +179,31 @@
                 .catch(error=> console.log(error));
 
             this.connection.on("ReceiveMessage", function (receiver, sender, sendtime, message) {
-                let newMessage = {
-                    receiver: receiver,
-                    sender: sender,
-                    message: message,
-                    sendTime: sendtime
-                };
+                if((receiver == $vue.sender && sender == $vue.receiver) || (receiver == $vue.receiver && sender == $vue.sender)){
+                    let newMessage = {
+                        receiver: receiver,
+                        sender: sender,
+                        message: message,
+                        sendTime: sendtime
+                    };
                 $vue.chatList.push(newMessage);
                 $vue.scrollBoxToBottom();
+                $vue.connection.invoke("MessagesAreRead", sender).catch(function(error) { return console.log(error)});
+                }
             });
 
             this.connection.on("ReceiveImage", function (receiver, sender, sendtime, image) {
-                let newImage = {
-                    receiver: receiver,
-                    sender: sender,
-                    image: image,
-                    sendTime: sendtime
-                };
+                if((receiver == $vue.sender && sender == $vue.receiver) || (receiver == $vue.receiver && sender == $vue.sender)){
+                    let newImage = {
+                        receiver: receiver,
+                        sender: sender,
+                        image: image,
+                        sendTime: sendtime
+                    };
                 $vue.chatList.push(newImage);
                 $vue.scrollBoxToBottom();
+                $vue.connection.invoke("MessagesAreRead", sender).catch(function(error) { return console.log(error)});
+                }
             });
         },
         updated() {

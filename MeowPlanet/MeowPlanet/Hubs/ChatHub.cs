@@ -48,13 +48,20 @@ namespace MeowPlanet.Hubs
             newmessagelist.Sender = sender;
             newmessagelist.SendTime = DateTime.Parse(sendtime);
             newmessagelist.Message = message;
-            newmessagelist.IsRead = ConnectedUsers.Contains(receiver) ? true : false;
+            newmessagelist.IsRead = false;
             _meowContext.ChatLists.Add(newmessagelist); //將訊息寫入資料庫
             if (await _meowContext.SaveChangesAsync() > 0)
             {
                 await Clients.User(receiver.ToString()).SendAsync("ReceiveMessage", receiver, sender, sendtime, message);
                 await Clients.User(sender.ToString()).SendAsync("ReceiveMessage", receiver, sender, sendtime, message);
             }
+        }
+
+        public async Task MessagesAreRead(int sender)
+        {
+            var receiver = Convert.ToInt32(Context.UserIdentifier);
+            _meowContext.ChatLists.Where(c => c.Sender == sender && c.Receiver == receiver).ToList().ForEach(c => c.IsRead = true);
+            await _meowContext.SaveChangesAsync();
         }
     }
 }
