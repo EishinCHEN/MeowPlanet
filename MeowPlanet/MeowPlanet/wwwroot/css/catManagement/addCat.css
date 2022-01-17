@@ -16,7 +16,7 @@ body {
     margin: auto; /* 背景色置中*/
     background-color: #fff;
     padding: 3rem;
-    border-radius: 3%;
+    border-radius: 10px;
 }
 /* 處理menu選單 */
 .menu {
@@ -97,6 +97,7 @@ li {
 }
 .user-info{
     width: 80%;
+    padding-left: 2rem;
 }
 .user-detail div {
     display: inline-block;
@@ -113,7 +114,10 @@ li {
     .user-info div {
         display: inline-block;
     }
-
+.area-title{
+    margin: auto;
+    width: 80%;
+}
 .center {
     text-align: center;
     margin-top: 1rem;
