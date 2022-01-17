@@ -35,6 +35,7 @@
             receiver:@(Json.Serialize(Model.OtherUserId)),
             infoUser: @(Json.Serialize(Model.OtherUser)),
             inputMessage: '',
+            inputImage:'',
             sendMessageList: [],
             chatList: @(Json.Serialize(Model.ChatContentList)),
             connection: '',
@@ -64,11 +65,9 @@
                         receiver: this.receiver,
                         sender: this.sender,
                         message: this.inputMessage,
-                        sendTime: new Date()
-                        //time: this.translateDateTime(new Date()),
+                        sendTime: moment().format("YYYY-MM-DD HH:mm:ss.SSS")
                     };
                     this.connection.invoke("SendMessageToUser", myMessage.receiver, myMessage.message, myMessage.sendTime, myMessage.sender).catch(function(error) { return console.log(error)});
-                    this.chatList.push(myMessage);
                     this.inputMessage = '';
                     this.scrollBoxToBottom();
                 } else {
@@ -90,9 +89,10 @@
                             return "sender";
                         case "time":
                             return "sender-time";
-
                         case "text":
                             return "sender-text";
+                        case "image":
+                            return "sender-img";
                     }
                 } else {
                     switch (element) {
@@ -102,9 +102,41 @@
                             return "recipient-time";
                         case "text":
                             return "recipient-text";
+                        case "image":
+                            return "recipient-img";
                     }
                 }
             },
+            uploadImage: async function () {
+                let imgLoader = file => {
+                    return new Promise((resolve, reject) => {
+                        let reader = new FileReader();
+                        reader.onload = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(file);
+                    })
+                };
+
+                this.inputImage = await imgLoader(document.getElementById('uploadImage').files[0]);
+
+                let myMessage = {
+                    Receiver: this.receiver,
+                    Sender: this.sender,
+                    ImageToUpload: this.inputImage,
+                    SendTime: moment().format("YYYY-MM-DD HH:mm:ss.SSS")
+                };
+                console.log(myMessage);
+                //this.connection.invoke("SendImageToUser", myMessage.receiver, myMessage.image, myMessage.sendTime, myMessage.sender).catch(function (error) { return console.log(error) });
+                $.ajax({
+                    type: "post",
+                    data: myMessage,
+                    url: "@Url.Action("SendImage", "MeowChat")/",
+                }).done(function (response) {
+                    console.log(response);
+                }).fail(function (error) {
+                    console.log(error);
+                });
+            }
         },
         @*created() {
                 let $vue = this
@@ -147,14 +179,31 @@
                 .catch(error=> console.log(error));
 
             this.connection.on("ReceiveMessage", function (receiver, sender, sendtime, message) {
-                let newMessage = {
-                    receiver: receiver,
-                    sender: sender,
-                    message: message,
-                    sendTime: sendtime
-                };
+                if((receiver == $vue.sender && sender == $vue.receiver) || (receiver == $vue.receiver && sender == $vue.sender)){
+                    let newMessage = {
+                        receiver: receiver,
+                        sender: sender,
+                        message: message,
+                        sendTime: sendtime
+                    };
                 $vue.chatList.push(newMessage);
                 $vue.scrollBoxToBottom();
+                $vue.connection.invoke("MessagesAreRead", sender).catch(function(error) { return console.log(error)});
+                }
+            });
+
+            this.connection.on("ReceiveImage", function (receiver, sender, sendtime, image) {
+                if((receiver == $vue.sender && sender == $vue.receiver) || (receiver == $vue.receiver && sender == $vue.sender)){
+                    let newImage = {
+                        receiver: receiver,
+                        sender: sender,
+                        image: image,
+                        sendTime: sendtime
+                    };
+                $vue.chatList.push(newImage);
+                $vue.scrollBoxToBottom();
+                $vue.connection.invoke("MessagesAreRead", sender).catch(function(error) { return console.log(error)});
+                }
             });
         },
         updated() {
@@ -236,9 +285,15 @@
                 <div class="chatarea-inside ">
                     <!-- 歷史訊息判斷sender或receiver -->
                     <ul v-for="item in chatList" :class="bindClassForSender(item, 'ul')">
-                        <li :class="bindClassForSender(item, 'text')" v-if="item.sender != sender">{{item.message}}</li>
+                        <li :class="bindClassForSender(item, 'text')" v-if="(item.sender != sender) && (item.image == null)">{{item.message}}</li>
+                        <li :class="bindClassForSender(item, 'image')" v-if="item.sender != sender && (item.message == null)">
+                            <img class="sender-img-in" :src="item.image" alt="" />
+                        </li>
                         <li :class="bindClassForSender(item, 'time')">{{item.sendTime | formatDate}}</li>
-                        <li :class="bindClassForSender(item, 'text')" v-if="item.sender == sender">{{item.message}}</li>
+                        <li :class="bindClassForSender(item, 'text')" v-if="item.sender == sender && (item.image == null)">{{item.message}}</li>
+                        <li :class="bindClassForSender(item, 'image')" v-if="item.sender == sender && (item.message == null)">
+                            <img class="sender-img-in" :src="item.image" alt="" />
+                        </li>
                     </ul>
                     <!-- 即時輸入訊息 -->
                     <ul class="sender" v-for="item in sendMessageList">
@@ -250,8 +305,11 @@
             </div>
             <div class="input-area ">
                 <input class="text-input" v-model="inputMessage" type="text" placeholder="請輸入訊息" v-on:keydown.enter="sendMyMessage()">
-                <button type="button" id="photo"><i class="input-botton bi bi-image "></i></button>
+                <button type="button" id="photo" onclick="document.getElementById('uploadImage').click()"><i class="input-botton bi bi-image "></i></button>
                 <button type="button" id="send"><i class="input-botton bi bi-chat-text" v-on:click="sendMyMessage()"></i></button>
+                <input type="file"
+                       id="uploadImage"
+                       accept="image/png, image/jpeg" v-on:change="uploadImage()" style="display: none">
             </div>
 
         </div>
