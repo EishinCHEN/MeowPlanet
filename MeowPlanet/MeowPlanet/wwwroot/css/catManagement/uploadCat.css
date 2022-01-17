@@ -3,7 +3,9 @@
     color: #DA8952;
     font-size: 14px;
 }
-
+body {
+    background-color: #E5EFE1;
+}
 .bgc {
     background-color: #E5EFE1;
     padding: 3rem;
@@ -91,7 +93,7 @@ li {
 }
 /* 使用者詳細資料表單 */
 .cat-info {
-    width: 100%;
+    width: 80%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -113,7 +115,7 @@ form {
 }
 .info-area{
     width: 69%;
-    padding-left: 5px;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;

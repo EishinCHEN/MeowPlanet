@@ -327,7 +327,7 @@ namespace MeowPlanet.Controllers
             }
             else
             {
-                return RedirectToAction("", "");
+                return RedirectToAction("ManageCat", "CatManagement");
             }
         }
         public IActionResult SenderConfirm()

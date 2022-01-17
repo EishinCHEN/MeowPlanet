@@ -3,7 +3,9 @@
     color: #DA8952;
     font-size: 14px;
 }
-
+body {
+    background-color: #E5EFE1;
+}
 .bgc {
     background-color: #E5EFE1;
     padding: 3rem;
@@ -90,16 +92,18 @@ li {
 }
 /* 使用者詳細資料表單 */
 .mainarea {
-    width: 100%;
+    width: 80%;
     margin: 0;
 }
-
+.user-info{
+    width: 80%;
+}
 .user-detail div {
     display: inline-block;
 }
 
 .user-info {
-    width: 100%;
+    width: 80%;
     margin: auto;
     display: flex;
     justify-content: center;
@@ -154,4 +158,7 @@ li {
     .menu {
         display: none; /*手機&平板不顯示menu選單 */
     }
+}
+body {
+    background-color: #E5EFE1;
 }

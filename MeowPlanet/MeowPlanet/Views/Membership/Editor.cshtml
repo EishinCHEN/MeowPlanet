@@ -50,7 +50,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-9 col-xl-9">
+                <div class="col-lg-9 col-xl-9 memberinfo-right-area">
                     <!--會員資料修改-->
                     <div class="user-detail">
                         <div class="user-info">
@@ -73,12 +73,13 @@
                                         <button type="submit"><i class="bi bi-arrow-up-circle"></i></button>
                                     </div>
                                 </form>
-                                <form>
+                                <form class="memberinfo-area">
                                     <div class="required-area">
                                         <div class="username">
                                             <label for="Account">帳號：</label>
                                             <input type="text" name="Account" id="Account" v-model:text="userInfo.Account" disabled>
                                         </div>
+                                        <br />
                                         <div class="name">
                                             <label for="RealName">姓名：</label>
                                             <input type="text" name="RealName" id="RealName" v-model:text="userInfo.RealName" maxlength="10">
@@ -87,6 +88,7 @@
                                             <label for="Birthday">生日：</label>
                                             <input type="date" name="Birthday" id="Birthday" v-model="userInfo.Birthday">
                                         </div>
+                                        <br />
                                         <div class="gender">
                                             <label for="Gender">性別：</label>
                                             <select name="Gender" v-model="userInfo.Gender">
@@ -99,11 +101,13 @@
                                             <input type="tel" id="Phone" name="Phone" v-model:text="userInfo.Phone"
                                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
                                         </div>
+                                        <br />
                                         <div class="email-area">
                                             <label for="Email">電子信箱：</label>
                                             <input type="email" name="Email" id="Email" class="email" v-model:text="userInfo.Email" maxlength="50"
-                                                   col="13">
+                                                   >
                                         </div>
+                                        <br />
                                         <div class="btn-area" style="display: block;">
                                             <button type="button" class="center-btn" v-on:click="infoEdit">修改</button>
                                         </div>
@@ -117,10 +121,12 @@
                                         <label for="OrgPwd">舊密碼:</label>
                                         <input type="password" name="OrgPwd" id="OrgPwd" v-model:text="pwd.OrgPwd">
                                     </div>
+                                    <br />
                                     <div class="new-pwd">
                                         <label for="NewPwd">新密碼:</label>
                                         <input type="password" name="NewPwd" id="NewPwd" v-model:text="pwd.NewPwd">
                                     </div>
+                                    <br />
                                     <div class="Cfm-pwd">
                                         <label for="CfmPwd">確認密碼:</label>
                                         <input type="password" name="CfmPwd" id="CfmPwd" v-on:keyup="checkPwd()">
@@ -164,6 +170,7 @@
                                         <input type="radio" id="married" name="Merrage" value="married" v-model="adopterInfo.Merrage">
                                         <label for="已婚">已婚</label>
                                     </div>
+                                    <br />
                                     <div class="other-pets">
                                         <label for="OtherPets">同時飼養寵物：</label>
                                         <select name="OtherPets" id="OtherPets" v-model="adopterInfo.OtherPets">

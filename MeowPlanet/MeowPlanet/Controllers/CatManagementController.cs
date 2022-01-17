@@ -44,7 +44,7 @@ namespace MeowPlanet.Controllers
             var cat = await(from a in _dbcontext.Cats
                             where a.UserId == userId  && a.IsDeleted == 1
                             select a).ToListAsync();
-            if (cat == null)
+            if (cat.Count() == 0)
             {
                 return View("AddCat");
             }

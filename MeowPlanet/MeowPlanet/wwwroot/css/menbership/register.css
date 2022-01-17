@@ -8,14 +8,19 @@
     padding: 1rem 5rem 1rem 3rem;
     text-align: center;    
 }
-.left-area img{
-    margin: 0;
+.outimg-area {
+    margin: auto;
+    margin-top: 3rem;
     width: 500px;
+}
+.left-area img {
+    margin: 0;
+    width: 100%;
 }
 .right-area {
     background-color: #fbd06e;
     width: 50%;
-    padding: 1rem 5rem 1rem 3rem;
+    padding: 5rem;
 }
 .register-area{
     margin: auto;

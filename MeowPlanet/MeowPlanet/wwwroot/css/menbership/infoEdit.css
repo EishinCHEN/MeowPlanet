@@ -95,12 +95,15 @@ li:hover, li a:hover, .menu-icon:hover{
     padding: 4px 0px 4px 10px;
     font-weight: 500;
 }
-
+.user-detail {
+    margin: auto;
+    width: 80%;
+}
 .form-area {
     background-color: #FEF2CB;
     margin: 0;
-    padding: 1rem;
-    padding-top: 40px;
+    width: 100%;
+    padding: 40px;
     position: relative;
 }
 
@@ -108,8 +111,7 @@ form{
     width: 100%;
     margin: 0;
 }
-
-.user-detail div{
+.user-detail div {
     display: inline-block;
 }
 .photo-selector{
@@ -171,28 +173,31 @@ input[disabled]{
 .password{
     width: 220px;
 }
-.email {
-    width: 355px;
+#Email {
+    width: 100%;
 }
-.required-area div{
+.email-area{
+    width: 80%;
+}
+.required-area div {
     padding: 2px;
 }
 .checkbox{
     display: block;
 }
-.center-btn{
+.center-btn {
     border: 0;
     padding: 5px 10px;
     background-color: #DA8952;
     border-radius: 10%;
-    color:#fff;
-    display:block;
-    margin: 0 auto;
+    color: #fff;
+    display: block;
+    margin: 1rem auto 0 auto;
 }
 /* .center-btn:hover{
     
 } */
-.user-info{
+.user-info {
     width: 100%;
     padding: 0;
     color: #da8952;

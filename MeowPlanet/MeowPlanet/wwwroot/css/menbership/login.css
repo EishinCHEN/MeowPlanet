@@ -2,29 +2,33 @@
     font-family: 'Noto Sans TC', sans-serif;
     color: #DA8952;
 }
-.left-area{
+.left-area {
     background-color: #cae4ba;
     width: 50%;
     height: 1080px;
-    padding: 1rem 5rem;
-    text-align: center;    
+    padding: 5rem 5rem;
+    text-align: center;
+    display: flex;
 }
-.left-area img{
-    margin: 0;
+.img-area{
     width: 500px;
+}
+.left-area img {
+    margin: 0;
+    width: 100%;
 }
 .right-area {
     background-color: #fbd06e;
     width: 50%;
     height: 1080px;
-    padding: 1rem 5rem;
+    padding: 5rem 5rem;
 }
 .login-area{
     margin: auto;
     width: 80%;
     background-color: #fef2cb;
     border-radius: 3%;
-    padding: 3rem 3rem 1rem 3rem ;
+    padding: 4rem 5rem 3rem 5rem ;
 }
 form{
     color: #da8952;
@@ -40,6 +44,9 @@ input{
     border: 1px solid #DA8952;
     border-radius: 5px;
     background-color: #fef2cb;
+}
+p{
+   padding-bottom:0.7rem;
 }
 .forget-password{
     text-align: right;
@@ -97,11 +104,12 @@ input{
     width: 25px;
     border-radius: 50%;
 }
-.rigistar-area{
+.rigistar-area {
     display: flex;
     justify-content: center;
     margin: 1rem;
     color: #fff;
+    margin-top: 2rem;
 }
 .rigistar-area .register{
     background-color: #da8952;
