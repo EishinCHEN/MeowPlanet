@@ -1,0 +1,95 @@
+﻿@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+* {
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 48px;
+    background-color: #FEF2CB;
+}
+
+.container {
+    width: 75vw;
+    height: 80vh;
+    margin: auto;
+    background-color: #fff;
+    padding: 1rem 3rem;
+    margin-top: 5vh;
+    border-radius: 15px;
+    color: #DA8952;
+    display: flex;
+}
+
+.area-pic {
+    width: 40%;
+    flex: 5 1 auto;
+    padding: 10px;
+    margin-top: 10vh;
+    margin-right: 3vw;
+    text-align: center;
+}
+
+.area-content {
+    width: 60%;
+    flex: 5 1 auto;
+}
+
+.title {
+    background: #FEF2CB;
+    color: #DA8952;
+    font-weight: unset;
+    padding: 3%;
+    margin-right: 2%;
+}
+
+.meow-pic {
+    padding: 10px;
+    width: 70%;
+}
+
+.meow-pic-small {
+    width: 20%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.area-top {
+    display: flex;
+    font-size: 1.5em;
+    justify-content: space-evenly;
+}
+
+    .area-top button {
+        border-radius: 50%;
+        padding: 5%;
+    }
+
+.area-bottom {
+    display: flex;
+    font-size: 1.5em;
+    justify-content: space-around;
+}
+
+    .area-bottom button {
+        background: #DA8952;
+        border-radius: 10px;
+        color: white;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+.userPhoto {
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+}
