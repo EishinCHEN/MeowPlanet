@@ -1,20 +1,34 @@
 ﻿using MeowPlanet.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MeowPlanet.Hubs;
+using Microsoft.AspNetCore.Http;
+using Imgur.API;
+using Imgur.API.Authentication;
+using System.Net.Http;
+using Imgur.API.Endpoints;
+using Imgur.API.Models;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace MeowPlanet.Controllers
 {
     public class MeowChatController : Controller
     {
         private MeowContext _meowContext { get; }
-        public MeowChatController(MeowContext meowContext)
+        private IHubContext<ChatHub> _hubContext { get; }
+        private IHttpClientFactory _httpClient { get; }
+        public MeowChatController(MeowContext meowContext, IHubContext<ChatHub> hubContext, IHttpClientFactory httpClient)
         {
             _meowContext = meowContext;
+            _hubContext = hubContext;
+            _httpClient = httpClient;
         }
 
         [Authorize]
@@ -96,10 +110,11 @@ namespace MeowPlanet.Controllers
             var senderlist = await _meowContext.ChatLists
                 .Where(u => (u.Sender == sender && u.Receiver == receiver)
                         || (u.Sender == receiver && u.Receiver == sender))
+                .OrderBy(u => u.SendTime)
                 .ToListAsync();
 
             //把所有歷史訊息的sendtime換成台北時間
-            senderlist.ForEach(t => t.SendTime = TimeZoneInfo.ConvertTimeFromUtc(t.SendTime, TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time")));
+            //senderlist.ForEach(t => t.SendTime = TimeZoneInfo.ConvertTimeFromUtc(t.SendTime, TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time")));
 
             if (senderlist == null || senderlist.Count() == 0)
             {
@@ -136,7 +151,7 @@ namespace MeowPlanet.Controllers
                     .FirstOrDefault();
 
                 //把sendtime換成台北時間
-                returnData.LastMessage.SendTime = TimeZoneInfo.ConvertTimeFromUtc(returnData.LastMessage.SendTime, TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time"));
+                //returnData.LastMessage.SendTime = TimeZoneInfo.ConvertTimeFromUtc(returnData.LastMessage.SendTime, TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time"));
 
                 //取出Sender是對方同時訊息尚未讀取的數量
                 returnData.UnRead = historyMessageList
@@ -174,6 +189,23 @@ namespace MeowPlanet.Controllers
             return result;
         }
 
+        [HttpPost]
+        public async Task<bool> SendImage(ChatList newImage)
+        {
+            var result = false;
+            var link = await UploadImageToImgur(newImage.ImageToUpload);
+            newImage.Image = link;
+            newImage.IsRead = false;
+            _meowContext.ChatLists.Add(newImage);
+            if(await _meowContext.SaveChangesAsync() > 0)
+            {
+                await _hubContext.Clients.User(newImage.Receiver.ToString()).SendAsync("ReceiveImage", newImage.Receiver, newImage.Sender, newImage.SendTime, newImage.Image);
+                await _hubContext.Clients.User(newImage.Sender.ToString()).SendAsync("ReceiveImage", newImage.Receiver, newImage.Sender, newImage.SendTime, newImage.Image);
+                result = true;
+            }
+            return result;
+        }
+
         private void DetachAllContextChanges()
         {
             _meowContext.ChangeTracker.DetectChanges();
@@ -184,7 +216,32 @@ namespace MeowPlanet.Controllers
 
             _meowContext.ChangeTracker.DetectChanges();
             //Console.WriteLine("Context追蹤變更取消後:");
-            //Console.WriteLine(_meowContext.ChangeTracker.DebugView.ShortView);
+            //Console.WriteLine(_meowContext.ChangeTracker.DebugView.ShortView);            
+        }    
+
+        private async Task<string> UploadImageToImgur(string DataUrl)
+        {
+            var apiClient = new ApiClient("82b2c70fb52995a", "36cf42cb8bed7b1b884585b642e24190441b1261");
+            var httpClient = _httpClient.CreateClient();
+            var oAuth2EndPoint = new OAuth2Endpoint(apiClient, httpClient);
+
+            var token = new OAuth2Token
+            {
+                AccessToken = "cc4ebfcfa1b708bcbf00d6098bfae02fe1d320ba",
+                RefreshToken = "af91b03b36c2746e654e1519d61075c187d39a7d",
+                AccountId = 158997113,
+                AccountUsername = "LaiWenRu",
+                ExpiresIn = 315360000,
+                TokenType = "bearer"
+            };
+
+            apiClient.SetOAuth2Token(token);
+            
+            var imageEndPoint = new ImageEndpoint(apiClient, httpClient);
+            var imageBase64 = Regex.Match(DataUrl, @"data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
+            var imageStream = (new MemoryStream(Convert.FromBase64String(imageBase64)));
+            var imageUpload = await imageEndPoint.UploadImageAsync(imageStream);
+            return imageUpload.Link;
         }
 
     }
