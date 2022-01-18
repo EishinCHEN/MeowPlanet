@@ -463,6 +463,15 @@
                     this.FilterData["City"] = "";
                     this.FilterData["PublishedDay"] = "";
                 },
+
+                deleteconfirm() {
+                    if (window.confirm("是否確定刪除?")) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                },
                 goforcat() { /*等待連接到其他頁面*/ },
 
                 //感覺要寫成前端暫存 不然重複按就重複寫入
@@ -487,27 +496,33 @@
                     );
                 },
                 //感覺要寫成前端暫存 不然重複按就重複寫入
-                 CancelCollect(a) {
-                     useVue.CollectData.Cat_ID = a.catId;
-                     alert(useVue.CollectData.Cat_ID);
-                     a.isDeleted = 1;
-                     $.ajax(
-                        {
-                            type: 'POST',       //路由  後面是控制器
-                            url: "@Url.Action("DeleteCollect", "CatPlanetInhabitants")/",
-                            beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                            },
-                            data: this.CollectData,
-                            success: function (qryResult, status, xhr) {
-                                console.log(qryResult);
-                                useVue.test = qryResult;
-                                console.log(useVue.test);
-                            }
-                        }
-                    );
-                },
+                CancelCollect(a) {
+                    if (this.deleteconfirm()) {
+                        alert("刪除")
 
+                        useVue.CollectData.Cat_ID = a.catId;
+                        alert(useVue.CollectData.Cat_ID);
+                        a.isDeleted = 1;
+                        $.ajax(
+                            {
+                                type: 'POST',       //路由  後面是控制器
+                                url: "@Url.Action("DeleteCollect", "CatPlanetInhabitants")/",
+                                beforeSend: function (xhr) {
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                },
+                                data: this.CollectData,
+                                success: function (qryResult, status, xhr) {
+                                    console.log(qryResult);
+                                    useVue.test = qryResult;
+                                    console.log(useVue.test);
+                                }
+                            }
+                        );
+                    }
+                    else {
+                        alert("取消");
+                    }
+                },
                 flygo() {
                     //console.log(this.FilterData)
                     //console.log(useVue.RealName)
