@@ -4,6 +4,19 @@
 html {
     background-color: #FEF2CB;
 }
+.cata-book-upper-area {
+    border: 3px solid #cae4ba;
+    background-color: #fff;
+    border-radius: 30px;
+    margin-bottom: 5rem;
+}
+    .cata-book-upper-area ol{
+       margin-left: 3rem;
+    }
+    .inner-pagaraph {
+        margin: 2rem auto;
+        width: 80%;
+    }
 .encyclopedia-main-area {
     color: #FEF2CB;
     position: relative;
@@ -16,12 +29,16 @@ html {
 }
 
 .encyclopedia-title-area {
-    background-color: #DA8952;
+    background-color: #cae4ba;
     border-radius: 5px;
-    color: #fff;
+    margin-top: 2rem;
+    width: 20%;
 }
-    .encyclopedia-title-area p{
+    .encyclopedia-title-area p {
+        margin-left: 10px;
         padding: 5px;
+        color: #fff;
+        font-size: 16px;
     }
 
     .encyclopedia-path-area {
@@ -33,14 +50,14 @@ html {
         justify-content: center;
     }
 
-    .encyclopedia-path-area div {
-        width: 70px;
-        padding: 5px;
-        display: inline-block;
-        border: 2px solid #DA8952;
-        background-color: #DA8952;
-        border-radius: 5px 5px 0 0;
-    } 
+        .encyclopedia-path-area div {
+            width: 70px;
+            padding: 5px;
+            display: inline-block;
+            border: 2px solid #cae4ba;
+            background-color: #cae4ba;
+            border-radius: 5px 5px 0 0;
+        } 
 
 .encyclopedia-path-area p {
     padding: 0px;
@@ -50,13 +67,14 @@ html {
 }
 
 .encyclopedia-artical-area {
-    border: 3px solid #DA8952;
+    border: 3px solid #cae4ba;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 30px;
     color: #65615E;
-    ;
 }
-
+.encyclopedia-path {
+    cursor: pointer;
+}
 .encyclopedia-cat {
     padding: 1rem;
     width: 80%;
@@ -73,15 +91,21 @@ html {
     }
 
 .encyclopedia-right-img img {
-    position: absolute;
+    position: fixed;
     right: 0;
-    top: 0;
+    top: 140px;
     width: 150px;
 }
 
 .encyclopedia-left-img img {
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 150px;
+}
+@media screen and (max-width: 800px){
+    .encyclopedia-title-area {
+        
+        width: 100%;
+    }
 }

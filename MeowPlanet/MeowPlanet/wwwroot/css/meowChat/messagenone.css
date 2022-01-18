@@ -166,10 +166,14 @@ body {
     background-color: #DA8952;
     color: white;
     border: none;
+    text-decoration: none;
 }
-
-@media screen and (max-width: 800px) {
-    .container {
+    .btn-to-add:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+    @media screen and (max-width: 800px) {
+        .container {
         width: 100%;
         height: 100%;
         background-color: #E5EFE1;
