@@ -96,25 +96,32 @@ namespace MeowPlanet.Controllers
         [ProducesAttribute("application/json")]
         [Consumes("application/x-www-form-urlencoded")]
         //  public List<Models.Cat> catjson([FromBody]Models.Cat Delivery)//師改的
-        public List<Models.Cat> Delete(IFormCollection Collectparameter)
+        public string Delete(IFormCollection Collectparameter)
         {
             Console.WriteLine("Account:" + Collectparameter["Cat_ID"]);
             Console.WriteLine("Account:" + Collectparameter["User_ID"]);
+            var msg = "";
             // 將前端回傳的資料轉換為符合資料庫的型別
             int CAT_ID = Int32.Parse(Collectparameter["Cat_ID"]);
             int USER_ID = Int32.Parse(Collectparameter["User_ID"]);
-            var deletelist = _dbContext.CollectionLists.Where(s => s.CatId == CAT_ID && s.UserId == USER_ID).SingleOrDefault();
-            if (deletelist != null)
+            var deletelist = _dbContext.CollectionLists.Where(s => s.CatId == CAT_ID && s.UserId == USER_ID).SingleOrDefault(); 
+            if (deletelist == null)
+            {
+                
+                msg = "查無此資料";
+            }
+            else
             {
                 _dbContext.CollectionLists.Remove((CollectionList)deletelist);
                 _dbContext.SaveChanges();
+                msg = "成功刪除";
             }
 
-            _dbContext.SaveChanges();
-            var query = _dbContext.Cats.AsQueryable();
-            List<Models.Cat> datacat777 = query.ToList<Models.Cat>();
-            Console.WriteLine(datacat777.Count);
-            return datacat777;
+            //_dbContext.SaveChanges();
+            //var query = _dbContext.Cats.AsQueryable();
+            //List<Models.Cat> datacat777 = query.ToList<Models.Cat>();
+            //Console.WriteLine(datacat777.Count);
+            return msg;
         }
 
         //接收前端Cat_ID跟User_ID寫入刪除收藏清單資料到後端
