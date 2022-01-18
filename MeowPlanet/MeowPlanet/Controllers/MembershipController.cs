@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace MeowPlanet.Controllers
 {
+    [Authorize]
     public class MembershipController : Controller
     {
         private Models.MeowContext _dbcontext;
@@ -23,8 +24,7 @@ namespace MeowPlanet.Controllers
             this._webHostEnvironment = _hostEnvironment;
         }
 
-
-        [Authorize]          //限定已登入的使用者才能瀏覽
+        //限定已登入的使用者才能瀏覽
         public async Task<IActionResult> Editor()
         {
             var claims = HttpContext.User;
@@ -317,7 +317,18 @@ namespace MeowPlanet.Controllers
 
         public IActionResult Sender()
         {
-            return View();
+            var claims = HttpContext.User;
+            var ID = Convert.ToInt32(claims.Identity.Name);
+            var role = claims.IsInRole("CatSender");
+            
+            if (role == false)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("ManageCat", "CatManagement");
+            }
         }
         public IActionResult SenderConfirm()
         {
@@ -365,7 +376,7 @@ namespace MeowPlanet.Controllers
                     Time = DateTime.Now
                 };
             }
-            return RedirectToAction("AddCat","CatManagement");
+            return RedirectToAction("ManageCat", "CatManagement");
         }
     }
 }

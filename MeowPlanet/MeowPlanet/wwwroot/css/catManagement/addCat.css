@@ -1,10 +1,13 @@
 ﻿* {
     font-family: 'Noto Sans TC', sans-serif;
     color: #DA8952;
+    font-size: 14px;
 }
-
+body {
+    background-color: #E5EFE1;
+}
 .bgc {
-    background-color: #cae4ba;
+    background-color: #E5EFE1;
     padding: 3rem;
 }
 
@@ -13,7 +16,7 @@
     margin: auto; /* 背景色置中*/
     background-color: #fff;
     padding: 3rem;
-    border-radius: 3%;
+    border-radius: 10px;
 }
 /* 處理menu選單 */
 .menu {
@@ -89,16 +92,19 @@ li {
 }
 /* 使用者詳細資料表單 */
 .mainarea {
-    width: 100%;
+    width: 80%;
     margin: 0;
 }
-
+.user-info{
+    width: 80%;
+    padding-left: 2rem;
+}
 .user-detail div {
     display: inline-block;
 }
 
 .user-info {
-    width: 100%;
+    width: 80%;
     margin: auto;
     display: flex;
     justify-content: center;
@@ -108,7 +114,10 @@ li {
     .user-info div {
         display: inline-block;
     }
-
+.area-title{
+    margin: auto;
+    width: 80%;
+}
 .center {
     text-align: center;
     margin-top: 1rem;
@@ -153,4 +162,7 @@ li {
     .menu {
         display: none; /*手機&平板不顯示menu選單 */
     }
+}
+body {
+    background-color: #E5EFE1;
 }

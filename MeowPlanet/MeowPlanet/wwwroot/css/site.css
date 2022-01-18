@@ -7,9 +7,6 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
     font-family: 'Noto Sans Tc',sans-serif;
     color: #65615E;
 }
@@ -23,11 +20,6 @@
     src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
 }
 
-html {
-    background: var(--bg);
-}
-
-
 
 /* 導覽列 */
 .wrapper {
@@ -37,6 +29,10 @@ html {
     grid-template-columns: 1fr 1fr 650px 1fr 1fr 1fr;
     grid-auto-rows: 130px;
     position: fixed;
+    background: var(--bg);
+    box-sizing: border-box;
+    outline: none;
+    border: none;
 }
 
     .wrapper a {
@@ -80,6 +76,7 @@ html {
     color: #ffffff;
     text-decoration: underline;
     font-weight: bold;
+    border: none;
 }
 
 .dropdown-content {
@@ -118,52 +115,4 @@ html {
 
 
 
-/* 副標題 */
-.logo2 {
-    display: grid;
-    background: var(--bg);
-    grid-auto-rows: 120px 40px;
-}
 
-    .logo2 img {
-        width: 220px;
-        height: 50px;
-        display: block;
-        margin: auto;
-    }
-
-
-/* 下半部 */
-.wrapper2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    overflow: hidden;
-    grid-auto-rows: 25.9375em;
-    background: var(--bg);
-}
-
-/* 選擇花色 */
-.pic {
-    background: var(--ph);
-    margin: 0 55px;
-    position: absolute;
-    top: 1.25em;
-}
-
-    .pic img {
-        height: 24.6875em;
-        width: 31.25em;
-        background-position: bottom;
-    }
-
-/* 測驗 */
-.test {
-    position: absolute;
-    left: 53%;
-    top: 28%;
-}
-
-    .test img {
-        height: 90%;
-        width: 90%;
-    }

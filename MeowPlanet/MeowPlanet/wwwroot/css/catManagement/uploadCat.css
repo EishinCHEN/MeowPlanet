@@ -1,19 +1,23 @@
 ﻿* {
     font-family: 'Noto Sans TC', sans-serif;
     color: #DA8952;
+    font-size: 14px;
 }
-
+body {
+    background-color: #E5EFE1;
+}
 .bgc {
-    background-color: #cae4ba;
+    background-color: #E5EFE1;
     padding: 3rem;
 }
 
 .container {
-    width: 70%;
+    width: 75%;
     margin: auto; /* 背景色置中*/
     background-color: #fff;
     padding: 3rem;
-    border-radius: 3%;
+    padding-top: 48px;
+    border-radius: 10px;
 }
 /* 處理menu選單 */
 .menu {
@@ -89,7 +93,7 @@ li {
 }
 /* 使用者詳細資料表單 */
 .cat-info {
-    width: 100%;
+    width: 80%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -99,6 +103,9 @@ li {
 
 .center {
     padding-top: 10px;
+    padding-left: 40px;
+}
+form {
     display: flex;
     flex-direction: row;
 }
@@ -108,7 +115,7 @@ li {
 }
 .info-area{
     width: 69%;
-    padding-left: 5px;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -121,8 +128,18 @@ li {
 .pic-area input{
     display: none;
 }
+.big {
+    border: 1px solid #DA8952;
+    width: 150px;
+    height: 150px;
+}
 .big img{
     width: 150px;
+}
+.s-1 {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
 }
 .small img {
     width: 50px;
