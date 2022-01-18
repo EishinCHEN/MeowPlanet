@@ -247,7 +247,7 @@ html,
 
 .input-area {
     width: 100%;
-    height: 45px;
+    height: 35px;
     display: inline-flex;
     align-items: center;
     justify-content: space-around;
@@ -255,7 +255,7 @@ html,
 
 .text-input {
     width: 80%;
-    height: 40px;
+    height: 30px;
     font-size: 16px;
     border: none;
     outline: none;
@@ -265,7 +265,7 @@ html,
 }
 
 .recipient-name {
-    width: 60%;
+    width: 70%;
     padding-left: 10px;
     font-weight: 500;
     font-size: 15px;
