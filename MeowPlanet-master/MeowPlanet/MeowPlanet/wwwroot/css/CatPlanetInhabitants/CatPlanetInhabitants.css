@@ -152,6 +152,15 @@ body {
     position:relative;
     left:4.5vw;
 }
+.collectHeart {
+    height: 2.5vw;
+    width: 2.5vw;
+}
+.cancelcollectHeart {
+    height: 2.5vw;
+    width: 2.5vw;
+}
+
 .listblock2down {
     font-size: 1vw;
     position: relative;

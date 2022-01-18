@@ -136,6 +136,9 @@
                                             <br />
                                         </div>
                                         <div class="listblock2topRight">
+
+                                            <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.isDeleted==1" v-on:click="Gocollect(cus)" class="collectHeart" />
+                                            <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.isDeleted==0" v-on:click="CancelCollect(cus)" class="cancelcollectHeart" />
                                             <button v-if="cus.isDeleted==1" v-on:click="Gocollect(cus)" class="goforcat">收藏居民</button> @*傳送收藏的catID回後端*@
                                             <button v-if="cus.isDeleted==0" v-on:click="CancelCollect(cus)" class="goforcat">取消收藏</button>
                                         </div>
