@@ -35,7 +35,7 @@
             <button class="week-change-button-left" type="button" onclick="location.href='@Url.Action("CatDailySecond","CatDaily")'"><i class="bi bi-caret-left-fill"></i>第2週</button>
         </div>
         <div class="messageboard">
-            <div class="fb-comments" data-href="https://localhost:5001/" data-width="100%" data-numposts="1"></div>
+            <div class="fb-comments" data-href="https://graph.facebook.com/v2.6/?fields=og_object{comments}&id=https://localhost:5001/CatDaily/CatDailyFirst&access_token=accessToken" data-width="100%" data-numposts="1"></div>
             <div id="fb-root"></div>
         </div>
     </div>
@@ -44,28 +44,11 @@
 @section Scripts{
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v12.0&appId=593096588590028&autoLogAppEvents=1" nonce="Kks4rvZL"></script>
 }
-
-    @*<body>
-            <div class="bgc1">
-                <div class="containe1">
-                    <div class="row">
-                        <div class="col-2">
-                            <img class="myimg1" src="~/images/橘色/圓形飛船貓-橘色.png">
-                        </div>
-                        <div class="col-8">
-                            <div class="containe2">
-                                <hgroup class="speech-bubble">
-                                    <h3 class="h1">本週:第一週!!</h3>
-                                    <h10>你知道嗎?食物中的某些成分會成為導致貓咪過敏!!</h10>
-                                </hgroup>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="button" value="第二週" class="b1" onclick="location.href='https://localhost:44395/CatDaily/CatDaily2'">
-                    <div class="fb-comments" data-href="https://localhost:44395/" data-width="100%" data-numposts="1"></div>
-                </div>
-            </div>
-        </body>
-        <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v12.0&appId=593096588590028&autoLogAppEvents=1" nonce="Kks4rvZL"></script>*@
+<script>
+    FB.getLoginStatus(function (response) {
+        if (response.status === 'connected') {
+            var accessToken = response.authResponse.accessToken;
+        }
+    });
+</script>
 
