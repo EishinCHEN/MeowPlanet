@@ -6,6 +6,9 @@
 html {
     background-color: #E5EFE1;
 }
+.row {
+    height: 60vh;
+}
 .bgc {
     background-color: #E5EFE1;
     padding: 3rem;
