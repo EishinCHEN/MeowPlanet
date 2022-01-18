@@ -44,16 +44,31 @@ namespace MeowPlanet.Controllers
         public List<Models.CatFilterList> CatFilter(IFormCollection Delivery4)
         {
             Console.WriteLine("Account:" + Delivery4["CatColor"]);
+            Console.WriteLine("Account:" + Delivery4["City"]);
+            var claims = HttpContext.User;
+            var ID = Convert.ToInt32(claims.Identity.Name);
+
             var kj = from w in _dbContext.CollectionLists
-                     where w.UserId == 6
+                     where w.UserId == ID
                      select new CatFilterList {
                          UserId =  w.UserId.ToString(),
                          CatId = w.CatId,
                      };
 
+            var jj = from e in _dbContext.Cats 
+                     select e;
+
+            if (!string.IsNullOrEmpty(Delivery4["City"]))
+            {
+                jj = jj.Where(x => x.City == Delivery4["City"].ToString());
+            }
+
+
+         //   where e.City == "新北市" ??
+
             //SQL left join 在 Linq的寫法
-            //??運算子不可用int
-            var join = (IQueryable<CatFilterList>)(from j in _dbContext.Cats
+            //??運算子好像不可搭配int使用?
+            var join = (IQueryable<CatFilterList>)(from j in jj
                                                    join k in kj on j.CatId equals k.CatId into we
                                                    from f in we.DefaultIfEmpty()
                                                    select new CatFilterList
@@ -136,8 +151,8 @@ namespace MeowPlanet.Controllers
         //  public List<Models.Cat> catjson([FromBody]Models.Cat Delivery)//師改的
         public string Delete(IFormCollection Collectparameter)
         {
-            Console.WriteLine("Account:" + Collectparameter["Cat_ID"]);
-            Console.WriteLine("Account:" + Collectparameter["User_ID"]);
+            Console.WriteLine("ount:" + Collectparameter["Cat_ID"]);
+            Console.WriteLine("ount:" + Collectparameter["User_ID"]);
             var msg = "";
             // 將前端回傳的資料轉換為符合資料庫的型別
             int CAT_ID = Int32.Parse(Collectparameter["Cat_ID"]);
@@ -170,8 +185,8 @@ namespace MeowPlanet.Controllers
         //  public List<Models.Cat> catjson([FromBody]Models.Cat Delivery)//師改的
         public List<Models.Cat> Create(IFormCollection Deleteparameter)
         {
-            Console.WriteLine("Account:" + Deleteparameter["Cat_ID"]);
-            Console.WriteLine("Account:" + Deleteparameter["User_ID"]);
+            Console.WriteLine("Accot:" + Deleteparameter["Cat_ID"]);
+            Console.WriteLine("Accou:" + Deleteparameter["User_ID"]);
             // 將前端回傳的資料轉換為符合資料庫的型別
             int CAT_ID = Int32.Parse(Deleteparameter["Cat_ID"]);
             int USER_ID = Int32.Parse(Deleteparameter["User_ID"]);
