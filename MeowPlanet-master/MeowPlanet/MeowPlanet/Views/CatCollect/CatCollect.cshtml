@@ -170,26 +170,44 @@
                         }
                     );
                 },
+                deletecheck() {
+                    if (window.confirm("是否確定取消收藏?")) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                },
                 CancelCollect(a) {
-                    useVue.CollectData.Cat_ID = a.catId;
-                    alert("確定刪除嗎?");
-                     alert(useVue.CollectData.Cat_ID);
-                     a.isDeleted = 3;
-                     $.ajax(
-                        {
-                            type: 'POST',       //路由  後面是控制器
-                            url: "@Url.Action("DeleteCollect", "CatPlanetInhabitants")/",
-                            beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                            },
-                            data: this.CollectData,
-                            success: function (qryResult, status, xhr) {
-                                console.log(qryResult);
-                                useVue.test = qryResult;
-                                console.log(useVue.test);
-                            }
-                        }
-                    );
+                    if (this.deletecheck()) {
+                            useVue.CollectData.Cat_ID = a.catId;
+                            alert("確定刪除嗎?");
+                             alert(useVue.CollectData.Cat_ID);
+                             
+                             $.ajax(
+                                {
+                                    type: 'POST',       //路由  後面是控制器
+                                    url: "@Url.Action("DeleteCollect", "CatPlanetInhabitants")/",
+                                    beforeSend: function (xhr) {
+                                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                    },
+                                    data: this.CollectData,
+                                    success: function (qryResult, status, xhr) {
+                                        console.log(qryResult);
+                                        useVue.test = qryResult;
+                                        console.log(useVue.test);
+                                        alert(qryResult);
+                                     },
+                                     error: function () {
+                                         alert("連線失敗");
+                                     }
+                                }
+                            );
+                             a.isDeleted = 3;
+                    }
+                     else {
+                        alert("取消收藏失敗");
+                    }
                 },
                 closethisList(a) {
                     a.isDeleted = 3;

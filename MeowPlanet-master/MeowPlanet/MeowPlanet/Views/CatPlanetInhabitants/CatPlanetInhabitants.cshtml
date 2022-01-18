@@ -500,7 +500,7 @@
                     if (this.deletecheck()) {
                         useVue.CollectData.Cat_ID = a.catId;
                         alert(useVue.CollectData.Cat_ID);
-                        a.isDeleted = 1;
+                        
                         $.ajax(
                             {
                                 type: 'POST',       //路由  後面是控制器
@@ -518,9 +518,9 @@
                                 error: function () {
                                     alert("連線失敗");
                                 }
-                                
                             }
                         );
+                        a.isDeleted = 1;
                     }
                     else {
                         alert("取消收藏失敗");
