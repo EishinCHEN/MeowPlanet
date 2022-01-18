@@ -43,7 +43,7 @@
                         <div class="chaticon" id="chaticon">
                             @*有未讀訊息才會顯示*@
                             <div class="notice" id="chaticon_inside" style="display: none">
-                                <p class="notice-inside">!</p>
+                                <div class="notice-inside">!</div>
                             </div>
                             
                             <button type="button" class="chaticonarea" onclick="location.href='@Url.Action("MessageManage", "MeowChat")'">
@@ -73,7 +73,6 @@
                     for (let i = 0; i < rsp.length; i++) {
                         console.log(rsp[i].unRead);
                         if (rsp[i].unRead != 0) {
-                            alert("!!")
                             document.getElementById("chaticon_inside").style.display = 'inline-block';
 ;
                         }
@@ -83,12 +82,6 @@
                 });
         }
         
-            //if (rsp.unRead == 0) {
-            //    alert("NO MESSAGE")
-            //} else {
-            //    alert("UN READ MESSAGES")
-            //    document.getElementById("chaticon_inside").style.display = 'none';
-            //}
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

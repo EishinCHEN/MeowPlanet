@@ -61,6 +61,10 @@ body {
     font-weight: 600;
 }
 
+.notice-inside{
+    margin-left:10px;
+}
+
 .chatpic {
     width: 110%;
 }
