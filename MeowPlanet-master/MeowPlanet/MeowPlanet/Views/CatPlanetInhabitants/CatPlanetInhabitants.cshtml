@@ -1,6 +1,6 @@
 ﻿<link href="~/css/CatPlanetInhabitants/CatPlanetInhabitants.css" rel="stylesheet" />
 @ViewData["UserID"]接收會員ID;
-
+@ViewData["CatID1"]接收貓咪資訊;
 <body>
     <div id="customers" class="web">
         <a asp-controller="Login" asp-action="Login">跑到登入</a>
@@ -112,7 +112,7 @@
         <div class="medium">
             <div class="medium1">
                 <img src="/images/pageCatPlanetInhabitants/糖果星球-橘色.png" class="medium1-left-img" id="jump" />
-                <div class="medium1-index-img">符合條件的居民：</div>
+                <div class="medium1-index-img">符合條件的居民：</div>  
             </div>
             <img src="/images/pageCatPlanetInhabitants/飛船貓貓-綠色.png" class="medium-right-img" />
         </div>
@@ -139,7 +139,7 @@
 
                                             <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.isDeleted==1" v-on:click="Gocollect(cus)" class="collectHeart" />
                                             <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.isDeleted==0" v-on:click="CancelCollect(cus)" class="cancelcollectHeart" />
-                                            
+
                                         </div>
                                     </div>
                                     <div class="listblock2down">
@@ -397,12 +397,7 @@
     </div>
 </body>
 <script>
-    //jquery的toggle
-    //$(document).ready(function () {
-    //    $(".btn1").click(function () {
-    //        $("a").toggle(1000);
-    //    });
-    //});
+
     var useVue = new Vue(
         {
             el: '#customers',
@@ -500,7 +495,7 @@
                     if (this.deletecheck()) {
                         useVue.CollectData.Cat_ID = a.catId;
                         alert(useVue.CollectData.Cat_ID);
-                        
+
                         $.ajax(
                             {
                                 type: 'POST',       //路由  後面是控制器
@@ -531,7 +526,6 @@
                     //console.log(useVue.RealName)
                     //useVue.buttonShow = 0;/////////////////////////////
                     //useVue.buttonShowbyId = useVue.CollectData.User_ID;
-
                     $.ajax(
                         {
                             type: 'POST',

@@ -18,7 +18,7 @@ namespace MeowPlanet.Controllers
             this._dbContext = _dbContext;
         }
 
-        //預先傳出登入者資訊到前端
+        //預先傳出登入者資訊和已收藏貓咪到前端
         public async Task<IActionResult> CatPlanetInhabitants()
         {
             var claims = HttpContext.User;
@@ -26,6 +26,8 @@ namespace MeowPlanet.Controllers
             var info = await (from a in _dbContext.UserDatas
                               where a.UserId == ID
                               select a).FirstOrDefaultAsync();
+
+            
             ViewData["UserID"] = ID;
             //ViewData["UserID"] = "123";
             var b = ViewData["UserID"];
@@ -34,60 +36,94 @@ namespace MeowPlanet.Controllers
             return View();
         }
 
-
-
-
         [RouteAttribute("/CatPlanetInhabitants/Filter")]
         [HttpPostAttribute]
         [ProducesAttribute("application/json")]
         [Consumes("application/x-www-form-urlencoded")]
         //  public List<Models.Cat> catjson([FromBody]Models.Cat Delivery)//師改的
-        public List<Models.Cat> CatFilter(IFormCollection Delivery4)
+        public List<Models.CatFilterList> CatFilter(IFormCollection Delivery4)
         {
             Console.WriteLine("Account:" + Delivery4["CatColor"]);
-            var query = _dbContext.Cats.AsQueryable();
+            var kj = from w in _dbContext.CollectionLists
+                     where w.UserId == 6
+                     select w;
 
-            if (!string.IsNullOrEmpty(Delivery4["CatColor"]))
-            {
-                query = query.Where(x => x.CatColor == Delivery4["CatColor"].ToString());
-            }
-
-            if (!string.IsNullOrEmpty(Delivery4["Ligation"]))
-            {
-                query = query.Where(x => x.Ligation == Delivery4["Ligation"].ToString());
-            }
-
-            if (!string.IsNullOrEmpty(Delivery4["Age"]))
-            {
-                query = query.Where(x => x.Age == Delivery4["Age"].ToString());
-            }
-
-            if (!string.IsNullOrEmpty(Delivery4["Vaccine"]))
-            {
-                query = query.Where(x => x.Vaccine == Delivery4["Vaccine"].ToString());
-            }
-
-            if (!string.IsNullOrEmpty(Delivery4["City"]))
-            {
-                query = query.Where(x => x.City == Delivery4["City"].ToString());
-            }
-
-            if (!string.IsNullOrEmpty(Delivery4["Country"]))
-            {
-                query = query.Where(x => x.Country == Delivery4["Country"].ToString());
-            }
-
-            if (!string.IsNullOrEmpty(Delivery4["CatGender"]))
-            {
-                query = query.Where(x => x.CatGender.ToString() == Delivery4["CatGender"].ToString());
-            }
-
-            //---------------------------老方法------------------------------------
-
-            //--------------------------老方法--------------------------------------
-            List<Models.Cat> datacat777 = query.ToList<Models.Cat>();
+            //var join = (IQueryable<CollectionListJoinCat>)(from j in _dbContext.Cats
+            //                                               join k in kj
+            //                                               on j.CatId equals k.CatId
+            var join = (IQueryable<CatFilterList>)(from j in _dbContext.Cats
+                       join k in kj on j.CatId equals k.CatId /*into we*/
+                       //from k in we.DefaultIfEmpty()
+                       select new CatFilterList
+                       {
+                           UserId = k.UserId,
+                           CatId = j.CatId,
+                           Image = j.Image,
+                           Name = j.Name,
+                           Age = j.Age,
+                           City = j.City,
+                           Country = j.Country,
+                           IsDeleted = j.IsDeleted
+                       });
+            var t = "123";
+            List<Models.CatFilterList> datacat777 = join.ToList<Models.CatFilterList>();
             Console.WriteLine(datacat777.Count);
             return datacat777;
+
+            //where j.UserId == Int32.Parse(Delivery4["User_ID"])
+            //                                    select new CollectionListJoinCat   /// 這行記得要對應要使用的新表單的model 不能只有new
+            //                                    {
+            //                                        UserId = j.UserId,
+            //                                        CatId = j.CatId,
+            //                                        Name = k.Name,
+            //                                        Age = k.Age,
+            //                                        City = k.City,
+            //                                        Country = k.Country,
+            //                                        IsDeleted = k.IsDeleted
+            //                                    });
+
+            ////-------------原本可以的方法-------------------------------------------------
+            //var query = _dbContext.Cats.AsQueryable();
+
+            //if (!string.IsNullOrEmpty(Delivery4["CatColor"]))
+            //{
+            //    query = query.Where(x => x.CatColor == Delivery4["CatColor"].ToString());
+            //}
+
+            //if (!string.IsNullOrEmpty(Delivery4["Ligation"]))
+            //{
+            //    query = query.Where(x => x.Ligation == Delivery4["Ligation"].ToString());
+            //}
+
+            //if (!string.IsNullOrEmpty(Delivery4["Age"]))
+            //{
+            //    query = query.Where(x => x.Age == Delivery4["Age"].ToString());
+            //}
+
+            //if (!string.IsNullOrEmpty(Delivery4["Vaccine"]))
+            //{
+            //    query = query.Where(x => x.Vaccine == Delivery4["Vaccine"].ToString());
+            //}
+
+            //if (!string.IsNullOrEmpty(Delivery4["City"]))
+            //{
+            //    query = query.Where(x => x.City == Delivery4["City"].ToString());
+            //}
+
+            //if (!string.IsNullOrEmpty(Delivery4["Country"]))
+            //{
+            //    query = query.Where(x => x.Country == Delivery4["Country"].ToString());
+            //}
+
+            //if (!string.IsNullOrEmpty(Delivery4["CatGender"]))
+            //{
+            //    query = query.Where(x => x.CatGender.ToString() == Delivery4["CatGender"].ToString());
+            //}
+
+            //List<Models.Cat> datacat777 = query.ToList<Models.Cat>();
+            //Console.WriteLine(datacat777.Count);
+            //return datacat777;
+            ////--------------------------------原本可以的方法------------------------------------------------
         }
 
         //接收前端Cat_ID跟User_ID寫入新的收藏清單資料到後端
