@@ -202,14 +202,14 @@ html,
 }
 
 .sender-img {
-    max-width: 60%;
+    max-width: 40%;
     border-radius: 10px;
     padding: 10px;
     background-color: #FBD06E;
 }
 
 .recipient-img {
-    max-width: 60%;
+    max-width: 40%;
     border-radius: 10px;
     padding: 10px;
     background-color: #CAE4BA;

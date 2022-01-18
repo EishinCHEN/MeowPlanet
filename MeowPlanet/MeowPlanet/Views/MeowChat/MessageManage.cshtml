@@ -65,7 +65,8 @@
                 </div>
                 <diV class="recipient-area" v-on:click="toMessageContent(item.otherUserId)">
                     <h4 id="recipient-name">{{item.otherUser.realName}}</h4>
-                    <p class="recipient-text">{{item.otherUser.realName}} 說: {{item.lastMessage.message}}</p>
+                    <p v-if="item.lastMessage.message != null" class="recipient-text">{{item.otherUser.realName}}說: {{item.lastMessage.message}}</p>
+                    <p v-if="item.lastMessage.image != null" class="recipient-text">{{item.otherUser.realName}}傳送了一張圖片</p>
                 </diV>
                 <ul class="notice-info">
                     <li class="notice-info-item">

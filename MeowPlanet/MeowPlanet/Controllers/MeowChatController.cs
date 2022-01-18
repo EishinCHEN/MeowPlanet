@@ -244,5 +244,21 @@ namespace MeowPlanet.Controllers
             return imageUpload.Link;
         }
 
+        [HttpPost]
+        public async Task<int> FirstSendMessage(int receiver, string sendtime)
+        {
+            var loginId = Convert.ToInt32(HttpContext.User.Identity.Name);
+            var catsender = receiver;
+            var newmessage = new ChatList();
+            newmessage.Sender = loginId;
+            newmessage.Receiver = catsender;
+            newmessage.SendTime = DateTime.Parse(sendtime);
+            newmessage.Message = "貓咪可愛我最愛!哈囉，我有問題想問你~";
+            newmessage.IsRead = false;
+            _meowContext.ChatLists.Add(newmessage); //將訊息寫入資料庫
+            var result = await _meowContext.SaveChangesAsync();
+            return result;
+        }
+
     }
 }
