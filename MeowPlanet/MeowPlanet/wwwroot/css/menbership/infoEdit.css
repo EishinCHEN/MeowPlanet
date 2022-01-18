@@ -17,6 +17,9 @@
 html {
     background-color: #FEF2CB;
 }
+.row {
+    height: 70vh;
+}
 .bgc{
     background-color: #FEF2CB;
     padding: 3rem;

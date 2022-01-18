@@ -60,8 +60,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
-        
-
         window.onload = function () {
             var rsp = null;
             $.ajax({
@@ -73,7 +71,6 @@
                     for (let i = 0; i < rsp.length; i++) {
                         console.log(rsp[i].unRead);
                         if (rsp[i].unRead != 0) {
-                            alert("!!")
                             document.getElementById("chaticon_inside").style.display = 'inline-block';
 ;
                         }
@@ -82,13 +79,6 @@
                     console.log("連線失敗");
                 });
         }
-        
-            //if (rsp.unRead == 0) {
-            //    alert("NO MESSAGE")
-            //} else {
-            //    alert("UN READ MESSAGES")
-            //    document.getElementById("chaticon_inside").style.display = 'none';
-            //}
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
