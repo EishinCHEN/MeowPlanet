@@ -99,8 +99,8 @@ namespace MeowPlanet.Controllers
                     new AuthenticationProperties
                     {
                         IsPersistent = true,
-                        //ExpiresUtc = DateTime.UtcNow.AddMinutes(20)    //設定登入時限為20分鐘
-                        ExpiresUtc = DateTime.UtcNow.AddDays(1)
+                        ExpiresUtc = DateTime.UtcNow.AddMinutes(20)    //設定登入時限為20分鐘
+                        //ExpiresUtc = DateTime.UtcNow.AddDays(1)
                     }) ;
 
                 Console.WriteLine("會員登入成功");

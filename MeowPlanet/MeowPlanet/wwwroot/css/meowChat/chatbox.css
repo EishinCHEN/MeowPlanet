@@ -14,6 +14,9 @@ body {
     margin: 0;
     padding: 0;
 }*/
+.noshowen {
+    display: none;
+}
 .chatApp_outer {
     display: inline-block;
     position: fixed;

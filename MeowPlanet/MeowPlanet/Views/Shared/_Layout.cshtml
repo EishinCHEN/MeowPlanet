@@ -42,7 +42,7 @@
                     <div id='chatApp'>
                         <div class="chaticon" id="chaticon">
                             @*有未讀訊息才會顯示*@
-                            <div class="notice" id="chaticon_inside">
+                            <div class="notice" id="chaticon_inside" style="display: none">
                                 <p class="notice-inside">!</p>
                             </div>
                             
@@ -72,8 +72,10 @@
                     rsp = response;
                     for (let i = 0; i < rsp.length; i++) {
                         console.log(rsp[i].unRead);
-                        if (rsp[i].unRead === 0) {
-                            document.getElementById("chaticon_inside").style.display = 'none';
+                        if (rsp[i].unRead != 0) {
+                            alert("!!")
+                            document.getElementById("chaticon_inside").style.display = 'inline-block';
+;
                         }
                     }
                 }).fail(function () {

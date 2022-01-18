@@ -42,7 +42,7 @@ namespace MeowPlanet
                     option.LoginPath = new PathString("/Login/Login");              //若使用者未登入則導向至此頁面
                     option.LogoutPath = "/logout/";
                     option.AccessDeniedPath = new PathString("/Membership/Login");       //若使用者沒有權限則導向至此頁面
-                    option.ExpireTimeSpan = TimeSpan.FromMilliseconds(3);                //設定登入時限
+                    option.ExpireTimeSpan = TimeSpan.FromMilliseconds(200);                //設定登入時限
                 }
             );
             services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));     //處理ViewData傳遞中文編碼問題
