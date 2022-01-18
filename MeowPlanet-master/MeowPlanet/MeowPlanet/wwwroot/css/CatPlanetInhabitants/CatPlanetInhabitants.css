@@ -148,15 +148,22 @@ body {
     color: #DA8952;
     font-weight:600;
 }
-.listblock2topRight{
-    position:relative;
-    left:4.5vw;
+.listblock2topLeftName{
+    font-size:1.2vw;
+}
+.listblock2topRight {
+    position: relative;
+    left: 4.5vw;
 }
 .collectHeart {
+    position:relative;
+    left:3vw;
     height: 2.5vw;
     width: 2.5vw;
 }
 .cancelcollectHeart {
+    position: relative;
+    left: 3vw;
     height: 2.5vw;
     width: 2.5vw;
 }
@@ -209,7 +216,7 @@ body {
     border-color: #FEF2CB;
     border-radius: 5px;
     border-style: none;
-    font-size: medium;
+    font-size:1vw;
 }
 
 .turnpage {
