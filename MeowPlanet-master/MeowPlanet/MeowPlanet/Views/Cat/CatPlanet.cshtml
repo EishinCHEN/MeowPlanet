@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "征服喵星人";
+}
+@section Styles{
+    <link href="~/css/CatPlanet/catPlanet.css" rel="stylesheet" />
+
+}
+<div class="container" id="app">
+    <h4>★ 符合條件的居民</h4>
+    <form>
+        <div class="meow-group" v-for="item in cats">
+            <div class="meow-top">
+                <img class="meow-pic" :src="item.image" />
+            </div>
+
+            <div class="meow-bottom">
+
+                <div class="meow-main">
+                    <div class="meow-content">
+                        <p>{{item.name}}</p>
+                        <p>{{item.age}}</p>
+                        <p>{{item.ligation}}</p>
+                        <p>{{item.city+item.country}}</p>
+                    </div>
+
+                    <div class="meow-collection">
+                        @*收藏按鈕*@
+                        <a href="#">❤</a>
+                    </div>
+
+                </div>
+
+                <hr style="height:1px;background-color: #DA8952; " />
+
+                <div class="meow-button">
+                    <button v-on:click="CatDetail(item.catId)">　► ► ►　前往了解居民　</button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            cats:[]
+        },
+            mounted() {
+                var vm = this;
+                axios.get("@Url.Action("getCats", "Cat")")
+                    .then( (res) => {
+                        console.log(res);
+                        vm.cats = res.data;
+                    })
+            },
+        methods: {
+            CatDetail(catId) {
+                axios.get("/Cat/CatDetail/" + catId)
+                    .then((res) => {
+                        if (res.status == 200) {
+                            top.location.href = "/Cat/CatDetail/" + catId;
+                        }
+                })
+            }
+        }
+
+    });
+
+</script>
