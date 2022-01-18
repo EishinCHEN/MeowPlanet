@@ -65,14 +65,7 @@
             <!--管理喵喵區塊-->
             <div class="meow-manage-title">★收藏居民</div>
             @*<form class="form-group">*@
-            <!--喵喵資料-->
-            <!-- <div class="meow-manage-top">
-                <div class="meow-manage-status">
-                    <button type="button" class="btn-status published" v-on:click="publishing">刊登中</button>
-                    <button type="button" class="btn-status sendout" v-on:click="sended">已送養</button>
-                </div>
-                <button asp-controller="CatManagement" asp-action="UploadCat" class="btn-addmeow">＋新增喵星人</button>
-            </div> -->
+
             <div class="meow-manage-inside">
                 <div v-for="n in catcollectlist" class="fakef2">
                     @*<div v-for="n in 16" class="fakef2">*@
@@ -101,7 +94,8 @@
 
                         </div>
                         <div class="transparentBack"></div>
-                        <img src="~/images/收藏過期（有底色).png" class="transparentImage" />
+                        @*<img src="~/images/收藏過期（有底色).png" class="transparentImage" />*@
+                        <img src="~/images/" class="transparentImage" />
                         <div class="transparentText">刪除收藏</div>
                     </div>
 
