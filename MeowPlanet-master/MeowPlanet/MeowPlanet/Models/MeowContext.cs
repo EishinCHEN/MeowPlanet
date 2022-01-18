@@ -147,7 +147,7 @@ namespace MeowPlanet.Models
                 entity.ToTable("CollectionList");
 
                 entity.Property(e => e.CollectionListId)
-                    .ValueGeneratedNever()
+                    //.ValueGeneratedNever()
                     .HasColumnName("CollectionList_ID")
                     .HasComment("收藏單編號");
 

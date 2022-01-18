@@ -96,7 +96,7 @@ namespace MeowPlanet.Controllers
         [ProducesAttribute("application/json")]
         [Consumes("application/x-www-form-urlencoded")]
         //  public List<Models.Cat> catjson([FromBody]Models.Cat Delivery)//師改的
-        public List<Models.Cat> Collect(IFormCollection Collectparameter)
+        public List<Models.Cat> Delete(IFormCollection Collectparameter)
         {
             Console.WriteLine("Account:" + Collectparameter["Cat_ID"]);
             Console.WriteLine("Account:" + Collectparameter["User_ID"]);
@@ -123,7 +123,7 @@ namespace MeowPlanet.Controllers
         [ProducesAttribute("application/json")]
         [Consumes("application/x-www-form-urlencoded")]
         //  public List<Models.Cat> catjson([FromBody]Models.Cat Delivery)//師改的
-        public List<Models.Cat> Delete(IFormCollection Deleteparameter)
+        public List<Models.Cat> Create(IFormCollection Deleteparameter)
         {
             Console.WriteLine("Account:" + Deleteparameter["Cat_ID"]);
             Console.WriteLine("Account:" + Deleteparameter["User_ID"]);
