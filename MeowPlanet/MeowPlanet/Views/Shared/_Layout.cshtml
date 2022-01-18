@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - 征服喵星人</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/meowChat/chatbox.css" rel="stylesheet" />
     @*<link href="~/css/site.css" rel="stylesheet" /> 先註解導覽列css*@
     @* 引用Vue CDN *@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     @* 引用jQuery CDN *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <style>
-        .displaynone {
-            display: none;
-        }
-    </style>
+    
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body class="mybody">
@@ -35,11 +32,62 @@
     @*刪掉原本內建bootstrap的class <main role="main" class="pb-3">*@
     <div>
         @RenderBody()
+        @{
+            if (User.Identity.Name == null)
+            {
+            }
+            else
+            {
+                <div class="chatApp_outer ">
+                    <div id='chatApp'>
+                        <div class="chaticon" id="chaticon">
+                            @*有未讀訊息才會顯示*@
+                            <div class="notice" id="chaticon_inside">
+                                <p class="notice-inside">!</p>
+                            </div>
+                            
+                            <button type="button" class="chaticonarea" onclick="location.href='@Url.Action("MessageManage", "MeowChat")'">
+                                <img class="chatpic" src="~/images/橘色/ChatIcon.PNG" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
     </div>
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        
 
+        window.onload = function () {
+            var rsp = null;
+            $.ajax({
+                    type: "get",
+                    data: { sender: "@User.Identity.Name" },
+                    url: "@Url.Action("GetLastMessage", "MeowChat")/",
+                }).done(function (response) {
+                    rsp = response;
+                    for (let i = 0; i < rsp.length; i++) {
+                        console.log(rsp[i].unRead);
+                        if (rsp[i].unRead === 0) {
+                            document.getElementById("chaticon_inside").style.display = 'none';
+                        }
+                    }
+                }).fail(function () {
+                    console.log("連線失敗");
+                });
+        }
+        
+            //if (rsp.unRead == 0) {
+            //    alert("NO MESSAGE")
+            //} else {
+            //    alert("UN READ MESSAGES")
+            //    document.getElementById("chaticon_inside").style.display = 'none';
+            //}
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
