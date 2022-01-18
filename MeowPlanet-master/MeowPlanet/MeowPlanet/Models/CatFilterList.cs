@@ -8,7 +8,7 @@ namespace MeowPlanet.Models
     public class CatFilterList
     {
     
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int CatId { get; set; }
         public string Image { get; set; }
         public string Name { get; set; }

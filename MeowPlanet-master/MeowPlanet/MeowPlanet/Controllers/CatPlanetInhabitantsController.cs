@@ -46,25 +46,27 @@ namespace MeowPlanet.Controllers
             Console.WriteLine("Account:" + Delivery4["CatColor"]);
             var kj = from w in _dbContext.CollectionLists
                      where w.UserId == 6
-                     select w;
+                     select new CatFilterList {
+                         UserId =  w.UserId.ToString(),
+                         CatId = w.CatId,
+                     };
 
-            //var join = (IQueryable<CollectionListJoinCat>)(from j in _dbContext.Cats
-            //                                               join k in kj
-            //                                               on j.CatId equals k.CatId
+            //SQL left join 在 Linq的寫法
+            //??運算子不可用int
             var join = (IQueryable<CatFilterList>)(from j in _dbContext.Cats
-                       join k in kj on j.CatId equals k.CatId /*into we*/
-                       //from k in we.DefaultIfEmpty()
-                       select new CatFilterList
-                       {
-                           UserId = k.UserId,
-                           CatId = j.CatId,
-                           Image = j.Image,
-                           Name = j.Name,
-                           Age = j.Age,
-                           City = j.City,
-                           Country = j.Country,
-                           IsDeleted = j.IsDeleted
-                       });
+                                                   join k in kj on j.CatId equals k.CatId into we
+                                                   from f in we.DefaultIfEmpty()
+                                                   select new CatFilterList
+                                                   {
+                                                       UserId = f.UserId??string.Empty ,
+                                                       CatId = j.CatId,
+                                                       Image = j.Image,
+                                                       Name = j.Name,
+                                                       Age = j.Age,
+                                                       City = j.City,
+                                                       Country = j.Country,
+                                                       IsDeleted = j.IsDeleted
+                                                   });
             var t = "123";
             List<Models.CatFilterList> datacat777 = join.ToList<Models.CatFilterList>();
             Console.WriteLine(datacat777.Count);
