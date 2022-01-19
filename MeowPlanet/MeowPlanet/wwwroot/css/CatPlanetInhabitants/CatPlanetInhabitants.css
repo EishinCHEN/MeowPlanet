@@ -34,7 +34,7 @@ body {
 
 .moveforNavigation{
     position:relative;
-    top:7.5vw;
+    top:6.2vw;
 }
 .web {
     position: absolute;
@@ -155,7 +155,7 @@ body {
 }
 
 .listblock2top {
-    font-size: 1vw;
+    font-size: 0.8vw;
     display:flex;
     
 }
@@ -168,7 +168,7 @@ body {
 }
 .listblock2topRight {
     position: relative;
-    left: 4.5vw;
+    left: 3vw;
 }
 .collectHeart {
     position:relative;
@@ -258,7 +258,7 @@ body {
     border-style: none;
     font-size: 1vw;
     position: relative;
-    left: 10vw;
+    left: 7.2vw;
 }
 
 .turnpage {
