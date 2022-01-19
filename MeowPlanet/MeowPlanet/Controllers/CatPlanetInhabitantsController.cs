@@ -93,6 +93,10 @@ namespace MeowPlanet.Controllers
                 jj = jj.Where(x => x.CatGender.ToString() == Delivery4["CatGender"].ToString());
             }
 
+            
+            jj = jj.Where(x => x.IsDeleted.ToString() == "1");
+            
+
             if (jj.Count() == 0)
             {
                 Console.WriteLine("無條件符合");
