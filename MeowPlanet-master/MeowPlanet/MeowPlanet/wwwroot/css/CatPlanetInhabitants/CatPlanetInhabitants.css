@@ -20,7 +20,10 @@ body {
     margin-top: 0;
     padding: 0;
 }
-
+.moveforNavigation{
+    position:relative;
+    top:7.5vw;
+}
 .web {
     position: absolute;
     left: 0px;
@@ -319,14 +322,14 @@ body {
         background-color: #FBD06E;
         position: relative;
         left: 0px;
-        width: 50%;
+        width: 50.03%;
     }
 
     .topleft {
         background-color: #CAE4BA;
         position: relative;
         left: 0px;
-        width: 50%;
+        width: 49.97%;
     }
 
     .firstbox {
