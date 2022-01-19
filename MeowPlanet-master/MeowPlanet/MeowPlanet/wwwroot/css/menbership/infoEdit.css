@@ -1,0 +1,213 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+      url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+      url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+  }
+* {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #DA8952;
+    font-size: 14px;
+}
+html {
+    background-color: #FEF2CB;
+}
+.bgc{
+    background-color: #FEF2CB;
+    padding: 3rem;
+}
+.container{
+    width: 75%;
+    margin: auto;       /* 背景色置中*/
+    background-color: #fff;
+    padding: 1rem 3rem;
+    border-radius: 10px;
+}
+/* 處理menu選單 */
+.menu{
+    margin-top: 3rem;
+}
+.menu ul{
+    padding: 0;    /* 刪除ul預設padding */
+}
+.menu li{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-weight: 500;
+}
+li a {
+    color: #65615E;
+    display: inline-block;
+    list-style-type: none;
+    text-decoration: underline;
+    padding: 1rem;
+    margin: 0;     /* 刪除p預設margin */
+}
+
+.menu-icon{
+    text-decoration: none;
+    color: #65615E;
+}
+li:hover, li a:hover, .menu-icon:hover{
+    color: #DA8952;
+}
+/* menu選單結束 */
+/* 會員資料修改導覽列 */
+.info-nav{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+    .info-nav ul {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+.info-nav li{
+    background-color: #FEF2CB;
+    padding: 0 1rem;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 20px 20px 0 0 ;
+}
+.info-nav a{
+    padding: 3px;
+    margin: 0;
+    text-decoration: none;
+    color: #DA8952;
+}
+/* 會員資料修改導覽列結束 */
+/* 使用者詳細資料表單 */
+.area-title{
+    color: #DA8952;
+    background-color: #FEF2CB;
+    display: inline-block;
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+    padding: 4px 0px 4px 10px;
+    font-weight: 500;
+}
+.user-detail {
+    margin: auto;
+    width: 80%;
+}
+.form-area {
+    background-color: #FEF2CB;
+    margin: 0;
+    width: 100%;
+    padding: 40px;
+    position: relative;
+}
+
+form{
+    width: 100%;
+    margin: 0;
+}
+.user-detail div {
+    display: inline-block;
+}
+.photo-selector{
+    display: none;
+}
+.user-info {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding-left: 50px;
+}
+.user-info div {
+    display: inline-block;
+}
+.user-photo {
+    /*position: absolute;
+    top: 0px;
+    right: -90px;*/
+    padding: 0;
+    margin: 0;
+}
+.edit-icon {
+    position: absolute;
+    right: 80px;
+    top: 30px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+.user-photo button {
+    position: absolute;
+    right: 20px;
+    top: 80px;
+    background-color: rgba(0,0,0,0);
+}
+.user-photo img{
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+.form-area input, .form-area select{
+    margin: 0.4rem;
+    border: 0;
+    background-color: #fef3cb;
+    border-bottom: 1px solid #DA8952;
+}
+input[disabled]{
+    border: 0;
+}
+.user-detail option:hover{
+    background-color: #DA8952;
+}
+.user-detail input:focus{
+    outline: none;
+}
+.password{
+    width: 220px;
+}
+#Email {
+    width: 100%;
+}
+.email-area{
+    width: 80%;
+}
+.required-area div {
+    padding: 2px;
+}
+.checkbox{
+    display: block;
+}
+.center-btn {
+    border: 0;
+    padding: 5px 10px;
+    background-color: #DA8952;
+    border-radius: 10%;
+    color: #fff;
+    display: block;
+    margin: 1rem auto 0 auto;
+}
+/* .center-btn:hover{
+    
+} */
+.user-info {
+    width: 100%;
+    padding: 0;
+    color: #da8952;
+}
+/* 使用者詳細資料表單結束 */
+@media (max-width: 800px) {
+    .container{
+        width: 90%;
+    }
+    .menu {
+         display: none;    /*手機&平板不顯示menu選單 */
+    }
+}

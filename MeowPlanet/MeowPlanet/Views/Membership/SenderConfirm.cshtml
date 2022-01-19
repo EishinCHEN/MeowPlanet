@@ -55,14 +55,14 @@
                                     <div class="paragraph">
                                         <div class="li-area">
                                             <ul>
-                                                <li>我同意遵守與領養人約定的看貓時間。</li>
-                                                <li>喵星人送養成功後我會準時回報。</li>
-                                                <li>我不會要求領養人支付喵星人的費用。</li>
-                                                <li>我同意不在征服喵星人平台惡意散佈謠言。</li>
+                                                <li> ▣ 我同意遵守與領養人約定的看貓時間。</li>
+                                                <li> ▣ 喵星人送養成功後我會準時回報。</li>
+                                                <li> ▣ 我不會要求領養人支付喵星人的費用。</li>
+                                                <li> ▣ 我同意不在征服喵星人平台惡意散佈謠言。</li>
                                             </ul>
                                         </div>
                                         <div class="center-btn">
-                                            <a type="button" asp-controller="Membership" asp-action="AddRole">我同意以上規約，開始送養喵星人！</a>
+                                            <a onclick="addRole()" asp-controller="Membership" asp-action="AddRole">我同意以上規約，開始送養喵星人！</a>
                                         </div>
                                     </div>
                                 </div>
@@ -75,3 +75,10 @@
     </div>
 </div>
 
+@section Scripts{
+    <script>
+        function addRole() {
+            alert("正在幫您開通送養人權限!請重新登入讓更多喵星人有更溫暖家哦!")
+        }
+    </script>
+}

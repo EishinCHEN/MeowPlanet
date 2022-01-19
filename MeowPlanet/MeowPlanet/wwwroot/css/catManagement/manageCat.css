@@ -186,6 +186,7 @@ body {
 
 .meow-group {
     width: 30%;
+    height: 32vh;
     margin-left: 13px;
     margin-top: 30px;
     display: flex;

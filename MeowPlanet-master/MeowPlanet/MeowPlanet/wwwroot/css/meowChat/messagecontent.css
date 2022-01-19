@@ -1,0 +1,366 @@
+* {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #65615E;
+    /* border: solid 1px black; */
+}
+
+
+/* 引用Materil Design */
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot);
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+html,
+.mybody {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 48px;
+    background-color: #FEF2CB;
+}
+
+.container {
+    width: 70%;
+    height: 100%;
+    margin-top: 48px;
+    padding-top: 48px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+
+/* 處理menu選單 */
+.bi {
+    font-size: 20px;
+}
+
+.menu {
+    margin-top: 48px;
+}
+
+.menu ul,
+.info-box ul {
+    padding: 0;
+    /* 刪除ul預設padding */
+}
+
+.menu-list {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.menu-list a {
+    color: #65615E;
+    display: inline-block;
+    list-style-type: none;
+    text-decoration: underline;
+    padding: 16px;
+    margin: 0;
+    /* 刪除p預設margin */
+}
+
+.menu-list:hover,
+.menu-list a:hover,
+.menu-list a:active {
+    color: #DA8952;
+}
+
+.catchlist {
+    color: #DA8952;
+}
+
+.menu-list p {
+    color: #DA8952;
+    display: inline-block;
+    list-style-type: none;
+    text-decoration: underline;
+    padding: 16px;
+    margin: 0;
+}
+
+
+/* menu選單結束 */
+/* 主標題列(右邊) */
+.message-area-title {
+    width: 90%;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 16px;
+    padding: 4px 0px 4px 10px;
+    color: #DA8952;
+    background-color: #FEF2CB;
+    z-index:-1;
+}
+
+.message-area-inside {
+    width: 90%;
+    height: 70%;
+    border-radius: 10px;
+    margin-left: 16px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 10px;
+    background-color: #FEF2CB;
+}
+
+.recipient-pic {
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    /*height: 40px;*/
+    overflow: hidden;
+}
+
+.message-top {
+    width: 100%;
+    height: 60px;
+    border-bottom-style: solid;
+    border-bottom-color: #fcd885d0;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.message-top-left,
+.details {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recipient-pic-inside {
+    width: 100%;
+}
+
+.chatarea-inside {
+    list-style: none;
+    padding: 5px;
+    margin: 5px;
+    flex-direction: column;
+    display: flex;
+    margin-bottom: -320px;
+}
+
+.chat-area {
+    overflow-y: scroll;
+    margin-bottom: 5px;
+    height: 50vh;
+}
+
+.chat-area::-webkit-scrollbar {
+    width: 16px;
+}
+
+.chat-area::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+    background-color: #FBD06E;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2 );
+}
+
+.sender-time,
+.sender-text,
+.recipient-time,
+.recipient-text {
+    width: fit-content;
+}
+
+.sender {
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-right: 10px;
+    list-style-type: none;
+}
+
+.sender-text {
+    max-width: 80%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #FBD06E;
+    color: #65615E;
+    list-style-type: none;
+}
+
+.sender-time {
+    font-size: 5px;
+    color: #65615E;
+    list-style-type: none;
+    max-width:8%;
+}
+
+.sender-img {
+    max-width: 60%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #FBD06E;
+}
+
+.recipient-img {
+    max-width: 60%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #CAE4BA;
+}
+
+.sender-img-in,
+.recipient-img-in {
+    width: 100%;
+}
+
+.recipient {
+    display: inline-flex;
+    align-items: flex-end;
+    margin-top: 20px;
+    margin-left: 10px;
+    list-style-type: none;
+}
+
+.recipient-text {
+    max-width: 80%;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #CAE4BA;
+    color: #65615E;
+    list-style-type: none;
+}
+
+.recipient-time {
+    margin-left: 8px;
+    font-size: 5px;
+    color: #65615E;
+    list-style-type: none;
+    max-width: 8%;
+}
+
+.input-area {
+    width: 100%;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.text-input {
+    width: 80%;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    /* caret-color: #DA8952; */
+    border-radius: 10px;
+    padding-left: 20px;
+}
+
+.recipient-name {
+    width: 60%;
+    padding-left: 10px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #DA8952;
+}
+
+.details {
+    border-radius: 10px;
+    background-color: #DA8952;
+    color: white;
+    border: none;
+    width: 50px;
+    padding: 10px;
+    padding-left: 12px;
+}
+
+.message-area-inside .bi {
+    color: #DA8952;
+    width: 100px;
+    height: 100px;
+}
+
+.return,
+#photo,
+#send {
+    border: none;
+    background-color: transparent;
+    color: #DA8952;
+}
+
+.info-box {
+    border-radius: 10px;
+    width: fit-content;
+    padding: 14px;
+    font-size: 14px;
+    position: absolute;
+    background-color: #DA8952;
+    right: 160px;
+    top: 80px;
+    z-index: 100;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    margin-top: -10px;
+    margin-right: 0px;
+}
+
+.fa-times {
+    color: white;
+}
+
+.info-box li {
+    list-style-type: none;
+    margin-top: 5px;
+    color: white;
+}
+
+.info-box-close {
+    text-align: right;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    width: 100%;
+    height: 20px;
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        width: 100%;
+        height: 100%;
+        background-color: #FEF2CB;
+        margin-top: 0;
+        padding: 0;
+    }
+    .chatApp {
+        width: 100%;
+        max-height: 40vh;
+    }
+    .message-area-title {
+        font-size: 14px;
+    }
+    .message-area-inside {
+        margin-bottom: 4px;
+        padding: 10px;
+    }
+    .chat-area {
+        margin-bottom: 5px;
+        height: 65vh;
+    }
+    .info-box {
+        right: 100px;
+        top: 75px;
+    }
+    .text-input {
+        height: 35px;
+        font-size: 15px;
+    }
+}

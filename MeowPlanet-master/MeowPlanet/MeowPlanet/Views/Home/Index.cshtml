@@ -1,0 +1,95 @@
+﻿
+
+@section Styles{
+
+    
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="./css/indexpage/jquery.flipster.min.css">
+    <link rel="stylesheet" href="~/css/indexpage/index.css">
+}
+<div class="logo2">
+    <div><img src="~/images/index img/副標.png" alt=""></div>
+</div>
+<div class="wrapper2">
+    <div class="pic">
+        <ul>
+            <a href="#">
+            <li><img src="~/images/index img/橘白.png" /></li>
+            </a>
+            <a href="#">
+            <li><img src="~/images/index img/黑白.png" /></li>
+            </a>
+            <a href="#">
+            <li><img src="~/images/index img/三花貓.png" /></li>
+            </a>
+            <a href="#">
+            <li><img src="~/images/index img/玳瑁貓.png" /></li>
+            </a>
+            <a href="#">
+            <li><img src="~/images/index img/虎斑貓.png" /></li>
+            </a>
+            <a href="">
+            <li><img src="~/images/index img/白貓.png" /></li>
+            </a>
+            <a href="">
+            <li><img src="~/images/index img/黑貓.png" /></li>
+            </a>
+            <a href="">
+            <li><img src="~/images/index img/黑白.png" /></li>
+            </a>
+        </ul>
+    </div>
+
+    <div class="test">
+        <a href="#"><img id="img" src="~/images/index img/飛船貓貓1.png" alt=""></a>
+    </div>
+    <div class="p21">
+        <p>
+            <i class="far fa-bell "></i>
+            &nbsp;&nbsp;本週喵星日常:<br>
+            &nbsp;&nbsp;第一個被犧牲的家具遺照<br>
+            <a href="">▸▹▸來去分享</a>
+        </p>
+    </div>
+    
+</div>
+
+
+
+@section Scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./js/jquery.flipster.min.js"></script>
+
+    <script>
+        //  測驗圖片gif
+        var img = document.getElementById('img');
+        img.addEventListener('mousemove', mousemove, false);
+        var src = img.getAttribute("src");
+        var tSrc = './images/index img/喵喵飛船.gif';
+
+        function mousemove() {
+            img.setAttribute("src", tSrc);
+        }
+
+        img.addEventListener('mouseout', mouseout, false);
+        function mouseout() {
+            img.setAttribute("src", src);
+        }
+
+
+
+        $('.pic').flipster({
+            spacing: 0,
+            style: 'flat',
+            start: ''
+        });
+    </script>
+
+
+    
+       
+
+    
+
+}

@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewData["Title"] = "成為宇航員";
+}
+@section Styles{
+    @*引用bootstrap*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    @*引用bootstrap icon*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    @*引用googlefont*@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="~/css/menbership/register.css" rel="stylesheet" />
+}
+<partial name="_menu" />
+<div id="app">
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-xl-6 left-area">
+                    <div class="outimg-area">
+                        <img src="~/images/白色/貓星球.PNG" alt="貓星球圖案" />
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xl-6 right-area">
+
+                    <div class="register-area">
+                        <form>
+                            <div class="form-group">
+                                <div class="title">
+                                    <p>✩註冊宇航員身份</p>
+                                </div>
+                                <div class="name-group">
+                                    <label for="RealName">姓名：</label>
+                                    <input type="text" name="RealName" maxlength="10" v-model:text="userDetail.RealName">
+                                </div>
+                                <div class="gender-group">
+                                    <label for="Gender">性別：</label>
+                                    <select name="Gender" id="Gender" v-model="userDetail.Gender">
+                                        <option value="male">男性</option>
+                                        <option value="female">女性</option>
+                                    </select>
+                                    <label for="Birthday">生日：</label>
+                                    <input type="date" id="Birthday" min="1979-12-31" max="@String.Format("{0:yyyy-MM-dd}", DateTime.Now)" v-model:text="userDetail.Birthday">
+                                </div>
+                                <div class="tel-gruop">
+                                    <label for="Phone">電話：</label>
+                                    <input type="tel" name="Phone" id="Phone" v-model:text="userDetail.Phone" maxlength="12" placeholder="請使用0900-000-000格式" v-on:blur="checkPhone">
+                                </div>
+                                <div class="email-griup">
+                                    <label for="Email">信箱：</label>
+                                    <input type="email" name="Email" id="Email" maxlength="50" v-model:text="userDetail.Email">
+                                </div>
+                                <div class="username-group">
+                                    <label for="Account">帳號：</label>
+                                    <input type="text" name="Account" id="Account" maxlength="30" v-model:text="userDetail.Account">
+                                </div>
+                                <div class="password-group">
+                                    <label for="Password">密碼：</label>
+                                    <input type="password" name="Password" id="Password" maxlength="20"
+                                           v-model:text="userDetail.Password">
+                                </div>
+                                <div class="confirm-password-group">
+                                    <label for="passwordConfirm">確認密碼：</label>
+                                    <span id="area"></span>
+                                    <input type="password" name="passwordConfirm-confirm" id="passwordConfirm" maxlength="20" v-on:keyup="checkPwd" placeholder="請再次輸入密碼"
+                                           v-model:text="userDetail.passwordConfirm">
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="submit">
+                        <button type="button" class="register-btn" id="submit" v-on:click="createUser">註冊喵星會員</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+@section Scripts{
+    <script>
+        var app = new Vue(
+            {
+                el: "#app",
+                data: {
+                    userDetail: {
+                        "RealName": "",
+                        "Gender": "",
+                        "Birthday": "",
+                        "Account": "",
+                        "Email": "",
+                        "Password": "",
+                        "passwordConfirm": "",
+                        "Phone": "",
+                    }
+                },
+                methods: {
+                    checkPwd() {
+                        var pw1 = document.getElementById("Password").value;
+                        var pw2 = document.getElementById("passwordConfirm").value;
+                        if (pw1 == pw2) {
+                            document.getElementById("area").innerHTML = "<font color='green'>密碼相同</font>";
+                            document.getElementById("submit").disabled = false;
+                        }
+                        else {
+                            document.getElementById("area").innerHTML = "<font color='red'>密碼不一致</font>";
+                            document.getElementById("submit").disabled = true;
+                        }
+                    },
+                    checkPhone() {
+                        var phone = document.getElementById("Phone");
+                        var correct = /^09\d{2}-\d{3}-\d{3}/;
+                        var btn = document.getElementById("submit");
+                        if(correct.test(phone.value)) {
+                            btn.removeAttribute("disabled");
+                        } else {
+                            alert('請輸入正確的手機號');
+                            btn.setAttribute("disabled", "");
+                        }
+                    },
+                    createUser() {
+                        $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("enrollUser", "Register")/",
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        },
+                            data: this.userDetail,
+                        }).done(function (data, textStatus, jqXHR) {
+                            console.log("data" + JSON.stringify(data));
+                            var result = data.code == 200 ? "註冊成功!請至註冊信箱開啟驗證信件!" : "帳號已經有人註冊了!請換一個試試!";
+                            var yes = confirm(result);
+                            yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Register/enrollUser");
+                         }).fail(function () {
+                             top.location.href = "/Register/enrollUser";
+                             console.log("註冊失敗");
+                         });
+                    }
+                },
+            }
+        );
+    </script>
+}
+

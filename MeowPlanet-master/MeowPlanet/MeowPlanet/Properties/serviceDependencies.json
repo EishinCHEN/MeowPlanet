@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "type": "secrets"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:Server=tcp:meowplanet.database.windows.net,1433;InitialCatalog=Meow;PersistSecurityInfo=False;UserID=Meow;Password=Cat1234!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;ConnectionTimeout=180;"
+    }
+  }
+}
