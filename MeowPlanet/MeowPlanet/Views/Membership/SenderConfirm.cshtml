@@ -62,7 +62,7 @@
                                             </ul>
                                         </div>
                                         <div class="center-btn">
-                                            <a type="button" asp-controller="Membership" asp-action="AddRole">我同意以上規約，開始送養喵星人！</a>
+                                            <a onclick="addRole()" asp-controller="Membership" asp-action="AddRole">我同意以上規約，開始送養喵星人！</a>
                                         </div>
                                     </div>
                                 </div>
@@ -75,3 +75,10 @@
     </div>
 </div>
 
+@section Scripts{
+    <script>
+        function addRole() {
+            alert("正在幫您開通送養人權限!請重新登入讓更多喵星人有更溫暖家哦!")
+        }
+    </script>
+}
