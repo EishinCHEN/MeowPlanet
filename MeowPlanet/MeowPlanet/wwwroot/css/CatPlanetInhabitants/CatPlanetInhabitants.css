@@ -256,7 +256,9 @@ body {
     border-color: #FEF2CB;
     border-radius: 5px;
     border-style: none;
-    font-size:1vw;
+    font-size: 1vw;
+    position: relative;
+    left: 10vw;
 }
 
 .turnpage {
