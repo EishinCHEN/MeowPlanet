@@ -166,18 +166,27 @@
                         <div v-for="cus in page1" class="fakef">
                             <div class="whiteblock">
                                 <div class="listblock1">
-                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
+                                    <img v-bind:src="cus.image" class="listblockcatimg" />
                                     <div class="listblock2">
-                                        <div class="listblock2txt">
-                                            姓名 : {{cus.name}}
-                                            <br />
-                                            年紀 : {{cus.age}}
-                                            <br />
-                                            結紮狀態 : {{cus.ligation}}
-                                            <br />
-                                            位置 : {{cus.city}}{{cus.country}}
-                                            <br />
-                                            <button v-on:click="Gocollect(cus.catId)" class="goforcat">收藏居民</button> @*傳送收藏的catID回後端*@
+                                        <div class="listblock2top">
+                                            <div class="listblock2topLeft">
+                                                {{cus.name}}
+                                                <br />
+                                                {{cus.age}}
+                                                <br />
+                                                {{cus.ligation}}
+                                                <br />
+                                                {{cus.city + cus.country}}
+                                                <br />
+                                            </div>
+                                            <div class="listblock2topRight">
+
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == 6" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != 6" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+
+                                            </div>
+                                        </div>
+                                        <div class="listblock2down">
                                             <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
                                             <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
                                         </div>
@@ -192,19 +201,27 @@
                         <div v-for="cus in page2" class="fakef">
                             <div class="whiteblock">
                                 <div class="listblock1">
-                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
-
+                                    <img v-bind:src="cus.image" class="listblockcatimg" />
                                     <div class="listblock2">
-                                        <div class="listblock2txt">
-                                            姓名 : {{cus.name}}
-                                            <br />
-                                            年紀 : {{cus.age}}
-                                            <br />
-                                            結紮狀態 : {{cus.ligation}}
-                                            <br />
-                                            位置 : {{cus.city}}{{cus.country}}
-                                            <br />
-                                            <button v-on:click="Gocollect(cus.catId)" class="goforcat">收藏居民</button> @*傳送收藏的catID回後端*@
+                                        <div class="listblock2top">
+                                            <div class="listblock2topLeft">
+                                                {{cus.name}}
+                                                <br />
+                                                {{cus.age}}
+                                                <br />
+                                                {{cus.ligation}}
+                                                <br />
+                                                {{cus.city + cus.country}}
+                                                <br />
+                                            </div>
+                                            <div class="listblock2topRight">
+
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == 6" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != 6" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+
+                                            </div>
+                                        </div>
+                                        <div class="listblock2down">
                                             <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
                                             <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
                                         </div>
@@ -219,18 +236,27 @@
                         <div v-for="cus in page3" class="fakef">
                             <div class="whiteblock">
                                 <div class="listblock1">
-                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
-
+                                    <img v-bind:src="cus.image" class="listblockcatimg" />
                                     <div class="listblock2">
-                                        <div class="listblock2txt">
-                                            姓名 : {{cus.name}}
-                                            <br />
-                                            年紀 : {{cus.age}}
-                                            <br />
-                                            結紮狀態 : {{cus.ligation}}
-                                            <br />
-                                            位置 : {{cus.city}}{{cus.country}}
-                                            <br />
+                                        <div class="listblock2top">
+                                            <div class="listblock2topLeft">
+                                                {{cus.name}}
+                                                <br />
+                                                {{cus.age}}
+                                                <br />
+                                                {{cus.ligation}}
+                                                <br />
+                                                {{cus.city + cus.country}}
+                                                <br />
+                                            </div>
+                                            <div class="listblock2topRight">
+
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == 6" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != 6" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+
+                                            </div>
+                                        </div>
+                                        <div class="listblock2down">
                                             <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
                                             <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
                                         </div>
@@ -245,18 +271,27 @@
                         <div v-for="cus in page4" class="fakef">
                             <div class="whiteblock">
                                 <div class="listblock1">
-                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
-
+                                    <img v-bind:src="cus.image" class="listblockcatimg" />
                                     <div class="listblock2">
-                                        <div class="listblock2txt">
-                                            姓名 : {{cus.name}}
-                                            <br />
-                                            年紀 : {{cus.age}}
-                                            <br />
-                                            結紮狀態 : {{cus.ligation}}
-                                            <br />
-                                            位置 : {{cus.city}}{{cus.country}}
-                                            <br />
+                                        <div class="listblock2top">
+                                            <div class="listblock2topLeft">
+                                                {{cus.name}}
+                                                <br />
+                                                {{cus.age}}
+                                                <br />
+                                                {{cus.ligation}}
+                                                <br />
+                                                {{cus.city + cus.country}}
+                                                <br />
+                                            </div>
+                                            <div class="listblock2topRight">
+
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == 6" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != 6" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+
+                                            </div>
+                                        </div>
+                                        <div class="listblock2down">
                                             <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
                                             <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
                                         </div>
@@ -271,18 +306,27 @@
                         <div v-for="cus in page5" class="fakef">
                             <div class="whiteblock">
                                 <div class="listblock1">
-                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
-
+                                    <img v-bind:src="cus.image" class="listblockcatimg" />
                                     <div class="listblock2">
-                                        <div class="listblock2txt">
-                                            姓名 : {{cus.name}}
-                                            <br />
-                                            年紀 : {{cus.age}}
-                                            <br />
-                                            結紮狀態 : {{cus.ligation}}
-                                            <br />
-                                            位置 : {{cus.city}}{{cus.country}}
-                                            <br />
+                                        <div class="listblock2top">
+                                            <div class="listblock2topLeft">
+                                                {{cus.name}}
+                                                <br />
+                                                {{cus.age}}
+                                                <br />
+                                                {{cus.ligation}}
+                                                <br />
+                                                {{cus.city + cus.country}}
+                                                <br />
+                                            </div>
+                                            <div class="listblock2topRight">
+
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == 6" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != 6" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+
+                                            </div>
+                                        </div>
+                                        <div class="listblock2down">
                                             <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
                                             <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
                                         </div>
@@ -297,18 +341,27 @@
                         <div v-for="cus in page6" class="fakef">
                             <div class="whiteblock">
                                 <div class="listblock1">
-                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
-
+                                    <img v-bind:src="cus.image" class="listblockcatimg" />
                                     <div class="listblock2">
-                                        <div class="listblock2txt">
-                                            姓名 : {{cus.name}}
-                                            <br />
-                                            年紀 : {{cus.age}}
-                                            <br />
-                                            結紮狀態 : {{cus.ligation}}
-                                            <br />
-                                            位置 : {{cus.city}}{{cus.country}}
-                                            <br />
+                                        <div class="listblock2top">
+                                            <div class="listblock2topLeft">
+                                                {{cus.name}}
+                                                <br />
+                                                {{cus.age}}
+                                                <br />
+                                                {{cus.ligation}}
+                                                <br />
+                                                {{cus.city + cus.country}}
+                                                <br />
+                                            </div>
+                                            <div class="listblock2topRight">
+
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == 6" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != 6" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+
+                                            </div>
+                                        </div>
+                                        <div class="listblock2down">
                                             <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
                                             <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
                                         </div>
@@ -323,18 +376,27 @@
                         <div v-for="cus in page7" class="fakef">
                             <div class="whiteblock">
                                 <div class="listblock1">
-                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
-
+                                    <img v-bind:src="cus.image" class="listblockcatimg" />
                                     <div class="listblock2">
-                                        <div class="listblock2txt">
-                                            姓名 : {{cus.name}}
-                                            <br />
-                                            年紀 : {{cus.age}}
-                                            <br />
-                                            結紮狀態 : {{cus.ligation}}
-                                            <br />
-                                            位置 : {{cus.city}}{{cus.country}}
-                                            <br />
+                                        <div class="listblock2top">
+                                            <div class="listblock2topLeft">
+                                                {{cus.name}}
+                                                <br />
+                                                {{cus.age}}
+                                                <br />
+                                                {{cus.ligation}}
+                                                <br />
+                                                {{cus.city + cus.country}}
+                                                <br />
+                                            </div>
+                                            <div class="listblock2topRight">
+
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == 6" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != 6" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+
+                                            </div>
+                                        </div>
+                                        <div class="listblock2down">
                                             <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
                                             <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
                                         </div>
@@ -349,18 +411,27 @@
                         <div v-for="cus in page8" class="fakef">
                             <div class="whiteblock">
                                 <div class="listblock1">
-                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
-
+                                    <img v-bind:src="cus.image" class="listblockcatimg" />
                                     <div class="listblock2">
-                                        <div class="listblock2txt">
-                                            姓名 : {{cus.name}}
-                                            <br />
-                                            年紀 : {{cus.age}}
-                                            <br />
-                                            結紮狀態 : {{cus.ligation}}
-                                            <br />
-                                            位置 : {{cus.city}}{{cus.country}}
-                                            <br />
+                                        <div class="listblock2top">
+                                            <div class="listblock2topLeft">
+                                                {{cus.name}}
+                                                <br />
+                                                {{cus.age}}
+                                                <br />
+                                                {{cus.ligation}}
+                                                <br />
+                                                {{cus.city + cus.country}}
+                                                <br />
+                                            </div>
+                                            <div class="listblock2topRight">
+
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == 6" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != 6" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+
+                                            </div>
+                                        </div>
+                                        <div class="listblock2down">
                                             <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
                                             <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
                                         </div>
@@ -375,18 +446,27 @@
                         <div v-for="cus in page9" class="fakef">
                             <div class="whiteblock">
                                 <div class="listblock1">
-                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
-
+                                    <img v-bind:src="cus.image" class="listblockcatimg" />
                                     <div class="listblock2">
-                                        <div class="listblock2txt">
-                                            姓名 : {{cus.name}}
-                                            <br />
-                                            年紀 : {{cus.age}}
-                                            <br />
-                                            結紮狀態 : {{cus.ligation}}
-                                            <br />
-                                            位置 : {{cus.city}}{{cus.country}}
-                                            <br />
+                                        <div class="listblock2top">
+                                            <div class="listblock2topLeft">
+                                                {{cus.name}}
+                                                <br />
+                                                {{cus.age}}
+                                                <br />
+                                                {{cus.ligation}}
+                                                <br />
+                                                {{cus.city + cus.country}}
+                                                <br />
+                                            </div>
+                                            <div class="listblock2topRight">
+
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == 6" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != 6" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+
+                                            </div>
+                                        </div>
+                                        <div class="listblock2down">
                                             <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
                                             <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
                                         </div>
