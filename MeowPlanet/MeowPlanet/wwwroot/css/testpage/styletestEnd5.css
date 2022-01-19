@@ -35,7 +35,7 @@ html {
 
 .p1 {
     position: relative;
-    margin-top:8%;
+    margin-top:6%;
     left: 8%;
     float: left;
     white-space: nowrap;
@@ -100,7 +100,7 @@ html {
 
 .test1 {
     width: 270px;
-    height:120px;
+    height:140px;
     color: #da8952;
     font-size: 8px;
     background-color: #E5EFE1;
@@ -115,7 +115,6 @@ html {
     }
 .test1 a {
         position: relative;
-        top:10px;
         left: 50%;
         background-color: #FEF2CB;
         color: #DA8952;
@@ -148,8 +147,8 @@ html {
 
 .btn {
     position: absolute;
-    right: 6%;
-    bottom: 3%;
+    right: 22%;
+    bottom: 2%;
     padding: 10px 10px;
     text-decoration: none;
 }
@@ -171,9 +170,9 @@ html {
         right: 4%;
     }
 
-        .p2 .t2 {
+    .p2 .t2 {
             padding-right: 240px;
-        }
+    }
 
 
     .pic {
