@@ -1,0 +1,142 @@
+* {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #DA8952;
+    font-size: 14px;
+}
+html {
+    background-color: #E5EFE1;
+}
+.bgc {
+    background-color: #E5EFE1;
+    padding: 3rem;
+}
+.container{
+    width: 75%;
+    margin: auto;       /* 背景色置中*/
+    background-color: #fff;
+    padding: 3rem;
+    border-radius: 10px;
+}
+/* 處理menu選單 */
+.menu{
+    margin-top: 3rem;
+}
+.menu ul{
+    padding: 0;    /* 刪除ul預設padding */
+}
+li{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-weight: 500;
+}
+li a {
+    color: #65615E;
+    display: inline-block;
+    list-style-type: none;
+    text-decoration: underline;
+    padding: 1rem;
+    margin: 0;     /* 刪除p預設margin */
+}
+
+.menu-icon{
+    text-decoration: none;
+    color: #65615E;
+}
+li:hover, li a:hover, .menu-icon:hover{
+    color: #DA8952;
+}
+/* menu選單結束 */
+/* 會員資料修改導覽列 */
+.info-nav{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+.info-nav ul{
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+.info-nav li{
+    background-color: #FEF2CB;
+    padding: 0 1rem;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 20px 20px 0 0 ;
+}
+.info-nav a{
+    padding: 3px;
+    margin: 0;
+    text-decoration: none;
+    color: #DA8952;
+}
+/* 會員資料修改導覽列結束 */
+.area-title {
+    color: #DA8952;
+    background-color: #cae4ba;
+    display: inline-block;
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+    padding: 4px 0px 4px 10px;
+    font-weight: 500;
+}
+/* 使用者詳細資料表單 */
+.mainarea {
+    width: 100%;
+    margin: 0;
+}
+.user-detail div{
+    display: inline-block;
+}
+.user-info{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;   
+    padding-left: 50px;
+}
+.user-info div{
+    display: inline-block;
+}
+.center{
+    text-align: center;
+    margin-top: 1rem;
+}
+.paragraph {
+    text-align:left;
+}
+.img-area img{
+    width: 200px;
+}
+.center-btn {
+    border: 0;
+    padding: 5px 10px;
+    background-color: #DA8952;
+    border-radius: 10%;
+    color: #fff;
+    display: block;
+    margin: 0 auto;
+}
+.center-btn a{
+    text-decoration: none;
+    color: #fff;
+}
+/* .center-btn:hover{
+    
+} */
+.user-info{
+    width: 100%;
+    padding: 0;
+    color: #da8952;
+}
+/* 使用者詳細資料表單結束 */
+@media (max-width: 800px) {
+    .container{
+        width: 90%;
+    }
+    .menu {
+         display: none;    /*手機&平板不顯示menu選單 */
+    }
+}

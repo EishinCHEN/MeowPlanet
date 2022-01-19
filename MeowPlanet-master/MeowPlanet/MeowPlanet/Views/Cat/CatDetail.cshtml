@@ -1,0 +1,102 @@
+﻿@section Styles{
+    <link href="~/css/CatPlanet/catDetail.css" rel="stylesheet" />
+}
+
+
+<div class="container" id="app">
+
+    <div class="area-pic">
+        <img id="image" class="meow-pic" :src="catPic.Photo1" />
+        <hr style="height: 1px; background-color: #FEF2CB; " />
+        <img class="meow-pic-small" :src="catPic.Photo2" v-on:click="changeImg($event)" />
+        <img class="meow-pic-small" :src="catPic.Photo3" v-on:click="changeImg($event)" />
+        <img class="meow-pic-small" :src="catPic.Photo4" v-on:click="changeImg($event)" />
+
+    </div>
+    <div class="area-content">
+        <h3 class="title">★喵星人  {{catInfo.Name}} </h3>
+
+        <div class="area-top">
+            <ul>
+                <li>名字：{{catInfo.Name}} </li>
+                <li v-if="catInfo.CatGender=='1'">性別：公</li>
+                <li v-else>性別：母</li>
+                <li>年齡：{{catInfo.Age}} </li>
+                <li>毛色：{{catInfo.CatColor}} </li>
+                <li>是否結紮：{{catInfo.Ligation}} </li>
+                <li>送養人居住地區：{{catInfo.City + catInfo.Country}} </li>
+                <li v-if="catInfo.Sick !== undefined">喵星人疾病史：無 </li>
+                <li v-else>喵星人疾病史：{{catInfo.Sick}} </li>
+
+            </ul>
+
+            <ul>
+                <li>刊登日期：{{(catInfo.PublishedDay).substr(0, 10)}} </li>
+                <li>預防施打：{{catInfo.Vaccine}} </li>
+
+                <li v-if="catInfo.Remark !==undefined ">備註：無 </li>
+                <li v-else>備註：{{catInfo.Remark}} </li>
+                <li style="list-style:none">
+                    <button v-on:click="">♡</button>收藏貓貓
+                </li>
+            </ul>
+        </div>
+        <hr style="height: 1px; background-color: #FEF2CB; " />
+        <div class="area-bottom">
+            <ul>
+                送養人：{{userInfo.RealName}}
+                <li>送養中貓貓：{{userInfo.userCount}}</li>
+            </ul>
+            <img class="userPhoto"  :src="userInfo.userPhoto" />
+            <button>我想征服牠</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            catPic: {
+                "Photo1": "@ViewData["Image"]",
+                "Photo2": "@ViewData["Image2"]",
+                "Photo3": "@ViewData["Image3"]",
+                "Photo4": "@ViewData["Image4"]",
+            },
+            catInfo: {
+                "Name": "@ViewData["Name"]",
+                "Vaccine": "@ViewData["Vaccine"]",
+                "Ligation": "@ViewData["Ligation"]",
+                "Chip": "@ViewData["Chip"]",
+                "City": "@ViewData["City"]",
+                "Country": "@ViewData["Country"]",
+                "CatGender": "@ViewData["CatGender"]",
+                "Age": "@ViewData["Age"]",
+                "CatColor": "@ViewData["CatColor"]",
+                "Sick": "@ViewData["Sick"]",
+                "Remark": "@ViewData["Remark"]",
+                "CatId": "@ViewData["CatId"]",
+                "PublishedDay": "@ViewData["PublishedDay"]",
+            },
+            userInfo: {
+                "RealName": "@ViewData["RealName"]",
+                "UserId": "@ViewData["UserId"]",
+                "userCount": "@ViewData["userCount"]",
+                "userPhoto": "@ViewData["userPhoto"]",
+            }
+
+        },
+        methods: {
+            changeImg(e) {
+                let el = e.srcElement;
+                let oldSrc = $('#image').attr('src');
+                let newSrc = $(el).attr('src');
+
+                $('#image').attr('src', newSrc);
+                $(el).attr('src',oldSrc);
+            }
+        }
+    });
+
+</script>

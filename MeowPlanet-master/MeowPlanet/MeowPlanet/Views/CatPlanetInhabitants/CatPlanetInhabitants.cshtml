@@ -1,0 +1,597 @@
+﻿<link href="~/css/CatPlanetInhabitants/CatPlanetInhabitants.css" rel="stylesheet" />
+@ViewData["UserID"]接收會員ID;
+@ViewData["CatID1"]接收貓咪資訊;
+<body>
+    <div id="customers" class="web">
+        <div class="moveforNavigation">
+            @*<a asp-controller="Login" asp-action="Login">跑到登入</a>
+            等待導覽列 {{pagecount}}<a asp-controller="CatCollect" asp-action="CatCollect">跑到貓咪收藏</a>*@
+            <div class="top">
+                <div class="topleft">
+                    <img src="/images/pageCatPlanetInhabitants/貓太空人.png" class="baseline" />
+                </div>
+                <div class="topright">
+                    <div class="firstbox">
+                        <div class="boxrange">
+                            <div class="boxgroup">
+                                <div class="name-group">
+                                    <label>毛色(主要)</label>
+                                    <select v-model="FilterData.CatColor" class="catgender" id="filterselect">
+                                        <option value="">皆可</option>
+                                        <option value="三花貓">三花貓</option>
+                                        <option value="橘貓">橘貓</option>
+                                        <option value="玳瑁">玳瑁</option>
+                                        <option value="黑白貓">黑白貓</option>
+                                        <option value="黑貓">黑貓</option>
+                                        <option value="白貓">白貓</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="name-group">
+                                    <label>是否結紮</label>
+                                    <select v-model="FilterData.Ligation" class="catgender">
+                                        <option value="">皆可</option>
+                                        <option value="已結紮">已結紮</option>
+                                        <option value="未結紮">未結紮</option>
+                                    </select>
+                                </div>
+
+                                <div class="name-group">
+                                    <label>年齡(大約)</label>
+                                    <select v-model="FilterData.Age" class="catgender">
+                                        <option value="">皆可</option>
+                                        <option value="0-3月">0-3月</option>
+                                        <option value="3-5月">3-5月</option>
+                                        <option value="5-7月">5-7月</option>
+                                        <option value="7-12月">7-12月</option>
+                                        <option value="1-3歲">1-3歲</option>
+                                        <option value="3-8歲">3-8歲</option>
+                                        <option value="8歲以上">8歲以上</option>
+                                    </select>
+                                </div>
+
+                                <div class="name-group">
+                                    <label>預防疫苗</label>
+                                    <select v-model="FilterData.Vaccine" class="catgender">
+                                        <option value="">皆可</option>
+                                        <option value="已施打">已施打</option>
+                                        <option value="未施打">未施打</option>
+                                        <option value="未知">未知</option>
+                                    </select>
+                                </div>
+
+                                <div class="name-group">
+                                    <label>送養人居住地區(看貓地區)</label>
+                                    <select v-model="FilterData.City" class="catgender">
+                                        <option value="">直轄縣市</option>
+                                        <option value="台北市">台北市</option>
+                                        <option value="新北市">新北市</option>
+                                        <option value="基隆市">基隆市</option>
+                                    </select>
+                                    <select v-model="FilterData.Country" class="catgender1">
+                                        <option value="">區</option>
+                                        <option value="北投區" v-if="FilterData.City=='台北市'">北投區</option>
+                                        <option value="大安區" v-if="FilterData.City=='台北市'">大安區</option>
+                                        <option value="信義區" v-if="FilterData.City=='台北市'">信義區</option>
+                                        <option value="士林區" v-if="FilterData.City=='台北市'">士林區</option>
+                                        <option value="淡水區" v-if="FilterData.City=='新北市'">淡水區</option>
+                                    </select>
+                                </div>
+
+                                <div class="name-group">
+                                    <label>選擇性別</label>
+                                    <select v-model="FilterData.CatGender" class="catgender">
+                                        <option value="">皆可</option>
+                                        <option value="1">公</option>
+                                        <option value="2">母</option>
+                                    </select>
+                                </div>
+
+                                <div class="name-group">
+                                    <label>刊登日期</label>@*//此選項暫時無意義*@
+                                    <select v-model="FilterData.PublishedDay" class="catgender">
+                                        <option value="">皆可</option>
+                                        <option value="1">1個月內</option>
+                                        <option value="1">3個月內</option>
+                                        <option value="1">半年內</option>
+                                        <option value="1">1年內</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="go-group">
+                                <button v-on:click="resetfilter" class="gobox">再想一下</button>
+                                <button v-on:click="flygo" class="gobox">飛行前往!</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top-right-downline">
+                    </div>
+                </div>
+            </div>
+            <div class="medium">
+                <div class="medium1">
+                    <img src="/images/pageCatPlanetInhabitants/糖果星球-橘色.png" class="medium1-left-img" id="jump" />
+                    <div v-if="match==1" class="medium1-index-img">符合條件的居民：</div>
+                </div>
+                <img src="/images/pageCatPlanetInhabitants/飛船貓貓-綠色.png" class="medium-right-img" />
+            </div>
+            <div class="down">
+                @*//如果無符合條件*@
+                <div v-if="match==0" class="match">
+                    <img src="~/images/綠色/貓星球-綠色.PNG" class="matchcatimg" />
+                    <div class="matchcattext">
+                        <div class="matchcatcolor">沒有符合條件的貓咪</div>
+                        <div class="matchcatcolor">請重新搜尋喔~</div>
+                    </div>
+                </div>
+                <div v-if="open==0" class="aligntop">
+                    <div class="fakef">
+                        <div v-for="cus in page0" class="fakef">
+                            <div class="whiteblock">
+                                <div class="listblock1">
+                                    <img v-bind:src="cus.image" class="listblockcatimg" />
+                                    <div class="listblock2">
+                                        <div class="listblock2top">
+                                            <div class="listblock2topLeft">
+                                                {{cus.name}}
+                                                <br />
+                                                {{cus.age}}
+                                                <br />
+                                                {{cus.ligation}}
+                                                <br />
+                                                {{cus.city + cus.country}}
+                                                <br />
+                                            </div>
+                                            <div class="listblock2topRight">
+
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.isDeleted==1" v-on:click="Gocollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.isDeleted==0" v-on:click="CancelCollect(cus)" class="cancelcollectHeart" />
+
+                                            </div>
+                                        </div>
+                                        <div class="listblock2down">
+                                            <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
+                                            <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="open==1" class="aligntop">
+                    <div class="fakef">
+                        <div v-for="cus in page1" class="fakef">
+                            <div class="whiteblock">
+                                <div class="listblock1">
+                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
+                                    <div class="listblock2">
+                                        <div class="listblock2txt">
+                                            姓名 : {{cus.name}}
+                                            <br />
+                                            年紀 : {{cus.age}}
+                                            <br />
+                                            結紮狀態 : {{cus.ligation}}
+                                            <br />
+                                            位置 : {{cus.city}}{{cus.country}}
+                                            <br />
+                                            <button v-on:click="Gocollect(cus.catId)" class="goforcat">收藏居民</button> @*傳送收藏的catID回後端*@
+                                            <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
+                                            <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="open==2" class="aligntop">
+                    <div class="fakef">
+                        <div v-for="cus in page2" class="fakef">
+                            <div class="whiteblock">
+                                <div class="listblock1">
+                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
+
+                                    <div class="listblock2">
+                                        <div class="listblock2txt">
+                                            姓名 : {{cus.name}}
+                                            <br />
+                                            年紀 : {{cus.age}}
+                                            <br />
+                                            結紮狀態 : {{cus.ligation}}
+                                            <br />
+                                            位置 : {{cus.city}}{{cus.country}}
+                                            <br />
+                                            <button v-on:click="Gocollect(cus.catId)" class="goforcat">收藏居民</button> @*傳送收藏的catID回後端*@
+                                            <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
+                                            <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="open==3" class="aligntop">
+                    <div class="fakef">
+                        <div v-for="cus in page3" class="fakef">
+                            <div class="whiteblock">
+                                <div class="listblock1">
+                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
+
+                                    <div class="listblock2">
+                                        <div class="listblock2txt">
+                                            姓名 : {{cus.name}}
+                                            <br />
+                                            年紀 : {{cus.age}}
+                                            <br />
+                                            結紮狀態 : {{cus.ligation}}
+                                            <br />
+                                            位置 : {{cus.city}}{{cus.country}}
+                                            <br />
+                                            <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
+                                            <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="open==4" class="aligntop">
+                    <div class="fakef">
+                        <div v-for="cus in page4" class="fakef">
+                            <div class="whiteblock">
+                                <div class="listblock1">
+                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
+
+                                    <div class="listblock2">
+                                        <div class="listblock2txt">
+                                            姓名 : {{cus.name}}
+                                            <br />
+                                            年紀 : {{cus.age}}
+                                            <br />
+                                            結紮狀態 : {{cus.ligation}}
+                                            <br />
+                                            位置 : {{cus.city}}{{cus.country}}
+                                            <br />
+                                            <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
+                                            <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="open==5" class="aligntop">
+                    <div class="fakef">
+                        <div v-for="cus in page5" class="fakef">
+                            <div class="whiteblock">
+                                <div class="listblock1">
+                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
+
+                                    <div class="listblock2">
+                                        <div class="listblock2txt">
+                                            姓名 : {{cus.name}}
+                                            <br />
+                                            年紀 : {{cus.age}}
+                                            <br />
+                                            結紮狀態 : {{cus.ligation}}
+                                            <br />
+                                            位置 : {{cus.city}}{{cus.country}}
+                                            <br />
+                                            <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
+                                            <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="open==6" class="aligntop">
+                    <div class="fakef">
+                        <div v-for="cus in page6" class="fakef">
+                            <div class="whiteblock">
+                                <div class="listblock1">
+                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
+
+                                    <div class="listblock2">
+                                        <div class="listblock2txt">
+                                            姓名 : {{cus.name}}
+                                            <br />
+                                            年紀 : {{cus.age}}
+                                            <br />
+                                            結紮狀態 : {{cus.ligation}}
+                                            <br />
+                                            位置 : {{cus.city}}{{cus.country}}
+                                            <br />
+                                            <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
+                                            <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="open==7" class="aligntop">
+                    <div class="fakef">
+                        <div v-for="cus in page7" class="fakef">
+                            <div class="whiteblock">
+                                <div class="listblock1">
+                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
+
+                                    <div class="listblock2">
+                                        <div class="listblock2txt">
+                                            姓名 : {{cus.name}}
+                                            <br />
+                                            年紀 : {{cus.age}}
+                                            <br />
+                                            結紮狀態 : {{cus.ligation}}
+                                            <br />
+                                            位置 : {{cus.city}}{{cus.country}}
+                                            <br />
+                                            <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
+                                            <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="open==8" class="aligntop">
+                    <div class="fakef">
+                        <div v-for="cus in page8" class="fakef">
+                            <div class="whiteblock">
+                                <div class="listblock1">
+                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
+
+                                    <div class="listblock2">
+                                        <div class="listblock2txt">
+                                            姓名 : {{cus.name}}
+                                            <br />
+                                            年紀 : {{cus.age}}
+                                            <br />
+                                            結紮狀態 : {{cus.ligation}}
+                                            <br />
+                                            位置 : {{cus.city}}{{cus.country}}
+                                            <br />
+                                            <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
+                                            <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="open==9" class="aligntop">
+                    <div class="fakef">
+                        <div v-for="cus in page9" class="fakef">
+                            <div class="whiteblock">
+                                <div class="listblock1">
+                                    <img v-bind:src="''+cus.image" class="listblockcatimg" />
+
+                                    <div class="listblock2">
+                                        <div class="listblock2txt">
+                                            姓名 : {{cus.name}}
+                                            <br />
+                                            年紀 : {{cus.age}}
+                                            <br />
+                                            結紮狀態 : {{cus.ligation}}
+                                            <br />
+                                            位置 : {{cus.city}}{{cus.country}}
+                                            <br />
+                                            <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
+                                            <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 2vw; background-color:white;">
+                </div>
+                <div class="turnpage">
+                    <button v-on:click="uppage" class="previouspage" onclick="window.location.href='#jump'"><</button>
+                    <button v-on:click="downpage" class="nextpage" onclick="window.location.href='#jump'">></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    var useVue = new Vue(
+        {
+            el: '#customers',
+            data: {
+                pagecount:"",
+                pagerandom:[],
+                page0: [],
+                page1: [],
+                page2: [],
+                page3: [],
+                page4: [],
+                page5: [],
+                page6: [],
+                page7: [],
+                page8: [],
+                page9: [],
+                open: 0,
+                match:1,
+
+                items: [{
+                    content: '1 item',
+                    show: true
+                }, {
+                    content: '2 item',
+                    show: true
+                }, {
+                    content: '3 item',
+                    show: true
+                    }],
+
+                show:1,
+
+                test:[],
+                CollectData: {
+                    "Cat_ID": "7",
+                    "User_ID":"@ViewData["UserID"]",
+                },
+                FilterData: {
+                    "CatColor": "",
+                    "Ligation": "",
+                    "Age": "",
+                    "CatGender": "",
+                    "Vaccine": "",
+                    "Country": "",
+                    "City": "",
+                    "Isdeleted": "2",
+                    "PublishedDay": "",
+                },
+            },
+            methods: {
+
+                resetfilter() {
+                    this.FilterData["CatColor"] = "";
+                    this.FilterData["Ligation"] = "";
+                    this.FilterData["Age"] = "";
+                    this.FilterData["CatGender"] = "";
+                    this.FilterData["Vaccine"] = "";
+                    this.FilterData["Country"] = "";
+                    this.FilterData["City"] = "";
+                    this.FilterData["PublishedDay"] = "";
+                },
+
+                deletecheck() {
+                    if (window.confirm("是否確定取消收藏?")) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                },
+                goforcat() { /*等待連接到其他頁面*/ },
+
+                //感覺要寫成前端暫存 不然重複按就重複寫入
+                Gocollect(a) {
+                    useVue.CollectData.Cat_ID = a.catId
+                    alert(useVue.CollectData.Cat_ID);
+                    a.isDeleted = 0;
+                     $.ajax(
+                        {
+                            type: 'POST',       //路由  後面是控制器
+                            url: "@Url.Action("CreateCollect", "CatPlanetInhabitants")/",
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            },
+                            data: this.CollectData,
+                            success: function (qryResult, status, xhr) {
+                                console.log(qryResult);
+                                useVue.test = qryResult;
+                                console.log(useVue.test);
+                            }
+                        }
+                    );
+                },
+                //感覺要寫成前端暫存 不然重複按就重複寫入
+                CancelCollect(a) {
+                    if (this.deletecheck()) {
+                        useVue.CollectData.Cat_ID = a.catId;
+                        alert(useVue.CollectData.Cat_ID);
+
+                        $.ajax(
+                            {
+                                type: 'POST',       //路由  後面是控制器
+                                url: "@Url.Action("DeleteCollect", "CatPlanetInhabitants")/",
+                                beforeSend: function (xhr) {
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                },
+                                data: this.CollectData,
+                                success: function (qryResult, status, xhr) {
+                                    console.log(qryResult);
+                                    useVue.test = qryResult;
+                                    console.log(useVue.test);
+                                    alert(qryResult);
+                                },
+                                error: function () {
+                                    alert("連線失敗");
+                                }
+                            }
+                        );
+                        a.isDeleted = 1;
+                    }
+                    else {
+                        alert("取消收藏失敗");
+                    }
+                },
+                flygo() {
+                    //console.log(this.FilterData)
+                    //console.log(useVue.RealName)
+                    //useVue.buttonShow = 0;/////////////////////////////
+                    //useVue.buttonShowbyId = useVue.CollectData.User_ID;
+                    $.ajax(
+                        {
+                            type: 'POST',
+                            url: "@Url.Action("Filter", "CatPlanetInhabitants")/",
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            },
+                            data: this.FilterData,
+                            success: function (qryResult, status, xhr) {
+                                if (qryResult.length == 0) {
+                                    alert("查無條件符合的貓咪")
+                                    useVue.match = 0;
+                                    useVue.open = -1;
+                                }
+                                else {
+                                    console.log(qryResult);
+                                    useVue.pagecount = Math.ceil((qryResult.length) / 3);//抓取資料筆數除3再無條件進位當總頁數
+
+                                    useVue.pagerandom = qryResult.sort(function () {
+                                        return (0.5 - Math.random());  //將取出陣列隨機排列
+                                    });
+                                    /*useVue.page0 = useVue.pagerandom;*/
+                                    useVue.page0 = useVue.pagerandom.slice(0, 3);
+                                    useVue.page1 = useVue.pagerandom.slice(3, 6);
+                                    useVue.page2 = useVue.pagerandom.slice(6, 9);
+                                    useVue.page3 = useVue.pagerandom.slice(9, 12);
+                                    useVue.page4 = useVue.pagerandom.slice(12, 15);
+                                    useVue.page5 = useVue.pagerandom.slice(15, 18);
+                                    useVue.page6 = useVue.pagerandom.slice(18, 21);
+                                    useVue.page7 = useVue.pagerandom.slice(21, 24);
+                                    useVue.page8 = useVue.pagerandom.slice(24, 27);
+                                    useVue.page9 = useVue.pagerandom.slice(27, 30);
+
+                                    useVue.match = 1;
+                                    useVue.open = 0;
+                                    
+                                }
+                            }
+                        }
+                    );
+
+                },
+                downpage() {
+                if(useVue.open < useVue.pagecount-1)
+                {
+                    useVue.open++
+                }
+                },
+                uppage() {
+                    if (useVue.open > 0) {
+                        useVue.open--
+                    }
+                }
+            },
+        },
+    );
+    useVue.flygo()
+</script>

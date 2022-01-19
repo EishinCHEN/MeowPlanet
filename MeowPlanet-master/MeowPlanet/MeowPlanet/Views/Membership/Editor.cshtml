@@ -1,0 +1,368 @@
+﻿@{
+    ViewData["Title"] = "修改會員資料";
+}
+
+@section Styles{
+    @*引用bootstrap*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    @*引用bootstrap icon*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    @*引用googlefont*@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="~/css/menbership/infoEdit.css" rel="stylesheet" />
+}
+
+<div id="app">
+    <div class="bgc">
+        <div class="container container-bgc">
+            <div class="row">
+                <div class="col-lg-3 col-xl-3">
+                    <!--會員專區選單列-->
+                    <div class="menu">
+                        <ul>
+                            <li>
+                                <a asp-controller="Membership" asp-action="Editor">資料修改</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                            <li>
+                                <a asp-controller="CatCollect" asp-action="CatCollect">收藏居民</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                            <li>
+                                <a asp-controller="MeowChat" asp-action="MessageManage">聊天訊息</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                            <li>
+                                <a href="#">行程管理</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                            <li v-if="isCatSender === 1">
+                                <a asp-controller="Membership" asp-action="Sender">我要送養</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                            <li v-if="isCatSender === 2">
+                                <a asp-controller="CatManagement" asp-action="ManageCat">管理居民</a>
+                                <i class="bi bi-caret-right-fill "></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-xl-9 memberinfo-right-area">
+                    <!--會員資料修改-->
+                    <div class="user-detail">
+                        <div class="user-info">
+                            <div class="area-title">★宇航員資料修改</div>
+                            <div class="info-nav">
+                                <ul>
+                                    <li v-on:click="showInfo(1)">修改基本資料</li>
+                                    <li v-on:click="showInfo(2)">修改密碼</li>
+                                    <li v-on:click="showInfo(3)">填寫領養人資訊</li>
+                                </ul>
+                            </div>
+                            <div class="info-area form-area" v-if="isVisable===1">
+                                <form action="/Membership/uploadphoto" method="post" enctype="multipart/form-data">
+                                    <div class="user-photo">
+                                        <div class="edit-icon" v-on:click="uploadPhoto()">
+                                            <img :src="userInfo.Photo" alt="使用者大頭貼" id="userPhoto" />
+                                        </div>
+                                        <input type="file" name="file" value="save" accept="image/*"
+                                               class="photo-selector" id="selectedFile" v-on:change="readURI">
+                                        <button type="submit"><i class="bi bi-arrow-up-circle"></i></button>
+                                    </div>
+                                </form>
+                                <form class="memberinfo-area">
+                                    <div class="required-area">
+                                        <div class="username">
+                                            <label for="Account">帳號：</label>
+                                            <input type="text" name="Account" id="Account" v-model:text="userInfo.Account" disabled>
+                                        </div>
+                                        <br />
+                                        <div class="name">
+                                            <label for="RealName">姓名：</label>
+                                            <input type="text" name="RealName" id="RealName" v-model:text="userInfo.RealName" maxlength="10">
+                                        </div>
+                                        <div class="bitrhday">
+                                            <label for="Birthday">生日：</label>
+                                            <input type="date" name="Birthday" id="Birthday" v-model="userInfo.Birthday">
+                                        </div>
+                                        <br />
+                                        <div class="gender">
+                                            <label for="Gender">性別：</label>
+                                            <select name="Gender" v-model="userInfo.Gender">
+                                                <option value="male">男性</option>
+                                                <option value="female">女性</option>
+                                            </select>
+                                        </div>
+                                        <div class="phone">
+                                            <label for="Phone">聯絡電話：</label>
+                                            <input type="tel" id="Phone" name="Phone" v-model:text="userInfo.Phone"
+                                                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                                        </div>
+                                        <br />
+                                        <div class="email-area">
+                                            <label for="Email">電子信箱：</label>
+                                            <input type="email" name="Email" id="Email" class="email" v-model:text="userInfo.Email" maxlength="50"
+                                                   >
+                                        </div>
+                                        <br />
+                                        <div class="btn-area" style="display: block;">
+                                            <button type="button" class="center-btn" v-on:click="infoEdit">修改</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="password-area form-area" v-if="isVisable===2">
+                                <form>
+                                    <div class="original-pwd">
+                                        <label for="OrgPwd">舊密碼:</label>
+                                        <input type="password" name="OrgPwd" id="OrgPwd" v-model:text="pwd.OrgPwd">
+                                    </div>
+                                    <br />
+                                    <div class="new-pwd">
+                                        <label for="NewPwd">新密碼:</label>
+                                        <input type="password" name="NewPwd" id="NewPwd" v-model:text="pwd.NewPwd">
+                                    </div>
+                                    <br />
+                                    <div class="Cfm-pwd">
+                                        <label for="CfmPwd">確認密碼:</label>
+                                        <input type="password" name="CfmPwd" id="CfmPwd" v-on:keyup="checkPwd()">
+                                        <span id="area"></span>
+                                    </div>
+                                    <div class="button-area" style="display: block;">
+                                        <button type="submit" id="submit" class="center-btn" v-on:click="pwdChange">確定修改</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="adopter-area form-area" v-if="isVisable===3">
+                                <form>
+                                    <div class="job">
+                                        <label for="Job">職業：</label>
+                                        <input type="text" name="Job" id="Job" v-model:text="adopterInfo.Job">
+                                    </div>
+                                    <div class="salary">
+                                        <label for="Salary">年薪：</label>
+                                        <select name="Salary" id="Salary" v-model="adopterInfo.Salary">
+                                            <option value="30萬以下">30萬以下</option>
+                                            <option value="30~40萬" id="300k">30~40萬</option>
+                                            <option value="40~50萬">40~50萬</option>
+                                            <option value="50~60萬">50~60萬</option>
+                                            <option value="60~70萬">60~70萬</option>
+                                            <option value="70~80萬">70~80萬</option>
+                                            <option value="80萬以上">80萬以上</option>
+                                        </select>
+                                    </div>
+                                    <div class="accatable-range">
+                                        <label for="AcceptableAmount">每月願意負擔金額：</label>
+                                        <select name="AcceptableAmount" id="AcceptableAmount" v-model="adopterInfo.AcceptableAmount">
+                                            <option value="5千~1萬">5千~1萬</option>
+                                            <option value="1萬~2萬">1萬~2萬</option>
+                                            <option value="2萬以上">2萬以上</option>
+                                        </select>
+                                    </div>
+                                    <div class="merrage">
+                                        <input type="radio" id="single" name="Merrage" value="single" v-model="adopterInfo.Merrage">
+                                        <label for="單身">單身</label>
+                                        <input type="radio" id="married" name="Merrage" value="married" v-model="adopterInfo.Merrage">
+                                        <label for="已婚">已婚</label>
+                                    </div>
+                                    <br />
+                                    <div class="other-pets">
+                                        <label for="OtherPets">同時飼養寵物：</label>
+                                        <select name="OtherPets" id="OtherPets" v-model="adopterInfo.OtherPets">
+                                            <option value="沒有">沒有</option>
+                                            <option value="貓類">貓類</option>
+                                            <option value="狗類">狗類</option>
+                                            <option value="鼠類">鼠類</option>
+                                            <option value="魚類">魚類</option>
+                                            <option value="鳥類">鳥類</option>
+                                            <option value="爬蟲類">爬蟲類</option>
+                                            <option value="其他">其他</option>
+                                        </select>
+                                    </div>
+                                    <div class="keeped-pets">
+                                        <label for="KeepPets">曾經養過寵物</label>
+                                        <select name="KeepPets" id="KeepPets" v-model="adopterInfo.KeepPets">
+                                            <option value="沒有">沒有</option>
+                                            <option value="貓類">貓類</option>
+                                            <option value="狗類">狗類</option>
+                                            <option value="鼠類">鼠類</option>
+                                            <option value="魚類">魚類</option>
+                                            <option value="鳥類">鳥類</option>
+                                            <option value="爬蟲類">爬蟲類</option>
+                                            <option value="其他">其他</option>
+                                        </select>
+                                    </div>
+                                    <div class="parents">
+                                        <label for="Agents">法定代理人姓名：</label>
+                                        <input type="text" id="Agents" v-model:text="adopterInfo.Agents">
+                                    </div>
+                                    <div class="relationship">
+                                        <label for="RelationShip">關係：</label>
+                                        <select name="RelationShip" id="RelationShip" v-model="adopterInfo.RelationShip">
+                                            <option value="父母">父母</option>
+                                            <option value="祖父母">祖父母</option>
+                                            <option value="其他">其他</option>
+                                        </select>
+                                    </div>
+                                    <div class="button-area" style="display: block;">
+                                        <button type="submit" class="center-btn" v-on:click="adpEdit">確定修改</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js'
+            integrity='sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=='
+            crossorigin='anonymous'></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isVisable: 1,
+                isCatSender: 1,
+                userInfo: {
+                    "RealName": "@ViewData["RealName"]",
+                    "Gender": "@ViewData["Gender"]",
+                    "Birthday": "@ViewData["Birthday"]",
+                    "Account": "@ViewData["Account"]",
+                    "Email": "@ViewData["Email"]",
+                    "Phone": "@ViewData["Phone"]",
+                    "Photo": "@ViewData["Photo"]",
+                    "Role":"@TempData["Role"]"
+                },
+                adopterInfo: {
+                    "Account": "@ViewData["Account"]",
+                    "Job": "@TempData["Job"]",
+                    "Salary": "@TempData["Salary"]",
+                    "AcceptableAmount": "@TempData["AcceptableAmount"]",
+                    "OtherPets": "@TempData["OtherPets"]",
+                    "KeepPets": "@TempData["KeepPets"]",
+                    "Merrage": "@TempData["Merrage"]",
+                    "Agents": "@TempData["Agents"]",
+                    "RelationShip": "@TempData["RelationShip"]"
+                },
+                pwd: {
+                    "Account": "@ViewData["Account"]",
+                    "OrgPwd": "",
+                    "NewPwd": ""
+                }
+            },
+            mounted() {
+                (this.userInfo.Role == "CatSender") ? (this.isCatSender = 2) : (this.isCatSender = 1);
+            },
+            methods: {
+                showInfo(n) {
+                    this.isVisable = n;
+                },
+                checkPwd() {   //判斷密碼是否一致
+                    var pw1 = document.getElementById("NewPwd").value;
+                    var pw2 = document.getElementById("CfmPwd").value;
+                    if (pw1 == pw2) {
+                        document.getElementById("area").innerHTML = "密碼相同";
+                        document.getElementById("submit").disabled = false;
+                    }
+                    else {
+                        document.getElementById("area").innerHTML = "密碼不一致";
+                        document.getElementById("submit").disabled = true;
+                    }
+                },
+                readURI(event) {
+                    //處理圖片預覽
+                    var vm = this;
+                    if (event.target.files && event.target.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload =  (e) => {
+                            console.log(e.target.result);
+                            this.userInfo.Photo = e.target.result;
+                        }
+                        reader.readAsDataURL(event.target.files[0]);
+                    }
+                },
+                uploadPhoto() {  //處理相片上傳按鈕樣式
+                    let uploder = document.getElementById("selectedFile");
+                    uploder.click();
+                },
+                infoEdit() {
+                    $.ajax(
+                        {
+                        type: "POST",
+                        url: "@Url.Action("infoedit", "Membership")/",
+                        beforeSend: function (xhr)
+                        {
+                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        },
+                        data: this.userInfo,
+                        }).done(function (data, textStatus, jqXHR) {
+                            var result = data.code == 200 ? "更新成功!要回到首頁嗎?" : "資料更新失敗!要回到首頁嗎?";
+                            var yes = confirm(result);
+                            yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
+                         }).fail(function () {
+                             alert("連線失敗");
+                    });
+                },
+                pwdChange() {
+                    $.ajax(
+                        {
+                        type: "POST",
+                        url: "@Url.Action("pwdchange", "Membership")/",
+                        beforeSend: function (xhr)
+                        {
+                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        },
+                            data: this.pwd,
+                        }).done(function (data, textStatus, jqXHR) {
+                            //console.log("data" + JSON.stringify(data));
+                            var result = data.code == 200 ? "密碼更新成功!要回到首頁嗎?" : "密碼更新失敗!要回到首頁嗎?";
+                            var yes = confirm(result)
+                            yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
+                         }).fail(function () {
+                             console.log("連線失敗");
+                    });
+                },
+                adpEdit() {
+                    //判斷年齡是否大於20
+                    var age =@TempData["Age"];
+                    var agent = document.getElementById("Agents");
+                    var relation = document.getElementById("RelationShip");
+                    if (age) {
+                        if (age < 20) {
+                            if (agent.value == "" || relation.value == "") {
+                                alert("未滿20歲需經法定代理人同意才能領養哦! 請填上法定代理人姓名及關係才能繼續下一步!");
+                                return;    //未填寫則跳離函式
+                            }
+                        }
+                    }
+                    $.ajax(
+                        {
+                        type: "POST",
+                        url: "@Url.Action("adpedit", "Membership")/",
+                        beforeSend: function (xhr)
+                        {
+                            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                        },
+                            data: this.adopterInfo,
+                        }).done(function (data, textStatus, jqXHR) {
+                            console.log("data" + JSON.stringify(data));
+                            var result = data.code == 200 ? "領養身分資訊更新成功!要回到首頁嗎?" : "資料更新失敗!要回到首頁嗎?";
+                            var yes = confirm(result);
+                            yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
+                         }).fail(function () {
+                             console.log("連線失敗");
+                    });
+                }
+            }
+        });
+    </script>
+}

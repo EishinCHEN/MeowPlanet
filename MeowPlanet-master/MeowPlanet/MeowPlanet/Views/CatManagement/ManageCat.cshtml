@@ -1,0 +1,165 @@
+﻿@{
+    ViewData["Title"] = "管理喵星人";
+}
+@section Styles{
+    @*引用bootstrap*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    @*引用bootstrap icon*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    @*引用googlefont*@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    @*引用fontawesome*@
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    <link href="~/css/catManagement/manageCat.css" rel="stylesheet" />
+
+}
+<!-- 導覽列 -->
+<div class=" container " id="app">
+    <div class="col-lg-3 col-md-2 col-sm-0 col-xs-0 hidden-sm hidden-xs ">
+        <!--選單列-->
+        <div class="menu  ">
+            <ul>
+                <li class="menu-list ">
+                    <a asp-controller="Membership" asp-action="Editor">資料修改</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list ">
+                    <a href="# ">收藏居民</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list ">
+                    <a asp-controller="MeowChat" asp-action="MessageManage">聊天訊息</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list ">
+                    <a href="# ">行程管理</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list">
+                    <a asp-controller="CatManagement" asp-action="ManageCat" style="color:#DA8952">管理居民</a>
+                    <i class="bi bi-caret-right-fill manage-meow"></i>
+                </li>
+            </ul>
+            <div class="bg-pic">
+                <img class="pic-planet" src="~/images/綠色/貓星球-綠色.PNG" />
+            </div>
+        </div>
+    </div>
+    <!--右邊區塊-->
+    <div id="meow-manage-area" class="col-lg-9 col-md-10 col-sm-12 col-xs-12 ">
+        <!--管理喵喵區塊-->
+        <div class="meow-manage-title">★管理居民</div>
+        <form class="form-group">
+            <!--喵喵資料-->
+            <div class="meow-manage-top">
+                <div class="meow-manage-status">
+                    <button type="button" class="btn-status published" v-on:click="publishing">刊登中</button>
+                    <button type="button" class="btn-status sendout" v-on:click="sended">已送養</button>
+                </div>
+                <button asp-controller="CatManagement" asp-action="UploadCat" class="btn-addmeow">＋新增喵星人</button>
+            </div>
+            <div class="meow-manage-inside">
+                <div class="meow-group" v-for="item in cats">
+                    <div class="group-top">{{item.name}}</div>
+                    <div class="group-inner">
+                        <div class="meow-pic">
+                            <img class="meow-pic-inside" :src="item.image" />
+                        </div>
+                        <div class="group-do">
+                            <button class="btn-do button" v-on:click="editCat(item.catId)">修改</button>
+                            <button class="btn-do button" v-on:click="deleteCat(item.catId, item.name)">刪除</button>
+                        </div>
+                    </div>
+                    <button class="btn-sendcat button" v-on:click="sendCat(item.catId, item.name)">完成送養</button>
+                    <div class="group-bottom">刊登日期:{{(item.publishedDay).substr(0, 10)}}</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                cats: []
+            },
+            mounted() {
+                var vm = this;
+                axios.get("@Url.Action("GetPersonalCatInfo", "CatManagement")/")
+                    .then((r) => {
+                        console.log(r);
+                        vm.cats = r.data;
+                    })
+            },
+            methods: {
+                publishing() {
+                    var vm = this;
+                    axios.get("@Url.Action("GetPersonalCatInfo", "CatManagement")/")
+                        .then((r) => {
+                            console.log(r);
+                            vm.cats = r.data;
+                            var btnEdit = document.querySelectorAll(".button");
+                            for (var i = 0; i < btnEdit.length; i++) {
+                                btnEdit[i].removeAttribute("disabled")
+                            }
+                        })
+                },
+                sended() {
+                    var vm = this;
+                    axios.get("@Url.Action("GetSendOutCatInfo", "CatManagement")/")
+                        .then((r) => {
+                            console.log(r);
+                            vm.cats = r.data;
+                            var btnEdit = document.querySelectorAll(".button");
+                            for(var i = 0; i < btnEdit.length; i++){
+                                btnEdit[i].setAttribute("disabled", "")
+                            }
+                        })
+                },
+                editCat(catId) {
+                    console.log(catId)
+                    axios.get("/CatManagement/EditCat/" + catId)
+                        .then((response) => {
+                            if (response.status == 200) {
+                                top.location.href = "/CatManagement/EditCat/" + catId;
+                            }
+                        })
+                        .catch((error) => console.log(error))
+                },
+                sendCat(catId, catName) {
+                    var result = confirm("確定要將" + catName + "回報為已送養嗎?");
+                    if (result) {
+                        axios.get("/CatManagement/SendCat/" + catId)
+                            .then((response) => {
+                                console.log(response);
+                                alert("回報" + catName + "送養成功!");
+                            })
+                            .catch((error) => console.log(error))
+                        top.location.href = "/CatManagement/ManageCat"
+                    } else {
+                        alert("已取消回報" + catName + "送養狀態!");
+                    }
+                },
+                deleteCat(catId, catName) {
+                    var result = confirm("確定要刪除" + catName + "嗎?");
+                    if (result) {
+                        axios.get("/CatManagement/DeleteCat/" + catId)
+                            .then((response) => {
+                                console.log(response);
+                                alert("刪除喵星人成功! ByeBye "+catName);
+                            })
+                            .catch((error) => console.log(error))
+                        top.location.href = "/CatManagement/ManageCat"
+                    }
+                }
+            }
+        });
+    </script>
+}
