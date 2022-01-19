@@ -77,7 +77,7 @@ namespace MeowPlanet
                 endpoints.MapControllerRoute(
                     name: "default",
 
-                    pattern: "{controller=CatCollect}/{action=CatCollect}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapHub<ChatHub>("/chatHub");  //signalr
             });
 
