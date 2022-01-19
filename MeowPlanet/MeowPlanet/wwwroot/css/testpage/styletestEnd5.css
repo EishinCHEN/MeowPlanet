@@ -219,7 +219,7 @@ html {
 @media (max-width:769px) {
     .p1 {
         margin-top: 10%;
-        left: 3%;
+        left: 2%;
         padding: 2.5rem 2.5rem;
     }
 
@@ -262,7 +262,7 @@ html {
 
     .btn {
         position: absolute;
-        right: 3%;
+        right:20%;
         bottom: 10%;
     }
 }
@@ -275,10 +275,10 @@ html {
     }
 
     .p1 {
-        margin-top: 2%;
+        margin-top: 0;
         left: 4%;
-        padding: 1.5rem 3.75rem;
-        
+        padding: 0.5rem 3.75rem;
+        padding-bottom:0;
     }
 
     .p1 p{
@@ -325,6 +325,7 @@ html {
     .btn {
         position: absolute;
         top: 136%;
+        right:38%
     }
 }
 
@@ -338,7 +339,7 @@ html {
 
     .p1 {
         left: 3%;
-        padding: 2rem 2rem;
+        padding: 0rem 2rem;
         padding-bottom: 0;
     }
 
@@ -384,7 +385,7 @@ html {
 
     .btn {
         position: absolute;
-        top: 230%;
+        top: 234%;
     }
 }
 
@@ -392,7 +393,7 @@ html {
 
     .p1 {
         left: 5%;
-        padding: 1rem 1rem;
+        padding: 0rem 1rem;
     }
 
     .p2 {
@@ -417,5 +418,6 @@ html {
     .btn {
         right: -10%;
         top:226%;
+        right:28%;
     }
 }

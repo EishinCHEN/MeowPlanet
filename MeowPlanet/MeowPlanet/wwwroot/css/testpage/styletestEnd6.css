@@ -35,7 +35,7 @@ html {
 
 .p1 {
     position: relative;
-    margin-top: 8%;
+    margin-top: 5%;
     left: 8%;
     float: left;
     white-space: nowrap;
@@ -100,7 +100,7 @@ html {
 
     .test1 {
         width: 270px;
-        height: 120px;
+        height: 140px;
         color: #da8952;
         font-size: 8px;
         background-color: #E5EFE1;
@@ -116,7 +116,6 @@ html {
 
     .test1 a {
         position: relative;
-        top: 10px;
         left: 50%;
         background-color: #FEF2CB;
         color: #DA8952;
@@ -145,8 +144,8 @@ html {
 
     .btn {
         position: absolute;
-        right: 6%;
-        bottom: 3%;
+        right: 22%;
+        bottom: 2%;
         padding: 10px 10px;
         text-decoration: none;
     }
@@ -157,9 +156,9 @@ html {
 
 @media (max-width:1024px) {
     .p1 {
-        margin-top: 10%;
+        margin-top: 8%;
         left: 4%;
-        padding: 3rem 3rem;
+        padding: 1rem 3rem;
     }
 
     .p2 {
@@ -209,7 +208,7 @@ html {
 
     .btn {
         position: absolute;
-        right: 5%;
+        right: 21%;
         bottom: 10%;
     }
 }
@@ -219,7 +218,7 @@ html {
     .p1 {
         margin-top: 10%;
         left: 1%;
-        padding: 2.5rem 2rem;
+        padding: 1.5rem 1.8rem;
     }
 
     .p1 p {
@@ -268,7 +267,7 @@ html {
 
     .btn {
         position: absolute;
-        right: 3%;
+        right: 20%;
         bottom: 10%;
     }
 }
@@ -283,7 +282,7 @@ html {
     .p1 {
         margin-top: 1%;
         left: 6%;
-        padding: 3.125rem 3rem;
+        padding: 0rem 3rem;
         padding-bottom: 0;
     }
 
@@ -327,6 +326,7 @@ html {
     .btn {
         position: absolute;
         top: 136%;
+        right:38%;
     }
 }
 
@@ -340,7 +340,7 @@ html {
 
     .p1 {
         left: 4%;
-        padding: 2rem 2rem;
+        padding: 0rem 2rem;
         padding-bottom: 0;
     }
 
@@ -389,7 +389,7 @@ html {
 
     .btn {
         position: absolute;
-        top: 228%;
+        top: 232%;
     }
 }
 
@@ -397,7 +397,7 @@ html {
 
     .p1 {
         left: 5%;
-        padding: 1rem 1rem;
+        padding: 0rem 1rem;
     }
 
     .p2 {
@@ -421,6 +421,7 @@ html {
 
     .btn {
         right: -10%;
-        top:224%
+        top:228%;
+        right:26%;
     }
 }
