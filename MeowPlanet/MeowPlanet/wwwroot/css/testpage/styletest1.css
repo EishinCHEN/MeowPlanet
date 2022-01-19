@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,200&display=swap');
+:root {
+    --bg: linear-gradient(to right,#CAE4BA 0%, #CAE4BA 50%,#FBD06E 0%, #FBD06E 50%);
+    --ph: #CAE4BA;
+    --lh: linear-gradient(to bottom,#CAE4BA 0%, #CAE4BA 50%,#FBD06E 0%, #FBD06E 50%);
+}
+*{
+    margin: 0;/*邊距*/
+    padding: 0;/*內距*/
+    box-sizing: border-box;/*盒子模型()*/
+    outline: none;
+    border:none;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #65615E;
+    /* border: solid 1px black; */
+    
+}
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 300;
+    src: url(https://example.com/MaterialIcons-Regular.eot);
+    /* For IE6-8 */
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+html{
+    background: var(--bg);
+}
+
+body{
+    font: normal 100%;
+    
+}
+
+.p1{
+    font-size: 1.1875em;/*19 size */
+    position: absolute;
+    top: 30%;
+    left: 8%;
+    float: left;
+    text-shadow: 0.1em 0.1em 0.2em #ffffff;
+}
+
+.p1 button{
+    position: absolute; left: 22%;
+}
+
+.btn span {
+    border-radius: 9px;
+    border: 1.5px solid #da8952;
+    padding: 5px 20px;
+    background: #CAE4BA;
+    color: #da8952;
+    font-size: 1.1875em;
+    text-shadow: 0.1em 0.1em 0.2em #ffffff;
+    position:absolute;
+    left: 20%
+}
+
+.p2{
+    float: right;
+    margin-right: 7%;
+}
+
+.p2 img{
+    width:40vw;
+    height:75vh;
+    max-width:  100%;
+}
+
+
+
+
+
+
+
+@media(max-width:1025px) {
+    .p1{
+        font-size: 1em;/*15 size */
+        position: absolute;
+        left: 6%;
+        float: left;
+    }
+
+
+    .btn span {
+        border-radius: 9px;
+        border: 1.5px solid #da8952;
+        padding: 8px 20px;
+        background: #CAE4BA;
+        color: #da8952;
+        font-size: 0.9375em;
+    }
+    .p2{
+        float: right;
+        
+        margin-right:8%;
+    }
+
+    .p2 img{
+        width:390px;
+        height:390px;
+       
+    }
+}
+
+@media(max-width:769px) {
+    .p1{
+        font-size: 0.75em;/*12 size */
+        position: absolute;
+
+        left: 6%;
+        float: left;
+    }
+
+    .btn span {
+        border-radius: 9px;
+        border: 1.5px solid #da8952;
+        padding: 8px 20px;
+        background: #CAE4BA;
+        color: #da8952;
+        font-size: 0.75em;
+    }
+
+    .p2{
+        float: right;
+    }
+    .p2 img{
+        width:280px;
+        height:280px;
+    }
+}
+
+@media (max-width:426px) {
+    html{
+        background: var(--lh);     
+    }
+
+    .p1{
+        font-size: 0.875em;/*14 size */
+        top:20%;
+        float: left;
+    }
+
+
+    .btn span {
+        border-radius: 9px;
+        border: 1.5px solid #da8952;
+        padding: 8px 20px;
+        background: #CAE4BA;
+        color: #da8952;
+        font-size: 0.875em;
+    }
+    .p2{
+        float: right;
+        margin-top:90% ;
+        
+        
+    }
+    .p2 img{
+        width:430px;
+        height:380px;
+        
+    }
+}
+
+@media (max-width:376px) {
+    
+    .p1{
+        font-size: 13px;
+        position: absolute;
+        top:24%;
+        left:9%;
+        float: left;
+    }
+
+
+    .p1 .btn span{
+        position: absolute;
+        left: 23%;
+    }
+
+
+    .p2{  
+        float: right;
+        margin-top:100% ;
+        margin-bottom:20%;
+    }
+    .p2 img{
+        width:350px;
+        height:300px;
+    }
+}
+
+@media (max-width:326px) {
+
+
+  
+    .p1{
+        font-size: 0.8125em;/*13 size */
+        position: absolute;
+        left:7%;
+        top:15%;
+        float: left;
+        font-size: 12px;
+    }
+
+    .p2{
+        float: right;
+   
+    }
+
+    .p2 img{
+        width:18.75rem;
+        height:15rem;
+
+    }
+}
+

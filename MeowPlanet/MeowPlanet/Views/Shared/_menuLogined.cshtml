@@ -1,0 +1,85 @@
+﻿<link href="~/css/menu.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+<!-- 電腦版 -->
+<div id="computer">
+    <nav>
+        <div class="logo">
+            <a asp-controller="Home" asp-action="Index"><img src="~/images/白色/LOGO.PNG" alt=""></a>
+        </div>
+        <ul class="nav-links">
+            <li><a asp-controller="MeowEncyclopedia" asp-action="MeowBook">相處之旅</a></li>
+            <li><a asp-controller="Cattest" asp-action="Test">命運旅行</a></li>
+        </ul>
+        <ul class="nav-link">
+            <li><a href="">喵星日常</a></li>
+            <li>
+                <a href="#" class="desktop-link">喵星居民</a>
+                <input type="checkbox" id="show-features">
+                <label for="show-features">喵星居民</label>
+                <ul>
+                    <li><a href="#" style="color: #da8952;">征服居民</a></li>
+                    <li><a asp-controller="Membership" asp-action="Sender" style="color: #da8952;">我要送養</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="desktop-links" style="border: 2px solid #da8952; background: #FEF2CB; color: #da8952; ">會員專區</a>
+                <input type="checkbox" id="show-features3">
+                <label for="show-features3">會員專區</label>
+                <ul>
+                    <li><a href="#" style="color: #da8952;">資料修改</a></li>
+                    <li><a href="#" style="color: #da8952;">收藏居民</a></li>
+                    <li><a href="#" style="color: #da8952;">聊天訊息</a></li>
+                    <li><a href="#" style="color: #da8952;">行程管理</a></li>
+                    <li><a href="#" style="color: #da8952;">管理居民</a></li>
+                    <li><a href="#" style="color: #da8952;"> &nbsp;&nbsp;&nbsp;登出 &nbsp;&nbsp;</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+    </nav>
+</div>
+
+
+<!--手機板-->
+<div id="phone">
+    <nav class="nav">
+        <div class="logo21">
+            <a asp-controller="Home" asp-action="Index"> <img src="~/images/白色/LOGO.PNG" alt=""></a>
+        </div>
+        <ul class="links">
+            <li><a asp-controller="MeowEncyclopedia" asp-action="MeowBook">相處之旅</a></li>
+            <li><a asp-controller="Cattest" asp-action="Test">命運旅行</a></li>
+            <li><a href="">喵星日常</a></li>
+            <li>
+                <a href="#" class="desktop-links">喵星居民</a>
+                <input type="checkbox" id="show-features2">
+                <label for="show-features2">喵星居民</label>
+                <ul>
+                    <li><a href="#" style="color: #da8952;">征服居民</a></li>
+                    <li><a asp-controller="Membership" asp-action="Sender" style="color: #da8952;">我要送養</a></li>
+                </ul>
+
+            </li>
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn">會員專區</button>
+                    <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                        <a href="#">Link 3</a>
+                        <a href="#">Link 3</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+</div>
+
+<script src="~/js/app2.js"></script>
