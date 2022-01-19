@@ -17,11 +17,11 @@
 <body class="mybody">
     @{
         if (User.Identity.Name == null)
-        {
+                    {
             <partial name="_menu" />
         }
-        else
-        {
+                    else
+                    {
             <partial name="_menuLogined" />
         }
 
@@ -34,23 +34,23 @@
         @RenderBody()
         @{
             if (User.Identity.Name == null)
-            {
-            }
-            else
-            {
-                <div class="chatApp_outer ">
-                    <div id='chatApp'>
-                        <div class="chaticon" id="chaticon">
-                            @*有未讀訊息才會顯示*@
+                        {
+                        }
+                        else
+                        {
+            <div class="chatApp_outer ">
+                <div id='chatApp'>
+                    <div class="chaticon" id="chaticon">
+                        @*有未讀訊息才會顯示*@
                             <div class="notice" id="chaticon_inside" style="display: none">
                                 <div class="notice-inside">!</div>
-                            </div>
-                            
-                            <button type="button" class="chaticonarea" onclick="location.href='@Url.Action("MessageManage", "MeowChat")'">
-                                <img class="chatpic" src="~/images/橘色/ChatIcon.PNG" />
-                            </button>
                         </div>
+
+                        <button type="button" class="chaticonarea" onclick="location.href='@Url.Action("MessageManage", "MeowChat")'">
+                            <img class="chatpic" src="~/images/橘色/ChatIcon.PNG" />
+                        </button>
                     </div>
+                </div>
                 </div>
             }
 
@@ -60,6 +60,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
+
+
         window.onload = function () {
             var rsp = null;
             $.ajax({
@@ -78,7 +80,13 @@
                     console.log("連線失敗");
                 });
         }
-        
+
+            //if (rsp.unRead == 0) {
+            //    alert("NO MESSAGE")
+            //} else {
+            //    alert("UN READ MESSAGES")
+            //    document.getElementById("chaticon_inside").style.display = 'none';
+            //}
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

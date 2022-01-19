@@ -22,8 +22,10 @@
                 </ul>
             </li>
             <li class="login"><a asp-controller="Membership" asp-action="Editor">會員專區</a></li>
+                </ul>
+            </li>
         </ul>
-
+        
     </nav>
 </div>
 
@@ -46,6 +48,20 @@
                     <li><a asp-controller="CatPlanetInhabitants" asp-action="CatPlanetInhabitants" style="color: #da8952;">征服居民</a></li>
                     <li><a asp-controller="CatManagement" asp-action="ManageCat" style="color: #da8952;">我要送養</a></li>
                 </ul>
+
+            </li>
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn">會員專區</button>
+                    <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                        <a href="#">Link 3</a>
+                        <a href="#">Link 3</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
             </li>
             <li class="login"><a asp-controller="Membership" asp-action="Editor">會員專區</a></li>
         </ul>
@@ -57,3 +73,4 @@
     </nav>
 </div>
 
+<script src="~/js/app2.js"></script>

@@ -1,13 +1,13 @@
-const navSilde =()=>{
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.links');
-    const navLinks = document.querySelectorAll('.links li')
+const navSildes =()=>{
+    const burgers = document.querySelector('.burger');
+    const navs = document.querySelector('.links');
+    const navLink = document.querySelectorAll('.links li')
 
-    burger.addEventListener('click',()=>{
-        nav.classList.toggle('nav-active');
+    burgers.addEventListener('click',()=>{
+        navs.classList.toggle('nav-active');
 
 
-        navLinks.forEach((link,index)=>{
+        navLink.forEach((link,index)=>{
             if(link.style.animation){
                 link.style.animation='';
             }else{
@@ -15,10 +15,10 @@ const navSilde =()=>{
             }
         });
 
-        burger.classList.toggle('toggle');
+        burgers.classList.toggle('toggle');
     });
 
     
 }
 
-navSilde();
+navSildes();
