@@ -69,10 +69,10 @@
             <div class="meow-manage-inside">
                 <div v-for="n in catcollectlist" class="fakef2">
                     @*<div v-for="n in 16" class="fakef2">*@
-                    <div v-if="n.isDeleted==0" class="alreadyDeliver">
+                    <div v-if="n.isDeleted==2" class="alreadyDeliver">
                         <div class="group-top">
                             <div class="backimage">
-                                <img src="~/images/三花7.jpg" class="meow-pic-inside">
+                                <img v-bind:src="n.image" class="meow-pic-inside">
                             </div>
                         </div>
                         <div class="pageline"></div>
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="cancelsize">
-                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏).JPG" class="collectheart" />
+                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" class="collectheart" />
                             </div>
 
                         </div>
