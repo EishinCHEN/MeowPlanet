@@ -535,24 +535,29 @@
                             },
                             data: this.FilterData,
                             success: function (qryResult, status, xhr) {
-                                console.log(qryResult);
-                                useVue.pagecount = Math.ceil((qryResult.length) / 3);//抓取資料筆數除3再無條件進位當總頁數
+                                //if (qryResult.Count() == 0) {
+                                //    alert("查無條件符合的貓咪")
+                                //}
+                                
+                                    console.log(qryResult);
+                                    useVue.pagecount = Math.ceil((qryResult.length) / 3);//抓取資料筆數除3再無條件進位當總頁數
 
-                                useVue.pagerandom = qryResult.sort(function () {
-                                    return (0.5 - Math.random());  //將取出陣列隨機排列
-                                });
-                                /*useVue.page0 = useVue.pagerandom;*/
-                                useVue.page0 = useVue.pagerandom.slice(0, 3);
-                                useVue.page1 = useVue.pagerandom.slice(3, 6);
-                                useVue.page2 = useVue.pagerandom.slice(6, 9);
-                                useVue.page3 = useVue.pagerandom.slice(9, 12);
-                                useVue.page4 = useVue.pagerandom.slice(12, 15);
-                                useVue.page5 = useVue.pagerandom.slice(15, 18);
-                                useVue.page6 = useVue.pagerandom.slice(18, 21);
-                                useVue.page7 = useVue.pagerandom.slice(21, 24);
-                                useVue.page8 = useVue.pagerandom.slice(24, 27);
-                                useVue.page9 = useVue.pagerandom.slice(27, 30);
-                                useVue.open = 0;
+                                    useVue.pagerandom = qryResult.sort(function () {
+                                        return (0.5 - Math.random());  //將取出陣列隨機排列
+                                    });
+                                    /*useVue.page0 = useVue.pagerandom;*/
+                                    useVue.page0 = useVue.pagerandom.slice(0, 3);
+                                    useVue.page1 = useVue.pagerandom.slice(3, 6);
+                                    useVue.page2 = useVue.pagerandom.slice(6, 9);
+                                    useVue.page3 = useVue.pagerandom.slice(9, 12);
+                                    useVue.page4 = useVue.pagerandom.slice(12, 15);
+                                    useVue.page5 = useVue.pagerandom.slice(15, 18);
+                                    useVue.page6 = useVue.pagerandom.slice(18, 21);
+                                    useVue.page7 = useVue.pagerandom.slice(21, 24);
+                                    useVue.page8 = useVue.pagerandom.slice(24, 27);
+                                    useVue.page9 = useVue.pagerandom.slice(27, 30);
+                                    useVue.open = 0;
+                                
                             }
                         }
                     );

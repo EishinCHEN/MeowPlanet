@@ -57,15 +57,45 @@ namespace MeowPlanet.Controllers
 
             var jj = from e in _dbContext.Cats 
                      select e;
+            if (!string.IsNullOrEmpty(Delivery4["CatColor"]))
+            {
+                jj = jj.Where(x => x.CatColor == Delivery4["CatColor"].ToString());
+            }
+
+            if (!string.IsNullOrEmpty(Delivery4["Ligation"]))
+            {
+                jj = jj.Where(x => x.Ligation == Delivery4["Ligation"].ToString());
+            }
+
+            if (!string.IsNullOrEmpty(Delivery4["Age"]))
+            {
+                jj = jj.Where(x => x.Age == Delivery4["Age"].ToString());
+            }
+
+            if (!string.IsNullOrEmpty(Delivery4["Vaccine"]))
+            {
+                jj = jj.Where(x => x.Vaccine == Delivery4["Vaccine"].ToString());
+            }
 
             if (!string.IsNullOrEmpty(Delivery4["City"]))
             {
                 jj = jj.Where(x => x.City == Delivery4["City"].ToString());
             }
 
+            if (!string.IsNullOrEmpty(Delivery4["Country"]))
+            {
+                jj = jj.Where(x => x.Country == Delivery4["Country"].ToString());
+            }
 
-         //   where e.City == "新北市" ??
-
+            if (!string.IsNullOrEmpty(Delivery4["CatGender"]))
+            {
+                jj = jj.Where(x => x.CatGender.ToString() == Delivery4["CatGender"].ToString());
+            }
+            
+            if (jj.Count()==0)
+            {
+                Console.WriteLine("無條件符合");
+            }
             //SQL left join 在 Linq的寫法
             //??運算子好像不可搭配int使用?
             var join = (IQueryable<CatFilterList>)(from j in jj
@@ -73,16 +103,20 @@ namespace MeowPlanet.Controllers
                                                    from f in we.DefaultIfEmpty()
                                                    select new CatFilterList
                                                    {
-                                                       UserId = f.UserId??string.Empty ,
+                                                       UserId = f.UserId??string.Empty,
                                                        CatId = j.CatId,
-                                                       Image = j.Image,
-                                                       Name = j.Name,
+                                                       CatColor = j.CatColor,
+                                                       Ligation=j.Ligation,
                                                        Age = j.Age,
-                                                       City = j.City,
+                                                       Name = j.Name,
+                                                       Image = j.Image,
+                                                       CatGender=j.CatGender,
+                                                       Vaccine=j.Vaccine,
                                                        Country = j.Country,
+                                                       City = j.City, 
                                                        IsDeleted = j.IsDeleted
                                                    });
-            var t = "123";
+
             List<Models.CatFilterList> datacat777 = join.ToList<Models.CatFilterList>();
             Console.WriteLine(datacat777.Count);
             return datacat777;
