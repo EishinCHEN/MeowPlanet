@@ -1,16 +1,28 @@
+
 select {
-    color: #65615E;
+    color: #65615E; /*OK*/
     background-color: #FEF2CB;
-    font-size: medium;
-    text-align: center;
+    font-size: medium; /*OK*/
+    text-align: center; /*OK*/
     border-color: #DA8952;
     border-radius: 5px;
-  /* appearance:none;
-    -moz-appearance:none; */
+    border-style:solid;
+    border-width:1.2px;
+    /*appearance:none;*/
+    /*-moz-appearance: none;*/
     -webkit-appearance: none;
     background: url("/images/pageCatPlanetInhabitants/三角選3.png") no-repeat scroll right center transparent;
-    padding-right: 20px;
+    padding-right: 1vw;
 }
+
+option {
+    background-color: #FEF2CB; 
+}
+
+label {
+    color: #DA8952;
+}
+
 
 body {
     background-color: white;
@@ -20,6 +32,10 @@ body {
     padding: 0;
 }
 
+.moveforNavigation{
+    position:relative;
+    top:7.5vw;
+}
 .web {
     position: absolute;
     left: 0px;
@@ -127,23 +143,75 @@ body {
 }
 
 .listblock2 {
-    background-color: #CAE4BA;
+    background-color: #E5EFE1;
     position: relative;
     left: 0px;
     top: 40px;
     width: 100%;
     height: 130px;
     border-radius: 2vw;
+    padding-left: 1.5vw;
+    padding-top: 0.5vw;
 }
 
-.listblock2txt {
-    position: relative;
-    left: 0vw;
-    top: 0px;
-    /*width: 90%;*/
+.listblock2top {
     font-size: 1vw;
-    padding-left: 1.5vw;
-    padding-top: 0.3vw;
+    display:flex;
+    
+}
+.listblock2topLeft {
+    color: #DA8952;
+    font-weight:600;
+}
+.listblock2topLeftName{
+    font-size:1.2vw;
+}
+.listblock2topRight {
+    position: relative;
+    left: 4.5vw;
+}
+.collectHeart {
+    position:relative;
+    left:3vw;
+    height: 2.5vw;
+    width: 2.5vw;
+}
+.cancelcollectHeart {
+    position: relative;
+    left: 3vw;
+    height: 2.5vw;
+    width: 2.5vw;
+}
+
+.match{
+    height:11vw;
+    display:flex;
+}
+
+.matchcatimg {
+    height: 13vw;
+    width: 13vw;
+    position: relative;
+    left:30vw;
+    
+}
+
+.matchcattext {
+    font-size: 3vw;
+    color: #DA8952;
+    position:relative;
+    left:40vw;
+    top:3vw;
+}
+
+.matchcatcolor {
+    color: #DA8952;
+}
+
+.listblock2down {
+    font-size: 1vw;
+    position: relative;
+    top: -0.3vw;
 }
 
 .aligntop {
@@ -188,7 +256,7 @@ body {
     border-color: #FEF2CB;
     border-radius: 5px;
     border-style: none;
-    font-size: medium;
+    font-size:1vw;
 }
 
 .turnpage {
@@ -250,6 +318,7 @@ body {
 }
 
 @media screen and (min-width: 800px) {
+
     .fakef {
         display: flex;
         flex-direction: row;
@@ -266,14 +335,14 @@ body {
         background-color: #FBD06E;
         position: relative;
         left: 0px;
-        width: 50%;
+        width: 50.03%;
     }
 
     .topleft {
         background-color: #CAE4BA;
         position: relative;
         left: 0px;
-        width: 50%;
+        width: 49.97%;
     }
 
     .firstbox {
