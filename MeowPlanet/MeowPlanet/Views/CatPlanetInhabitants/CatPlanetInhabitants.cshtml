@@ -8,7 +8,7 @@
                 等待導覽列 {{pagecount}}<a asp-controller="CatCollect" asp-action="CatCollect">跑到貓咪收藏</a>*@
             <div class="top">
                 <div class="topleft">
-                    <img src="/images/pageCatPlanetInhabitants/貓太空人.png" class="baseline" />
+                    <img src="/images/pageCatPlanetInhabitants/貓太空人.png " v-on:click="flygo" v-model="FilterData.CatColor" value="三花貓" class="baseline" />
                 </div>
                 <div class="topright">
                     <div class="firstbox">
