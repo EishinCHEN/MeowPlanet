@@ -71,53 +71,14 @@ namespace MeowPlanet.Controllers
                                                                Age = k.Age,
                                                                City = k.City,
                                                                Country = k.Country,
-                                                               IsDeleted = k.IsDeleted
+                                                               IsDeleted = k.IsDeleted,
+                                                               Image = k.Image
                                                            });
-            //if (!string.IsNullOrEmpty(search["User_ID"]))
-            //{
-            //    //query = query.Where(x => x.UserId == Int32.Parse(search["User_ID"]));
-            //    join = join.Where(x => x.UserId == Int32.Parse(search["User_ID"]));
-            //}
 
-            //return View("CatCollect",join);
             List<Models.CollectionListJoinCat> datacat777 = join.ToList<Models.CollectionListJoinCat>();
             Console.WriteLine(datacat777.Count);
             return datacat777;
-            //---------------------------老方法------------------------------------
-            //return _meowContext.UserDatas
-            //        .Where(u => u.UserId == userId)
-            //        .Select(u => new {
-            //            u.RealName,
-            //            PersonalPhoto = Url.Content(u.PersonalPhoto),
-            //            u.Job,
-            //            u.Salary,
-            //            u.AcceptableAmount,
-            //            u.Merrage,
-            //            u.OtherPets,
-            //            u.KeepPets,
-            //            u.Agents,
-            //            u.RelationShip,
-            //            Over20 = ((DateTime.Now.Subtract(u.Birthday).Days / 365) > 20 ? "是" : "否")
-            //        })
-            //        .FirstOrDefaultAsync();
-            //--------------------------老方法--------------------------------------
-            //public ActionResult Index()
-            //{
 
-            //    var viewModels = (from m in model1List
-            //                      join r in model2List on m.CoachId equals r.CoachId
-            //                      select new StudentCoachViewModel()
-            //                      {
-            //                          StudentName = m.StudentName,
-            //                          CoachName = r.CoachName
-            //                      }).ToList();
-
-            //    return View(viewModels);
-            //}
-
-            //List<Models.CollectionList> datacat777 = join.ToList();
-            //Console.WriteLine(datacat777.Count);
-            //return datacat777;
         }
     }
 }

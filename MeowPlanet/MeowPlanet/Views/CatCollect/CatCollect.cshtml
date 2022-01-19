@@ -101,7 +101,7 @@
                     <div v-if="n.isDeleted==1" class="meow-group">
                         <div class="group-top">
                             <div class="backimage">
-                                <img src="~/images/三花7.jpg" class="meow-pic-inside">
+                                <img v-bind:src="n.image" class="meow-pic-inside"/>
                             </div>
                         </div>
                         <div class="pageline"></div>
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                             <div class="cancelsize">
-                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏).JPG" v-on:click="CancelCollect(n)" class="collectheart" />
+                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-on:click="CancelCollect(n)" class="collectheart" />
                             </div>
                         </div>
                     </div>
