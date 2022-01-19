@@ -112,11 +112,19 @@
         <div class="medium">
             <div class="medium1">
                 <img src="/images/pageCatPlanetInhabitants/糖果星球-橘色.png" class="medium1-left-img" id="jump" />
-                <div class="medium1-index-img">符合條件的居民：</div>  
+                <div v-if="match==1" class="medium1-index-img">符合條件的居民：</div>  
             </div>
             <img src="/images/pageCatPlanetInhabitants/飛船貓貓-綠色.png" class="medium-right-img" />
         </div>
         <div class="down">
+            @*//如果無符合條件*@
+            <div v-if="match==0" class="match">
+                <img src="~/images/綠色/貓星球-綠色.PNG" class="matchcatimg" />
+                <div class="matchcattext">
+                    <div class="matchcatcolor">沒有符合條件的貓咪</div>
+                    <div class="matchcatcolor">請重新搜尋喔~</div>
+                </div> 
+            </div>
             <div v-if="open==0" class="aligntop">
                 <div class="fakef">
                     <div v-for="cus in page0" class="fakef">
@@ -415,6 +423,7 @@
                 page8: [],
                 page9: [],
                 open: 0,
+                match:1,
 
                 items: [{
                     content: '1 item',
@@ -535,10 +544,12 @@
                             },
                             data: this.FilterData,
                             success: function (qryResult, status, xhr) {
-                                //if (qryResult.Count() == 0) {
-                                //    alert("查無條件符合的貓咪")
-                                //}
-                                
+                                if (qryResult.length == 0) {
+                                    alert("查無條件符合的貓咪")
+                                    useVue.match = 0;
+                                    useVue.open = -1;
+                                }
+                                else {
                                     console.log(qryResult);
                                     useVue.pagecount = Math.ceil((qryResult.length) / 3);//抓取資料筆數除3再無條件進位當總頁數
 
@@ -556,11 +567,15 @@
                                     useVue.page7 = useVue.pagerandom.slice(21, 24);
                                     useVue.page8 = useVue.pagerandom.slice(24, 27);
                                     useVue.page9 = useVue.pagerandom.slice(27, 30);
+
+                                    useVue.match = 1;
                                     useVue.open = 0;
-                                
+                                    
+                                }
                             }
                         }
                     );
+
                 },
                 downpage() {
                 if(useVue.open < useVue.pagecount-1)

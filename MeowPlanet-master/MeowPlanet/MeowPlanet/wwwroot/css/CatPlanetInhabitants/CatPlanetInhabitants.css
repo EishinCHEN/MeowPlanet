@@ -168,6 +168,31 @@ body {
     width: 2.5vw;
 }
 
+.match{
+    height:40vw;
+    display:flex;
+}
+
+.matchcatimg {
+    height: 13vw;
+    width: 13vw;
+    position: relative;
+    left:30vw;
+    
+}
+
+.matchcattext {
+    font-size: 3vw;
+    color: #DA8952;
+    position:relative;
+    left:40vw;
+    top:3vw;
+}
+
+.matchcatcolor {
+    color: #DA8952;
+}
+
 .listblock2down {
     font-size: 1vw;
     position: relative;
