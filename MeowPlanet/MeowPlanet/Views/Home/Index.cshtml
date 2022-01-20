@@ -13,12 +13,12 @@
 </div>
 <div class="wrapper2">
     <div class="pic">
-        <ul>
+        <ul >
             <a href="#">
-            <li><img src="~/images/index img/橘白.png" /></li>
+            <li><img src="~/images/index img/橘白.png" onClick="flygo()" /></li>
             </a>
-            <a href="#">
-            <li><img src="~/images/index img/黑白.png" /></li>
+            <a href="#">@*v-model="FilterData.CatColor"*@
+            <li><img src="~/images/index img/黑白.png" v-on:click="flygo"  value="黑白貓"/></li>
             </a>
             <a href="#">
             <li><img src="~/images/index img/三花貓.png" /></li>
@@ -77,6 +77,7 @@
             img.setAttribute("src", src);
         }
 
+        
 
 
         $('.pic').flipster({
@@ -84,6 +85,33 @@
             style: 'flat',
             start: ''
         });
+
+        function flygo() {
+                window.location.href = "https://localhost:44395/CatPlanetInhabitants/CatPlanetInhabitants?三花貓";
+        }
+
+        //var useVue = new Vue(
+        //    {
+        //        el: "#filter",
+        //        data: {
+        //            FilterData: {
+        //                "CatColor": "",
+        //                "Ligation": "",
+        //                "Age": "",
+        //                "CatGender": "",
+        //                "Vaccine": "",
+        //                "Country": "",
+        //                "City": "",
+        //                "Isdeleted": "2",
+        //                "PublishedDay": "",
+        //            },
+        //        },
+        //        methods: {
+        //            flygo() {
+        //                window.location.href = "https://localhost:44395/CatPlanetInhabitants/CatPlanetInhabitants?hid=lemon&seth=seth";
+        //            },
+        //        }
+        //    });
     </script>
 
 
