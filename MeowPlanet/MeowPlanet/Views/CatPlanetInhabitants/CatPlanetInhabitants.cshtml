@@ -1,14 +1,47 @@
-﻿<link href="~/css/CatPlanetInhabitants/CatPlanetInhabitants.css" rel="stylesheet" />
+﻿@*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<link rel="stylesheet" href="./css/indexpage/jquery.flipster.min.css">
+<link rel="stylesheet" href="~/css/indexpage/index.css">*@
+<link href="~/css/CatPlanetInhabitants/CatPlanetInhabitants.css" rel="stylesheet" />
 @ViewData["UserID"]接收會員ID;
 @ViewData["CatID1"]接收貓咪資訊;
 <body>
     <div id="customers" class="web">
         <div class="moveforNavigation">
             @*<a asp-controller="Login" asp-action="Login">跑到登入</a>
-                等待導覽列 {{pagecount}}<a asp-controller="CatCollect" asp-action="CatCollect">跑到貓咪收藏</a>*@
+        等待導覽列 {{pagecount}}<a asp-controller="CatCollect" asp-action="CatCollect">跑到貓咪收藏</a>*@
+            @*{{test777}}
+            {{FilterData.CatColor}}*@
             <div class="top">
                 <div class="topleft">
-                    <img src="/images/pageCatPlanetInhabitants/貓太空人.png" class="baseline" />
+                    <img src="/images/pageCatPlanetInhabitants/貓太空人.png "  class="topleftcat" />
+                    @*<div class="pic">
+                    <ul>
+                        <a href="#">
+                        <li><img src="~/images/index img/橘白.png" /></li>
+                        </a>
+                        <a href="#">
+                        <li><img src="~/images/index img/黑白.png" /></li>
+                        </a>
+                        <a href="#">
+                        <li><img src="~/images/index img/三花貓.png" /></li>
+                        </a>
+                        <a href="#">
+                        <li><img src="~/images/index img/玳瑁貓.png" /></li>
+                        </a>
+                        <a href="#">
+                        <li><img src="~/images/index img/虎斑貓.png" /></li>
+                        </a>
+                        <a href="">
+                        <li><img src="~/images/index img/白貓.png" /></li>
+                        </a>
+                        <a href="">
+                        <li><img src="~/images/index img/黑貓.png" /></li>
+                        </a>
+                        <a href="">
+                        <li><img src="~/images/index img/黑白.png" /></li>
+                        </a>
+                    </ul>
+                </div>*@
                 </div>
                 <div class="topright">
                     <div class="firstbox">
@@ -487,6 +520,32 @@
     </div>
 </body>
 <script>
+    //方法一：
+    var el, elURL, url, para, result, arr;
+    el = document.getElementById("p1");
+    elURL = window.location.search;//獲取get請求的參數 獲取到數據，是以？傳過來的值 “?hid=lemon&seth=seth”
+    result = {};//存儲對象
+    arr = [];
+    //通過解析字符串，獲取確定的數據。
+    function paraURL(url) {
+        //從第二個字符開始截取，獲取到第二個開始後面所有的字符
+
+        url = url.split("?")[1];//hid=lemon&seth=seth
+        para = url.split("&");  //分割字符串  --> 產生字符串數組
+        //遍歷數組中的每一個元素
+        for (var i = 0; i < para.length; i++) {
+            arr = para[i].split('=');
+            var name = arr[0];
+            var value = arr[1];
+
+
+            result[name] = encodeURI(value); //解決中文亂碼問題
+            el.innerHTML += name + ":" + result[name] + "\n";
+        }
+
+        return result;
+    }
+  /*  paraURL(elURL);*/
 
     var useVue = new Vue(
         {
@@ -506,7 +565,9 @@
                 page9: [],
                 open: 0,
                 match:1,
-
+                /*test777: window.location.search.split("?")[1],*/
+                /* test777: encodeURI(window.location.search.split("?")[1]),*/
+                test777: decodeURI(window.location.search.split("?")[1]),
                 items: [{
                     content: '1 item',
                     show: true
@@ -526,7 +587,7 @@
                     "User_ID":"@ViewData["UserID"]",
                 },
                 FilterData: {
-                    "CatColor": "",
+                    "CatColor": decodeURI(top.location.search.split("?")[1]),
                     "Ligation": "",
                     "Age": "",
                     "CatGender": "",
@@ -558,7 +619,10 @@
                         return false;
                     }
                 },
-                goforcat() { /*等待連接到其他頁面*/ },
+                goforcat() {
+                    alert("我要去貓咪資訊頁")
+                  
+},
 
                 //感覺要寫成前端暫存 不然重複按就重複寫入
                 Gocollect(a) {
@@ -616,6 +680,10 @@
                     //console.log(useVue.RealName)
                     //useVue.buttonShow = 0;/////////////////////////////
                     //useVue.buttonShowbyId = useVue.CollectData.User_ID;
+                    if (useVue.FilterData.CatColor == "undefined") {
+                        useVue.FilterData.CatColor = ""
+                    }
+                    console.log(this.FilterData)
                     $.ajax(
                         {
                             type: 'POST',
@@ -673,4 +741,10 @@
         },
     );
     useVue.flygo()
+
+    //$('.pic').flipster({
+    //    spacing: 0,
+    //    style: 'flat',
+    //    start: ''
+    //});
 </script>

@@ -59,6 +59,9 @@ body {
     width: 100%
 }
 
+.topleftcat {
+    width   : 220px;
+}
 .down {
     left: 0px;
     width: 100%;
