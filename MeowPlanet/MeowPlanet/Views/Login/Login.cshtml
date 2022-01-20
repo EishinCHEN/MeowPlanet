@@ -26,7 +26,7 @@
                 <div class="login-bgc">
                     <span class="email-confirm">@ViewBag.Message</span>
                     <div class="login-area">
-                        <form>
+                        <form v-if="showlogin === 1">
                             <p>✩歡迎回來征服貓星人</p>
                             <span>@ViewBag.LoginError</span>
                             <div class="form-group">
@@ -39,11 +39,24 @@
                                     <input type="password" name="Password" id="Password" v-model:text="loginData.Password"  v-on:keyup.enter="enterToLogin()">
                                 </div>
                                 <div class="forget-password">
-                                    <a href="#" style="color: #da8952;text-decoration: none;" v-on:click="forgetPassword">忘記密碼？</a>
+                                    <a href="#" style="color: #da8952;text-decoration: none;" v-on:click="gotoForgetPwd(2)">忘記密碼？</a>
                                 </div>
                             </div>
                             <div class="submit">
                                 <button type="button" class="login-btn" v-on:click="login" id="loginBtn">登入</button>
+                            </div>
+                        </form>
+                        <form v-if="showlogin === 2">
+                            <p>✩忘記密碼</p>
+                            <span>@ViewBag.LoginError</span>
+                            <div class="form-group">
+                                <div class="username-input">
+                                    <label for="Account">帳號</label>
+                                    <input type="text" name="Account" id="Account" v-model:text="loginData.Account">
+                                </div>
+                            </div>
+                            <div class="submit">
+                                <button class="login-btn" v-on:click="forgetPassword">申請新密碼</button>
                             </div>
                         </form>
                         @*<div class="oAuth">
@@ -75,12 +88,16 @@
         var app = new Vue({
             el: "#app",
             data: {
+                showlogin:1,
                 loginData: {
                     "Account": "",
                     "Password": ""
                 }
             },
             methods: {
+                gotoForgetPwd(n) {
+                    this.showlogin = n;
+                },
                 enterToLogin() {
                     var loginBtn = document.getElementById("loginBtn");
                     loginBtn.click();
@@ -113,7 +130,7 @@
                     }).done(function (data, textStatus, jqXHR) {
                         console.log("data" + JSON.stringify(data));
                         var result = data.code == 200 ? "新密碼寄送成功!請檢查電子郵件!" : "申請新密碼失敗!";
-                        var yes = confirm(result)
+                        var yes = confirm("新密碼寄送成功!請檢查電子郵件!")
                         yes ? (top.location.href = "/Login/Login") : (top.location.href = "/Home/Index");
                     }).fail(function () {
                         console.log("連線失敗");
