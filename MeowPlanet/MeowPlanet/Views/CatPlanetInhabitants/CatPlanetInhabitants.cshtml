@@ -9,11 +9,11 @@
         <div class="moveforNavigation">
             @*<a asp-controller="Login" asp-action="Login">跑到登入</a>
         等待導覽列 {{pagecount}}<a asp-controller="CatCollect" asp-action="CatCollect">跑到貓咪收藏</a>*@
-            {{test777}}
-            {{FilterData.CatColor}}
+            @*{{test777}}
+            {{FilterData.CatColor}}*@
             <div class="top">
                 <div class="topleft">
-                    <img src="/images/pageCatPlanetInhabitants/貓太空人.png " v-on:click="flygo" v-model="FilterData.CatColor" value="三花貓" class="topleftcat" />
+                    <img src="/images/pageCatPlanetInhabitants/貓太空人.png "  class="topleftcat" />
                     @*<div class="pic">
                     <ul>
                         <a href="#">
@@ -677,9 +677,10 @@
                     //console.log(useVue.RealName)
                     //useVue.buttonShow = 0;/////////////////////////////
                     //useVue.buttonShowbyId = useVue.CollectData.User_ID;
-                    if (useVue.FilterData.CatColor == undefined) {
-                        useVue.FilterData.CatColor = "123"
+                    if (useVue.FilterData.CatColor == "undefined") {
+                        useVue.FilterData.CatColor = ""
                     }
+                    console.log(this.FilterData)
                     $.ajax(
                         {
                             type: 'POST',
