@@ -587,7 +587,7 @@
                     "User_ID":"@ViewData["UserID"]",
                 },
                 FilterData: {
-                    "CatColor": decodeURI(window.location.search.split("?")[1]),
+                    "CatColor": decodeURI(top.location.search.split("?")[1]),
                     "Ligation": "",
                     "Age": "",
                     "CatGender": "",
@@ -619,7 +619,10 @@
                         return false;
                     }
                 },
-                goforcat() { /*等待連接到其他頁面*/ },
+                goforcat() {
+                    alert("我要去貓咪資訊頁")
+                    /*等待連接到其他頁面*/
+},
 
                 //感覺要寫成前端暫存 不然重複按就重複寫入
                 Gocollect(a) {
