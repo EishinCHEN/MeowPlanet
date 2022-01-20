@@ -1,0 +1,137 @@
+﻿* {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #65615E;
+    /* border: solid 1px black; */
+}
+
+
+/* 引用Materil Design */
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot);
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #FEF2CB;
+}
+
+
+.bgc {
+    background-color: #FEF2CB;
+    padding: 3rem;
+}
+
+.container {
+    background-color: #fff;
+    width: 70%;
+    padding: 3rem;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.title-img {
+    width: 15%;
+}
+
+.title-inner-img {
+    width: 100%;
+}
+
+.triangle {
+    margin-left: 10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7.5px 20px 7.5px 0;
+    border-color: transparent #da8852 transparent transparent;
+}
+
+.dialog-box {
+    border-radius: 10px;
+    background-color: #DA8952;
+    border: none;
+    width: fit-content;
+    padding: 15px;
+    max-width: 60%;
+}
+
+.dialog-inner {
+    padding: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.inner-title, .inner-text {
+    list-style-type: none;
+    color: white;
+}
+
+.inner-title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.inner-text{
+    margin-top: 10px;
+    margin-bottom:5px;
+}
+
+.week-buttons {
+    justify-content:flex-end;
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.week-change-button {
+    border-radius: 5px;
+    background-color: #FBD06E;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+}
+
+
+
+    .week-change-button:hover{
+        background-color: #DA8952;
+        color: white;
+    }
+
+.bi .bi-caret-right-fill {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+
+.messageboard {
+    border-top: solid #FBD06E 2px;
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        width: 100%;
+        height: 100%;
+        background-color: #FEF2CB;
+        margin-top: 0;
+        padding: 0;
+    }
+}
