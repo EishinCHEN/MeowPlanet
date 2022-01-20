@@ -41,7 +41,7 @@ html{
 
 .p1{
     
-    font-size: 17px;
+    font-size: 20px;
     position: relative;
     margin-top: 20%;
     left: 15%;
@@ -70,7 +70,7 @@ html{
 
 
 label{
-    font-size: 17px;
+    font-size: 20px;
     text-shadow: 0.1em 0.1em 0.2em #65615E;
     color:white;
 }
