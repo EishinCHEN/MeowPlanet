@@ -34,8 +34,8 @@ namespace MeowPlanet
             services.AddHttpClient();
             services.AddSignalR();  //引用signalR
             services.AddDbContext<MeowContext>(options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("Meow")));
-            options.UseSqlServer(Configuration.GetConnectionString("test")));//本機測試用
+            options.UseSqlServer(Configuration.GetConnectionString("Meow")));
+            //options.UseSqlServer(Configuration.GetConnectionString("test")));//世光本機測試用
             //設定cookie驗證
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(option =>
