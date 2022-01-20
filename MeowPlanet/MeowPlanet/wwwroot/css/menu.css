@@ -125,7 +125,7 @@ nav {
 }
 
 .nav-link li:hover > ul {
-    top: 60px;
+    top: 38px;
     opacity: 1;
     visibility: visible;
     transition: all 0.3s ease;
@@ -154,8 +154,10 @@ nav {
 
 .nav-link li a:hover,
 .nav-links li a:hover {
-    color:#DA8952;
+    color: #DA8952;
+    
 }
+
 
 
 
@@ -295,16 +297,46 @@ nav {
 
 
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FBD06E;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 63px;
+    bottom: 1px;
+}
 
+.dropdown-content a {
+    color: #65615E;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size:12px;
+}
 
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
 
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
 
 
 /* 各螢幕大小 */
 @media (max-width:1220px) {
-    .nav-links a,
-    .nav-link a {
+    .nav-links a, .nav-link a {
         font-size: 13px;
         white-space: nowrap;
     }
@@ -315,6 +347,7 @@ nav {
     .logo img {
         left: 40%;
     }
+
     .nav-links a,
     .nav-link a {
         font-size: 13px;
@@ -324,7 +357,7 @@ nav {
 
 @media (max-width:1025px) {
 
-   
+
 
 
     .nav-links a,
@@ -370,7 +403,7 @@ nav {
         position: absolute;
         right: 0px;
         height: 79vh;
-        top: 21vh;
+        top: 16vh;
         background: var(--or);
         display: flex;
         flex-direction: column;

@@ -86,7 +86,9 @@ body {
 
 
 /* 主標題列(右邊) */
-
+#meow-manage-area{
+    width: 80%;
+}
 .meow-manage-title {
     width: 90%;
     font-weight: 500;
@@ -112,6 +114,7 @@ body {
     margin-bottom: 16px;
     padding: 10px;
     flex-direction: row;
+    justify-content: center;
     display: flex;
     color: #da8952;
 }
@@ -119,7 +122,6 @@ body {
 /*相片位置*/
 .pic-area {
     width: 30%;
-    margin-top:3rem;
 }
 
 .info-area {
@@ -127,7 +129,7 @@ body {
     padding-left: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .pic-area form {

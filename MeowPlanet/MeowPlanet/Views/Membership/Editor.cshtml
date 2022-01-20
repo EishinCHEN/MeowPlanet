@@ -198,7 +198,7 @@
                                     </div>
                                     <div class="parents">
                                         <label for="Agents">法定代理人姓名：</label>
-                                        <input type="text" id="Agents" v-model:text="adopterInfo.Agents">
+                                        <input type="text" id="Agents" v-model:text="adopterInfo.Agents" placeholder="未滿20歲需填寫">
                                     </div>
                                     <div class="relationship">
                                         <label for="RelationShip">關係：</label>
@@ -269,11 +269,11 @@
                     var pw1 = document.getElementById("NewPwd").value;
                     var pw2 = document.getElementById("CfmPwd").value;
                     if (pw1 == pw2) {
-                        document.getElementById("area").innerHTML = "密碼相同";
+                        document.getElementById("area").innerHTML = "";
                         document.getElementById("submit").disabled = false;
                     }
                     else {
-                        document.getElementById("area").innerHTML = "密碼不一致";
+                        document.getElementById("area").innerHTML = "密碼不相同";
                         document.getElementById("submit").disabled = true;
                     }
                 },
@@ -333,11 +333,12 @@
                 adpEdit() {
                     //判斷年齡是否大於20
                     var age =@TempData["Age"];
+                    alert(age);
                     var agent = document.getElementById("Agents");
                     var relation = document.getElementById("RelationShip");
                     if (age) {
                         if (age < 20) {
-                            if (agent.value == "" || relation.value == "") {
+                            if (agent.value == '' || relation.value == null) {
                                 alert("未滿20歲需經法定代理人同意才能領養哦! 請填上法定代理人姓名及關係才能繼續下一步!");
                                 return;    //未填寫則跳離函式
                             }

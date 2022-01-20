@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,200&display=swap');
+
+:root {
+    --bg: linear-gradient(to right,#CAE4BA 0%, #CAE4BA 50%,#FBD06E 0%, #FBD06E 50%);
+    --lh: linear-gradient(to bottom,#CAE4BA 0%, #CAE4BA 50%,#FBD06E 0%, #FBD06E 50%);
+    --gr: #CAE4BA;
+    --or: #FBD06E;
+}
+
+* {
+    margin: 0; /*邊距*/
+    padding: 0; /*內距*/
+    box-sizing: border-box; /*盒子模型()*/
+    outline: none;
+    border: none;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #65615E;
+    /* border: solid 1px black; */
+}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot);
+    /* For IE6-8 */
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+
+    html {
+        background: var(--bg);
+    }
+
+
+    .p1 {
+        position: relative;
+        margin-top:6%;
+        left: 8%;
+        float: left;
+        white-space: nowrap;
+        border-radius: 1rem;
+        border: 1.5px solid #FEF2CB;
+        padding: 5rem 5rem;
+        padding-bottom:30px;
+        background: #FEF2CB;
+    }
+
+    .p1 p {
+        font-size: 1em;
+        font-weight: bold;
+        color: #DA8952;
+    }
+
+    .p1 hr {
+        border: 1px solid #da8952;
+    }
+
+    .p1 img {
+        position: relative;
+        right: 15%;
+        width: 6.25rem;
+        height: 6.25rem;
+    }
+
+    .p1 .t1 {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.25em;
+    }
+
+    .p2 {
+        position: absolute;
+        top: 25%;
+        float: right;
+        right: 5.5%;
+    }
+
+    .p2 .t2 {
+        border: 1px solid #FEF2CB;
+        border-radius: 1rem;
+        padding: 5px 15px;
+        padding-right: 385px;
+        background-color: #FEF2CB;
+        color: #DA8952;
+        font-weight: bold;
+    }
+
+    .pic {
+        position: absolute;
+        right: 15%;
+        top: 35%;
+    }
+
+    .pic1 {
+        float: left;
+        position: relative;
+        left: 30%;
+    }
+
+    .test1 {
+        width: 270px;
+        height:140px;
+        color: #da8952;
+        font-size: 8px;
+        background-color: #E5EFE1;
+        border-bottom-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+        padding: 5px 10px;
+        font-weight: bold;
+    }
+
+    .test1 hr {
+        border: 1px solid #DA8952;
+    }
+    .test1 a {
+        position: relative;
+        left: 50%;
+        background-color: #FEF2CB;
+        color: #DA8952;
+        padding: 7px 10px;
+        border-radius: 10px;
+        text-decoration:none;
+    }
+
+ 
+
+    .pic12,
+    .pic13 {
+        border: 1px solid #FEF2CB;
+        border-top-left-radius: 1em;
+        border-top-right-radius: 1em;
+        padding: 15px 20px;
+        background-color: #FEF2CB;
+        margin-right: 35px;
+    }
+
+
+
+
+
+    .pic img {
+        width: 270px;
+        height: 260px;
+    }
+
+
+    .btn {
+        position: absolute;
+        right: 22%;
+        bottom: 2%;
+        padding: 10px 10px;
+        text-decoration: none;
+    }
+
+
+
+
+
+@media (max-width:1024px) {
+    .p1 {
+        margin-top: 10%;
+        left: 6%;
+        padding: 2rem 3rem;
+    }
+
+    .p2 {
+        position: absolute;
+        top: 27%;
+        float: right;
+        right: 4%;
+    }
+
+    .p2 .t2 {
+            padding-right: 240px;
+    }
+
+
+    .pic {
+        position: absolute;
+        right: 14%;
+        top: 35%;
+    }
+
+    .test1 {
+        width: 200px;
+        color: #da8952;
+        font-size: 8px;
+        background-color: #E5EFE1;
+        border-bottom-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+        padding: 5px 10px;
+        font-weight: bold;
+    }
+
+    .test1 a {
+        position: relative;
+        left: 35%;
+        background-color: #FEF2CB;
+        color: #DA8952;
+        padding: 7px 10px;
+        border-radius: 10px;
+    }
+
+
+
+    .pic img {
+        width: 200px;
+        height: 190px;
+    }
+
+    .btn {
+        position: absolute;
+        right: 21%;
+        bottom: 10%;
+    }
+}
+
+
+@media (max-width:769px) {
+    .p1 {
+        margin-top: 10%;
+        left: 1%;
+        padding: 3rem 3rem;
+    }
+
+    .p1 p {
+            font-size:1em;
+            font-weight: bold;
+            color: #DA8952;
+    }
+
+    .p2 {
+        right: 2%;
+    }
+
+    .p2 .t2 {
+            padding-right: 160px;
+    }
+
+    .pic {
+        right: 15%;
+    }
+
+    .pic12,
+    .pic13 {
+        padding: 15px 15px;
+        margin-right: 10px;
+    }
+
+    .test1 {
+        width: 170px;
+    }
+
+    .test1 a {
+            left: 22%;
+    }
+
+    .pic img {
+        width: 170px;
+        height: 190px;
+    }
+
+    .btn {
+        position: absolute;
+        right: 20%;
+        bottom: 10%;
+    }
+}
+
+@media (max-width:426px) {
+    html {
+        background: var(--lh);
+        width: 110vw;
+        height: 145vh;
+    }
+
+    .p1 {
+        margin-top: 0;
+        left: 8%;
+        padding: 0.5rem 3.75rem;
+    }
+
+    .p1 img {
+            position: relative;
+            right: 15%;
+            width: 6rem;
+            height: 6rem;
+    }
+
+    .p2 {
+        top: 75%;
+        right: 1%;
+    }
+
+    .p2 .t2 {
+            white-space: nowrap;
+            padding-right: 200px;
+    }
+
+    .pic {
+        width: 100%;
+        position: absolute;
+        right: 22%;
+        top: 82%;
+    }
+
+    .test1 {
+        width: 190px;
+    }
+
+    .pic img {
+        width: 190px;
+        height: 180px;
+    }
+
+    .btn1 a {
+        padding-bottom: 30px;
+    }
+
+    .btn {
+        position: absolute;
+        top: 136%;
+        right:38%;
+    }
+}
+
+
+@media (max-width:376px) {
+    html {
+        background: var(--lh);
+        width: 107vw;
+        height: 140vh;
+    }
+
+    .p1 {
+        left: 6%;
+        padding: 0.3rem 2.5rem;
+        padding-bottom: 0;
+    }
+
+    .p2 {
+        white-space: nowrap;
+        top: 78%;
+        left: 10%;
+    }
+
+    .p2 .t2 {
+            padding-right: 200px;
+    }
+
+    .pic {
+        overflow: visible;
+        background: var(--or);
+        width: 110vw;
+        height: 160vh;
+        top: 88%;
+        right: 15%;
+    }
+
+    .pic1 {
+        background: var(--or);
+    }
+
+    .test1 {
+        width: 360px;
+    }
+
+    .test1 a {
+            left: 63%;
+    }
+
+    .pic img {
+        width: 360px;
+        height: 310px;
+    }
+
+    .btn {
+        position: absolute;
+        top: 233%;
+    }
+}
+
+@media (max-width:321px) {
+
+    .p1 {
+        left:3%;
+    }
+
+    .p2 {
+        white-space: nowrap;
+        top: 78%;
+        left: 8%;
+    }
+
+    .p2 .t2 {
+            padding-right: 315px;
+    }
+
+    .pic img {
+        width: 340px;
+        height: 290px;
+    }
+
+    .test1 {
+        width: 340px;
+    }
+
+    .btn {
+        right: 27%;
+        top: 226%;
+    }
+}
