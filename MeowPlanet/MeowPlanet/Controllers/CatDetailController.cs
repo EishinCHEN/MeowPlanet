@@ -29,7 +29,28 @@ namespace MeowPlanet.Controllers
             int userCount = (from c in _dbcontext.Cats
                              where c.UserId == user.UserId
                              select c).Count();
-
+            //世光新增
+            var claims = HttpContext.User;
+            var ID = Convert.ToInt32(claims.Identity.Name);
+            var collect = from w in _dbcontext.CollectionLists
+                               where w.UserId == ID
+                               select new CatFilterList
+                               {
+                                   UserId = w.UserId.ToString(),
+                                   CatId = w.CatId,
+                               };
+            var cat2 = from e in _dbcontext.Cats
+                     where e.CatId == catId
+                     select e;
+            var collectCheck =  (from j in cat2
+                                join k in collect on j.CatId equals k.CatId into we
+                                from f in we.DefaultIfEmpty()
+                                select new CatFilterList
+                                {
+                                    UserId = f.UserId ?? string.Empty,
+                                }).FirstOrDefault();
+            //List<Models.CatFilterList> collectCheck2 = collectCheck.ToList<Models.CatFilterList>();
+            //世光新增
             if (cat != null)
             {
                 ViewData["Image"] = cat.Image;
@@ -54,6 +75,9 @@ namespace MeowPlanet.Controllers
                 ViewData["RealName"] = user.RealName;
                 ViewData["userCount"] = userCount;
                 ViewData["userPhoto"] = user.PersonalPhoto;
+
+                //世光新增
+                ViewData["CollectCheck"] = collectCheck.UserId;
             }
             return View();
         }

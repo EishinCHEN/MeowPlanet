@@ -13,7 +13,7 @@
     </div>
     <div class="area-content">
         <h3 class="title">★喵星人  {{catInfo.Name}} </h3>
-
+        測試{{CollectCheck.UserId}}
         <div class="area-top">
             <ul>
                 <li>名字：{{catInfo.Name}} </li>
@@ -78,6 +78,8 @@
                     "Remark": "@ViewData["Remark"]",
                     "CatId": "@ViewData["CatId"]",
                     "PublishedDay": "@ViewData["PublishedDay"]",
+                    //世光新增
+                    "CollectCheck":@ViewData["CollectCheck"]
                 },
                 userInfo: {
                     "RealName": "@ViewData["RealName"]",
