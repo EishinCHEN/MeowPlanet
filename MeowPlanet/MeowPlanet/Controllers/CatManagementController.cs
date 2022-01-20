@@ -101,7 +101,7 @@ namespace MeowPlanet.Controllers
                             using (var stream = System.IO.File.Create(root + fileName))
                             {
                                 await file.CopyToAsync(stream);
-                                model.Image.Add("~/images/" + fileName);
+                                model.Image.Add("/images/" + fileName);
                             }
                         }
                         //List<String> to string
@@ -154,7 +154,7 @@ namespace MeowPlanet.Controllers
 
                 }
             }
-            return View("ManageCat");
+            return RedirectToAction("ManageCat");
         }
 
         //取得個人貓咪資訊
@@ -323,7 +323,7 @@ namespace MeowPlanet.Controllers
 
                 }
             }
-            return View("ManageCat");
+            return RedirectToAction("ManageCat");
         }
 
         [HttpGet("{catId}")]

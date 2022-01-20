@@ -64,9 +64,10 @@
                                 </div>
                                 <div class="confirm-password-group">
                                     <label for="passwordConfirm">確認密碼：</label>
-                                    <span id="area"></span>
+
                                     <input type="password" name="passwordConfirm-confirm" id="passwordConfirm" maxlength="20" v-on:keyup="checkPwd" placeholder="請再次輸入密碼"
                                            v-model:text="userDetail.passwordConfirm">
+                                    <span id="area"></span>
                                 </div>
                             </div>
                         </form>
@@ -103,11 +104,11 @@
                         var pw1 = document.getElementById("Password").value;
                         var pw2 = document.getElementById("passwordConfirm").value;
                         if (pw1 == pw2) {
-                            document.getElementById("area").innerHTML = "<font color='green'>密碼相同</font>";
+                            document.getElementById("area").innerHTML = "";
                             document.getElementById("submit").disabled = false;
                         }
                         else {
-                            document.getElementById("area").innerHTML = "<font color='red'>密碼不一致</font>";
+                            document.getElementById("area").innerHTML = "<font color='red'>密碼不相同</font>";
                             document.getElementById("submit").disabled = true;
                         }
                     },
