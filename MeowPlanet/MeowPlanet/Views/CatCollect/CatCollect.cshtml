@@ -16,7 +16,7 @@
     @*引用fontawesome*@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link href="~/css/CatCollect/CatCollect.css" rel="stylesheet" />
 }
 
@@ -102,7 +102,7 @@
                     <div v-if="n.isDeleted==1" class="meow-group">
                         <div class="group-top">
                             <div class="backimage">
-                                <img v-bind:src="n.image" class="meow-pic-inside" v-on:click="goCatData()" />
+                                <img v-bind:src="n.image" class="meow-pic-inside" v-on:click="goCatData(n.catId)" />
                             </div>
                         </div>
                         <div class="pageline"></div>
@@ -213,8 +213,14 @@
                 closethisList(a) {
                     a.isDeleted = 3;
                 },
-                goCatData() {
-                    alert("我要去貓咪資訊頁")
+                goCatData(a) {
+                    axios.get("/CatDetail/" + a)
+                        .then(res => {
+                            if (res.status == 200) {
+                                top.location.href = "/CatDetail/" + a;
+                            }
+                        });
+
                 }
             },
         })
