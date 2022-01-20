@@ -1,6 +1,6 @@
-﻿<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+﻿@*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 <link rel="stylesheet" href="./css/indexpage/jquery.flipster.min.css">
-<link rel="stylesheet" href="~/css/indexpage/index.css">
+<link rel="stylesheet" href="~/css/indexpage/index.css">*@
 <link href="~/css/CatPlanetInhabitants/CatPlanetInhabitants.css" rel="stylesheet" />
 @ViewData["UserID"]接收會員ID;
 @ViewData["CatID1"]接收貓咪資訊;
@@ -11,8 +11,8 @@
                 等待導覽列 {{pagecount}}<a asp-controller="CatCollect" asp-action="CatCollect">跑到貓咪收藏</a>*@
             <div class="top">
                 <div class="topleft">
-                    @*<img src="/images/pageCatPlanetInhabitants/貓太空人.png " v-on:click="flygo" v-model="FilterData.CatColor" value="三花貓" class="baseline" />*@
-                    <div class="pic">
+                    <img src="/images/pageCatPlanetInhabitants/貓太空人.png " v-on:click="flygo" v-model="FilterData.CatColor" value="三花貓" class="topleftcat" />
+                    @*<div class="pic">
                         <ul>
                             <a href="#">
                             <li><img src="~/images/index img/橘白.png" /></li>
@@ -39,7 +39,7 @@
                             <li><img src="~/images/index img/黑白.png" /></li>
                             </a>
                         </ul>
-                    </div>
+                    </div>*@
                 </div>
                 <div class="topright">
                     <div class="firstbox">
@@ -705,9 +705,9 @@
     );
     useVue.flygo()
 
-    $('.pic').flipster({
-        spacing: 0,
-        style: 'flat',
-        start: ''
-    });
+    //$('.pic').flipster({
+    //    spacing: 0,
+    //    style: 'flat',
+    //    start: ''
+    //});
 </script>
