@@ -94,6 +94,12 @@
                     "userPhoto": "@ViewData["userPhoto"]",
                     //世光新增
                     "LoginUserId":"@ViewData["LoginUserId"]"
+                },
+
+                //世光新增
+                CollectData: {
+                    "Cat_ID": "@ViewData["CatId"]",
+                    "User_ID":"@ViewData["LoginUserId"]",
                 }
             },
             methods: {
@@ -127,13 +133,62 @@
                 //    $('#img').attr('src', '/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png');
                 //}
 
-                CancelCollect() {
-                    app.catInfo.CollectCheck = "0";
 
-                },
+                //世光新增
+
                 Gocollect() {
+
+                    alert(app.CollectData.Cat_ID);
                     app.catInfo.CollectCheck = @ViewData["LoginUserId"]
-                }
+                     $.ajax(
+                        {
+                            type: 'POST',       //路由  後面是控制器
+                            url: "@Url.Action("CreateCollect", "CatPlanetInhabitants")/",
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                            },
+                            data: this.CollectData,
+                            success: function (qryResult, status, xhr) {
+                                console.log(qryResult);
+                                console.log("收藏成功");
+                            }
+                        }
+                    );
+                },
+                CancelCollect() {
+                    if (this.deletecheck()) {
+                        alert(app.CollectData.Cat_ID);
+                        app.catInfo.CollectCheck = "0";
+                        $.ajax(
+                            {
+                                type: 'POST',       //路由  後面是控制器
+                                url: "@Url.Action("DeleteCollect", "CatPlanetInhabitants")/",
+                                beforeSend: function (xhr) {
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                },
+                                data: this.CollectData,
+                                success: function (qryResult, status, xhr) {
+                                    console.log(qryResult);
+                                    console.log("刪除成功");
+                                },
+                                error: function () {
+                                    alert("連線失敗");
+                                }
+                            }
+                        );
+                    }
+                    else {
+                        alert("取消收藏失敗");
+                    }
+                },
+                deletecheck() {
+                    if (window.confirm("是否確定取消收藏?")) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                },
             }
         });
 
