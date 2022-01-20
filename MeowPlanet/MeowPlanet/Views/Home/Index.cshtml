@@ -14,47 +14,31 @@
 </div>
 <div class="wrapper2">
     <div class="pic">
-        <ul>
-
-            <li>
-                <a href="#"><img src="~/images/index img/橘白.png" /></a>
-            </li>
-
-
-            <li>
-                <a href="#"><img src="~/images/index img/黑白.png" /></a>
-            </li>
-
-
-            <li>
-                <a href="#"><img src="~/images/index img/三花貓.png" /></a>
-            </li>
-
-
-            <li>
-                <a href="#"><img src="~/images/index img/玳瑁貓.png" /></a>
-            </li>
-
-
-            <li>
-                <a href="#"><img src="~/images/index img/虎斑貓.png" /></a>
-            </li>
-
-
-            <li>
-                <a href=""><img src="~/images/index img/白貓.png" /></a>
-            </li>
-
-
-            <li>
-                <a href=""><img src="~/images/index img/黑貓.png" /></a>
-            </li>
-
-
-            <li>
-                <a href=""><img src="~/images/index img/灰藍貓.png" /></a>
-            </li>
-
+        <ul >
+            <a href="#">
+            <li><img src="~/images/index img/橘白.png" onClick="flygo('橘貓')" /></li>
+            </a>
+            <a href="#">
+            <li><img src="~/images/index img/黑白.png" onClick="flygo('黑白貓')"/></li>
+            </a>
+            <a href="#">
+            <li><img src="~/images/index img/三花貓.png" onClick="flygo('三花貓')"/></li>
+            </a>
+            <a href="#">
+            <li><img src="~/images/index img/玳瑁貓.png" onClick="flygo('玳瑁')"/></li>
+            </a>
+            <a href="#">
+            <li><img src="~/images/index img/虎斑貓.png" onClick="flygo('三花貓')"/></li>
+            </a>
+            <a href="">
+            <li><img src="~/images/index img/白貓.png"onClick="flygo('白貓')" /></li>
+            </a>
+            <a href="">
+            <li><img src="~/images/index img/黑貓.png"onClick="flygo('黑貓')" /></li>
+            </a>
+            <a href="">
+            <li><img src="~/images/index img/黑白.png" onClick="flygo('黑白貓')"/></li>
+            </a>
         </ul>
     </div>
 
@@ -94,6 +78,7 @@
             img.setAttribute("src", src);
         }
 
+        
 
 
         $('.pic').flipster({
@@ -101,6 +86,10 @@
             style: 'flat',
             start: ''
         });
+
+        function flygo(a) {
+            top.location.href = "/CatPlanetInhabitants/CatPlanetInhabitants?" + a;
+        }
     </script>
 
 

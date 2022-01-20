@@ -70,20 +70,20 @@ body {
 
 .transparentBack {
     position:relative;
-    top:-16.3vw;
+    top:-13.8vw;
     left:0.5vw;
-    width: 12.2vw;
-    height: 12.2vw;
+    width: 10.2vw;
+    height: 10.2vw;
     background-color: black;
     background: hsla(168,100%,0%,0.6);
     border-radius: 2vw;
 }
 .transparentImage {
     position: relative;
-    top: -27.5vw;
-    left: 2.2vw;
-    width: 9vw;
-    height: 9vw;
+    top: -23.6vw;
+    left: 1.6vw;
+    width: 8vw;
+    height: 8vw;
     opacity: 0.8;
     border-radius: 5vw;
     border-style: solid;
@@ -95,8 +95,8 @@ body {
 .transparentText {
     font-size: 0.1vw;
     position: relative;
-    top: -27.7vw;
-    left: 3.9vw;
+    top: -23.8vw;
+    left: 3vw;
     width: 5.5vw;
     padding-left: 0.7vw;
     z-index: 2;

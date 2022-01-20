@@ -94,3 +94,10 @@ body {
     height: 10%;
     border-radius: 50%;
 }
+
+
+/*世光新增*/
+.collectHeart {
+    width: 3vw;
+    height: 3vw;
+}
