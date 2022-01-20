@@ -20,7 +20,7 @@ body {
 
 .container {
     width: 75vw;
-    height: 80vh;
+    height: 70vh;
     margin: auto;
     background-color: #fff;
     padding: 1rem 3rem;
@@ -45,11 +45,14 @@ body {
 }
 
 .title {
-    background: #FEF2CB;
     color: #DA8952;
-    font-weight: unset;
-    padding: 3%;
-    margin-right: 2%;
+    background-color: #FEF2CB;
+    display: inline-block;
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+    padding: 4px 0px 4px 10px;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 .meow-pic {
@@ -65,7 +68,6 @@ body {
 
 .area-top {
     display: flex;
-    font-size: 1.5em;
     justify-content: space-evenly;
 }
 
@@ -76,7 +78,6 @@ body {
 
 .area-bottom {
     display: flex;
-    font-size: 1.5em;
     justify-content: space-around;
 }
 
