@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="./css/indexpage/jquery.flipster.min.css">
 <link rel="stylesheet" href="~/css/indexpage/index.css">*@
 <link href="~/css/CatPlanetInhabitants/CatPlanetInhabitants.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 @ViewData["UserID"]接收會員ID;
 @ViewData["CatID1"]接收貓咪資訊;
 <body>
@@ -186,7 +187,7 @@
                                         </div>
                                         <div class="listblock2down">
                                             <img src="/images/pageCatPlanetInhabitants/底線4px.png" class="baseline" />
-                                            <button v-on:click="goforcat" class="goforcat">前往了解居民</button>
+                                            <button v-on:click="goforcat(cus.catId)" class="goforcat">前往了解居民</button>
                                         </div>
                                     </div>
                                 </div>
@@ -619,8 +620,13 @@
                         return false;
                     }
                 },
-                goforcat() {
-                    alert("我要去貓咪資訊頁")
+                goforcat(a) {
+                    axios.get("/CatDetail/" + a)
+                        .then(res => {
+                            if (res.status == 200) {
+                                top.location.href = "/CatDetail/" + a;
+                            }
+                        });
                   
 },
 
