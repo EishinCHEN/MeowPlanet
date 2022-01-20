@@ -35,7 +35,7 @@ html {
 
 .p1 {
     position: relative;
-    margin-top:8%;
+    margin-top:6%;
     left: 8%;
     float: left;
     white-space: nowrap;
@@ -100,7 +100,7 @@ html {
 
     .test1 {
         width: 270px;
-        height:120px;
+        height:140px;
         color: #da8952;
         font-size: 8px;
         background-color: #E5EFE1;
@@ -115,7 +115,6 @@ html {
     }
     .test1 a {
         position: relative;
-        top:10px;
         left: 50%;
         background-color: #FEF2CB;
         color: #DA8952;
@@ -146,8 +145,8 @@ html {
 
     .btn {
         position: absolute;
-        right: 6%;
-        bottom: 3%;
+        right: 22%;
+        bottom: 2%;
         padding: 10px 10px;
         text-decoration: none;
     }
@@ -158,9 +157,9 @@ html {
 
 @media (max-width:1024px) {
     .p1 {
-        margin-top: 10%;
+        margin-top: 7%;
         left: 4%;
-        padding: 3rem 3rem;
+        padding: 2rem 3rem;
     }
 
     .p2 {
@@ -210,7 +209,7 @@ html {
 
     .btn {
         position: absolute;
-        right: 5%;
+        right: 21%;
         bottom: 10%;
     }
 }
@@ -262,7 +261,7 @@ html {
 
     .btn {
         position: absolute;
-        right: 3%;
+        right: 20%;
         bottom: 10%;
     }
 }
@@ -277,7 +276,7 @@ html {
     .p1 {
         margin-top: 1%;
         left: 7%;
-        padding: 2.5rem 3.75rem;
+        padding: 1.5rem 3.75rem;
     }
 
     .p1 p{
@@ -324,6 +323,7 @@ html {
     .btn {
         position: absolute;
         top: 136%;
+        right:35%;
     }
 }
 
@@ -337,7 +337,7 @@ html {
 
     .p1 {
         left: 5%;
-        padding: 1rem 2.5rem;
+        padding: 0.5rem 2.5rem;
         
     }
 
@@ -386,7 +386,7 @@ html {
 
     .btn {
         position: absolute;
-        top: 230%;
+        top: 232%;
     }
 }
 
@@ -394,7 +394,7 @@ html {
 
     .p1 {
         left: 5%;
-        padding: 1rem 2rem;
+        padding: 0.5rem 2rem;
     }
 
     .p2 {
@@ -417,7 +417,7 @@ html {
     }
 
     .btn {
-        right: -10%;
+        right: 27%;
         top:226%;
     }
 }
