@@ -15,7 +15,7 @@ namespace MeowPlanet.Controllers
             _dbcontext = dbcontext;
         }
         [HttpGet("{catId}")]
-        [Route("/Cat/CatDetail/{catId}")]
+        [Route("/CatDetail/{catId}")]
         public IActionResult CatDetail(int catId)
         {
             var cat = (from item in _dbcontext.Cats
