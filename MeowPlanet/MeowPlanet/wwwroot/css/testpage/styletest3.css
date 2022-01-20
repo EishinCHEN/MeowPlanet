@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,200&display=swap');
+:root{
+    --bg:linear-gradient(to right,#c2f0c2  0%, #c2f0c2 50%,#ffd480 0%, #ffd480 50%);
+    --lh:linear-gradient(to bottom,#c2f0c2  0%, #c2f0c2 50%,#ffd480 0%, #ffd480 50%);
+    --gr:#c2f0c2;
+    --or:#ffd480;
+
+}
+*{
+    
+    margin: 0;/*邊距*/
+    padding: 0;/*內距*/
+    box-sizing: border-box;/*盒子模型()*/
+    outline: none;
+    border:none;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: #65615E;
+    /* border: solid 1px black; */
+    
+}
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot);
+    /* For IE6-8 */
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+html{
+    background: var(--bg);
+    
+}
+
+
+.test{
+    background: var(--bg);
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows: 575px ;
+}
+
+.p1{
+    
+    font-size: 20px;
+    position: relative;
+    margin-top: 20%;
+    left: 15%;
+    float: left;
+    white-space:nowrap;
+    text-shadow: 0.1em 0.1em 0.2em #ffffff;
+}
+
+
+.p1 img{
+    position: absolute;
+    top: 55%;
+    right: 75%;
+    height: 150px;
+    width: 230px;
+    float: left;
+    
+    
+}
+
+.p3{
+    position: absolute;
+    right: 18%;
+    top: 37%;
+}
+
+
+label{
+    font-size: 20px;
+    text-shadow: 0.1em 0.1em 0.2em #65615E;
+    color:white;
+}
+
+.btn{
+    position: absolute;
+     right: -65%;
+    
+}
+
+
+
+
+@media (max-width:1025px) {
+    .test{
+        background: var(--bg);
+        display: grid;
+        grid-template-columns:1fr 1fr;
+        grid-template-rows: 484px ;
+    }
+    .p1{
+    
+        font-size: 16px;
+        position: relative;
+        margin-top: 30%;
+        left: 15%;
+        float: left;
+        white-space:nowrap;
+        text-shadow: 0.1em 0.1em 0.2em #ffffff;
+    }
+
+    .p1 img{
+        position: absolute;
+        top: 45%;
+        right: 70%;
+        height: 130px;
+        width: 210px;
+        float: left;
+        
+        
+    }
+
+    .p3{
+        position: absolute;
+        right: 13%;
+        top: 33%;
+        
+    }
+
+    label{
+        font-size: 16px;
+        text-shadow: 0.1em 0.1em 0.2em #65615E;
+    }
+
+    .btn {
+        position: absolute;
+        right: -55%;
+    }
+    
+}
+
+@media (max-width:769px) {
+
+    .test{
+        background: var(--bg);
+        display: grid;
+        grid-template-columns:1fr 1fr;
+        grid-template-rows: 484px ;
+    }
+
+    .p1{
+    
+        font-size: 15px;
+        position: relative;
+        margin-top: 45%;
+        left: 13%;
+        float: left;
+        white-space:nowrap;
+        text-shadow: 0.1em 0.1em 0.2em #ffffff;
+    }
+
+    .p1 img{
+        position: absolute;
+        top: 40%;
+        right: 60%;
+        height: 110px;
+        width: 190px;
+        float: left;
+        
+        
+    }
+
+    label{
+        font-size: 15px;
+        text-shadow: 0.1em 0.1em 0.2em #65615E;
+    }
+
+    span{
+        font-size: 13px;
+        
+    }
+
+
+    .p3{
+        position: absolute;
+        right: 13%;
+        top: 33%;
+        
+    }
+    .btn{
+        
+        position: absolute;
+         right: -30%;
+        
+    }
+   
+}
+
+@media (max-width:426px) {
+    html{
+        background: var(--lh);
+        
+    }
+   
+    .test{
+        background: var(--lh);
+        display: grid;
+        grid-template-columns:350px;
+        grid-template-rows:300px 320px;
+    }
+    .p1{
+        font-size: 16px;
+        position: relative;
+        margin-top: 20%;
+        left:20%;
+        white-space:nowrap;
+    }
+
+    .p1 img{
+        position: absolute;
+        top: 70%;
+        left:1%;
+        height: 110px;
+        width: 190px;
+        float: left;
+        
+        
+    }
+
+
+    .p3{
+        
+        position: absolute;
+        left:20%;
+        top: 75%;
+        
+    }
+
+ 
+
+    span{
+        font-size: 13px;
+        
+    }
+
+    label{
+        font-size: 17px;
+        text-shadow: 0.1em 0.1em 0.2em #65615E;
+    }
+
+    .btn {
+        position: absolute;
+        right: -15%;
+    }
+    
+}
+
+@media (max-width:376px) {
+
+    html{
+        background: var(--lh);
+        
+    }
+   
+    .test{
+       
+        background: var(--lh);
+        display: grid;
+        grid-template-columns:340px;
+        grid-template-rows:300px 320px;
+        
+    }
+
+    .p1{
+    
+        font-size: 16px;
+        position: relative;
+        margin-top: 20%;
+        left: 20%;
+        float: left;
+        white-space:nowrap;
+    }
+    
+  
+
+    span{
+        font-size: 13px;
+        
+    }
+
+    label{
+        left: 9%;
+        font-size: 16px;
+        text-shadow: 0.1em 0.1em 0.2em #65615E;
+    }
+}
+
+
+@media (max-width:321px) {
+
+    html{
+        background: var(--lh);
+        
+    }
+   
+    .test{
+       
+        background: var(--lh);
+        display: grid;
+        grid-template-columns:240px;
+        grid-template-rows:300px 320px;
+        
+    }
+
+    .p1{
+    
+        font-size: 13px;
+        position: relative;
+        margin-top: 25%;
+        left: 14%;
+        float: left;
+        white-space:nowrap;
+    }
+
+    .p1 img{
+        position: absolute;
+        top: 70%;
+        left:1%;
+        height: 110px;
+        width: 190px;
+        float: left;
+        
+        
+    }
+    .p3{
+        
+        position: absolute;
+        right: 5%;
+        top: 75%;
+        
+    }
+  
+
+    label{
+        left: 10%;
+        font-size: 13px;
+        text-shadow: 0.1em 0.1em 0.2em #65615E;
+    }
+
+    .btn {
+        position: absolute;
+        right: -6%;
+    }
+}

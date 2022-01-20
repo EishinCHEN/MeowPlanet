@@ -8,7 +8,7 @@
         </div>
         <ul class="nav-links">
             <li><a asp-controller="MeowEncyclopedia" asp-action="MeowBook">相處之旅</a></li>
-            <li><a asp-controller="Cattest" asp-action="Test">命運旅行</a></li>
+            <li><a asp-controller="Test" asp-action="QuestionStart">命運旅行</a></li>
         </ul>
         <ul class="nav-link">
             <li><a href="">喵星日常</a></li>
@@ -21,7 +21,19 @@
                     <li><a asp-controller="Membership" asp-action="Sender" style="color: #da8952;">我要送養</a></li>
                 </ul>
             </li>
-            <li class="login"><a asp-controller="Membership" asp-action="Editor">會員專區</a></li>
+            <li>
+                <a href="#" class="desktop-links" style="border: 2px solid #da8952; background: #FEF2CB; color: #da8952; ">會員專區</a>
+                <input type="checkbox" id="show-features3">
+                <label for="show-features3">會員專區</label>
+                <ul>
+                    <li><a href="#" style="color: #da8952;">資料修改</a></li>
+                    <li><a href="#" style="color: #da8952;">收藏居民</a></li>
+                    <li><a href="#" style="color: #da8952;">聊天訊息</a></li>
+                    <li><a href="#" style="color: #da8952;">行程管理</a></li>
+                    <li><a href="#" style="color: #da8952;">管理居民</a></li>
+                    <li><a href="#" style="color: #da8952;"> &nbsp;&nbsp;&nbsp;登出 &nbsp;&nbsp;</a></li>
+                </ul>
+            </li>
         </ul>
 
     </nav>
@@ -36,7 +48,7 @@
         </div>
         <ul class="links">
             <li><a asp-controller="MeowEncyclopedia" asp-action="MeowBook">相處之旅</a></li>
-            <li><a asp-controller="Cattest" asp-action="Test">命運旅行</a></li>
+            <li><a asp-controller="Test" asp-action="QuestionStart">命運旅行</a></li>
             <li><a href="">喵星日常</a></li>
             <li>
                 <a href="#" class="desktop-links">喵星居民</a>
@@ -46,8 +58,21 @@
                     <li><a asp-controller="CatPlanetInhabitants" asp-action="CatPlanetInhabitants" style="color: #da8952;">征服居民</a></li>
                     <li><a asp-controller="CatManagement" asp-action="ManageCat" style="color: #da8952;">我要送養</a></li>
                 </ul>
+
             </li>
-            <li class="login"><a asp-controller="Membership" asp-action="Editor">會員專區</a></li>
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn" style="font-size: 16px; background: #FBD06E; color: #da8952;">會員專區</button>
+                    <div class="dropdown-content">
+                        <a href="#">資料修改</a>
+                        <a href="#">收藏居民</a>
+                        <a href="#">聊天訊息</a>
+                        <a href="#">行程管理</a>
+                        <a href="#">管理居民</a>
+                        <a href="#">&nbsp;&nbsp;&nbsp;登出 &nbsp;&nbsp;</a>
+                    </div>
+                </div>
+            </li>
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -56,4 +81,8 @@
         </div>
     </nav>
 </div>
+
+
+
+    <script src="~/js/app2.js"></script>
 

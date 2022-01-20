@@ -28,8 +28,8 @@ ul li {
 }
 
 .member-menu-ul {
-    padding: 0; /* 刪除ul預設padding */
-}
+        padding: 0; /* 刪除ul預設padding */
+    }
 
 .member-menu-li {
     display: flex;

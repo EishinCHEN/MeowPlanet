@@ -35,7 +35,7 @@ namespace MeowPlanet
             services.AddSignalR();  //引用signalR
             services.AddDbContext<MeowContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Meow")));
-            //options.UseSqlServer(Configuration.GetConnectionString("test")));//本機測試用
+            //options.UseSqlServer(Configuration.GetConnectionString("test")));//世光本機測試用
             //設定cookie驗證
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(option =>
@@ -46,7 +46,12 @@ namespace MeowPlanet
                     option.ExpireTimeSpan = TimeSpan.FromMilliseconds(200);                //設定登入時限
                 }
             );
-            services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));     //處理ViewData傳遞中文編碼問題
+            services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));//處理ViewData傳遞中文編碼問題
+            services.AddSession(options => {
+                options.Cookie.Name = ".TestQuestion.Session";
+                options.IdleTimeout = TimeSpan.FromMinutes(5);
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +74,8 @@ namespace MeowPlanet
 
             app.UseCookiePolicy();           //會設定作用網域
             app.UseAuthentication();
+
+            app.UseSession();
 
             app.UseAuthorization();
 
