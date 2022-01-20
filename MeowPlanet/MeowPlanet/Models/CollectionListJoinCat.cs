@@ -16,6 +16,7 @@ namespace MeowPlanet.Models
         public string City { get; set; }
         public string Country { get; set; }
         public int? IsDeleted { get; set; }
+        public string Adopt { get; set; }
 
         //public virtual Cat Cat { get; set; }
         //public virtual UserData User { get; set; }
