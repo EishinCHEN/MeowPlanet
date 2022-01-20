@@ -15,28 +15,28 @@
     <div class="pic">
         <ul >
             <a href="#">
-            <li><img src="~/images/index img/橘白.png" onClick="flygo()" /></li>
-            </a>
-            <a href="#">@*v-model="FilterData.CatColor"*@
-            <li><img src="~/images/index img/黑白.png" /></li>
+            <li><img src="~/images/index img/橘白.png" onClick="flygo('橘貓')" /></li>
             </a>
             <a href="#">
-            <li><img src="~/images/index img/三花貓.png" /></li>
+            <li><img src="~/images/index img/黑白.png" onClick="flygo('黑白貓')"/></li>
             </a>
             <a href="#">
-            <li><img src="~/images/index img/玳瑁貓.png" /></li>
+            <li><img src="~/images/index img/三花貓.png" onClick="flygo('三花貓')"/></li>
             </a>
             <a href="#">
-            <li><img src="~/images/index img/虎斑貓.png" /></li>
+            <li><img src="~/images/index img/玳瑁貓.png" onClick="flygo('玳瑁')"/></li>
+            </a>
+            <a href="#">
+            <li><img src="~/images/index img/虎斑貓.png" onClick="flygo('三花貓')"/></li>
             </a>
             <a href="">
-            <li><img src="~/images/index img/白貓.png" /></li>
+            <li><img src="~/images/index img/白貓.png"onClick="flygo('白貓')" /></li>
             </a>
             <a href="">
-            <li><img src="~/images/index img/黑貓.png" /></li>
+            <li><img src="~/images/index img/黑貓.png"onClick="flygo('黑貓')" /></li>
             </a>
             <a href="">
-            <li><img src="~/images/index img/黑白.png" /></li>
+            <li><img src="~/images/index img/黑白.png" onClick="flygo('黑白貓')"/></li>
             </a>
         </ul>
     </div>
@@ -86,8 +86,8 @@
             start: ''
         });
 
-        function flygo() {
-                window.location.href = "https://localhost:44395/CatPlanetInhabitants/CatPlanetInhabitants?三花貓";
+        function flygo(a) {
+                window.location.href = "https://localhost:44395/CatPlanetInhabitants/CatPlanetInhabitants?"+a;
         }
 
         //var useVue = new Vue(
