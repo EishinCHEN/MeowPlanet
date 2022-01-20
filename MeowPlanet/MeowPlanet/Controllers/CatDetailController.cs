@@ -82,6 +82,7 @@ namespace MeowPlanet.Controllers
 
                 //世光新增
                 ViewData["CollectCheck"] = collectCheck.UserId;
+                ViewData["LoginUserId"] = ID;
             }
             return View();
         }

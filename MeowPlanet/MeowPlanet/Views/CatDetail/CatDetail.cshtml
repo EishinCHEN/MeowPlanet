@@ -13,7 +13,7 @@
     </div>
     <div class="area-content">
         <h3 class="title">★喵星人  {{catInfo.Name}} </h3>
-        測試{{catInfo.CollectCheck}}
+        收藏ID{{catInfo.CollectCheck}}使用者ID{{userInfo.LoginUserId}}
         <div class="area-top">
             <ul>
                 <li>名字：{{catInfo.Name}} </li>
@@ -34,6 +34,9 @@
                 <li v-if="catInfo.Remark !==undefined ">備註：無 </li>
                 <li v-else>備註：{{catInfo.Remark}} </li>
                 <li style="list-style:none">
+                    @*世光新增*@                    
+                    <img id="img" src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="@ViewData["LoginUserId"] == @ViewData["CollectCheck"]" v-on:click="CancelCollect($event)" class="collectHeart" />
+                    <img id="img" src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-else v-on:click="Gocollect" class="cancelcollectHeart($event)" />
                     <button>♡</button>收藏貓貓
                 </li>
             </ul>
@@ -79,13 +82,16 @@
                     "CatId": "@ViewData["CatId"]",
                     "PublishedDay": "@ViewData["PublishedDay"]",
                     //世光新增
-                    "CollectCheck":@ViewData["CollectCheck"]
+                    "CollectCheck": "@ViewData["CollectCheck"]"
+
                 },
                 userInfo: {
                     "RealName": "@ViewData["RealName"]",
                     "UserId": "@ViewData["UserId"]",
                     "userCount": "@ViewData["userCount"]",
                     "userPhoto": "@ViewData["userPhoto"]",
+                    //世光新增
+                    "LoginUserId":"@ViewData["LoginUserId"]"
                 }
             },
             methods: {
@@ -105,6 +111,18 @@
                             }
                         });
 
+                },
+
+                CancelCollect(e) {
+                    console.log(e);
+                    app.catInfo.CollectCheck = 0;                    
+                    let el = e.srcElement;
+                    $('#img').attr('src', '/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png');
+                },
+                Gocollect(e) {
+                    app.catInfo.CollectCheck = app.userInfo.LoginUserId;
+                    let el = e.srcElement;
+                    $('#img').attr('src', '/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png');
                 }
             }
         });

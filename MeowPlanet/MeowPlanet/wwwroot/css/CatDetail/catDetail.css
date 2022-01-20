@@ -93,3 +93,15 @@ body {
     height: 10%;
     border-radius: 50%;
 }
+
+
+/*世光新增*/
+.cancelcollectHeart{
+    width:10vw;
+    height:10vw;
+}
+
+.collectHeart {
+    width: 10vw;
+    height: 10vw;
+}
