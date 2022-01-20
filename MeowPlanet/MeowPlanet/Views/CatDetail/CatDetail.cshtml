@@ -13,7 +13,6 @@
     </div>
     <div class="area-content">
         <h3 class="title">★喵星人  {{catInfo.Name}} </h3>
-        收藏ID{{catInfo.CollectCheck}}使用者ID{{userInfo.LoginUserId}}
         <div class="area-top">
             <ul>
                 <li>名字：{{catInfo.Name}} </li>
@@ -33,13 +32,15 @@
 
                 <li v-if="catInfo.Remark !==undefined ">備註：無 </li>
                 <li v-else>備註：{{catInfo.Remark}} </li>
+                <br />
+                <br />
+                <br />
                 <li style="list-style:none">
                     @*世光新增*@
-                    @*<img id="img" src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="@ViewData["LoginUserId"] == @ViewData["CollectCheck"]" v-on:click="CancelCollect($event)" class="collectHeart" />
-                    <img id="img" src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="@ViewData["LoginUserId"] != @ViewData["CollectCheck"]" v-on:click="Gocollect($event)" class="cancelcollectHeart" />*@
                     <img id="img" src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="catInfo.CollectCheck == @ViewData["LoginUserId"]" v-on:click="CancelCollect" class="collectHeart" />
-                    <img id="img" src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="catInfo.CollectCheck != @ViewData["LoginUserId"]" v-on:click="Gocollect" class="cancelcollectHeart" />
-                    <button>♡</button>收藏貓貓
+                    <img id="img" src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="catInfo.CollectCheck != @ViewData["LoginUserId"]" v-on:click="Gocollect" class="collectHeart" />
+                    收藏貓貓
+
                 </li>
             </ul>
         </div>
@@ -121,24 +122,11 @@
 
                 },
 
-                //CancelCollect(e) {
-                //    app.catInfo.CollectCheck = 0;
-                //    console.log(e);
-                //    let el = e.srcElement;
-                //    $('#img').attr('src', '/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png');
-                //},
-                //Gocollect(e) {
-                //    app.catInfo.CollectCheck = app.userInfo.LoginUserId;
-                //    let el = e.srcElement;
-                //    $('#img').attr('src', '/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png');
-                //}
-
-
                 //世光新增
 
                 Gocollect() {
 
-                    alert(app.CollectData.Cat_ID);
+                    /*alert(app.CollectData.Cat_ID);*/
                     app.catInfo.CollectCheck = @ViewData["LoginUserId"]
                      $.ajax(
                         {
@@ -157,7 +145,7 @@
                 },
                 CancelCollect() {
                     if (this.deletecheck()) {
-                        alert(app.CollectData.Cat_ID);
+                        /*alert(app.CollectData.Cat_ID);*/
                         app.catInfo.CollectCheck = "0";
                         $.ajax(
                             {
