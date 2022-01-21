@@ -22,16 +22,16 @@
                 </ul>
             </li>
             <li>
-                <a href="#" class="desktop-links" style="border: 2px solid #da8952; background: #FEF2CB; color: #da8952; ">會員專區</a>
+                <a href="#" class="desktop-links" style="border: 2px solid #da8952; background: #FEF2CB; color: #da8952; font-weight: bold; ">會員專區</a>
                 <input type="checkbox" id="show-features3">
                 <label for="show-features3">會員專區</label>
                 <ul>
-                    <li><a href="#" style="color: #da8952;">資料修改</a></li>
+                    <li><a asp-controller="Membership" asp-action="Editor" style="color: #da8952;">資料修改</a></li>
                     <li><a href="#" style="color: #da8952;">收藏居民</a></li>
-                    <li><a href="#" style="color: #da8952;">聊天訊息</a></li>
+                    <li><a asp-controller="MeowChat" asp-action="MessageManage" style="color: #da8952;">聊天訊息</a></li>
                     <li><a href="#" style="color: #da8952;">行程管理</a></li>
-                    <li><a href="#" style="color: #da8952;">管理居民</a></li>
-                    <li><a href="#" style="color: #da8952;"> &nbsp;&nbsp;&nbsp;登出 &nbsp;&nbsp;</a></li>
+                    <li><a asp-controller="CatManagement" asp-action="ManageCat" style="color: #da8952;">管理居民</a></li>
+                    <li><a asp-controller="Login" asp-action="Logout" style="color: #da8952;"> &nbsp;&nbsp;&nbsp;登出 &nbsp;&nbsp;</a></li>
                 </ul>
             </li>
         </ul>
@@ -62,14 +62,14 @@
             </li>
             <li>
                 <div class="dropdown">
-                    <button class="dropbtn" style="font-size: 16px; background: #FBD06E; color: #da8952;">會員專區</button>
+                    <button class="dropbtn" style="font-size: 16px; background: #FBD06E; color: #da8952; font-weight: bold;">會員專區</button>
                     <div class="dropdown-content">
-                        <a href="#">資料修改</a>
+                        <a asp-controller="Membership" asp-action="Editor">資料修改</a>
                         <a href="#">收藏居民</a>
-                        <a href="#">聊天訊息</a>
+                        <a asp-controller="MeowChat" asp-action="MessageManage">聊天訊息</a>
                         <a href="#">行程管理</a>
-                        <a href="#">管理居民</a>
-                        <a href="#">&nbsp;&nbsp;&nbsp;登出 &nbsp;&nbsp;</a>
+                        <a asp-controller="CatManagement" asp-action="ManageCat">管理居民</a>
+                        <a asp-controller="Login" asp-action="Logout">&nbsp;&nbsp;&nbsp;登出 &nbsp;&nbsp;</a>
                     </div>
                 </div>
             </li>
@@ -84,5 +84,5 @@
 
 
 
-    <script src="~/js/app2.js"></script>
+<script src="~/js/app2.js"></script>
 
