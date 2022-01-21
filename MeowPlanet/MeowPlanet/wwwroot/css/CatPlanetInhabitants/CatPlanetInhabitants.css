@@ -178,16 +178,18 @@ body {
     left: 3vw;
 }
 .collectHeart {
-    position:relative;
-    left:3vw;
+    position: relative;
+    left: 3vw;
     height: 2.5vw;
     width: 2.5vw;
+    cursor: pointer;
 }
 .cancelcollectHeart {
     position: relative;
     left: 3vw;
     height: 2.5vw;
     width: 2.5vw;
+    cursor: pointer;
 }
 
 .match{
