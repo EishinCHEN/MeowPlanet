@@ -14,42 +14,42 @@
             {{FilterData.CatColor}}*@
             <div class="top">
                 <div class="topleft">
-                    <img src="/images/pageCatPlanetInhabitants/貓太空人.png "  class="topleftcat" />
+                    <img src="~/images/白色/圓形飛船貓.PNG"   class="topleftcat" />
                     @*<div class="pic">
-                    <ul>
-                        <a href="#">
-                        <li><img src="~/images/index img/橘白.png" /></li>
-                        </a>
-                        <a href="#">
-                        <li><img src="~/images/index img/黑白.png" /></li>
-                        </a>
-                        <a href="#">
-                        <li><img src="~/images/index img/三花貓.png" /></li>
-                        </a>
-                        <a href="#">
-                        <li><img src="~/images/index img/玳瑁貓.png" /></li>
-                        </a>
-                        <a href="#">
-                        <li><img src="~/images/index img/虎斑貓.png" /></li>
-                        </a>
-                        <a href="">
-                        <li><img src="~/images/index img/白貓.png" /></li>
-                        </a>
-                        <a href="">
-                        <li><img src="~/images/index img/黑貓.png" /></li>
-                        </a>
-                        <a href="">
-                        <li><img src="~/images/index img/黑白.png" /></li>
-                        </a>
-                    </ul>
-                </div>*@
+            <ul>
+                <a href="#">
+                <li><img src="~/images/index img/橘白.png" /></li>
+                </a>
+                <a href="#">
+                <li><img src="~/images/index img/黑白.png" /></li>
+                </a>
+                <a href="#">
+                <li><img src="~/images/index img/三花貓.png" /></li>
+                </a>
+                <a href="#">
+                <li><img src="~/images/index img/玳瑁貓.png" /></li>
+                </a>
+                <a href="#">
+                <li><img src="~/images/index img/虎斑貓.png" /></li>
+                </a>
+                <a href="">
+                <li><img src="~/images/index img/白貓.png" /></li>
+                </a>
+                <a href="">
+                <li><img src="~/images/index img/黑貓.png" /></li>
+                </a>
+                <a href="">
+                <li><img src="~/images/index img/黑白.png" /></li>
+                </a>
+            </ul>
+        </div>*@
                 </div>
                 <div class="topright">
                     <div class="firstbox">
                         <div class="boxrange">
                             <div class="boxgroup">
                                 <div class="name-group">
-                                    <label>毛色(主要)</label>
+                                    <strong>毛色(主要)</strong>
                                     <select v-model="FilterData.CatColor" class="catgender" id="filterselect">
                                         <option value="">皆可</option>
                                         <option value="三花貓">三花貓</option>
@@ -63,7 +63,7 @@
 
 
                                 <div class="name-group">
-                                    <label>是否結紮</label>
+                                    <strong>是否結紮</strong>
                                     <select v-model="FilterData.Ligation" class="catgender">
                                         <option value="">皆可</option>
                                         <option value="已結紮">已結紮</option>
@@ -72,7 +72,7 @@
                                 </div>
 
                                 <div class="name-group">
-                                    <label>年齡(大約)</label>
+                                    <strong>年齡(大約)</strong>
                                     <select v-model="FilterData.Age" class="catgender">
                                         <option value="">皆可</option>
                                         <option value="0-3月">0-3月</option>
@@ -86,7 +86,7 @@
                                 </div>
 
                                 <div class="name-group">
-                                    <label>預防疫苗</label>
+                                    <strong>預防疫苗</strong>
                                     <select v-model="FilterData.Vaccine" class="catgender">
                                         <option value="">皆可</option>
                                         <option value="已施打">已施打</option>
@@ -96,7 +96,7 @@
                                 </div>
 
                                 <div class="name-group">
-                                    <label>送養人居住地區(看貓地區)</label>
+                                    <strong>送養人居住地區(看貓地區)</strong>
                                     <select v-model="FilterData.City" class="catgender">
                                         <option value="">直轄縣市</option>
                                         <option value="台北市">台北市</option>
@@ -114,7 +114,7 @@
                                 </div>
 
                                 <div class="name-group">
-                                    <label>選擇性別</label>
+                                    <strong>選擇性別</strong>
                                     <select v-model="FilterData.CatGender" class="catgender">
                                         <option value="">皆可</option>
                                         <option value="1">公</option>
@@ -123,7 +123,7 @@
                                 </div>
 
                                 <div class="name-group">
-                                    <label>刊登日期</label>@*//此選項暫時無意義*@
+                                    <strong>刊登日期</strong>@*//此選項暫時無意義*@
                                     <select v-model="FilterData.PublishedDay" class="catgender">
                                         <option value="">皆可</option>
                                         <option value="1">1個月內</option>
@@ -135,8 +135,12 @@
                             </div>
                             <br>
                             <div class="go-group">
-                                <button v-on:click="resetfilter" class="gobox">再想一下</button>
-                                <button v-on:click="flygo" class="gobox">飛行前往!</button>
+                                <button v-on:click="resetfilter" class="gobox">
+                                    <strong>再想一下</strong>
+                                </button>
+                                <button v-on:click="flygo" onclick="window.location.href='#jump'" class="gobox">
+                                    <strong>飛行前往!</strong>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -522,30 +526,30 @@
 </body>
 <script>
     //方法一：
-    var el, elURL, url, para, result, arr;
-    el = document.getElementById("p1");
-    elURL = window.location.search;//獲取get請求的參數 獲取到數據，是以？傳過來的值 “?hid=lemon&seth=seth”
-    result = {};//存儲對象
-    arr = [];
-    //通過解析字符串，獲取確定的數據。
-    function paraURL(url) {
-        //從第二個字符開始截取，獲取到第二個開始後面所有的字符
+    //var el, elURL, url, para, result, arr;
+    //el = document.getElementById("p1");
+    //elURL = window.location.search;//獲取get請求的參數 獲取到數據，是以？傳過來的值 “?hid=lemon&seth=seth”
+    //result = {};//存儲對象
+    //arr = [];
+    ////通過解析字符串，獲取確定的數據。
+    //function paraURL(url) {
+    //    //從第二個字符開始截取，獲取到第二個開始後面所有的字符
 
-        url = url.split("?")[1];//hid=lemon&seth=seth
-        para = url.split("&");  //分割字符串  --> 產生字符串數組
-        //遍歷數組中的每一個元素
-        for (var i = 0; i < para.length; i++) {
-            arr = para[i].split('=');
-            var name = arr[0];
-            var value = arr[1];
+    //    url = url.split("?")[1];//hid=lemon&seth=seth
+    //    para = url.split("&");  //分割字符串  --> 產生字符串數組
+    //    //遍歷數組中的每一個元素
+    //    for (var i = 0; i < para.length; i++) {
+    //        arr = para[i].split('=');
+    //        var name = arr[0];
+    //        var value = arr[1];
 
 
-            result[name] = encodeURI(value); //解決中文亂碼問題
-            el.innerHTML += name + ":" + result[name] + "\n";
-        }
+    //        result[name] = encodeURI(value); //解決中文亂碼問題
+    //        el.innerHTML += name + ":" + result[name] + "\n";
+    //    }
 
-        return result;
-    }
+    //    return result;
+    //}
   /*  paraURL(elURL);*/
 
     var useVue = new Vue(

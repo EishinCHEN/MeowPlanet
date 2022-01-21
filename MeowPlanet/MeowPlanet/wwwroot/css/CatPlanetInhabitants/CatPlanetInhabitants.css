@@ -19,7 +19,7 @@ option {
     background-color: #FEF2CB; 
 }
 
-label {
+strong {
     color: #DA8952;
 }
 
@@ -60,7 +60,11 @@ body {
 }
 
 .topleftcat {
-    width   : 220px;
+    width   : 420px;
+    height: 420px;
+    position:relative;
+    left:150px;
+    top:100px;
 }
 .down {
     left: 0px;
@@ -334,6 +338,7 @@ body {
     .top {
         display: flex;
         flex-wrap: wrap;
+        height:42vw;
     }
 
     .topright {
@@ -356,7 +361,7 @@ body {
         width: 80%;
         position: relative;
         left: 5vw;
-        top: 3vw;
+        top: 7.5vw;
         border-radius: 10px;
         font-size: large;
         color: #DA8952;
@@ -372,6 +377,7 @@ body {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
+        height:18vw;
     }
 
     .name-group {

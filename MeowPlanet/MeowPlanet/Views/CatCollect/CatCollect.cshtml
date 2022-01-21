@@ -69,7 +69,7 @@
                 <div v-for="n in catcollectlist" class="fakef2">
                     @*<div v-for="n in 16" class="fakef2">*@
                     @*貓咪已被刪除時顯示*@
-                    <div v-if="n.isDeleted==2" class="alreadyDeliver">
+                    <div v-if="n.isDeleted==2 || n.adopt=='已送養'" class="alreadyDeliver">
                         <div class="group-top">
                             <div class="backimage">
                                 <img v-bind:src="n.image" class="meow-pic-inside">
@@ -98,7 +98,7 @@
                         <div class="transparentText" v-on:click="CancelCollect(n)">刪除收藏</div>
                     </div>
                     @*貓咪平常狀態顯示*@
-                    <div v-if="n.isDeleted==1" class="meow-group">
+                    <div v-if="n.isDeleted==1 && n.adopt!='已送養'" class="meow-group">
                         <div class="group-top">
                             <div class="backimage">
                                 <img v-bind:src="n.image" class="meow-pic-inside" v-on:click="goCatData(n.catId)" />
@@ -146,8 +146,11 @@
 
                 CollectData: {
                     "Cat_ID": "0",
-                    "User_ID":"@ViewData["UserID"]",
+                    "User_ID": "@ViewData["UserID"]",
                 },
+                check: {
+                    CheckText:"已送養",
+                }
             },
 
             methods: {

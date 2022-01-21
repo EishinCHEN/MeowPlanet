@@ -87,8 +87,9 @@ namespace MeowPlanet.Controllers
                 jj = jj.Where(x => x.CatGender.ToString() == Delivery4["CatGender"].ToString());
             }
 
-            
-            jj = jj.Where(x => x.IsDeleted.ToString() == "1");
+
+            jj = jj.Where(x => x.IsDeleted.ToString() == "1")
+                   .Where(x => x.Adopt != "已送養");
             
 
             if (jj.Count() == 0)

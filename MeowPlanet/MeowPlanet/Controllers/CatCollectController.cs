@@ -72,7 +72,8 @@ namespace MeowPlanet.Controllers
                                                                City = k.City,
                                                                Country = k.Country,
                                                                IsDeleted = k.IsDeleted,
-                                                               Image = k.Image
+                                                               Image = k.Image,
+                                                               Adopt = k.Adopt
                                                            });
 
             List<Models.CollectionListJoinCat> datacat777 = join.ToList<Models.CollectionListJoinCat>();
