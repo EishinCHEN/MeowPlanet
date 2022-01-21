@@ -114,7 +114,7 @@
                         console.log("data" + JSON.stringify(data));
                         var result = data.code == 200 ? "登入成功!我要填寫領養資訊" : "帳號或密碼錯誤!";
                         var yes = confirm(result)
-                        yes ? (top.location.href = "/Membership/Editor") : (top.location.href = "/Home/Index");
+                        yes ? (top.location.href = "/Membership/Editor") : (top.location.href = "/Login/Login");
                     }).fail(function () {
                         console.log("連線失敗");
                     });

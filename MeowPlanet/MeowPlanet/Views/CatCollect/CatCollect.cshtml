@@ -89,13 +89,16 @@
                                 </div>
                             </div>
                             <div class="cancelsize">
-                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" class="collectheart" />
+                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" class="cancelcollectheart" />
                             </div>
 
                         </div>
+
                         <div class="transparentBack"></div>
-                        <img src="~/images/收藏過期(去背換色).PNG" class="transparentImage" />
-                        <div class="transparentText" v-on:click="CancelCollect(n)">刪除收藏</div>
+                        <div class="ccimage" v-on:click="CancelCollect(n)">
+                            <img src="~/images/收藏過期(去背換色).PNG" class="transparentImage" />
+                            <div class="transparentText">刪除收藏</div>
+                        </div>
                     </div>
                     @*貓咪平常狀態顯示*@
                     <div v-if="n.isDeleted==1 && n.adopt!='已送養'" class="meow-group">
