@@ -47,18 +47,12 @@ body {
     background-color: #FEF2CB;
     height: 1vw;
 }
-.cancelcollectheart {
-    margin-top: 0.2vw;
-    margin-left: 1.4vw;
-    height: 2.5vw;
-    width: 2.5vw;
-}
+
 .collectheart {
     margin-top: 0.2vw;
     margin-left: 1.4vw;
     height: 2.5vw;
     width: 2.5vw;
-    cursor: pointer;
 }
 
 .alreadyDeliver {
@@ -113,10 +107,6 @@ body {
     color: #DA8952;
     background-color: white;
     opacity: 0.8;
-}
-
-.ccimage {
-    cursor: pointer;
 }
 /*-----------------------*/
 /* 處理menu選單 */
@@ -313,7 +303,6 @@ body {
     position: relative;
     top: -0.5vw;
     left: -0.5vw;
-    cursor: pointer;
 }
 
 .backimage {

@@ -100,25 +100,6 @@ body {
     margin: 5px;
 }
 
-.name-group-temp1 {
-    display: inline-block;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 10px;
-    margin: 5px;
-    position:relative;
-    left:-9.1vw;
-}
-.name-group-temp2 {
-    display: inline-block;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 10px;
-    margin: 5px;
-    position: relative;
-    left: -1.6vw;
-}
-
 .catgender {
     width: 70vw;
     max-width: 235px;
@@ -197,18 +178,16 @@ body {
     left: 3vw;
 }
 .collectHeart {
-    position: relative;
-    left: 3vw;
+    position:relative;
+    left:3vw;
     height: 2.5vw;
     width: 2.5vw;
-    cursor: pointer;
 }
 .cancelcollectHeart {
     position: relative;
     left: 3vw;
     height: 2.5vw;
     width: 2.5vw;
-    cursor: pointer;
 }
 
 .match{
@@ -287,7 +266,6 @@ body {
     font-size: 1vw;
     position: relative;
     left: 7.2vw;
-    cursor: pointer;
 }
 
 .turnpage {
@@ -305,10 +283,6 @@ body {
     background-color: white;
     font-size: x-large;
     color: #DA8952;
-    position: relative;
-    left: 1vw;
-    top: 0.81vw;
-    cursor: pointer;
 }
 
 .previouspage {
@@ -316,16 +290,6 @@ body {
     background-color: white;
     font-size: x-large;
     color: #DA8952;
-    position: relative;
-    left: -1vw;
-    top: 0.81vw;
-    cursor: pointer;
-}
-
-.pagecount {
-    color: #DA8952;
-    position:relative;
-    top:1.2vw;
 }
 
 .medium {

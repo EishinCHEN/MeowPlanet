@@ -9,12 +9,12 @@
     <div id="customers" class="web">
         <div class="moveforNavigation">
             @*<a asp-controller="Login" asp-action="Login">跑到登入</a>
-                等待導覽列 {{pagecount}}<a asp-controller="CatCollect" asp-action="CatCollect">跑到貓咪收藏</a>*@
+        等待導覽列 {{pagecount}}<a asp-controller="CatCollect" asp-action="CatCollect">跑到貓咪收藏</a>*@
             @*{{test777}}
-                {{FilterData.CatColor}}*@
+            {{FilterData.CatColor}}*@
             <div class="top">
                 <div class="topleft">
-                    <img src="~/images/白色/圓形飛船貓.PNG" class="topleftcat" />
+                    <img src="~/images/白色/圓形飛船貓.PNG"   class="topleftcat" />
                     @*<div class="pic">
             <ul>
                 <a href="#">
@@ -95,53 +95,25 @@
                                     </select>
                                 </div>
 
-                                <div class="name-group-temp2">
+                                <div class="name-group">
                                     <strong>送養人居住地區(看貓地區)</strong>
                                     <select v-model="FilterData.City" class="catgender">
                                         <option value="">直轄縣市</option>
                                         <option value="台北市">台北市</option>
                                         <option value="新北市">新北市</option>
-                                        <option value="桃園市">桃園市</option>
-                                        <option value="台中市">台中市</option>
-                                        <option value="台南市">台南市</option>
-                                        <option value="高雄市">高雄市</option>
                                         <option value="基隆市">基隆市</option>
-                                        <option value="新竹市">新竹市</option>
-                                        <option value="嘉義市">嘉義市</option>
-                                        <option value="新竹縣">新竹縣</option>
-                                        <option value="苗栗縣">苗栗縣</option>
-                                        <option value="彰化縣">彰化縣</option>
-                                        <option value="南投縣">南投縣</option>
-                                        <option value="雲林縣">雲林縣</option>
-                                        <option value="嘉義縣">嘉義縣</option>
-                                        <option value="屏東縣">屏東縣</option>
-                                        <option value="宜蘭縣">宜蘭縣</option>
-                                        <option value="花連縣">花蓮縣</option>
-                                        <option value="台東縣">台東縣</option>
-                                        <option value="澎湖縣">澎湖縣</option>
                                     </select>
                                     <select v-model="FilterData.Country" class="catgender1">
                                         <option value="">區</option>
-                                        <option value="中正區" v-if="FilterData.City=='台北市'">中正區</option>
-                                        <option value="大同區" v-if="FilterData.City=='台北市'">大同區</option>
-                                        <option value="中山區" v-if="FilterData.City=='台北市'">中山區</option>
-                                        <option value="松山區" v-if="FilterData.City=='台北市'">松山區</option>
+                                        <option value="北投區" v-if="FilterData.City=='台北市'">北投區</option>
                                         <option value="大安區" v-if="FilterData.City=='台北市'">大安區</option>
-                                        <option value="萬華區" v-if="FilterData.City=='台北市'">萬華區</option>
                                         <option value="信義區" v-if="FilterData.City=='台北市'">信義區</option>
                                         <option value="士林區" v-if="FilterData.City=='台北市'">士林區</option>
-                                        <option value="北投區" v-if="FilterData.City=='台北市'">北投區</option>
-                                        <option value="內湖區" v-if="FilterData.City=='台北市'">內湖區</option>
-                                        <option value="南港區" v-if="FilterData.City=='台北市'">南港區</option>
-                                        <option value="文山區" v-if="FilterData.City=='台北市'">文山區</option>
-
                                         <option value="淡水區" v-if="FilterData.City=='新北市'">淡水區</option>
-
-                                        <option value="仁愛區" v-if="FilterData.City=='基隆市'">仁愛區</option>
                                     </select>
                                 </div>
 
-                                <div class="name-group-temp1">
+                                <div class="name-group">
                                     <strong>選擇性別</strong>
                                     <select v-model="FilterData.CatGender" class="catgender">
                                         <option value="">皆可</option>
@@ -149,17 +121,17 @@
                                         <option value="2">母</option>
                                     </select>
                                 </div>
-                                @*此選項暫無功能*@
-                                <!--<div class="name-group">
-                                    <strong>刊登日期</strong>-->
-                                <!--<select v-model="FilterData.PublishedDay" class="catgender">
+
+                                <div class="name-group">
+                                    <strong>刊登日期</strong>@*//此選項暫時無意義*@
+                                    <select v-model="FilterData.PublishedDay" class="catgender">
                                         <option value="">皆可</option>
                                         <option value="1">1個月內</option>
                                         <option value="1">3個月內</option>
                                         <option value="1">半年內</option>
                                         <option value="1">1年內</option>
                                     </select>
-                                </div>-->
+                                </div>
                             </div>
                             <br>
                             <div class="go-group">
@@ -192,7 +164,7 @@
                         <div class="matchcatcolor">請重新搜尋喔~</div>
                     </div>
                 </div>
-                <div v-if="open==1" class="aligntop">
+                <div v-if="open==0" class="aligntop">
                     <div class="fakef">
                         <div v-for="cus in page0" class="fakef">
                             <div class="whiteblock">
@@ -212,8 +184,8 @@
                                             </div>
                                             <div class="listblock2topRight">
 
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"] && @ViewData["UserID"] != '0' " v-on:click="CancelCollect(cus)" class="collectHeart" />
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"] || @ViewData["UserID"] == '0'" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"]" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"]" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
 
                                             </div>
                                         </div>
@@ -227,7 +199,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="open==2" class="aligntop">
+                <div v-if="open==1" class="aligntop">
                     <div class="fakef">
                         <div v-for="cus in page1" class="fakef">
                             <div class="whiteblock">
@@ -247,8 +219,8 @@
                                             </div>
                                             <div class="listblock2topRight">
 
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"] && @ViewData["UserID"] != '0' " v-on:click="CancelCollect(cus)" class="collectHeart" />
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"] || @ViewData["UserID"] == '0'" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"]" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"]" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
 
                                             </div>
                                         </div>
@@ -262,7 +234,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="open==3" class="aligntop">
+                <div v-if="open==2" class="aligntop">
                     <div class="fakef">
                         <div v-for="cus in page2" class="fakef">
                             <div class="whiteblock">
@@ -282,8 +254,8 @@
                                             </div>
                                             <div class="listblock2topRight">
 
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"] && @ViewData["UserID"] != '0' " v-on:click="CancelCollect(cus)" class="collectHeart" />
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"] || @ViewData["UserID"] == '0'" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"]" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"]" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
 
                                             </div>
                                         </div>
@@ -297,7 +269,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="open==4" class="aligntop">
+                <div v-if="open==3" class="aligntop">
                     <div class="fakef">
                         <div v-for="cus in page3" class="fakef">
                             <div class="whiteblock">
@@ -317,8 +289,8 @@
                                             </div>
                                             <div class="listblock2topRight">
 
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"] && @ViewData["UserID"] != '0' " v-on:click="CancelCollect(cus)" class="collectHeart" />
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"] || @ViewData["UserID"] == '0'" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"]" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"]" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
 
                                             </div>
                                         </div>
@@ -332,7 +304,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="open==5" class="aligntop">
+                <div v-if="open==4" class="aligntop">
                     <div class="fakef">
                         <div v-for="cus in page4" class="fakef">
                             <div class="whiteblock">
@@ -352,8 +324,8 @@
                                             </div>
                                             <div class="listblock2topRight">
 
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"] && @ViewData["UserID"] != '0' " v-on:click="CancelCollect(cus)" class="collectHeart" />
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"] || @ViewData["UserID"] == '0'" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"]" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"]" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
 
                                             </div>
                                         </div>
@@ -367,7 +339,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="open==6" class="aligntop">
+                <div v-if="open==5" class="aligntop">
                     <div class="fakef">
                         <div v-for="cus in page5" class="fakef">
                             <div class="whiteblock">
@@ -387,8 +359,8 @@
                                             </div>
                                             <div class="listblock2topRight">
 
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"] && @ViewData["UserID"] != '0' " v-on:click="CancelCollect(cus)" class="collectHeart" />
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"] || @ViewData["UserID"] == '0'" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"]" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"]" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
 
                                             </div>
                                         </div>
@@ -402,7 +374,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="open==7" class="aligntop">
+                <div v-if="open==6" class="aligntop">
                     <div class="fakef">
                         <div v-for="cus in page6" class="fakef">
                             <div class="whiteblock">
@@ -422,8 +394,8 @@
                                             </div>
                                             <div class="listblock2topRight">
 
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"] && @ViewData["UserID"] != '0' " v-on:click="CancelCollect(cus)" class="collectHeart" />
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"] || @ViewData["UserID"] == '0'" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"]" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"]" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
 
                                             </div>
                                         </div>
@@ -437,7 +409,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="open==8" class="aligntop">
+                <div v-if="open==7" class="aligntop">
                     <div class="fakef">
                         <div v-for="cus in page7" class="fakef">
                             <div class="whiteblock">
@@ -457,8 +429,8 @@
                                             </div>
                                             <div class="listblock2topRight">
 
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"] && @ViewData["UserID"] != '0' " v-on:click="CancelCollect(cus)" class="collectHeart" />
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"] || @ViewData["UserID"] == '0'" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"]" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"]" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
 
                                             </div>
                                         </div>
@@ -472,7 +444,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="open==9" class="aligntop">
+                <div v-if="open==8" class="aligntop">
                     <div class="fakef">
                         <div v-for="cus in page8" class="fakef">
                             <div class="whiteblock">
@@ -492,8 +464,8 @@
                                             </div>
                                             <div class="listblock2topRight">
 
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"] && @ViewData["UserID"] != '0' " v-on:click="CancelCollect(cus)" class="collectHeart" />
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"] || @ViewData["UserID"] == '0'" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"]" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"]" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
 
                                             </div>
                                         </div>
@@ -507,7 +479,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="open==10" class="aligntop">
+                <div v-if="open==9" class="aligntop">
                     <div class="fakef">
                         <div v-for="cus in page9" class="fakef">
                             <div class="whiteblock">
@@ -527,8 +499,8 @@
                                             </div>
                                             <div class="listblock2topRight">
 
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"] && @ViewData["UserID"] != '0' " v-on:click="CancelCollect(cus)" class="collectHeart" />
-                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"] || @ViewData["UserID"] == '0'" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="cus.userId == @ViewData["UserID"]" v-on:click="CancelCollect(cus)" class="collectHeart" />
+                                                <img src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="cus.userId != @ViewData["UserID"]" v-on:click="Gocollect(cus)" class="cancelcollectHeart" />
 
                                             </div>
                                         </div>
@@ -545,16 +517,40 @@
                 <div style="height: 2vw; background-color:white;">
                 </div>
                 <div class="turnpage">
-                    <div v-on:click="uppage" class="previouspage" onclick="window.location.href='#jump'"><</div>
-                    <div class="pagecount">{{open}}/{{pagecount}}</div>
-                    <div v-on:click="downpage" class="nextpage" onclick="window.location.href='#jump'">></div>
+                    <button v-on:click="uppage" class="previouspage" onclick="window.location.href='#jump'"><</button>
+                    <button v-on:click="downpage" class="nextpage" onclick="window.location.href='#jump'">></button>
                 </div>
             </div>
         </div>
     </div>
 </body>
 <script>
+    //方法一：
+    //var el, elURL, url, para, result, arr;
+    //el = document.getElementById("p1");
+    //elURL = window.location.search;//獲取get請求的參數 獲取到數據，是以？傳過來的值 “?hid=lemon&seth=seth”
+    //result = {};//存儲對象
+    //arr = [];
+    ////通過解析字符串，獲取確定的數據。
+    //function paraURL(url) {
+    //    //從第二個字符開始截取，獲取到第二個開始後面所有的字符
 
+    //    url = url.split("?")[1];//hid=lemon&seth=seth
+    //    para = url.split("&");  //分割字符串  --> 產生字符串數組
+    //    //遍歷數組中的每一個元素
+    //    for (var i = 0; i < para.length; i++) {
+    //        arr = para[i].split('=');
+    //        var name = arr[0];
+    //        var value = arr[1];
+
+
+    //        result[name] = encodeURI(value); //解決中文亂碼問題
+    //        el.innerHTML += name + ":" + result[name] + "\n";
+    //    }
+
+    //    return result;
+    //}
+  /*  paraURL(elURL);*/
 
     var useVue = new Vue(
         {
@@ -572,9 +568,11 @@
                 page7: [],
                 page8: [],
                 page9: [],
-                open: 1,
+                open: 0,
                 match:1,
-
+                /*test777: window.location.search.split("?")[1],*/
+                /* test777: encodeURI(window.location.search.split("?")[1]),*/
+                test777: decodeURI(window.location.search.split("?")[1]),
                 items: [{
                     content: '1 item',
                     show: true
@@ -633,18 +631,13 @@
                                 top.location.href = "/CatDetail/" + a;
                             }
                         });
-
+                  
 },
 
                 //感覺要寫成前端暫存 不然重複按就重複寫入
                 Gocollect(a) {
-                    if (@ViewData["UserID"] == 0) {
-                        alert('需登入會員解鎖收藏功能')
-                        top.location.href = "/Login/Login";
-                    }
-                    else {
                     useVue.CollectData.Cat_ID = a.catId
-                    /*alert(useVue.CollectData.Cat_ID);*/
+                    alert(useVue.CollectData.Cat_ID);
                     a.userId = @ViewData["UserID"]
                      $.ajax(
                         {
@@ -660,14 +653,13 @@
                                 console.log(useVue.test);
                             }
                         }
-                    );}
-
+                    );
                 },
                 //感覺要寫成前端暫存 不然重複按就重複寫入
                 CancelCollect(a) {
                     if (this.deletecheck()) {
                         useVue.CollectData.Cat_ID = a.catId;
-                      /*alert(useVue.CollectData.Cat_ID);*/
+                        alert(useVue.CollectData.Cat_ID);
                         a.userId = 0
                         $.ajax(
                             {
@@ -681,7 +673,7 @@
                                     console.log(qryResult);
                                     useVue.test = qryResult;
                                     console.log(useVue.test);
-                                    /*alert(qryResult);*/
+                                    alert(qryResult);
                                 },
                                 error: function () {
                                     alert("連線失敗");
@@ -736,8 +728,8 @@
                                     useVue.page9 = useVue.pagerandom.slice(27, 30);
 
                                     useVue.match = 1;
-                                    useVue.open = 1;
-                                    window.location.href = "#jump";
+                                    useVue.open = 0;
+
                                 }
                             }
                         }
@@ -745,13 +737,13 @@
 
                 },
                 downpage() {
-                if(useVue.open < useVue.pagecount)
+                if(useVue.open < useVue.pagecount-1)
                 {
                     useVue.open++
                 }
                 },
                 uppage() {
-                    if (useVue.open > 1) {
+                    if (useVue.open > 0) {
                         useVue.open--
                     }
                 }
