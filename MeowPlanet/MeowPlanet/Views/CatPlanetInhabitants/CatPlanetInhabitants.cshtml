@@ -526,30 +526,30 @@
 </body>
 <script>
     //方法一：
-    var el, elURL, url, para, result, arr;
-    el = document.getElementById("p1");
-    elURL = window.location.search;//獲取get請求的參數 獲取到數據，是以？傳過來的值 “?hid=lemon&seth=seth”
-    result = {};//存儲對象
-    arr = [];
-    //通過解析字符串，獲取確定的數據。
-    function paraURL(url) {
-        //從第二個字符開始截取，獲取到第二個開始後面所有的字符
+    //var el, elURL, url, para, result, arr;
+    //el = document.getElementById("p1");
+    //elURL = window.location.search;//獲取get請求的參數 獲取到數據，是以？傳過來的值 “?hid=lemon&seth=seth”
+    //result = {};//存儲對象
+    //arr = [];
+    ////通過解析字符串，獲取確定的數據。
+    //function paraURL(url) {
+    //    //從第二個字符開始截取，獲取到第二個開始後面所有的字符
 
-        url = url.split("?")[1];//hid=lemon&seth=seth
-        para = url.split("&");  //分割字符串  --> 產生字符串數組
-        //遍歷數組中的每一個元素
-        for (var i = 0; i < para.length; i++) {
-            arr = para[i].split('=');
-            var name = arr[0];
-            var value = arr[1];
+    //    url = url.split("?")[1];//hid=lemon&seth=seth
+    //    para = url.split("&");  //分割字符串  --> 產生字符串數組
+    //    //遍歷數組中的每一個元素
+    //    for (var i = 0; i < para.length; i++) {
+    //        arr = para[i].split('=');
+    //        var name = arr[0];
+    //        var value = arr[1];
 
 
-            result[name] = encodeURI(value); //解決中文亂碼問題
-            el.innerHTML += name + ":" + result[name] + "\n";
-        }
+    //        result[name] = encodeURI(value); //解決中文亂碼問題
+    //        el.innerHTML += name + ":" + result[name] + "\n";
+    //    }
 
-        return result;
-    }
+    //    return result;
+    //}
   /*  paraURL(elURL);*/
 
     var useVue = new Vue(
