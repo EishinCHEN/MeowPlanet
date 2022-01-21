@@ -65,8 +65,8 @@
                 </div>
                 <diV class="recipient-area" v-on:click="toMessageContent(item.otherUserId)">
                     <h4 id="recipient-name">{{item.otherUser.realName}}</h4>
-                    <p v-if="item.lastMessage.message != null" class="recipient-text">{{item.otherUser.realName}}說: {{item.lastMessage.message}}</p>
-                    <p v-if="item.lastMessage.image != null" class="recipient-text">{{item.otherUser.realName}}傳送了一張圖片</p>
+                    <p v-if="item.lastMessage.message != null" class="recipient-text">{{item | whoSent}}說: {{item.lastMessage.message}}</p>
+                    <p v-if="item.lastMessage.image != null" class="recipient-text">{{item | whoSent}}傳送了一張圖片</p>
                 </diV>
                 <ul class="notice-info">
                     <li class="notice-info-item">
@@ -129,7 +129,10 @@
                     return moment(String(value)).locale("zh-tw").format('dddd HH:mm');
                 }
             },
-
+            whoSent: function (value){
+                let loginUser = @(User.Identity.Name);
+                return value.lastMessage.sender == loginUser ? "您" : value.otherUser.realName ;
+            }
         },
         methods: {
 
