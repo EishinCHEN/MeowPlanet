@@ -313,6 +313,7 @@ body {
     position: relative;
     top: -0.5vw;
     left: -0.5vw;
+    cursor: pointer;
 }
 
 .backimage {
