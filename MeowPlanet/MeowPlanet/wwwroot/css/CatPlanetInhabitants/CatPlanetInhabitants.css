@@ -19,7 +19,7 @@ option {
     background-color: #FEF2CB; 
 }
 
-label {
+strong {
     color: #DA8952;
 }
 
@@ -60,7 +60,11 @@ body {
 }
 
 .topleftcat {
-    width   : 220px;
+    width   : 420px;
+    height: 420px;
+    position:relative;
+    left:150px;
+    top:100px;
 }
 .down {
     left: 0px;
@@ -174,16 +178,18 @@ body {
     left: 3vw;
 }
 .collectHeart {
-    position:relative;
-    left:3vw;
+    position: relative;
+    left: 3vw;
     height: 2.5vw;
     width: 2.5vw;
+    cursor: pointer;
 }
 .cancelcollectHeart {
     position: relative;
     left: 3vw;
     height: 2.5vw;
     width: 2.5vw;
+    cursor: pointer;
 }
 
 .match{
@@ -262,6 +268,7 @@ body {
     font-size: 1vw;
     position: relative;
     left: 7.2vw;
+    cursor: pointer;
 }
 
 .turnpage {
@@ -279,6 +286,8 @@ body {
     background-color: white;
     font-size: x-large;
     color: #DA8952;
+    position: relative;
+    left:1vw;
 }
 
 .previouspage {
@@ -286,6 +295,14 @@ body {
     background-color: white;
     font-size: x-large;
     color: #DA8952;
+    position: relative;
+    left:-1vw;
+}
+
+.pagecount {
+    color: #DA8952;
+    position:relative;
+    top:1.2vw;
 }
 
 .medium {
@@ -334,6 +351,7 @@ body {
     .top {
         display: flex;
         flex-wrap: wrap;
+        height:42vw;
     }
 
     .topright {
@@ -356,7 +374,7 @@ body {
         width: 80%;
         position: relative;
         left: 5vw;
-        top: 3vw;
+        top: 7.5vw;
         border-radius: 10px;
         font-size: large;
         color: #DA8952;
@@ -372,6 +390,7 @@ body {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
+        height:18vw;
     }
 
     .name-group {

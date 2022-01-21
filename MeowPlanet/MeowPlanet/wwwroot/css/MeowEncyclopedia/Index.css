@@ -29,7 +29,7 @@ html {
 }
 
 .encyclopedia-title-area {
-    background-color: #DA8952;
+    background-color: #cae4ba;
     border-radius: 5px;
     color: #fff;
 }
@@ -48,14 +48,14 @@ html {
         justify-content: center;
     }
 
-    .encyclopedia-path-area div {
-        width: 70px;
-        padding: 5px;
-        display: inline-block;
-        border: 2px solid #DA8952;
-        background-color: #DA8952;
-        border-radius: 5px 5px 0 0;
-    } 
+        .encyclopedia-path-area div {
+            width: 70px;
+            padding: 5px;
+            display: inline-block;
+            border: 2px solid #cae4ba;
+            background-color: #cae4ba;
+            border-radius: 5px 5px 0 0;
+        } 
 
 .encyclopedia-path-area p {
     padding: 0px;
@@ -65,7 +65,7 @@ html {
 }
 
 .encyclopedia-artical-area {
-    border: 3px solid #DA8952;
+    border: 3px solid #cae4ba;
     background-color: #fff;
     border-radius: 10px;
     color: #65615E;
