@@ -168,8 +168,6 @@
                     infobox.hide();
                 }
             });
-            this.scrollBoxToBottom();
-
 
             //SignalR 連接建立
             this.connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
@@ -201,13 +199,17 @@
                         sendTime: sendtime
                     };
                 $vue.chatList.push(newImage);
-                $vue.scrollBoxToBottom();
+                setTimeout(() => $vue.scrollBoxToBottom(), 500);
                 $vue.connection.invoke("MessagesAreRead", sender).catch(function(error) { return console.log(error)});
                 }
             });
+
+            setTimeout(() => this.scrollBoxToBottom(), 1000);
         },
         updated() {
             //滾輪預設在最新訊息(最底)
+            this.scrollBoxToBottom();
+
         }
     });
     </script>
@@ -225,7 +227,7 @@
                     <i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">
-                    <a href="# ">收藏居民</a>
+                    <a asp-controller="CatCollect" asp-action="CatCollect">收藏居民</a>
                     <i class="bi bi-caret-right-fill "></i>
                 </li>
                 <li class="menu-list ">
