@@ -283,6 +283,8 @@ body {
     background-color: white;
     font-size: x-large;
     color: #DA8952;
+    position: relative;
+    left:1vw;
 }
 
 .previouspage {
@@ -290,6 +292,14 @@ body {
     background-color: white;
     font-size: x-large;
     color: #DA8952;
+    position: relative;
+    left:-1vw;
+}
+
+.pagecount {
+    color: #DA8952;
+    position:relative;
+    top:1.2vw;
 }
 
 .medium {
