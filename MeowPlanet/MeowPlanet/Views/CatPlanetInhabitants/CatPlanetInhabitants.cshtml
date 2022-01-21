@@ -517,9 +517,9 @@
                 <div style="height: 2vw; background-color:white;">
                 </div>
                 <div class="turnpage">
-                    <button v-on:click="uppage" class="previouspage" onclick="window.location.href='#jump'"><</button>
+                    <div v-on:click="uppage" class="previouspage" onclick="window.location.href='#jump'"><</div>
                     <div class="pagecount">{{open}}/{{pagecount}}</div> 
-                    <button v-on:click="downpage" class="nextpage" onclick="window.location.href='#jump'">></button>
+                    <div v-on:click="downpage" class="nextpage" onclick="window.location.href='#jump'">></div>
                 </div>
             </div>
         </div>

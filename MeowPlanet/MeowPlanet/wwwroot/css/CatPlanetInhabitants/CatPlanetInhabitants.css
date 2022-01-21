@@ -287,7 +287,9 @@ body {
     font-size: x-large;
     color: #DA8952;
     position: relative;
-    left:1vw;
+    left: 1vw;
+    top: 0.81vw;
+    cursor: pointer;
 }
 
 .previouspage {
@@ -296,7 +298,9 @@ body {
     font-size: x-large;
     color: #DA8952;
     position: relative;
-    left:-1vw;
+    left: -1vw;
+    top: 0.81vw;
+    cursor: pointer;
 }
 
 .pagecount {
