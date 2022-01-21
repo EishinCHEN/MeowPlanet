@@ -100,6 +100,25 @@ body {
     margin: 5px;
 }
 
+.name-group-temp1 {
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 10px;
+    margin: 5px;
+    position:relative;
+    left:-9.1vw;
+}
+.name-group-temp2 {
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 10px;
+    margin: 5px;
+    position: relative;
+    left: -1.6vw;
+}
+
 .catgender {
     width: 70vw;
     max-width: 235px;
