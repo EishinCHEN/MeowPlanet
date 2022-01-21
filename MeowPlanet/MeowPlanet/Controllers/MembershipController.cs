@@ -378,5 +378,40 @@ namespace MeowPlanet.Controllers
             }
             return RedirectToAction("Logout", "Login");
         }
+
+        [Route("/Membership/GetAdopterInfo")]
+        [HttpGet]
+        public async Task<MemberManagement.Message> GetAdopterInfo()
+        {
+            var claims = HttpContext.User;
+            var ID = Convert.ToInt32(claims.Identity.Name);
+            var ROLE = claims.Claims.Where(x => x.Type == ClaimTypes.Role).FirstOrDefault().Value;
+
+            var user = await (from a in _dbcontext.UserDatas
+                              where a.UserId == ID
+                              select a).FirstOrDefaultAsync();
+
+            MemberManagement.Message msg = null;
+            if(user.Job == null || user.Salary == null || user.KeepPets ==null || user.OtherPets == null || user.AcceptableAmount == null|| user.Merrage == null)
+            {
+                msg = new MemberManagement.Message()
+                {
+                    Code = 400,
+                    Msg = $"領養人資訊未填寫",
+                    Time = DateTime.Now
+                };
+            }
+            else
+            {
+                msg = new MemberManagement.Message()
+                {
+                    Code = 200,
+                    Msg = $"領養人資訊已填寫",
+                    Time = DateTime.Now
+                };
+            }
+
+            return msg;
+        }
     }
 }

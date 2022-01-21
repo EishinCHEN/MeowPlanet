@@ -51,7 +51,7 @@
                 <li>送養中貓貓：{{userInfo.userCount}}</li>
             </ul>
             <img class="userPhoto" :src="userInfo.userPhoto" />
-            <button v-on:click="Appointment(catInfo.CatId)">我想征服牠</button>
+            <button v-on:click="getAdopterInfo">我想征服牠 連繫送養人</button>
         </div>
     </div>
 </div>
@@ -59,7 +59,8 @@
 @section Scripts{
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 }
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+        integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
         var app = new Vue({
             el: '#app',
@@ -183,6 +184,33 @@
                         return false;
                     }
                 },
+                getAdopterInfo() {
+                    axios.get("/Membership/GetAdopterInfo/")
+                        .then((res) => {
+                            console.log(res.data.code);
+                            if (res.data.code === 200) {
+                                let receiver = 1;    //要傳給的人,我測試先寫死
+                                $.ajax({
+                                    type: "post",
+                                    data: {
+                                        receiver: receiver,
+                                        sendTime: moment().format("YYYY-MM-DD HH:mm:ss.SSS")
+                                    },
+                                    url: "@Url.Action("FirstSendMessage", "MeowChat")/",
+                                }).done(function (response) {
+                                if (response > 0) {
+                                    location.href = '@Url.Action("MessageContent", "MeowChat")' + '?other=' + receiver;
+                                    }
+                                }).fail(function () {
+                                    console.log("連線失敗");
+                                });
+                            } else {
+                                var yes2 = confirm("需要先填寫領養人資訊才能前往下一步哦!");
+                                yes2 ? (top.location.href = "/Membership/editor") : (top.location.href = "/catdetail/catdetail")
+                            }
+                        })
+                        .catch((error) => console.log(error))
+                }
             }
         });
 
