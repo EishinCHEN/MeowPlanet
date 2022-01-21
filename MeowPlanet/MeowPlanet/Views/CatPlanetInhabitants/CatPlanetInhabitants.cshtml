@@ -633,13 +633,18 @@
                                 top.location.href = "/CatDetail/" + a;
                             }
                         });
-                  
+
 },
 
                 //感覺要寫成前端暫存 不然重複按就重複寫入
                 Gocollect(a) {
+                    if (@ViewData["UserID"] == 0) {
+                        alert('需登入會員解鎖收藏功能')
+                        top.location.href = "/Login/Login";
+                    }
+                    else {
                     useVue.CollectData.Cat_ID = a.catId
-                    alert(useVue.CollectData.Cat_ID);
+                    /*alert(useVue.CollectData.Cat_ID);*/
                     a.userId = @ViewData["UserID"]
                      $.ajax(
                         {
@@ -655,13 +660,14 @@
                                 console.log(useVue.test);
                             }
                         }
-                    );
+                    );}
+
                 },
                 //感覺要寫成前端暫存 不然重複按就重複寫入
                 CancelCollect(a) {
                     if (this.deletecheck()) {
                         useVue.CollectData.Cat_ID = a.catId;
-                        alert(useVue.CollectData.Cat_ID);
+                      /*alert(useVue.CollectData.Cat_ID);*/
                         a.userId = 0
                         $.ajax(
                             {
@@ -675,7 +681,7 @@
                                     console.log(qryResult);
                                     useVue.test = qryResult;
                                     console.log(useVue.test);
-                                    alert(qryResult);
+                                    /*alert(qryResult);*/
                                 },
                                 error: function () {
                                     alert("連線失敗");
