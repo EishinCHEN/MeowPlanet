@@ -147,7 +147,7 @@ namespace MeowPlanet.Controllers
             {
                 _dbContext.CollectionLists.Remove((CollectionList)deletelist);
                 _dbContext.SaveChanges();
-                msg = "成功刪除";
+                msg = "已取消收藏";
             }
 
             return msg;
