@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles{
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.css' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.css' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.css' />
+    <link href="~/css/Schedule/Appointment.css" rel="stylesheet" />
+}
+
+<div id="app" class="container">
+    <div class="area-top">
+        <div id="calendar"></div>
+    </div>
+
+    <div class="area-bottom">
+        <button class="button" type="button" v-on:click="cancel()">暫不預約</button>
+        <button class="button" type="button" v-on:click="sendhellomessage()" style="margin-left: 0.5vw;">聯繫送養人</button>
+    </div>
+
+    <div id="dialog"></div>
+</div>
+
+
+@section Scripts {
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/interaction/main.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/locales/zh-tw.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['interaction', 'dayGrid'],
+                header: {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: 'today'
+                },
+                height: 'parent',
+                aspectRatio: 2,
+                handleWindowResize: true, //隨視窗變化大小
+                locale: 'zh-tw',
+                fixedWeekCount: false,
+                showNonCurrentDates: false,
+
+
+
+                //預約
+                dateClick: function (e) {
+                    var dateStr = e.dateStr;
+                    $('#dialog').attr('title', "確認預約");
+                    $('#dialog').text("是否預約 " + dateStr + "？");
+                    $('#dialog').dialog({
+                        buttons: {
+                            "是": function () {
+                                calendar.addEvent({
+                                    title: "@ViewData["Name"]",
+                                    start: dateStr,
+                                    allDay: true,
+                                    backgroundColor: "#DA8952",
+                                    Color: "#000",
+                                });
+
+
+
+                                $(this).dialog("close");
+                            },
+                            "否": function () {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                },
+            });
+            calendar.render();
+        });
+
+        var app = new Vue({
+            el: '#app',
+            methods: {
+                sendhellomessage: function () {
+                    let receiver = @ViewData["Sender"];    //要傳給的人,我測試先寫死
+                    $.ajax({
+                        type: "post",
+                        data: {
+                            receiver: receiver,
+                            sendTime: moment().format("YYYY-MM-DD HH:mm:ss.SSS")
+                        },
+                        url: "@Url.Action("FirstSendMessage", "MeowChat")/",
+                    }).done(function (response) {
+                        if (response > 0) {
+                            location.href = '@Url.Action("MessageContent", "MeowChat")' + '?other=' + receiver;
+                        }
+                    }).fail(function () {
+                        console.log("連線失敗");
+                    });
+                },
+                cancel() {
+                    top.location.href ="@Url.Action("CatPlanet", "Cat")/";
+                }
+            }
+        })
+    </script>
+
+}

@@ -220,7 +220,6 @@ namespace MeowPlanet.Models
                 entity.ToTable("schedule");
 
                 entity.Property(e => e.ScheduleId)
-                    .ValueGeneratedNever()
                     .HasColumnName("Schedule_ID")
                     .HasComment("行程表編號");
 
