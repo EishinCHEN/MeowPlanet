@@ -37,8 +37,8 @@
                 <br />
                 <li style="list-style:none">
                     @*世光新增*@
-                    <img id="img" src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="catInfo.CollectCheck == @ViewData["LoginUserId"]" v-on:click="CancelCollect" class="collectHeart" />
-                    <img id="img" src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="catInfo.CollectCheck != @ViewData["LoginUserId"]" v-on:click="Gocollect" class="collectHeart" />
+                    <img id="img" src="~/images/pageCatPlanetInhabitants/愛心(收藏)(去背).png" v-if="catInfo.CollectCheck == @ViewData["LoginUserId"] && @ViewData["LoginUserId"] != '0' " v-on:click="CancelCollect" class="collectHeart" />
+                    <img id="img" src="~/images/pageCatPlanetInhabitants/愛心(取消收藏)(去背).png" v-if="catInfo.CollectCheck != @ViewData["LoginUserId"] || @ViewData["LoginUserId"] == '0'" v-on:click="Gocollect" class="collectHeart" />
                     收藏貓貓
 
                 </li>
@@ -125,8 +125,12 @@
                 //世光新增
 
                 Gocollect() {
-
-                    /*alert(app.CollectData.Cat_ID);*/
+                    if (@ViewData["LoginUserId"] == 0) {
+                        alert('需登入會員解鎖收藏功能')
+                        top.location.href = "/Login/Login";
+                    }
+                    else {
+                        /*alert(app.CollectData.Cat_ID);*/
                     app.catInfo.CollectCheck = @ViewData["LoginUserId"]
                      $.ajax(
                         {
@@ -142,6 +146,8 @@
                             }
                         }
                     );
+                    }
+
                 },
                 CancelCollect() {
                     if (this.deletecheck()) {
