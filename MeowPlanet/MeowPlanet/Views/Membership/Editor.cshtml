@@ -304,9 +304,9 @@
                         },
                         data: this.userInfo,
                         }).done(function (data, textStatus, jqXHR) {
-                            var result = data.code == 200 ? "更新成功!要回到首頁嗎?" : "資料更新失敗!要回到首頁嗎?";
+                            var result = data.code == 200 ? "更新成功!" : "資料更新失敗!";
                             var yes = confirm(result);
-                            yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
+                            yes ? (top.location.href = "/Membership/editor") : (top.location.href = "/Membership/editor");
                          }).fail(function () {
                              alert("連線失敗");
                     });
@@ -323,9 +323,9 @@
                             data: this.pwd,
                         }).done(function (data, textStatus, jqXHR) {
                             //console.log("data" + JSON.stringify(data));
-                            var result = data.code == 200 ? "密碼更新成功!要回到首頁嗎?" : "密碼更新失敗!要回到首頁嗎?";
+                            var result = data.code == 200 ? "密碼更新成功!" : "密碼更新失敗!";
                             var yes = confirm(result)
-                            yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
+                            yes ? (top.location.href = "/Membership/editor") : (top.location.href = "/Membership/editor");
                          }).fail(function () {
                              console.log("連線失敗");
                     });
@@ -354,9 +354,9 @@
                             data: this.adopterInfo,
                         }).done(function (data, textStatus, jqXHR) {
                             console.log("data" + JSON.stringify(data));
-                            var result = data.code == 200 ? "領養身分資訊更新成功!要回到首頁嗎?" : "資料更新失敗!要回到首頁嗎?";
+                            var result = data.code == 200 ? "領養身分資訊更新成功!" : "資料更新失敗!";
                             var yes = confirm(result);
-                            yes ? (top.location.href = "/Home/Index") : (top.location.href = "/Membership/editor");
+                            yes ? (top.location.href = "/Membership/editor") : (top.location.href = "/Membership/editor");
                          }).fail(function () {
                              console.log("連線失敗");
                     });
