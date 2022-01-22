@@ -52,7 +52,11 @@
 
     </div>
     <div class="btn1">
-        <a class="btn" href="" style="color: white;border:1px solid white; border-radius: 8px;">看更多</a>
+        <a class="btn" style="color: white;border:1px solid white; border-radius: 8px;" onClick="flygo('黑白貓')">看更多</a>
     </div>
 </div>
-
+<script>
+    function flygo(a) {
+        top.location.href = "/CatPlanetInhabitants/CatPlanetInhabitants?" + a;
+    }
+</script>
