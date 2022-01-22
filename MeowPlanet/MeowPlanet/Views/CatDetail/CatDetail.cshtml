@@ -95,13 +95,13 @@
                     "userCount": "@ViewData["userCount"]",
                     "userPhoto": "@ViewData["userPhoto"]",
                     //世光新增
-                    "LoginUserId":"@ViewData["LoginUserId"]"
+                    "LoginUserId":"@ViewData["LoginUserId"]" //重複的loginId 
                 },
 
                 //世光新增
                 CollectData: {
                     "Cat_ID": "@ViewData["CatId"]",
-                    "User_ID":"@ViewData["LoginUserId"]",
+                    "User_ID":"@ViewData["LoginUserId"]",  // 重複使用loginID   而且如果沒綁其他東西 loginId可以直接用@綁進method
                 }
             },
             methods: {
