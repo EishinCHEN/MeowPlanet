@@ -27,12 +27,7 @@
             <!--選單列-->
             <div class="menu  ">
                 <ul>
-                    @*<li class="menu-list ">
-                            <a asp-controller="CatPlanetInhabitants" asp-action="CatPlanetInhabitants">跑到貓咪篩選頁面</a>
-                            <a asp-controller="Login" asp-action="Login">跑到登入</a>
-                            <button v-on:click="ShowCollect" class="gobox">飛行前往!</button>
-                            <i class="bi bi-caret-right-fill "></i>
-                        </li>*@
+
                     <li class="menu-list ">
                         <a asp-controller="Membership" asp-action="Editor">資料修改</a>
                         <i class="bi bi-caret-right-fill "></i>
@@ -54,9 +49,6 @@
                         <i class="bi bi-caret-right-fill manage-meow"></i>
                     </li>
                 </ul>
-                <!-- <div class="bg-pic">
-                    <img class="pic-planet" src="~/images/綠色/貓星球-綠色.PNG" />
-                </div> -->
             </div>
         </div>
         <!--右邊區塊-->
@@ -67,7 +59,6 @@
 
             <div class="meow-manage-inside">
                 <div v-for="n in catcollectlist" class="fakef2">
-                    @*<div v-for="n in 16" class="fakef2">*@
                     @*貓咪已被刪除時顯示*@
                     <div v-if="n.isDeleted==2 || n.adopt=='已送養'" class="alreadyDeliver">
                         <div class="group-top">
@@ -129,7 +120,6 @@
 
                 </div>
             </div>
-            @*</form>*@
         </div>
 
 
@@ -158,18 +148,16 @@
 
             methods: {
                 ShowCollect() {
-                    //console.log(this.FilterData)
-                    //console.log(useVue.RealName)
                     $.ajax(
                         {
-                            type: 'POST',       //路由  後面是控制器
+                            type: 'POST',       
                             url: "@Url.Action("SearchCollect", "CatCollect")/",
                             beforeSend: function (xhr) {
                                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                             },
                             data: this.UserInfo,
                             success: function (qryResult, status, xhr) {
-                               console.log(qryResult);
+                                console.log(qryResult);
                                 useVue.catcollectlist = qryResult;
                                 console.log(useVue.catcollectlist);
                             }
@@ -192,7 +180,7 @@
 
                              $.ajax(
                                 {
-                                    type: 'POST',       //路由  後面是控制器
+                                    type: 'POST',       
                                     url: "@Url.Action("DeleteCollect", "CatPlanetInhabitants")/",
                                     beforeSend: function (xhr) {
                                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
