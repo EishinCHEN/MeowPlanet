@@ -537,7 +537,7 @@
                 </div>
                 <div style="height: 2vw; background-color:white;">
                 </div>
-                <div class="turnpage">
+                <div class="turnpage" v-if="open != -1">
                     <div v-on:click="uppage" class="previouspage" onclick="window.location.href='#jump'"><</div>
                     <div class="pagecount">{{open}}/{{pagecount}}</div>
                     <div v-on:click="downpage" class="nextpage" onclick="window.location.href='#jump'">></div>
@@ -684,7 +684,6 @@
                             data: this.FilterData,
                             success: function (qryResult, status, xhr) {
                                 if (qryResult.length == 0) {
-                                    alert("查無條件符合的貓咪")
                                     useVue.match = 0;
                                     useVue.open = -1;
                                 }
