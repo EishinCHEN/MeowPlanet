@@ -34,7 +34,6 @@ namespace MeowPlanet.Controllers
         [HttpPostAttribute]
         [ProducesAttribute("application/json")]
         [Consumes("application/x-www-form-urlencoded")]
-        //  public List<Models.Cat> catjson([FromBody]Models.Cat Delivery)//師改的
         public List<Models.CatFilterList> CatFilter(IFormCollection Delivery4)
         {
             Console.WriteLine("Account:" + Delivery4["CatColor"]);
@@ -128,7 +127,6 @@ namespace MeowPlanet.Controllers
         [HttpPostAttribute]
         [ProducesAttribute("application/json")]
         [Consumes("application/x-www-form-urlencoded")]
-        //  public List<Models.Cat> catjson([FromBody]Models.Cat Delivery)//師改的
         public string Delete(IFormCollection Collectparameter)
         {
             Console.WriteLine("ount:" + Collectparameter["Cat_ID"]);
@@ -158,7 +156,6 @@ namespace MeowPlanet.Controllers
         [HttpPostAttribute]
         [ProducesAttribute("application/json")]
         [Consumes("application/x-www-form-urlencoded")]
-        //  public List<Models.Cat> catjson([FromBody]Models.Cat Delivery)//師改的
         public List<Models.Cat> Create(IFormCollection Deleteparameter)
         {
             Console.WriteLine("Accot:" + Deleteparameter["Cat_ID"]);
