@@ -189,7 +189,7 @@
                         .then((res) => {
                             console.log(res.data.code);
                             if (res.data.code === 200) {
-                                let receiver = 1;    //要傳給的人,我測試先寫死
+                                let receiver = @ViewData["UserId"];    
                                 $.ajax({
                                     type: "post",
                                     data: {
