@@ -142,7 +142,7 @@
                                 alert("回報" + catName + "送養成功!");
                             })
                             .catch((error) => console.log(error))
-                        top.location.href = "/CatManagement/ManageCat"
+                        window.location.reload();
                     } else {
                         alert("已取消回報" + catName + "送養狀態!");
                     }
@@ -156,7 +156,7 @@
                                 alert("刪除喵星人成功! ByeBye "+catName);
                             })
                             .catch((error) => console.log(error))
-                        top.location.href = "/CatManagement/ManageCat"
+                        window.location.reload();
                     }
                 }
             }
