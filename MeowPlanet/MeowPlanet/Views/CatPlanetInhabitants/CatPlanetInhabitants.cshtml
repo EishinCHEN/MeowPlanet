@@ -1,21 +1,13 @@
-﻿@*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-<link rel="stylesheet" href="./css/indexpage/jquery.flipster.min.css">
-<link rel="stylesheet" href="~/css/indexpage/index.css">*@
+﻿
 <link href="~/css/CatPlanetInhabitants/CatPlanetInhabitants.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-@ViewData["UserID"]接收會員ID;
-@ViewData["CatID1"]接收貓咪資訊;
 <body>
     <div id="customers" class="web">
         <div class="moveforNavigation">
-            @*<a asp-controller="Login" asp-action="Login">跑到登入</a>
-                等待導覽列 {{pagecount}}<a asp-controller="CatCollect" asp-action="CatCollect">跑到貓咪收藏</a>*@
-            @*{{test777}}
-                {{FilterData.CatColor}}*@
             <div class="top">
                 <div class="topleft">
                     <img src="~/images/白色/圓形飛船貓.PNG" class="topleftcat" />
-                    @*<div class="pic">
+                    @*<div class="pic">  類首頁左方圖片  待新增中
             <ul>
                 <a href="#">
                 <li><img src="~/images/index img/橘白.png" /></li>
@@ -575,20 +567,6 @@
                 page9: [],
                 open: 1,
                 match:1,
-
-                items: [{
-                    content: '1 item',
-                    show: true
-                }, {
-                    content: '2 item',
-                    show: true
-                }, {
-                    content: '3 item',
-                    show: true
-                    }],
-
-                show:1,
-
                 test:[],
                 CollectData: {
                     "Cat_ID": "7",
@@ -645,7 +623,6 @@
                     }
                     else {
                     useVue.CollectData.Cat_ID = a.catId
-                    /*alert(useVue.CollectData.Cat_ID);*/
                     a.userId = @ViewData["UserID"]
                      $.ajax(
                         {
@@ -668,7 +645,6 @@
                 CancelCollect(a) {
                     if (this.deletecheck()) {
                         useVue.CollectData.Cat_ID = a.catId;
-                      /*alert(useVue.CollectData.Cat_ID);*/
                         a.userId = 0
                         $.ajax(
                             {
@@ -682,7 +658,6 @@
                                     console.log(qryResult);
                                     useVue.test = qryResult;
                                     console.log(useVue.test);
-                                    /*alert(qryResult);*/
                                 },
                                 error: function () {
                                     alert("連線失敗");
@@ -695,10 +670,6 @@
                     }
                 },
                 flygo() {
-                    //console.log(this.FilterData)
-                    //console.log(useVue.RealName)
-                    //useVue.buttonShow = 0;/////////////////////////////
-                    //useVue.buttonShowbyId = useVue.CollectData.User_ID;
                     if (useVue.FilterData.CatColor == "undefined") {
                         useVue.FilterData.CatColor = ""
                     }
@@ -724,7 +695,6 @@
                                     useVue.pagerandom = qryResult.sort(function () {
                                         return (0.5 - Math.random());  //將取出陣列隨機排列
                                     });
-                                    /*useVue.page0 = useVue.pagerandom;*/
                                     useVue.page0 = useVue.pagerandom.slice(0, 3);
                                     useVue.page1 = useVue.pagerandom.slice(3, 6);
                                     useVue.page2 = useVue.pagerandom.slice(6, 9);
@@ -738,7 +708,6 @@
 
                                     useVue.match = 1;
                                     useVue.open = 1;
-                                    /*window.location.href = "#jump";*/
                                 }
                             }
                         }
@@ -761,7 +730,7 @@
     );
     useVue.flygo()
 
-    //$('.pic').flipster({
+    //$('.pic').flipster({  搭配左方貓咪圖使用
     //    spacing: 0,
     //    style: 'flat',
     //    start: ''
