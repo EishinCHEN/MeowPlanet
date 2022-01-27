@@ -36,14 +36,14 @@
         </div>
         <div class="encyclopedia-inner-area">
             <div class="encyclopedia-path-area">
-                <div class="encyclopedia-path" v-on:click="changeCat(0)"><p>橘貓</p></div>
-                <div class="encyclopedia-path" v-on:click="changeCat(1)"><p>黑貓</p></div>
-                <div class="encyclopedia-path" v-on:click="changeCat(2)"><p>白貓</p></div>
-                <div class="encyclopedia-path" v-on:click="changeCat(3)"><p>灰貓</p></div>
-                <div class="encyclopedia-path" v-on:click="changeCat(4)"><p>黑白貓</p></div>
-                <div class="encyclopedia-path" v-on:click="changeCat(5)"><p>三花貓</p></div>
-                <div class="encyclopedia-path" v-on:click="changeCat(6)"><p>玳瑁貓</p></div>
-                <div class="encyclopedia-path" v-on:click="changeCat(7)"><p>虎斑貓</p></div>
+                <div class="encyclopedia-path" id="changeCat0" v-on:click="changeCat(0)"><p>橘貓</p></div>
+                <div class="encyclopedia-path" id="changeCat1" v-on:click="changeCat(1)"><p>黑貓</p></div>
+                <div class="encyclopedia-path" id="changeCat2" v-on:click="changeCat(2)"><p>白貓</p></div>
+                <div class="encyclopedia-path" id="changeCat3" v-on:click="changeCat(3)"><p>灰貓</p></div>
+                <div class="encyclopedia-path" id="changeCat4" v-on:click="changeCat(4)"><p>黑白貓</p></div>
+                <div class="encyclopedia-path" id="changeCat5" v-on:click="changeCat(5)"><p>三花貓</p></div>
+                <div class="encyclopedia-path" id="changeCat6" v-on:click="changeCat(6)"><p>玳瑁貓</p></div>
+                <div class="encyclopedia-path" id="changeCat7" v-on:click="changeCat(7)"><p>虎斑貓</p></div>
             </div>
             <div class="encyclopedia-artical-area">
                 <div class="encyclopedia-cat" v-if="isVisiable===0">
@@ -181,6 +181,7 @@
             methods:{
                 changeCat(n){
                     this.isVisiable = n;
+                    document.getElementById(`changeCat0`).style('color','#DA8952')
                 }
             }
         });

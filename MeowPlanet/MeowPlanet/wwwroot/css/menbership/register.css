@@ -91,3 +91,15 @@ input {
   ::-webkit-scrollbar-thumb:hover {
     background: #fbd06e; 
   }
+@media (max-width: 800px) {
+    .right-area {
+        width: 100%;
+        padding: 0;
+    }
+    .register-area {
+        width: 90%;
+    }
+    .left-area {
+        display: none; /*手機&平板不顯示menu選單 */
+    }
+}
