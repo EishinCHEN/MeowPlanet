@@ -154,7 +154,7 @@ namespace MeowPlanet.Controllers
         {
             MimeMessage message = new MimeMessage();
             message.To.Add(MailboxAddress.Parse(Email));
-            message.From.Add(new MailboxAddress("喵星球", "eishinchen@gmail.com"));
+            message.From.Add(new MailboxAddress("喵星球", "meowplanet103@gmail.com"));
 
             message.Subject = $"Hello {Name}, 歡迎登入喵星球";
             var builder = new BodyBuilder();
@@ -167,11 +167,11 @@ namespace MeowPlanet.Controllers
             builder.HtmlBody = string.Format(@$"<p>嗨! {Name},<br>
 <p>歡迎登入喵星球</p>
 <p>請點擊連結來驗證您的信箱</p>
-<a href='https://localhost:5001/Register/MailValidation/{Account}'>驗證我的信箱</a>");
+<a href='https://meowplanet20220126125800.azurewebsites.net/Register/MailValidation/{Account}'>驗證我的信箱</a>");
 
             message.Body = builder.ToMessageBody();
-            string eamilAddress = "eishinchen@gmail.com";
-            string password = "N@nam!1997";
+            string eamilAddress = "meowplanet103@gmail.com";
+            string password = "MEOWmeow1234";
 
             //取得SmtpClient
             SmtpClient client = new SmtpClient();

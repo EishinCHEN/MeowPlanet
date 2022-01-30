@@ -187,7 +187,7 @@ namespace MeowPlanet.Controllers
         {
             MimeMessage message = new MimeMessage();
             message.To.Add(MailboxAddress.Parse(Email));
-            message.From.Add(new MailboxAddress("喵星球", "eishinchen@gmail.com"));
+            message.From.Add(new MailboxAddress("喵星球", "meowplanet103@gmail.com"));
 
             message.Subject = $"Hello {Name}, 為您送上登入星球的密碼";
             var builder = new BodyBuilder();
@@ -204,8 +204,8 @@ namespace MeowPlanet.Controllers
 ");
 
             message.Body = builder.ToMessageBody();
-            string eamilAddress = "eishinchen@gmail.com";
-            string password = "N@nam!1997";
+            string eamilAddress = "meowplanet103@gmail.com";
+            string password = "MEOWmeow1234";
 
             //取得SmtpClient
             SmtpClient client = new SmtpClient();
