@@ -22,7 +22,7 @@ namespace MeowPlanet.Controllers
         public CatCollectController(Models.MeowContext _dbcontext, IWebHostEnvironment _hostEnvironment)
         {
             this._dbcontext = _dbcontext;
-            this._webHostEnvironment = _hostEnvironment;//功能?
+            this._webHostEnvironment = _hostEnvironment;//用不到待刪
         }
 
         
@@ -34,7 +34,7 @@ namespace MeowPlanet.Controllers
 
             var info = await (from a in _dbcontext.UserDatas
                             where a.UserId == ID
-                            select a).FirstOrDefaultAsync();
+                            select a).FirstOrDefaultAsync();//用不到待刪
 
             ViewData["UserID"] = ID;
             return View();

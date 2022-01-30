@@ -25,7 +25,7 @@ namespace MeowPlanet.Controllers
             var ID = Convert.ToInt32(claims.Identity.Name);
             var info = await (from a in _dbContext.UserDatas
                               where a.UserId == ID
-                              select a).FirstOrDefaultAsync();
+                              select a).FirstOrDefaultAsync();//用不到待刪
             ViewData["UserID"] = ID;
             return View();
         }
@@ -173,9 +173,9 @@ namespace MeowPlanet.Controllers
 
             _dbContext.SaveChanges();
             var query = _dbContext.Cats.AsQueryable();
-            List<Models.Cat> datacat777 = query.ToList<Models.Cat>();
+            List<Models.Cat> datacat777 = query.ToList<Models.Cat>();//用不到待刪
             Console.WriteLine(datacat777.Count);
-            return datacat777;
+            return datacat777;//用不到待刪
         }
     }
 }
