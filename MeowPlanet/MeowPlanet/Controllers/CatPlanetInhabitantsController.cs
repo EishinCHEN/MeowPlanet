@@ -96,7 +96,6 @@ namespace MeowPlanet.Controllers
                 Console.WriteLine("無條件符合");
             }
             //SQL left join 在 Linq的寫法
-            //??運算子好像不可搭配int使用?
             var join = (IQueryable<CatFilterList>)(from j in jj
                                                    join k in kj on j.CatId equals k.CatId into we
                                                    from f in we.DefaultIfEmpty()

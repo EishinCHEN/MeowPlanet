@@ -6,10 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-/// <summary>
-/// //
-/// </summary>
-/// using MeowPlanet.MemberManagement;
 using MeowPlanet.Models;
 
 using Microsoft.AspNetCore.Http;
@@ -26,7 +22,7 @@ namespace MeowPlanet.Controllers
         public CatCollectController(Models.MeowContext _dbcontext, IWebHostEnvironment _hostEnvironment)
         {
             this._dbcontext = _dbcontext;
-            this._webHostEnvironment = _hostEnvironment;//不知道功能 先省略
+            this._webHostEnvironment = _hostEnvironment;//功能?
         }
 
         
@@ -36,9 +32,9 @@ namespace MeowPlanet.Controllers
             var claims = HttpContext.User;
             var ID = Convert.ToInt32(claims.Identity.Name);
 
-            //var info = await (from a in _dbcontext.UserDatas
-            //                  where a.UserId == ID
-            //                  select a).FirstOrDefaultAsync();
+            var info = await (from a in _dbcontext.UserDatas
+                            where a.UserId == ID
+                            select a).FirstOrDefaultAsync();
 
             ViewData["UserID"] = ID;
             return View();
@@ -56,7 +52,7 @@ namespace MeowPlanet.Controllers
                                                            join k in _dbcontext.Cats
                                                            on j.CatId equals k.CatId
                                                            where j.UserId == Int32.Parse(search["User_ID"])
-                                                           select new CollectionListJoinCat   /// 這行記得要對應要使用的新表單的model 不能只有new
+                                                           select new CollectionListJoinCat   
                                                            {
                                                                UserId = j.UserId,
                                                                CatId = j.CatId,
