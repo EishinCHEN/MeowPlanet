@@ -1,0 +1,322 @@
+﻿@model MeowPlanet.Models.MessageContentViewModel;
+
+@{
+    ViewData["Title"] = "聊天內容";
+}
+
+@section Styles{
+
+    <link href="~/css/meowChat/messagecontent.css" rel="stylesheet" />
+
+    @*引用googlefont*@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+          rel="stylesheet">
+    @*引用fontawesome*@
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    @*引用bootstrap icon*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    @*引用bootstrap*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+}
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+            integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script>
+    const chatboxApp = new Vue({
+        el: '#chatroom',
+        data: {
+            sender: @User.Identity.Name,
+            receiver:@(Json.Serialize(Model.OtherUserId)),
+            infoUser: @(Json.Serialize(Model.OtherUser)),
+            inputMessage: '',
+            inputImage:'',
+            sendMessageList: [],
+            chatList: @(Json.Serialize(Model.ChatContentList)),
+            connection: '',
+            userRole: @(Json.Serialize(Model.UserRole)),
+        },
+        //自定義時間格式
+        filters: {
+            formatDate: function (value) {
+                if (value) {
+                    return moment(String(value)).locale("zh-tw").format('dddd HH:mm');
+                }
+            }
+        },
+        methods: {
+            // 點擊按鈕時顯示或隱藏聊天視窗
+            toggleBox: function () {
+                $(".info-box").toggle();
+            },
+            //關閉鍵關閉視窗
+            closeBox: function () {
+                $(".info-box").hide();
+            },
+            //輸入新訊息
+            sendMyMessage: function () {
+                if (this.inputMessage.trim() != '') {
+                    let myMessage = {
+                        receiver: this.receiver,
+                        sender: this.sender,
+                        message: this.inputMessage,
+                        sendTime: moment().format("YYYY-MM-DD HH:mm:ss.SSS")
+                    };
+                    this.connection.invoke("SendMessageToUser", myMessage.receiver, myMessage.message, myMessage.sendTime, myMessage.sender).catch(function(error) { return console.log(error)});
+                    this.inputMessage = '';
+                    this.scrollBoxToBottom();
+                } else {
+                    this.inputMessage = '';
+                }
+            },
+            //滾輪會自動捲到最新訊息
+            scrollBoxToBottom: function () {
+                this.$nextTick(() => {
+                    let box = this.$el.querySelector("#chatarea");
+                    box.scrollTop = box.scrollHeight;
+                });
+            },
+            //判斷是sender或receiver
+            bindClassForSender: function (user, element) {
+                if (user.sender == this.sender) {
+                    switch (element) {
+                        case "ul":
+                            return "sender";
+                        case "time":
+                            return "sender-time";
+                        case "text":
+                            return "sender-text";
+                        case "image":
+                            return "sender-img";
+                    }
+                } else {
+                    switch (element) {
+                        case "ul":
+                            return "recipient";
+                        case "time":
+                            return "recipient-time";
+                        case "text":
+                            return "recipient-text";
+                        case "image":
+                            return "recipient-img";
+                    }
+                }
+            },
+            uploadImage: async function () {
+                let imgLoader = file => {
+                    return new Promise((resolve, reject) => {
+                        let reader = new FileReader();
+                        reader.onload = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(file);
+                    })
+                };
+
+                this.inputImage = await imgLoader(document.getElementById('uploadImage').files[0]);
+
+                let myMessage = {
+                    Receiver: this.receiver,
+                    Sender: this.sender,
+                    ImageToUpload: this.inputImage,
+                    SendTime: moment().format("YYYY-MM-DD HH:mm:ss.SSS")
+                };
+                console.log(myMessage);
+                //this.connection.invoke("SendImageToUser", myMessage.receiver, myMessage.image, myMessage.sendTime, myMessage.sender).catch(function (error) { return console.log(error) });
+                $.ajax({
+                    type: "post",
+                    data: myMessage,
+                    url: "@Url.Action("SendImage", "MeowChat")/",
+                }).done(function (response) {
+                    console.log(response);
+                }).fail(function (error) {
+                    console.log(error);
+                });
+            }
+        },
+        @*created() {
+                let $vue = this
+                //傳入後端資料
+                $.ajax({
+                    type: "get",
+                    data: { sender: "Ru"},
+                    url: "@Url.Action("GetMessageSenderList", "MeowChat")/",
+                }).done(function (response) {
+                    $vue.loadSuccess = true;
+                    $vue.chatList = response;
+                    console.log(response);
+                }).fail(function (error) {
+                    console.log(error);
+                });
+        },*@
+        mounted() {
+            let $vue = this;
+            //點擊資訊視窗和按鈕以外的任何地方就隱藏視窗
+            $("body").click(function (e) {
+                var infobox = $(".info-box");
+                var details = $(".details");
+                // 判斷點擊的地方不是聊天室窗或聊天圖示
+                if (!infobox.is(e.target) &&
+                    !infobox.has(e.target).length &&
+                    !details.is(e.target) &&
+                    !details.has(e.target).length
+                ) {
+                    infobox.hide();
+                }
+            });
+
+            //SignalR 連接建立
+            this.connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+            this.connection
+                .start()
+                .then(()=> console.log("SignalR已連結"))
+                .catch(error=> console.log(error));
+
+            this.connection.on("ReceiveMessage", function (receiver, sender, sendtime, message) {
+                if((receiver == $vue.sender && sender == $vue.receiver) || (receiver == $vue.receiver && sender == $vue.sender)){
+                    let newMessage = {
+                        receiver: receiver,
+                        sender: sender,
+                        message: message,
+                        sendTime: sendtime
+                    };
+                $vue.chatList.push(newMessage);
+                $vue.scrollBoxToBottom();
+                $vue.connection.invoke("MessagesAreRead", sender).catch(function(error) { return console.log(error)});
+                }
+            });
+
+            this.connection.on("ReceiveImage", function (receiver, sender, sendtime, image) {
+                if((receiver == $vue.sender && sender == $vue.receiver) || (receiver == $vue.receiver && sender == $vue.sender)){
+                    let newImage = {
+                        receiver: receiver,
+                        sender: sender,
+                        image: image,
+                        sendTime: sendtime
+                    };
+                $vue.chatList.push(newImage);
+                setTimeout(() => $vue.scrollBoxToBottom(), 500);
+                $vue.connection.invoke("MessagesAreRead", sender).catch(function(error) { return console.log(error)});
+                }
+            });
+
+            setTimeout(() => this.scrollBoxToBottom(), 1000);
+        },
+        updated() {
+            //滾輪預設在最新訊息(最底)
+            this.scrollBoxToBottom();
+
+        }
+    });
+    </script>
+}
+
+
+<div class=" container" id="chatroom">
+
+    <div class="col-xl-3 col-lg-3 col-md-2 col-sm-0 col-xs-0 hidden-sm hidden-xs ">
+        <!--選單列-->
+        <div class="menu">
+            <ul>
+                <li class="menu-list ">
+                    <a asp-controller="Membership" asp-action="Editor">資料修改</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list ">
+                    <a asp-controller="CatCollect" asp-action="CatCollect">收藏居民</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list ">
+                    <p asp-controller="MeowChat" asp-action="MessageManage" class="catchlist">聊天訊息</p>
+                    <i class="bi bi-caret-right-fill catchlist "></i>
+                </li>
+                <li class="menu-list ">
+                    <a href="# ">行程管理</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list" v-if="userRole === 1">
+                    <a asp-controller="Membership" asp-action="Sender">我要送養</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+                <li class="menu-list" v-if="userRole === 2">
+                    <a asp-controller="CatManagement" asp-action="ManageCat">管理居民</a>
+                    <i class="bi bi-caret-right-fill "></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--右邊區塊-->
+    <div class="col-xl-9 col-lg-9 col-md-10 col-sm-12 col-xs-12 message-area ">
+        <!--聊天訊息內容-->
+        <div class="message-area-title ">★聊天訊息</div>
+        <div class="message-area-inside">
+            <!--info-->
+            <div class="info-box" style="display: none;">
+                <ul id="box">
+                    <li class="info-box-close ">
+                        <button type="button" id="close" class="close" v-on:click="closeBox()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </li>
+                    <li>職業:{{infoUser.job}}</li>
+                    <li>年薪:{{infoUser.salary}}</li>
+                    <li>每月願意負擔:{{infoUser.acceptableAmount}}</li>
+                    <li>同時飼養寵物:{{infoUser.otherPets}}</li>
+                    <li>曾經養過寵物:{{infoUser.keepPets}}</li>
+                    <li>是否年滿20歲:{{infoUser.over20}}</li>
+                    <li>婚姻狀態:{{infoUser.merrage}}</li>
+                </ul>
+            </div>
+            <!--message-top-->
+            <div class="message-top ">
+                <div class="message-top-left">
+                    <button class="return" type="button" onclick="location.href='@Url.Action("MessageManage", "MeowChat")'"><i class="bi bi-chevron-left "></i></button>
+                    <div class="recipient-pic ">
+                        <img class="recipient-pic-inside" :src="infoUser.personalPhoto" />
+                    </div>
+                    <div class="recipient-name">{{infoUser.realName}}</div>
+                </div>
+                <button class="details" type="button" v-on:click="toggleBox()">info</button>
+            </div>
+            <!-- chat-area -->
+            <div class="chat-area" id="chatarea">
+                <div class="chatarea-inside ">
+                    <!-- 歷史訊息判斷sender或receiver -->
+                    <ul v-for="item in chatList" :class="bindClassForSender(item, 'ul')">
+                        <li :class="bindClassForSender(item, 'text')" v-if="(item.sender != sender) && (item.image == null)">{{item.message}}</li>
+                        <li :class="bindClassForSender(item, 'image')" v-if="item.sender != sender && (item.message == null)">
+                            <img class="sender-img-in" :src="item.image" alt="" />
+                        </li>
+                        <li :class="bindClassForSender(item, 'time')">{{item.sendTime | formatDate}}</li>
+                        <li :class="bindClassForSender(item, 'text')" v-if="item.sender == sender && (item.image == null)">{{item.message}}</li>
+                        <li :class="bindClassForSender(item, 'image')" v-if="item.sender == sender && (item.message == null)">
+                            <img class="sender-img-in" :src="item.image" alt="" />
+                        </li>
+                    </ul>
+                    <!-- 即時輸入訊息 -->
+                    <ul class="sender" v-for="item in sendMessageList">
+                        <li class="sender-time ">{{item.time | formatDate}}</li>
+                        <li class="sender-text ">{{item.text}}</li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="input-area ">
+                <input class="text-input" v-model="inputMessage" type="text" placeholder="請輸入訊息" v-on:keydown.enter="sendMyMessage()">
+                <button type="button" id="photo" onclick="document.getElementById('uploadImage').click()"><i class="input-botton bi bi-image "></i></button>
+                <button type="button" id="send"><i class="input-botton bi bi-chat-text" v-on:click="sendMyMessage()"></i></button>
+                <input type="file"
+                       id="uploadImage"
+                       accept="image/png, image/jpeg" v-on:change="uploadImage()" style="display: none">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

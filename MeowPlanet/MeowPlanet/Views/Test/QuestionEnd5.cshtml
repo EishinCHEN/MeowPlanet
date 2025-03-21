@@ -1,0 +1,64 @@
+﻿@section Styles{
+    <link rel="stylesheet" href="~/css/testpage/styletestEnd5.css">
+}
+<div class="test">
+    <div class="p1">
+        <p class="t1">推薦你橘貓喵星人</p>
+        <hr>
+        <p>
+            有著好奇勇敢的性格，<br>
+            毛色討喜可愛，普遍給人一種友善、<br>
+            親人、愛撒嬌的夢幻印象，<br>
+            多數橘貓似乎對食物來者不拒，<br>
+            所以坊間一直有著「10隻橘貓9隻胖」的說法。<br>
+        </p>
+        <br>
+        <img src="~/images/外星貓船(反).png" alt="">
+    </div>
+
+
+
+    <div class="p2">
+        <p class="t2">★目前居住的橘貓喵星人</p>
+    </div>
+
+    <div class="pic">
+        <div class="pic1">
+            <img class="pic12" src="~/images/橘貓7.jpg">
+            <br>
+            <div class="test1">
+                瓜瓜包♂<br>
+                3-8歲<br>
+                已結紮<br>
+                台北市北投區
+                <hr>
+                <a asp-controller="CatDetail" asp-action="CatDetail" asp-route-catId="9">▸▹▸前往了解居民</a>
+            </div>
+        </div>
+
+        <div class="pic1">
+            <img class="pic13" src="~/images/橘貓6.jpg" alt="">
+            <br>
+            <div class="test1">
+                麻辣花生♂<br>
+                1-3歲<br>
+                已結紮<br>
+                台北市北投區
+                <hr>
+                <a asp-controller="CatDetail" asp-action="CatDetail" asp-route-catId="42">▸▹▸前往了解居民</a>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="btn1">
+        <a class="btn"  style="color: white;border:1px solid white; border-radius: 8px;" onClick="flygo('橘貓')">看更多</a>
+    </div>
+</div>
+<script>
+    function flygo(a) {
+        top.location.href = "/CatPlanetInhabitants/CatPlanetInhabitants?" + a;
+    }
+</script>
+
+

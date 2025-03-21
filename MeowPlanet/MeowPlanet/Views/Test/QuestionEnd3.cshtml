@@ -1,0 +1,65 @@
+﻿@section Styles{
+    <link rel="stylesheet" href="~/css/testpage/styletestEnd3.css">
+}
+<div class="test">
+    <div class="p1">
+        <p class="t1">推薦你玳瑁喵星人</p>
+        <hr>
+        <br>
+        <p>
+            個性善良、穩重，<br>
+            平時雖然不太會表達情感，一旦吃起醋來也是很可怕的！<br>
+            不同的是，脾氣極佳、乖巧溫和、<br>
+            合群善良是玳瑁飼主公認的優點，<br>
+            時常翻肚討摸更讓他們擁有「路倒王」的可愛稱號。<br>
+        </p>
+        <br>
+        <img src="~/images/外星貓船(反).png" alt="">
+    </div>
+
+
+
+    <div class="p2">
+        <p class="t2">★目前居住的玳瑁喵星人</p>
+    </div>
+
+    <div class="pic">
+        <div class="pic1">
+            <img class="pic12" src="~/images/玳瑁6.jpg">
+            <br>
+            <div class="test1">
+                恰吉♂<br>
+                1-3歲<br>
+                已結紮<br>
+                台北市大安區
+                <hr>
+                <a asp-controller="CatDetail" asp-action="CatDetail" asp-route-catId="12">▸▹▸前往了解居民</a>
+            </div>
+        </div>
+
+        <div class="pic1">
+            <img class="pic13" src="~/images/玳瑁5.jpg" alt="">
+            <br>
+            <div class="test1">
+                輪輪♂<br>
+                3-5月<br>
+                已結紮<br>
+                台北市士林區
+                <hr>
+                <a asp-controller="CatDetail" asp-action="CatDetail" asp-route-catId="7">▸▹▸前往了解居民</a>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="btn1">
+        <a class="btn"  style="color: white;border:1px solid white; border-radius: 8px;" onClick="flygo('玳瑁')">看更多</a>
+    </div>
+</div>
+
+<script>
+    function flygo(a) {
+        top.location.href = "/CatPlanetInhabitants/CatPlanetInhabitants?" + a;
+    }
+</script>
+

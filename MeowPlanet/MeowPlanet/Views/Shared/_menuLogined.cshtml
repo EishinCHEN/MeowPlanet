@@ -1,0 +1,88 @@
+﻿<link href="~/css/menu.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+<!-- 電腦版 -->
+<div id="computer">
+    <nav>
+        <div class="logo">
+            <a asp-controller="Home" asp-action="Index"><img src="~/images/白色/LOGO.PNG" alt=""></a>
+        </div>
+        <ul class="nav-links">
+            <li><a asp-controller="MeowEncyclopedia" asp-action="MeowBook">相處之旅</a></li>
+            <li><a asp-controller="Test" asp-action="QuestionStart">命運旅行</a></li>
+        </ul>
+        <ul class="nav-link">
+            <li><a asp-controller="CatDaily" asp-action="CatDailySixth">喵星日常</a></li>
+            <li>
+                <a href="#" class="desktop-link">喵星居民</a>
+                <input type="checkbox" id="show-features">
+                <label for="show-features">喵星居民</label>
+                <ul>
+                    <li><a asp-controller="CatPlanetInhabitants" asp-action="CatPlanetInhabitants" style="color: #da8952;">征服居民</a></li>
+                    <li><a asp-controller="Membership" asp-action="Sender" style="color: #da8952;">我要送養</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="desktop-links" style="border: 2px solid #da8952; background: #FEF2CB; color: #da8952; font-weight: bold; ">會員專區</a>
+                <input type="checkbox" id="show-features3">
+                <label for="show-features3">會員專區</label>
+                <ul>
+                    <li><a asp-controller="Membership" asp-action="Editor" style="color: #da8952;">資料修改</a></li>
+                    <li><a asp-controller="CatCollect" asp-action="CatCollect" style="color: #da8952;">收藏居民</a></li>
+                    <li><a asp-controller="MeowChat" asp-action="MessageManage" style="color: #da8952;">聊天訊息</a></li>
+                    <li><a asp-controller="Schedule" asp-action="Schedule" style="color: #da8952;">行程管理</a></li>
+                    <li><a asp-controller="CatManagement" asp-action="ManageCat" style="color: #da8952;">管理居民</a></li>
+                    <li><a asp-controller="Login" asp-action="Logout" style="color: #da8952;"> &nbsp;&nbsp;&nbsp;登出 &nbsp;&nbsp;</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </nav>
+</div>
+
+
+<!--手機板-->
+<div id="phone">
+    <nav class="nav">
+        <div class="logo21">
+            <a asp-controller="Home" asp-action="Index"> <img src="~/images/白色/LOGO.PNG" alt=""></a>
+        </div>
+        <ul class="links">
+            <li><a asp-controller="MeowEncyclopedia" asp-action="MeowBook">相處之旅</a></li>
+            <li><a asp-controller="Test" asp-action="QuestionStart">命運旅行</a></li>
+            <li><a asp-controller="CatDaily" asp-action="CatDailySixth">喵星日常</a></li>
+            <li>
+                <a href="#" class="desktop-links">喵星居民</a>
+                <input type="checkbox" id="show-features2">
+                <label for="show-features2">喵星居民</label>
+                <ul>
+                    <li><a asp-controller="CatPlanetInhabitants" asp-action="CatPlanetInhabitants" style="color: #da8952;">征服居民</a></li>
+                    <li><a asp-controller="CatManagement" asp-action="ManageCat" style="color: #da8952;">我要送養</a></li>
+                </ul>
+
+            </li>
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn" style="font-size: 16px; background: #FBD06E; color: #da8952; font-weight: bold;">會員專區</button>
+                    <div class="dropdown-content">
+                        <a asp-controller="Membership" asp-action="Editor">資料修改</a>
+                        <a asp-controller="CatCollect" asp-action="CatCollect">收藏居民</a>
+                        <a asp-controller="MeowChat" asp-action="MessageManage">聊天訊息</a>
+                        <a asp-controller="Schedule" asp-action="Schedule">行程管理</a>
+                        <a asp-controller="CatManagement" asp-action="ManageCat">管理居民</a>
+                        <a asp-controller="Login" asp-action="Logout">&nbsp;&nbsp;&nbsp;登出 &nbsp;&nbsp;</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+</div>
+
+
+
+<script src="~/js/app2.js"></script>
+
